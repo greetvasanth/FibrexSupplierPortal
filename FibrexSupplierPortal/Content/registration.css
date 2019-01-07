@@ -1,0 +1,32 @@
+﻿.outerMargin {
+    margin:15px;
+}
+.e-reg {
+     color: #68bdce;
+    font-family: arial;
+    text-decoration: none;
+    font-size:32px;
+    font-weight:bold;
+}
+.tagline {
+     font-family: arial;
+     color:#b1b1b1;
+     font-size:13px;
+     margin-left:10px;
+}
+.e-regHigh {
+     color: #636363;
+    font-family: arial;
+    text-decoration: none;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.e-regHighDetail {
+     color: #636363;
+    font-family: arial;
+    text-decoration: none;
+    font-size:12px;
+    font-weight:bold;
+}
+

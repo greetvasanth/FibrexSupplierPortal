@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsPurchaseOrderLines" targetNamespace="http://tempuri.org/dsPurchaseOrderLines.xsd" xmlns:mstns="http://tempuri.org/dsPurchaseOrderLines.xsd" xmlns="http://tempuri.org/dsPurchaseOrderLines.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="CS" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="CS (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.CS.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="POLINETableAdapter" GeneratorDataComponentClassName="POLINETableAdapter" Name="POLINE" UserDataComponentName="POLINETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        POLINE.PONUM, POLINE.POREVISION, POLINE.POLINENUM, POLINE.LINETYPE, POLINE.COSTCODE, POLINE.DESCRIPTION, POLINE.ORDERQTY, 
+                         POLINE.ORDERUNIT, POLINE.UNITCOST, POLINE.LINECOST, POLINE.CREATIONDATE, POLINE.CREATEDBY, POLINE.LASTMODIFIEDBY, 
+                         POLINE.LASTMODIFIEDDATE, PO_1.TOTALCOST, POLINE.TAXTOTAL, 'Total Tax (in ' +
+                             (SELECT        CURRENCYCODE
+                               FROM            PO
+                               WHERE        (POLINE.PONUM = PONUM) AND (POLINE.POREVISION = POREVISION)) + ')...........' AS ValTotalTax,
+                             (SELECT        CURRENCYCODE
+                               FROM            PO AS PO_5
+                               WHERE        (POLINE.PONUM = PONUM) AND (POLINE.POREVISION = POREVISION)) AS CURRENCYCODE,
+                             (SELECT        PRETAXTOTAL
+                               FROM            PO AS PO_2
+                               WHERE        (POLINE.PONUM = PONUM) AND (POLINE.POREVISION = POREVISION)) AS PRETAXTOTAL, 'Pretax Total (in ' +
+                             (SELECT        CURRENCYCODE
+                               FROM            PO AS PO_4
+                               WHERE        (POLINE.PONUM = PONUM) AND (POLINE.POREVISION = POREVISION)) + ')......' AS ValPretax, 'Grand Total (in ' +
+                             (SELECT        CURRENCYCODE
+                               FROM            PO AS PO_3
+                               WHERE        (POLINE.PONUM = PONUM) AND (POLINE.POREVISION = POREVISION)) + ').......' AS ValGrandtax, POLINE.MODELNUM, POLINE.MANUFACUTRER, 
+                         POLINE.REMARK, POLINE.TAXCODE, POLINE.CATALOGCODE
+FROM            POLINE INNER JOIN
+                         PO AS PO_1 ON POLINE.PONUM = PO_1.PONUM AND POLINE.POREVISION = PO_1.POREVISION</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="COSTCODE" DataSetColumn="COSTCODE" />
+              <Mapping SourceColumn="ITEMDESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="ORDERUNIT" DataSetColumn="ORDERUNIT" />
+              <Mapping SourceColumn="UNITCOST" DataSetColumn="UNITCOST" />
+              <Mapping SourceColumn="LINETYPE" DataSetColumn="LINETYPE" />
+              <Mapping SourceColumn="LASTMODIFIEDBY" DataSetColumn="LASTMODIFIEDBY" />
+              <Mapping SourceColumn="LASTMODIFIEDDATE" DataSetColumn="LASTMODIFIEDDATE" />
+              <Mapping SourceColumn="POREVISION" DataSetColumn="POREVISION" />
+              <Mapping SourceColumn="POLINENUM" DataSetColumn="POLINENUM" />
+              <Mapping SourceColumn="LINECOST" DataSetColumn="LINECOST" />
+              <Mapping SourceColumn="CREATIONDATE" DataSetColumn="CREATIONDATE" />
+              <Mapping SourceColumn="CREATEDBY" DataSetColumn="CREATEDBY" />
+              <Mapping SourceColumn="TOTALCOST" DataSetColumn="TOTALCOST" />
+              <Mapping SourceColumn="PONUM" DataSetColumn="PONUM" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="ORDERQTY" DataSetColumn="ORDERQTY" />
+              <Mapping SourceColumn="TAXTOTAL" DataSetColumn="TAXTOTAL" />
+              <Mapping SourceColumn="CURRENCYCODE" DataSetColumn="CURRENCYCODE" />
+              <Mapping SourceColumn="MODELNUM" DataSetColumn="MODELNUM" />
+              <Mapping SourceColumn="MANUFACUTRER" DataSetColumn="MANUFACUTRER" />
+              <Mapping SourceColumn="REMARK" DataSetColumn="REMARK" />
+              <Mapping SourceColumn="TAXCODE" DataSetColumn="TAXCODE" />
+              <Mapping SourceColumn="CATALOGCODE" DataSetColumn="CATALOGCODE" />
+              <Mapping SourceColumn="PRETAXTOTAL" DataSetColumn="PRETAXTOTAL" />
+              <Mapping SourceColumn="ValTotalTax" DataSetColumn="ValTotalTax" />
+              <Mapping SourceColumn="ValPretax" DataSetColumn="ValPretax" />
+              <Mapping SourceColumn="ValGrandtax" DataSetColumn="ValGrandtax" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsPurchaseOrderLines" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:EnforceConstraints="False" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsPurchaseOrderLines" msprop:Generator_UserDSName="dsPurchaseOrderLines">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="POLINE" msprop:Generator_TableClassName="POLINEDataTable" msprop:Generator_TableVarName="tablePOLINE" msprop:Generator_RowChangedName="POLINERowChanged" msprop:Generator_TablePropName="POLINE" msprop:Generator_RowDeletingName="POLINERowDeleting" msprop:Generator_RowChangingName="POLINERowChanging" msprop:Generator_RowEvHandlerName="POLINERowChangeEventHandler" msprop:Generator_RowDeletedName="POLINERowDeleted" msprop:Generator_RowClassName="POLINERow" msprop:Generator_UserTableName="POLINE" msprop:Generator_RowEvArgName="POLINERowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="COSTCODE" msprop:Generator_ColumnVarNameInTable="columnCOSTCODE" msprop:Generator_ColumnPropNameInRow="COSTCODE" msprop:Generator_ColumnPropNameInTable="COSTCODEColumn" msprop:Generator_UserColumnName="COSTCODE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORDERQTY" msprop:Generator_ColumnVarNameInTable="columnORDERQTY" msprop:Generator_ColumnPropNameInRow="ORDERQTY" msprop:Generator_ColumnPropNameInTable="ORDERQTYColumn" msprop:Generator_UserColumnName="ORDERQTY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ORDERUNIT" msprop:Generator_ColumnVarNameInTable="columnORDERUNIT" msprop:Generator_ColumnPropNameInRow="ORDERUNIT" msprop:Generator_ColumnPropNameInTable="ORDERUNITColumn" msprop:Generator_UserColumnName="ORDERUNIT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UNITCOST" msprop:Generator_ColumnVarNameInTable="columnUNITCOST" msprop:Generator_ColumnPropNameInRow="UNITCOST" msprop:Generator_ColumnPropNameInTable="UNITCOSTColumn" msprop:Generator_UserColumnName="UNITCOST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LINETYPE" msprop:Generator_ColumnVarNameInTable="columnLINETYPE" msprop:Generator_ColumnPropNameInRow="LINETYPE" msprop:Generator_ColumnPropNameInTable="LINETYPEColumn" msprop:Generator_UserColumnName="LINETYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LASTMODIFIEDBY" msprop:Generator_ColumnVarNameInTable="columnLASTMODIFIEDBY" msprop:Generator_ColumnPropNameInRow="LASTMODIFIEDBY" msprop:Generator_ColumnPropNameInTable="LASTMODIFIEDBYColumn" msprop:Generator_UserColumnName="LASTMODIFIEDBY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LASTMODIFIEDDATE" msprop:Generator_ColumnVarNameInTable="columnLASTMODIFIEDDATE" msprop:Generator_ColumnPropNameInRow="LASTMODIFIEDDATE" msprop:Generator_ColumnPropNameInTable="LASTMODIFIEDDATEColumn" msprop:Generator_UserColumnName="LASTMODIFIEDDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="POREVISION" msprop:Generator_ColumnVarNameInTable="columnPOREVISION" msprop:Generator_ColumnPropNameInRow="POREVISION" msprop:Generator_ColumnPropNameInTable="POREVISIONColumn" msprop:Generator_UserColumnName="POREVISION" type="xs:short" />
+              <xs:element name="POLINENUM" msprop:Generator_ColumnVarNameInTable="columnPOLINENUM" msprop:Generator_ColumnPropNameInRow="POLINENUM" msprop:Generator_ColumnPropNameInTable="POLINENUMColumn" msprop:Generator_UserColumnName="POLINENUM" type="xs:short" />
+              <xs:element name="LINECOST" msprop:Generator_ColumnVarNameInTable="columnLINECOST" msprop:Generator_ColumnPropNameInRow="LINECOST" msprop:Generator_ColumnPropNameInTable="LINECOSTColumn" msprop:Generator_UserColumnName="LINECOST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CREATIONDATE" msprop:Generator_ColumnVarNameInTable="columnCREATIONDATE" msprop:Generator_ColumnPropNameInRow="CREATIONDATE" msprop:Generator_ColumnPropNameInTable="CREATIONDATEColumn" msprop:Generator_UserColumnName="CREATIONDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CREATEDBY" msprop:Generator_ColumnVarNameInTable="columnCREATEDBY" msprop:Generator_ColumnPropNameInRow="CREATEDBY" msprop:Generator_ColumnPropNameInTable="CREATEDBYColumn" msprop:Generator_UserColumnName="CREATEDBY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTALCOST" msprop:Generator_ColumnVarNameInTable="columnTOTALCOST" msprop:Generator_ColumnPropNameInRow="TOTALCOST" msprop:Generator_ColumnPropNameInTable="TOTALCOSTColumn" msprop:Generator_UserColumnName="TOTALCOST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PONUM" msprop:Generator_ColumnVarNameInTable="columnPONUM" msprop:Generator_ColumnPropNameInRow="PONUM" msprop:Generator_ColumnPropNameInTable="PONUMColumn" msprop:Generator_UserColumnName="PONUM" type="xs:decimal" />
+              <xs:element name="TAXTOTAL" msprop:Generator_ColumnVarNameInTable="columnTAXTOTAL" msprop:Generator_ColumnPropNameInRow="TAXTOTAL" msprop:Generator_ColumnPropNameInTable="TAXTOTALColumn" msprop:Generator_UserColumnName="TAXTOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CURRENCYCODE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCURRENCYCODE" msprop:Generator_ColumnPropNameInRow="CURRENCYCODE" msprop:Generator_ColumnPropNameInTable="CURRENCYCODEColumn" msprop:Generator_UserColumnName="CURRENCYCODE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MODELNUM" msprop:Generator_ColumnVarNameInTable="columnMODELNUM" msprop:Generator_ColumnPropNameInRow="MODELNUM" msprop:Generator_ColumnPropNameInTable="MODELNUMColumn" msprop:Generator_UserColumnName="MODELNUM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MANUFACUTRER" msprop:Generator_ColumnVarNameInTable="columnMANUFACUTRER" msprop:Generator_ColumnPropNameInRow="MANUFACUTRER" msprop:Generator_ColumnPropNameInTable="MANUFACUTRERColumn" msprop:Generator_UserColumnName="MANUFACUTRER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REMARK" msprop:Generator_ColumnVarNameInTable="columnREMARK" msprop:Generator_ColumnPropNameInRow="REMARK" msprop:Generator_ColumnPropNameInTable="REMARKColumn" msprop:Generator_UserColumnName="REMARK" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TAXCODE" msprop:Generator_ColumnVarNameInTable="columnTAXCODE" msprop:Generator_ColumnPropNameInRow="TAXCODE" msprop:Generator_ColumnPropNameInTable="TAXCODEColumn" msprop:Generator_UserColumnName="TAXCODE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CATALOGCODE" msprop:Generator_ColumnVarNameInTable="columnCATALOGCODE" msprop:Generator_ColumnPropNameInRow="CATALOGCODE" msprop:Generator_ColumnPropNameInTable="CATALOGCODEColumn" msprop:Generator_UserColumnName="CATALOGCODE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PRETAXTOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPRETAXTOTAL" msprop:Generator_ColumnPropNameInRow="PRETAXTOTAL" msprop:Generator_ColumnPropNameInTable="PRETAXTOTALColumn" msprop:Generator_UserColumnName="PRETAXTOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ValTotalTax" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValTotalTax" msprop:Generator_ColumnPropNameInRow="ValTotalTax" msprop:Generator_ColumnPropNameInTable="ValTotalTaxColumn" msprop:Generator_UserColumnName="ValTotalTax" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="23" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValPretax" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValPretax" msprop:Generator_ColumnPropNameInRow="ValPretax" msprop:Generator_ColumnPropNameInTable="ValPretaxColumn" msprop:Generator_UserColumnName="ValPretax" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="26" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValGrandtax" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValGrandtax" msprop:Generator_ColumnPropNameInRow="ValGrandtax" msprop:Generator_ColumnPropNameInTable="ValGrandtaxColumn" msprop:Generator_UserColumnName="ValGrandtax" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:POLINE" />
+      <xs:field xpath="mstns:PONUM" />
+      <xs:field xpath="mstns:POREVISION" />
+      <xs:field xpath="mstns:POLINENUM" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
