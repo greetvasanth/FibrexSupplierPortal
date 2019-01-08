@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FibrexSupplierPortal", "FibrexSupplierPortal\FibrexSupplierPortal.csproj", "{5D6A441F-02C3-41B7-ABF7-9B69029A3452}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSPBAL", "FSPBAL\FSPBAL.csproj", "{4CD283E3-4133-4BCF-A979-F3399D454A9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D6A441F-02C3-41B7-ABF7-9B69029A3452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6A441F-02C3-41B7-ABF7-9B69029A3452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6A441F-02C3-41B7-ABF7-9B69029A3452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6A441F-02C3-41B7-ABF7-9B69029A3452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD283E3-4133-4BCF-A979-F3399D454A9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD283E3-4133-4BCF-A979-F3399D454A9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD283E3-4133-4BCF-A979-F3399D454A9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD283E3-4133-4BCF-A979-F3399D454A9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

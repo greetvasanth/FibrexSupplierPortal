@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FSPPOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="POLINE">
+    <Key>
+      <PropertyRef Name="PONUM" />
+      <PropertyRef Name="POREVISION" />
+      <PropertyRef Name="POLINENUM" />
+    </Key>
+    <Property Name="POLINEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONUM" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="POREVISION" Type="smallint" Nullable="false" />
+    <Property Name="POLINENUM" Type="smallint" Nullable="false" />
+    <Property Name="LINETYPE" Type="nvarchar" MaxLength="5" />
+    <Property Name="COSTCODE" Type="nvarchar" MaxLength="30" />
+    <Property Name="CATALOGCODE" Type="nvarchar" MaxLength="30" />
+    <Property Name="ITEMDESCRIPTION" Type="nvarchar" MaxLength="500" />
+    <Property Name="ORDERQTY" Type="numeric" Precision="16" Scale="4" />
+    <Property Name="ORDERUNIT" Type="nvarchar" MaxLength="15" />
+    <Property Name="UNITCOST" Type="numeric" Precision="16" Scale="4" />
+    <Property Name="LINECOST" Type="numeric" Precision="16" Scale="4" />
+    <Property Name="CREATIONDATE" Type="datetime" />
+    <Property Name="CREATEDBY" Type="nvarchar" MaxLength="30" />
+    <Property Name="LASTMODIFIEDBY" Type="nvarchar" MaxLength="30" />
+    <Property Name="LASTMODIFIEDDATE" Type="datetime" />
+  </EntityType>
+  <Function Name="PO_AddPOLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONUM" Type="numeric" Mode="In" />
+    <Parameter Name="POREVISION" Type="smallint" Mode="In" />
+    <Parameter Name="POLINENUM" Type="smallint" Mode="In" />
+    <Parameter Name="LINETYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="CATALOGCODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="COSTCODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="ITEMDESCRIPTION" Type="nvarchar" Mode="In" />
+    <Parameter Name="ORDERQTY" Type="numeric" Mode="In" />
+    <Parameter Name="ORDERUNIT" Type="nvarchar" Mode="In" />
+    <Parameter Name="UNITCOST" Type="numeric" Mode="In" />
+    <Parameter Name="LINECOST" Type="numeric" Mode="In" />
+    <Parameter Name="CREATEDBY" Type="nvarchar" Mode="In" />
+    <Parameter Name="CREATIONDATE" Type="datetime" Mode="In" />
+    <Parameter Name="AUTOCOMMIT" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PO_DeletePOLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONUM" Type="numeric" Mode="In" />
+    <Parameter Name="POREVISION" Type="smallint" Mode="In" />
+    <Parameter Name="POLINENUM" Type="smallint" Mode="In" />
+    <Parameter Name="LASTMODIFIEDBY" Type="varchar" Mode="In" />
+    <Parameter Name="LASTMODIFIEDDATE" Type="datetime" Mode="In" />
+    <Parameter Name="AUTOCOMMIT" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PO_EditPOLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PONUM" Type="numeric" Mode="In" />
+    <Parameter Name="POREVISION" Type="smallint" Mode="In" />
+    <Parameter Name="POLINENUM" Type="smallint" Mode="In" />
+    <Parameter Name="LINETYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="CATALOGCODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="COSTCODE" Type="nvarchar" Mode="In" />
+    <Parameter Name="ITEMDESCRIPTION" Type="nvarchar" Mode="In" />
+    <Parameter Name="ORDERQTY" Type="numeric" Mode="In" />
+    <Parameter Name="ORDERUNIT" Type="nvarchar" Mode="In" />
+    <Parameter Name="UNITCOST" Type="numeric" Mode="In" />
+    <Parameter Name="LINECOST" Type="numeric" Mode="In" />
+    <Parameter Name="LASTMODIFIEDBY" Type="nvarchar" Mode="In" />
+    <Parameter Name="LASTMODIFIEDDATE" Type="datetime" Mode="In" />
+    <Parameter Name="AUTOCOMMIT" Type="bit" Mode="In" />
+  </Function>
+  <EntityContainer Name="FSPPOModelStoreContainer">
+    <EntitySet Name="POLINE" EntityType="Self.POLINE" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

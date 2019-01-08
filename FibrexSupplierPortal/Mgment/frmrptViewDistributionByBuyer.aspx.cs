@@ -1,0 +1,121 @@
+﻿using FSPBAL;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace FibrexSupplierPortal.Mgment
+{
+    public partial class frmrptViewDistributionByBuyer : System.Web.UI.Page
+    {
+        FSPDataAccessModelDataContext db = new FSPDataAccessModelDataContext(App_Code.HostSettings.CS);
+        SS_Message smsg = new SS_Message();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            LoadReports();
+        }
+        public void LoadReports()
+        {
+            try
+            {
+                Nullable<short> OrgCode = null; 
+                string ProjCode = null;
+                string StartDate = null;
+                string EndDate = null;
+                string orgName = string.Empty;
+                string ProjName = string.Empty;
+                if (Request.QueryString["OrgCode"] != null)
+                {
+                    string codee = Security.URLDecrypt(Request.QueryString["OrgCode"].ToString());
+                    if (codee != "")
+                    {
+                        OrgCode = short.Parse(codee);
+                    }
+                }
+                if (Request.QueryString["OrgName"] != null)
+                {
+                    orgName = Security.URLDecrypt(Request.QueryString["OrgName"].ToString());
+                } if (Request.QueryString["ProjName"] != null)
+                {
+                    ProjName = Security.URLDecrypt(Request.QueryString["ProjName"].ToString());
+                }
+                //
+                if (Request.QueryString["ProjCode"] != null)
+                {
+                    ProjCode = Security.URLDecrypt(Request.QueryString["ProjCode"].ToString());
+                    if (ProjCode == "")
+                    {
+                        ProjCode = null;
+                    }
+                } 
+                if (Request.QueryString["StartDate"] != null)
+                {
+                    StartDate = Security.URLDecrypt(Request.QueryString["StartDate"].ToString());
+                    if (StartDate == "")
+                    {
+                        StartDate = null;
+                    }
+                }
+                if (Request.QueryString["EndDate"] != null)
+                {
+                    EndDate = Security.URLDecrypt(Request.QueryString["EndDate"].ToString());
+                    if (EndDate == "")
+                    {
+                        EndDate = null;
+                    }
+                }
+                SqlConnection Con = new SqlConnection(App_Code.HostSettings.CS);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "po_report_podistbybuyer";
+                
+                cmd.Parameters.Add("@ORGCODE", SqlDbType.Int).Value =ToDBNull(OrgCode);
+                cmd.Parameters.Add("@PROJECTCODE", SqlDbType.NVarChar).Value = ToDBNull(ProjCode);
+                cmd.Parameters.Add("@STARTDATE", SqlDbType.NVarChar).Value = ToDBNull(StartDate);
+                cmd.Parameters.Add("@ENDDATE", SqlDbType.NVarChar).Value = ToDBNull(EndDate);
+                cmd.Connection = Con;
+
+                Reports.DS.dsPoDistributionByBuyer dsPO = new Reports.DS.dsPoDistributionByBuyer();
+                dsPO.Clear();
+                dsPO.EnforceConstraints = false;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsPO.po_report_podistbybuyer); 
+
+                if (dsPO.Tables[0].Rows.Count > 0)
+                {
+                    Con.Close();
+                    Reports.rptPrintPODistribution rpt = new Reports.rptPrintPODistribution() { DataSource = dsPO };
+                    rpt.Parameters["OrgParameter"].Value = orgName;
+                    rpt.Parameters["ProjParameter"].Value = ProjName;
+                    rpt.Parameters["StartDate"].Value = StartDate;
+                    rpt.Parameters["EndDate"].Value = EndDate;
+                    rptViewer.Report = rpt;
+                }
+                else
+                {
+                    rptViewer.Visible = false;
+
+                    lblError.Text = smsg.getMsgDetail(1089);
+                    divError.Visible = true;
+                    divError.Attributes["class"] = smsg.GetMessageBg(1089);
+                } 
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+                divError.Visible = true;
+                divError.Attributes["class"] = "alert alert-danger alert-dismissable";
+            }
+        }
+        public static object ToDBNull(object value)
+        {
+            if (null != value)
+                return value;
+            return DBNull.Value;
+        }
+    }
+}

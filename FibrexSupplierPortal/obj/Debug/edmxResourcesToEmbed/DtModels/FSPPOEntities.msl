@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FSPPOModelStoreContainer" CdmEntityContainer="FSPPOEntities">
+    <EntitySetMapping Name="POLINEs">
+      <EntityTypeMapping TypeName="FSPPOModel.POLINE">
+        <MappingFragment StoreEntitySet="POLINE">
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+          <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+          <ScalarProperty Name="LINECOST" ColumnName="LINECOST" />
+          <ScalarProperty Name="UNITCOST" ColumnName="UNITCOST" />
+          <ScalarProperty Name="ORDERUNIT" ColumnName="ORDERUNIT" />
+          <ScalarProperty Name="ORDERQTY" ColumnName="ORDERQTY" />
+          <ScalarProperty Name="ITEMDESCRIPTION" ColumnName="ITEMDESCRIPTION" />
+          <ScalarProperty Name="CATALOGCODE" ColumnName="CATALOGCODE" />
+          <ScalarProperty Name="COSTCODE" ColumnName="COSTCODE" />
+          <ScalarProperty Name="LINETYPE" ColumnName="LINETYPE" />
+          <ScalarProperty Name="POLINENUM" ColumnName="POLINENUM" />
+          <ScalarProperty Name="POREVISION" ColumnName="POREVISION" />
+          <ScalarProperty Name="PONUM" ColumnName="PONUM" />
+          <ScalarProperty Name="POLINEID" ColumnName="POLINEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PO_AddPOLine" FunctionName="FSPPOModel.Store.PO_AddPOLine" />
+    <FunctionImportMapping FunctionImportName="PO_DeletePOLine" FunctionName="FSPPOModel.Store.PO_DeletePOLine" />
+    <FunctionImportMapping FunctionImportName="PO_EditPOLine" FunctionName="FSPPOModel.Store.PO_EditPOLine" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="~/Mgment/Sup/SuppliermainMaster.Master.cs" Inherits="FibrexSupplierPortal.Mgment.SuppliermainMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="../Content/sb-admin-2.css" rel="stylesheet" />
+    <link href="../Content/datepicker.css" rel="stylesheet" />
+    <style>
+        .topPading {
+            padding-left: 0px !important;
+        }
+    </style>
+    <script src="../Scripts/jquery-1.10.2.js"></script>
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-brand1" href="Default.aspx">
+                        <img src="../images/Fibrex.png" class="logoPadding" />
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="navbar-collapse collapse" style="border-bottom: 1px solid #e7e7e7;">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="MgmDashboard.aspx"><i class="fa fa-dashboard fa-fw active"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-dashboard fa-fw"></i>Administration</a>
+                </li>
+            </ul>
+        </div>
+    <%--    <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href=""><i class="fa fa-dashboard fa-fw"></i>General</a>
+                    </li>
+                    <li>
+                        <a href=""><i class="fa fa-dashboard fa-fw"></i>Company Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>--%>
+        <div id="page-wrapper">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <script src="../Scripts/bootstrap.min.js"></script>
+        </div>
+        <div class="FooterOuterClass">
+            Copyright 2016 &copy; FiBREX Construction Group, All rights reserved. Developed by <a href="#">IT Department</a>
+        </div>
+    </form>
+</body>
+</html>

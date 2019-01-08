@@ -1,0 +1,60 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Blankmaster.master.cs" Inherits="FibrexSupplierPortal.Mgment.Blankmaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ 
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="../Content/sb-admin-2.css" rel="stylesheet" /> 
+    <script src="../Scripts/jquery-1.12.3.js" type="text/javascript"></script>
+    <link href="../Scripts/font-awesome/css/font-awesome.css" rel="stylesheet" />  
+
+    <script src="../Scripts/jquery.dataTables.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>  
+    <link href="../Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <style>
+        .row {
+            margin: 0px;
+        }
+        body {
+            background-color:white;
+        }
+    </style>
+    <script>
+        //$(document).ready(function () {
+        //    $('table.display').dataTable({
+        //        columnDefs: [{
+        //            targets: [3],
+        //            orderData: [3, 1]
+        //        }]
+        //    });
+        //});
+        function toggle1() {
+            var ele = document.getElementById("toggleText1");
+            var text = document.getElementById("displayText1");
+            if (ele.style.display == "block") {
+                ele.style.display = "none";
+                text.innerHTML = "+ Show more search options";
+            }
+            else {
+                ele.style.display = "block";
+                text.innerHTML = "- Hide more options";
+            }
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

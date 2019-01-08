@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="tmpFibConso">
+  <DataContextMoniker Name="/tmpFibConsoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="10c103bc-f19a-442e-a3fe-e476a442a72a" absoluteBounds="3.5, 1.625, 2, 3.1170068359375">
+      <DataClassMoniker Name="/tmpFibConsoDataContext/VW_POLINERECEIVING" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d7737e2-5da0-4a79-b27f-36b01b8af6a9" absoluteBounds="3.515, 2.085, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c28728b5-7fb8-479f-8de3-8850b00ec499" absoluteBounds="0.875, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/tmpFibConsoDataContext/VW_PORECEIVING" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c95893a-2165-4e7b-91e9-c96ed20d9bd3" absoluteBounds="0.89000000000000012, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e2605085-fdb9-41c0-95c1-3f34e9348d6c" absoluteBounds="3.25, 2.875, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/tmpFibConsoDataContext/VW_MATRECTRAN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="baab7f2f-9429-404d-b192-2d951785c39e" absoluteBounds="3.265, 3.335, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

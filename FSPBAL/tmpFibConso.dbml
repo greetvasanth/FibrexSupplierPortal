@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="tmpFibConso" Class="tmpFibConsoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.172.101.53;Initial Catalog=tmpFibConso;User ID=myhr_user" SettingsObjectName="FSPBAL.Properties.Settings" SettingsPropertyName="tmpFibConsoConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.VW_POLINERECEIVING" Member="VW_POLINERECEIVINGs">
+    <Type Name="VW_POLINERECEIVING">
+      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" CanBeNull="false" />
+      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="POLINENUM" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="POLINEID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ORDERQTY" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="UNITCOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="LINECOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="TAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="RECEIVEDQTY" Type="System.Decimal" DbType="Decimal(38,3) NOT NULL" CanBeNull="false" />
+      <Column Name="REMAININGQTY" Type="System.Decimal" DbType="Decimal(38,3)" CanBeNull="true" />
+      <Column Name="RECEIVEDTOTALCOST" Type="System.Decimal" DbType="Decimal(38,5)" CanBeNull="true" />
+      <Column Name="RECEIPTSTATUS" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_PORECEIVING" Member="VW_PORECEIVINGs">
+    <Type Name="VW_PORECEIVING">
+      <Column Name="ORGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="PROJECTCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="VENDORCODE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" CanBeNull="false" />
+      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="PRETAXRECEIVINGTOTALCOST" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="RECEIVINGTOTALCOST" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="RECEIVEDTOTALCOST" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="RECEIPTSTATUS" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_MATRECTRANS" Member="VW_MATRECTRANs">
+    <Type Name="VW_MATRECTRAN">
+      <Column Name="mrvm_org_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mrvm_vr_loc" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="mrvm_vr_no" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mrvm_po_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mrvm_po_rev" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="mrvd_serial_no" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="mrvd_po_line_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="mrvd_po_line_no" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="mrvd_item_code" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="mrvd_qty" Type="System.Decimal" DbType="Decimal(12,3)" CanBeNull="true" />
+      <Column Name="mrvd_unit_rate_lc" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="mrvd_value_fc" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="mrvd_line_vat" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="mrvd_createdBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mrvd_creationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mrvd_LastModifiedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mrvd_LastModifiedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

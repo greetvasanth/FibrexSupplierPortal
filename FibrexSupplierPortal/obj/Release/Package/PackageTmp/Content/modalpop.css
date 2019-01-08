@@ -1,0 +1,56 @@
+﻿.modalBackground
+{
+    background-color: #555555;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+.modalPopup
+{
+    background-color: #efeded;
+    padding: 3px;
+    width: 750px;
+    height: 550px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -0-border-radius: 10px;
+    -mz-border-radius: 10px;
+}
+.InnerPopupDiv
+{
+    width: 740px;
+    margin-top: 10px; margin-right:10px;float:right; vertical-align: top; opacity: 100; filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+a, img
+{
+    border: 0px;
+}
+.modalBackground1
+{
+    background-color: #b2b2b2;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+.modalPopup1
+{
+    background-color: #ffffff;
+    padding: 3px;
+    width: 200px;
+    height: 50px;
+}
+.Topheading{width:740px; height:60px;}
+.popupCancelButton{background-image:url('../../images/popupcancel.jpg'); background-repeat:no-repeat; width:51px; height:51px; float:right; cursor:pointer; position:relative;}
+.popuprow{width:715px; height:32px; float:left; margin-bottom:10px;}
+.Popup-Font2{width: 175px;text-align: left;color: #565656;font-size:14px; font-family: 'OpenSans-Semibold';height:30px; line-height:30px;float:left;}
+.PopupBody{width:715px; float:left; margin-left:25px;  overflow-y: visible;  overflow-x: hidden; height:420px;}
+.PopupTextOuter{width: 233px;height:32px; line-height:30px;float:left;}
+.PopupTextbox{width: 221px;height:32px; float:left; border:1px solid #d8d8d8; line-height:30px; padding:0 5px;}/*d8d8d8*/
+.PopupContent{width:715px; float:left;}
+.HeadingPOpup{text-align: left;color: #343434;font-size:30px;font-family: 'OpenSans-Bold'; float:left; margin-left:25px; line-height:60px;}
+.Validation{font-size:12px; font-family:Tahoma; color:Red;}
+.Popup-Font2V{width: 225px;text-align: left;height:30px; line-height:30px;float:left; margin-left:10px;}
+.Popupdd{width: 231px;height:32px; float:left; border:1px solid #d8d8d8; padding:5px;}
+.VerficationImgpart{width: 111px;height:32px; line-height:30px;float:left;}
+.PopupTerms{width: 400px;height:32px; line-height:30px;float:left;font-family: 'OpenSans-Bold'; font-size:14px; color:#4b4b4b; padding-right:5px;}
+.PopupTerms a{font-family: 'OpenSans-Bold'; font-size:14px;color:#2d67c7; text-decoration:none;}
+.PopupTerms a:hover{text-decoration:underline;}

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FSPPOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FSPPOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="POLINEs" EntityType="FSPPOModel.POLINE" />
+    <FunctionImport Name="PO_AddPOLine">
+      <Parameter Name="PONUM" Mode="In" Type="Decimal" />
+      <Parameter Name="POREVISION" Mode="In" Type="Int16" />
+      <Parameter Name="POLINENUM" Mode="In" Type="Int16" />
+      <Parameter Name="LINETYPE" Mode="In" Type="String" />
+      <Parameter Name="CATALOGCODE" Mode="In" Type="String" />
+      <Parameter Name="COSTCODE" Mode="In" Type="String" />
+      <Parameter Name="ITEMDESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="ORDERQTY" Mode="In" Type="Decimal" />
+      <Parameter Name="ORDERUNIT" Mode="In" Type="String" />
+      <Parameter Name="UNITCOST" Mode="In" Type="Decimal" />
+      <Parameter Name="LINECOST" Mode="In" Type="Decimal" />
+      <Parameter Name="CREATEDBY" Mode="In" Type="String" />
+      <Parameter Name="CREATIONDATE" Mode="In" Type="DateTime" />
+      <Parameter Name="AUTOCOMMIT" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PO_DeletePOLine">
+      <Parameter Name="PONUM" Mode="In" Type="Decimal" />
+      <Parameter Name="POREVISION" Mode="In" Type="Int16" />
+      <Parameter Name="POLINENUM" Mode="In" Type="Int16" />
+      <Parameter Name="LASTMODIFIEDBY" Mode="In" Type="String" />
+      <Parameter Name="LASTMODIFIEDDATE" Mode="In" Type="DateTime" />
+      <Parameter Name="AUTOCOMMIT" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PO_EditPOLine">
+      <Parameter Name="PONUM" Mode="In" Type="Decimal" />
+      <Parameter Name="POREVISION" Mode="In" Type="Int16" />
+      <Parameter Name="POLINENUM" Mode="In" Type="Int16" />
+      <Parameter Name="LINETYPE" Mode="In" Type="String" />
+      <Parameter Name="CATALOGCODE" Mode="In" Type="String" />
+      <Parameter Name="COSTCODE" Mode="In" Type="String" />
+      <Parameter Name="ITEMDESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="ORDERQTY" Mode="In" Type="Decimal" />
+      <Parameter Name="ORDERUNIT" Mode="In" Type="String" />
+      <Parameter Name="UNITCOST" Mode="In" Type="Decimal" />
+      <Parameter Name="LINECOST" Mode="In" Type="Decimal" />
+      <Parameter Name="LASTMODIFIEDBY" Mode="In" Type="String" />
+      <Parameter Name="LASTMODIFIEDDATE" Mode="In" Type="DateTime" />
+      <Parameter Name="AUTOCOMMIT" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="POLINE">
+    <Key>
+      <PropertyRef Name="PONUM" />
+      <PropertyRef Name="POREVISION" />
+      <PropertyRef Name="POLINENUM" />
+    </Key>
+    <Property Name="POLINEID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONUM" Type="Decimal" Nullable="false" Precision="8" Scale="0" />
+    <Property Name="POREVISION" Type="Int16" Nullable="false" />
+    <Property Name="POLINENUM" Type="Int16" Nullable="false" />
+    <Property Name="LINETYPE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="COSTCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CATALOGCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ITEMDESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ORDERQTY" Type="Decimal" Precision="16" Scale="4" />
+    <Property Name="ORDERUNIT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="UNITCOST" Type="Decimal" Precision="16" Scale="4" />
+    <Property Name="LINECOST" Type="Decimal" Precision="16" Scale="4" />
+    <Property Name="CREATIONDATE" Type="DateTime" Precision="3" />
+    <Property Name="CREATEDBY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LASTMODIFIEDBY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LASTMODIFIEDDATE" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>
