@@ -53,7 +53,7 @@ namespace FibrexSupplierPortal.Mgment
             {
                 LockAllControl();
             }
-            if (txtStatus.Text != "Draft")
+            if (txtStatus.Text == "Approved" || txtStatus.Text == "Revised" || txtStatus.Text == "Cancelled")
             {
                 imgSupplier.Visible = false;
                 txtCompanyID.ReadOnly = true;
@@ -255,10 +255,10 @@ namespace FibrexSupplierPortal.Mgment
             }
 
 
-            if (txtStatus.Text == "Approved")
-            {
-                grd.EditIndex = -1;
-            }
+            //if (txtStatus.Text == "Approved")
+            //{
+            //    grd.EditIndex = -1;
+            //}
 
             if (dt.Rows.Count > 0)
             {
@@ -1358,18 +1358,18 @@ namespace FibrexSupplierPortal.Mgment
 
 
                 bindGrid(dt);
-            if (txtStatus.Text == "Approved")
-            {
-                TextBox lblExpand = (TextBox)grd.Rows[e.NewEditIndex].FindControl("btnImage");
-                if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
-                {
-                    lblExpand.Text = "-";
-                }
+            //if (txtStatus.Text == "Approved")
+            //{
+            //    TextBox lblExpand = (TextBox)grd.Rows[e.NewEditIndex].FindControl("btnImage");
+            //    if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
+            //    {
+            //        lblExpand.Text = "-";
+            //    }
 
-                mydiv.Visible = true;
-            }
-            else
-            {
+            //    mydiv.Visible = true;
+            //}
+            //else
+            //{
                 Button lblExpand = (Button)grd.Rows[e.NewEditIndex].FindControl("lblExpand");
                 if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
                 {
@@ -1377,7 +1377,7 @@ namespace FibrexSupplierPortal.Mgment
                 }
 
                 mydiv.Visible = true;
-            }
+            //}
 
             if (txtStatus.Text != "Approved")
             {
@@ -1994,6 +1994,16 @@ namespace FibrexSupplierPortal.Mgment
                             imgProject.Visible = false;
                             imgSupplier.Visible = false;
 
+                        }
+                        if (ObjgetPo.STATUS == "APRV" || ObjgetPo.STATUS == "CANC" || ObjgetPo.STATUS == "REVISD")
+                        {
+                            imgSupplier.Visible = false;
+                            txtCompanyID.ReadOnly = true;
+                            txtCompanyName.ReadOnly = true;
+                        }
+                        else
+                        {
+                            imgSupplier.Visible = true;
                         }
                         //totalGridCountr();
                         ControlPermission(ObjgetPo.PONUM.ToString());
@@ -5102,8 +5112,8 @@ namespace FibrexSupplierPortal.Mgment
             var res = (from o in dt.AsEnumerable() where o.Field<string>("ActionTaken") != "DELETE" select Convert.ToDecimal(o.Field<string>("TotalPrice"))).ToList().Sum();
             var tax = (from o in dt.AsEnumerable() where o.Field<string>("ActionTaken") != "DELETE" select Convert.ToDecimal(o.Field<string>("TAXTOTAL"))).ToList().Sum();
 
-            txtPOTotalTax.Text = tax.ToString();
-            txtPretaxTotal.Text = res.ToString();
+            txtPOTotalTax.Text = tax.ToString("0,0.00", CultureInfo.InvariantCulture);
+            txtPretaxTotal.Text = res.ToString("0,0.00", CultureInfo.InvariantCulture);
             txtTotalCost.Text = (res + tax).ToString("0,0.00", CultureInfo.InvariantCulture);
             txtPOLinesPurchaseOrderTotalCost.Text = (res + tax).ToString("0,0.00", CultureInfo.InvariantCulture);
             upPoDetail.Update();
@@ -8706,7 +8716,7 @@ namespace FibrexSupplierPortal.Mgment
                 //if (txtStatus.Text == "Approved" || txtStatus.Text == "Cancelled" || txtStatus.Text == "Revised")
                 if (HidPoStatus.Value == "APRV" || HidPoStatus.Value == "CANC" || HidPoStatus.Value == "REVISD")
                 {
-                    for (int i = 4; i <= 10; i++)
+                    for (int i = 1; i <= 10; i++)
                     {
 
                         e.Row.Cells[i].Enabled = false;
@@ -9015,6 +9025,7 @@ namespace FibrexSupplierPortal.Mgment
                     Label lblPopupSignaturedgt_desig_name = (Label)item.FindControl("lblPopupSignaturedgt_desig_name");
                     Label lblSecuritTeamMemberCode = (Label)item.FindControl("lblSecuritTeamMemberCode");
                     Label lblPopupSecuritTeamMemberName = (Label)item.FindControl("lblPopupSecuritTeamMemberName");
+
                     if (HIDSignatureAction.Value == "NEW" || HIDSignatureAction.Value == "New")
                     {
                         try
@@ -9027,9 +9038,10 @@ namespace FibrexSupplierPortal.Mgment
                             return ex.Message;
                         }
                     }
+                    POSignature ObjSign = db.POSignatures.FirstOrDefault(x => x.POSignID == int.Parse(gHidSignID.Value) && x.PONum == decimal.Parse(txtSignaturePONum.Text) && x.PoRevision == short.Parse(txtSignaturePORevision.Text));
                     if (HIDSignatureAction.Value == "Update" || HIDSignatureAction.Value == "UPDATE")
                     {
-                        POSignature ObjSign = db.POSignatures.FirstOrDefault(x => x.OrgCode == HIDOrganizationCode.Value && x.PONum == decimal.Parse(txtSignaturePONum.Text) && x.PoRevision == short.Parse(txtSignaturePORevision.Text));
+                        
                         if (ObjSign != null)
                         {
                             int? OrderNo = 0;
@@ -9075,7 +9087,7 @@ namespace FibrexSupplierPortal.Mgment
                     {
                         try
                         {
-                            db.PO_DeletePOSignature(HIDOrganizationCode.Value, int.Parse(lblPopupSignatureOrderNumber.Text), decimal.Parse(txtSignaturePONum.Text), short.Parse(txtSignaturePORevision.Text), UserName, true);
+                            db.PO_DeletePOSignature(HIDOrganizationCode.Value, ObjSign.POSignID, int.Parse(lblPopupSignatureOrderNumber.Text), decimal.Parse(txtSignaturePONum.Text), short.Parse(txtSignaturePORevision.Text), UserName, true);
 
                             UpdateAction = 1;
                         }
@@ -9088,7 +9100,7 @@ namespace FibrexSupplierPortal.Mgment
                 if (UpdateAction == 1)
                 {
                     ShoMasg = "Success";
-                    Session["POSignature"] = null;
+                    //Session["POSignature"] = null;
                 }
                 else
                 {

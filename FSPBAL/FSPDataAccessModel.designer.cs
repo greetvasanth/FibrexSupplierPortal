@@ -1295,13 +1295,6 @@ namespace FSPBAL
 			return ((ISingleResult<FIRMS_GetEmployeeInformationResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_DeletePOSignature")]
-		public int PO_DeletePOSignature([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgCode", DbType="NVarChar(30)")] string orgCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderNo", DbType="Int")] System.Nullable<int> orderNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONum", DbType="Decimal(8,0)")] System.Nullable<decimal> pONum, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AuditBy", DbType="NVarChar(30)")] string auditBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgCode, orderNo, pONum, pOREVISION, auditBy, aUTOCOMMIT);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_EditPO")]
 		public int PO_EditPO(
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
@@ -1593,6 +1586,13 @@ namespace FSPBAL
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poNumber);
 			return ((ISingleResult<PO_LoadLineTypesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_DeletePOSignature")]
+		public int PO_DeletePOSignature([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgCode", DbType="NVarChar(30)")] string orgCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSignID", DbType="Int")] System.Nullable<int> pOSignID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderNo", DbType="Int")] System.Nullable<int> orderNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONum", DbType="Decimal(8,0)")] System.Nullable<decimal> pONum, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AuditBy", DbType="NVarChar(30)")] string auditBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgCode, pOSignID, orderNo, pONum, pOREVISION, auditBy, aUTOCOMMIT);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

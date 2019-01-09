@@ -1916,15 +1916,6 @@
       <Column Name="emp_desig_code" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.PO_DeletePOSignature" Method="PO_DeletePOSignature">
-    <Parameter Name="OrgCode" Parameter="orgCode" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="OrderNo" Parameter="orderNo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PONum" Parameter="pONum" Type="System.Decimal" DbType="Decimal(8,0)" />
-    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="AuditBy" Parameter="auditBy" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.PO_EditPO" Method="PO_EditPO">
     <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
     <Parameter Name="POREF" Parameter="pOREF" Type="System.String" DbType="VarChar(80)" />
@@ -2251,5 +2242,15 @@
       <Column Name="Value" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.PO_DeletePOSignature" Method="PO_DeletePOSignature">
+    <Parameter Name="OrgCode" Parameter="orgCode" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="POSignID" Parameter="pOSignID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OrderNo" Parameter="orderNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PONum" Parameter="pONum" Type="System.Decimal" DbType="Decimal(8,0)" />
+    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="AuditBy" Parameter="auditBy" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>
