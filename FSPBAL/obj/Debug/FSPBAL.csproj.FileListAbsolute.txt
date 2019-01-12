@@ -32,6 +32,5 @@ D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\bin\De
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\bin\Debug\Newtonsoft.Json.dll
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Debug\FSPBAL.dll
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Debug\FSPBAL.pdb
-D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Debug\FSPBAL.csprojAssemblyReference.cache
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Debug\FSPBAL.csproj.CoreCompileInputs.cache
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Debug\FSPBAL.csproj.CopyComplete

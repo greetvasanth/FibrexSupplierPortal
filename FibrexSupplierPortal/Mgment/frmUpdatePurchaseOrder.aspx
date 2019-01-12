@@ -1686,9 +1686,9 @@
                         <p class="grdborder">PO Lines</p>
                         <asp:GridView ID="grd" AutoGenerateSelectButton="false" SelectedRowStyle-Font-Bold="true" SelectedRowStyle-BackColor="Silver" DataKeyNames="POLINEID" runat="server" AllowPaging="true" PageSize="10" CssClass="table table-striped table-bordered table-hover;overflow:scroll;" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" OnRowCreated="grd_RowCreated" OnRowUpdating="grd_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="grd_RowEditing" OnRowCommand="grd_RowCommand" Width="100%" OnPageIndexChanging="grd_PageIndexChanging" OnRowDataBound="grd_RowDataBound" EmptyDataText="No Record">
                             <Columns>
-                                <asp:TemplateField HeaderStyle-CssClass="w2" ItemStyle-Width="3%">
+                                <asp:TemplateField HeaderStyle-CssClass="w2">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="btnImage" Width="100%" runat="server" Text="+" Style="color: #337ab7; border: none; background: none; font-weight: 900; background-color: transparent;cursor:pointer;" Readonly="true" CommandName="View" CommandArgument='<%#Eval("POLINEID")%>' />
+                                        <asp:TextBox ID="btnImage" Width="200%" runat="server" Text="+" Style="color: #337ab7; border: none; background: none; font-weight: 900; background-color: transparent;cursor:pointer;" Readonly="true" CommandName="View" CommandArgument='<%#Eval("POLINEID")%>' />
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <%--<asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/select.png" Width="15px" Height="15px" CommandName="Select" Text="View" CommandArgument='<%#Eval("POLINEID")%>' ToolTip="Select" />--%>
