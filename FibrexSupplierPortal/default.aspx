@@ -38,7 +38,7 @@
                 <center>
                 <div style="width:325px;">
                 Welcome to Fibrex Supplier Portal.
-                <p style="text-align:center; color:red; font-size:18px; margin-top:3%;">UAT Environment</p></div></center>
+                <p style="text-align:center; color:red; font-size:18px; margin-top:3%;">UATE Environment</p></div></center>
             </div>
                 <div class="col-md-4 col-md-offset-4" style="margin-top:-3%;">
                     <div class="login-panel panel panel-default">

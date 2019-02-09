@@ -53,7 +53,7 @@ namespace FibrexSupplierPortal.Mgment
             {
                 LockAllControl();
             }
-            if (txtStatus.Text == "Approved" || txtStatus.Text == "Revised" || txtStatus.Text == "Cancelled")
+            if (txtStatus.Text != "Draft")
             {
                 imgSupplier.Visible = false;
                 txtCompanyID.ReadOnly = true;
@@ -62,7 +62,7 @@ namespace FibrexSupplierPortal.Mgment
             else
             {
                 imgSupplier.Visible = true;
-                //  txtCompanyID.ReadOnly = false;
+              //  txtCompanyID.ReadOnly = false;
                 //txtCompanyName.ReadOnly = false;
             }
             if (!IsPostBack)
@@ -255,10 +255,10 @@ namespace FibrexSupplierPortal.Mgment
             }
 
 
-            //if (txtStatus.Text == "Approved")
-            //{
-            //    grd.EditIndex = -1;
-            //}
+            if (txtStatus.Text == "Approved")
+            {
+                grd.EditIndex = -1;
+            }
 
             if (dt.Rows.Count > 0)
             {
@@ -497,13 +497,13 @@ namespace FibrexSupplierPortal.Mgment
                     }
                     else
                         if (dt.Rows.Count > 0)
-                    {
-                        res = dt.Rows.Count + 1;
-                    }
-                    else
-                    {
-                        res = 1;
-                    }
+                        {
+                            res = dt.Rows.Count + 1;
+                        }
+                        else
+                        {
+                            res = 1;
+                        }
 
 
                     //int max = (from o in res select new { o.value }).Max();
@@ -1062,7 +1062,7 @@ namespace FibrexSupplierPortal.Mgment
                 TextBox txtUnite = (TextBox)grd.FooterRow.FindControl("txtPOUnitNew");
                 TextBox txtGvPrice = (TextBox)grd.FooterRow.FindControl("txtPOUnitPriceNew");
                 TextBox txtGvTotalPrice = (TextBox)grd.FooterRow.FindControl("txtPOUnitTotalNew");
-
+                
                 //insert the new product into database
                 //clear the view state so that latest list will be retrieved from db
                 DataTable dtCurrentTable = getTable();
@@ -1335,49 +1335,49 @@ namespace FibrexSupplierPortal.Mgment
         protected void grd_RowEditing(object sender, GridViewEditEventArgs e)
         {
 
-            DataTable dt = getTable();
-            if (btnPaste.Text != "Paste")
-            {
+                DataTable dt = getTable();
+                if (btnPaste.Text != "Paste")
+                {
 
-                mydiv.Visible = false;
-                bindGrid(dt);
+                    mydiv.Visible = false;
+                    bindGrid(dt);
+                    grd.SelectedIndex = e.NewEditIndex;
+                    return;
+                }
+
+                grd.EditIndex = e.NewEditIndex;
                 grd.SelectedIndex = e.NewEditIndex;
-                return;
-            }
 
-            grd.EditIndex = e.NewEditIndex;
-            grd.SelectedIndex = e.NewEditIndex;
+                if (btnPaste.Text != "Paste")
+                {
+                    grd.EditIndex = -1;
+                    mydiv.Visible = false;
+                    bindGrid(dt);
+                    return;
+                }
 
-            if (btnPaste.Text != "Paste")
-            {
-                grd.EditIndex = -1;
-                mydiv.Visible = false;
+
                 bindGrid(dt);
-                return;
-            }
-
-
-            bindGrid(dt);
-            //if (txtStatus.Text == "Approved")
-            //{
-            //    TextBox lblExpand = (TextBox)grd.Rows[e.NewEditIndex].FindControl("btnImage");
-            //    if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
-            //    {
-            //        lblExpand.Text = "-";
-            //    }
-
-            //    mydiv.Visible = true;
-            //}
-            //else
-            //{
-            Button lblExpand = (Button)grd.Rows[e.NewEditIndex].FindControl("lblExpand");
-            if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
+            if (txtStatus.Text == "Approved")
             {
-                lblExpand.Text = "-";
-            }
+                TextBox lblExpand = (TextBox)grd.Rows[e.NewEditIndex].FindControl("btnImage");
+                if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
+                {
+                    lblExpand.Text = "-";
+                }
 
-            mydiv.Visible = true;
-            //}
+                mydiv.Visible = true;
+            }
+            else
+            {
+                Button lblExpand = (Button)grd.Rows[e.NewEditIndex].FindControl("lblExpand");
+                if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
+                {
+                    lblExpand.Text = "-";
+                }
+
+                mydiv.Visible = true;
+            }
 
             if (txtStatus.Text != "Approved")
             {
@@ -1391,9 +1391,9 @@ namespace FibrexSupplierPortal.Mgment
                     dl.SelectedValue = dr["POType"].ToString();
                 }
             }
-            //loadMyDIV(dr, e.NewEditIndex);
+                //loadMyDIV(dr, e.NewEditIndex);
 
-
+            
         }
         protected void loadMyDIV(bool bol)
         {
@@ -1995,16 +1995,6 @@ namespace FibrexSupplierPortal.Mgment
                             imgSupplier.Visible = false;
 
                         }
-                        if (ObjgetPo.STATUS == "APRV" || ObjgetPo.STATUS == "CANC" || ObjgetPo.STATUS == "REVISD")
-                        {
-                            imgSupplier.Visible = false;
-                            txtCompanyID.ReadOnly = true;
-                            txtCompanyName.ReadOnly = true;
-                        }
-                        else
-                        {
-                            imgSupplier.Visible = true;
-                        }
                         //totalGridCountr();
                         ControlPermission(ObjgetPo.PONUM.ToString());
                     }
@@ -2123,7 +2113,7 @@ namespace FibrexSupplierPortal.Mgment
                         {
                             if (dtAttachment.Rows.Count == 0)
                             {
-                                AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY, g.Status);
+                                AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY,g.Status);
                             }
                             else
                             {
@@ -2133,7 +2123,7 @@ namespace FibrexSupplierPortal.Mgment
                         }
                         else
                         {
-                            AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY, g.Status);
+                            AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY,g.Status);
                         }
                     }
                 }
@@ -3715,8 +3705,7 @@ namespace FibrexSupplierPortal.Mgment
                                 i = 1;
                                 //ObjPO.CONTRACTREFNUM = int.Parse(txtContractRef.Text.ToString());
                             }
-                        }
-                        if (txtOriginalPO.Text != "")
+                        } if (txtOriginalPO.Text != "")
                         {
                             if (txtOriginalPO.Text != Convert.ToString(ObjPO.ORIGINALPONUM))
                             {
@@ -4203,7 +4192,7 @@ namespace FibrexSupplierPortal.Mgment
                                     trans.Dispose();
                                     return;
                                 }
-                                if (value1 == "Success")
+                                if (value == "Success")
                                 {
                                     i = 1;
                                 }
@@ -5113,8 +5102,8 @@ namespace FibrexSupplierPortal.Mgment
             var res = (from o in dt.AsEnumerable() where o.Field<string>("ActionTaken") != "DELETE" select Convert.ToDecimal(o.Field<string>("TotalPrice"))).ToList().Sum();
             var tax = (from o in dt.AsEnumerable() where o.Field<string>("ActionTaken") != "DELETE" select Convert.ToDecimal(o.Field<string>("TAXTOTAL"))).ToList().Sum();
 
-            txtPOTotalTax.Text = tax.ToString("0,0.00", CultureInfo.InvariantCulture);
-            txtPretaxTotal.Text = res.ToString("0,0.00", CultureInfo.InvariantCulture);
+            txtPOTotalTax.Text = tax.ToString();
+            txtPretaxTotal.Text = res.ToString();
             txtTotalCost.Text = (res + tax).ToString("0,0.00", CultureInfo.InvariantCulture);
             txtPOLinesPurchaseOrderTotalCost.Text = (res + tax).ToString("0,0.00", CultureInfo.InvariantCulture);
             upPoDetail.Update();
@@ -5191,7 +5180,7 @@ namespace FibrexSupplierPortal.Mgment
             Session["Attachment"] = table;
 
         }
-        protected void EditAttachmentSession(string Title, string Description, string FileName, string FileURL, string AttachmentID, DateTime LastModifiedDate, string ActionTaken, string LastModifiedBy, string Status, DataTable table)
+        protected void EditAttachmentSession(string Title, string Description, string FileName, string FileURL, string AttachmentID, DateTime LastModifiedDate, string ActionTaken, string LastModifiedBy,string Status, DataTable table)
         {
             if (Session["Attachment"] != null)
             {
@@ -6058,23 +6047,23 @@ namespace FibrexSupplierPortal.Mgment
                     //                            grp in db.SS_SecurityGroups on sec.SecurityGroupID equals grp.SecurityGroupID
                     //                            where sec.UserID == UserName && grp.SecurityGroupID == 16
                     //                            select grp).FirstOrDefault(); ;
-                    if (lblStatus.Text == "PROT")
+                    if (lblStatus.Text == "PROT") 
+                    { 
+                    bool permissionAttachment = UserPermissions.SS_SecurityGroupPermission.SearchPermissionWithPermissionID(95);
+                    if (permissionAttachment)
                     {
-                        bool permissionAttachment = UserPermissions.SS_SecurityGroupPermission.SearchPermissionWithPermissionID(95);
-                        if (permissionAttachment)
-                        {
-                            lnkEdit.Enabled = true;
-                            lnkDelete.Enabled = true;
-                        }
-                        else
-                        {
-                            lnkEdit.Enabled = false;
-                            e.Row.Cells[6].Enabled = false;
-                            gvShowSeletSupplierAttachment.HeaderRow.Cells[6].Enabled = false;
-                            lnkDelete.Enabled = false;
-                            e.Row.Cells[7].Enabled = false;
-                            gvShowSeletSupplierAttachment.HeaderRow.Cells[7].Enabled = false;
-                        }
+                        lnkEdit.Enabled = true;
+                        lnkDelete.Enabled = true;
+                    }
+                    else
+                    {
+                        lnkEdit.Enabled = false;
+                        e.Row.Cells[6].Enabled = false;
+                        gvShowSeletSupplierAttachment.HeaderRow.Cells[6].Enabled = false;
+                        lnkDelete.Enabled = false;
+                        e.Row.Cells[7].Enabled = false;
+                        gvShowSeletSupplierAttachment.HeaderRow.Cells[7].Enabled = false;
+                    }
                     }
                     bool chkEditAttachment = UserPermissions.SS_SecurityGroupPermission.SearchPermissionWithPermissionID(59);
                     if (chkEditAttachment)
@@ -6566,7 +6555,7 @@ namespace FibrexSupplierPortal.Mgment
             HidPOType.Value = Value;
             if (HidPOType.Value == "MATLPA" || HidPOType.Value == "SRVCPA")
             {
-                lblRequiredDate.Text = @"<span class='showAstrik'>* </span>" + "Validity Date";
+                lblRequiredDate.Text = @"<span class='showAstrik'>* </span>" +   "Validity Date";
             }
             else
             {
@@ -7696,9 +7685,9 @@ namespace FibrexSupplierPortal.Mgment
             }
             catch (Exception ex)
             {
-                lblError.Text = smsg.getMsgDetail(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text);
+                lblError.Text = smsg.getMsgDetail(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text); 
                 divError.Visible = true;
-                divError.Attributes["class"] = smsg.GetMessageBg(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text); ;
+                divError.Attributes["class"] = smsg.GetMessageBg(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text);;
                 txtDRequestedBy.CssClass += " boxshow";
                 txtDRequestedBy.Text = null;
                 FillFeildsinTable("REQUESTEDBY", rowIndex, null, null);
@@ -8490,8 +8479,8 @@ namespace FibrexSupplierPortal.Mgment
             txtProjectCode.ReadOnly = false;
             txtBuyers.ReadOnly = false;
             txtPOType.ReadOnly = false;
-            // txtCompanyID.ReadOnly = false;
-            // txtCompanyName.ReadOnly = false;
+           // txtCompanyID.ReadOnly = false;
+           // txtCompanyName.ReadOnly = false;
             txtCompanyAddress.ReadOnly = false;
             txtContactPerson1Name.ReadOnly = false;
             txtContactPerson1Position.ReadOnly = false;
@@ -8717,7 +8706,7 @@ namespace FibrexSupplierPortal.Mgment
                 //if (txtStatus.Text == "Approved" || txtStatus.Text == "Cancelled" || txtStatus.Text == "Revised")
                 if (HidPoStatus.Value == "APRV" || HidPoStatus.Value == "CANC" || HidPoStatus.Value == "REVISD")
                 {
-                    for (int i = 1; i <= 10; i++)
+                    for (int i = 4; i <= 10; i++)
                     {
 
                         e.Row.Cells[i].Enabled = false;
@@ -8728,7 +8717,7 @@ namespace FibrexSupplierPortal.Mgment
                     btnSave.Enabled = false;
                     LockAllControl();
                 }
-
+               
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
                     TextBox txtPOLineNumEdit = (TextBox)e.Row.FindControl("txtPOLineNumEdit");
@@ -9026,7 +9015,6 @@ namespace FibrexSupplierPortal.Mgment
                     Label lblPopupSignaturedgt_desig_name = (Label)item.FindControl("lblPopupSignaturedgt_desig_name");
                     Label lblSecuritTeamMemberCode = (Label)item.FindControl("lblSecuritTeamMemberCode");
                     Label lblPopupSecuritTeamMemberName = (Label)item.FindControl("lblPopupSecuritTeamMemberName");
-
                     if (HIDSignatureAction.Value == "NEW" || HIDSignatureAction.Value == "New")
                     {
                         try
@@ -9039,10 +9027,9 @@ namespace FibrexSupplierPortal.Mgment
                             return ex.Message;
                         }
                     }
-                    POSignature ObjSign = db.POSignatures.FirstOrDefault(x => x.POSignID == int.Parse(gHidSignID.Value) && x.PONum == decimal.Parse(txtSignaturePONum.Text) && x.PoRevision == short.Parse(txtSignaturePORevision.Text));
                     if (HIDSignatureAction.Value == "Update" || HIDSignatureAction.Value == "UPDATE")
                     {
-
+                        POSignature ObjSign = db.POSignatures.FirstOrDefault(x => x.OrgCode == HIDOrganizationCode.Value && x.PONum == decimal.Parse(txtSignaturePONum.Text) && x.PoRevision == short.Parse(txtSignaturePORevision.Text));
                         if (ObjSign != null)
                         {
                             int? OrderNo = 0;
@@ -9086,25 +9073,22 @@ namespace FibrexSupplierPortal.Mgment
                     //Delete
                     if (HIDSignatureAction.Value == "Delete" || HIDSignatureAction.Value == "DELETE")
                     {
-                        if (ObjSign != null)
+                        try
                         {
-                            try
-                            {
-                                db.PO_DeletePOSignature(HIDOrganizationCode.Value, ObjSign.POSignID, int.Parse(lblPopupSignatureOrderNumber.Text), decimal.Parse(txtSignaturePONum.Text), short.Parse(txtSignaturePORevision.Text), UserName, true);
+                            db.PO_DeletePOSignature(HIDOrganizationCode.Value, int.Parse(lblPopupSignatureOrderNumber.Text), decimal.Parse(txtSignaturePONum.Text), short.Parse(txtSignaturePORevision.Text), UserName, true);
 
-                                UpdateAction = 1;
-                            }
-                            catch (SqlException ex)
-                            {
-                                return ex.Message;
-                            }
+                            UpdateAction = 1;
+                        }
+                        catch (SqlException ex)
+                        {
+                            return ex.Message;
                         }
                     }
                 }
                 if (UpdateAction == 1)
                 {
                     ShoMasg = "Success";
-                   //Session["POSignature"] = null;
+                    Session["POSignature"] = null;
                 }
                 else
                 {
@@ -9538,7 +9522,7 @@ namespace FibrexSupplierPortal.Mgment
                 //db.FieldHelps.SingleOrDefault(x => x. == HidControlID.Value)
                 var getTooltipInformation = from FlHelp in db.FieldHelps
                                             join
-                                             FlControl in db.ControlFieldRELs on FlHelp.COLUMNID equals FlControl.COLUMNID
+                                            FlControl in db.ControlFieldRELs on FlHelp.COLUMNID equals FlControl.COLUMNID
                                             where FlControl.CONTROLID == HidControlID.Value
                                             select new { FlHelp.COLUMNNAME, FlHelp.COLUMNDESC, FlHelp.TABLENAME };
                 if (getTooltipInformation != null)
