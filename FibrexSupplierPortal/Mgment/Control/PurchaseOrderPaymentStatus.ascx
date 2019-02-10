@@ -53,21 +53,21 @@
               
                 <div class="form-group">
                     <label class="control-label col-sm-9 Pdringtop" for="inputName">
-                        Total Cost:</label>
+                        PO Total Value:</label>
                     <div class="col-sm-3">
                         <asp:Label ID="txtPayemntTotalCost" runat="server" CssClass="Pdringtop1" ></asp:Label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-9 Pdringtop" for="inputName">
-                        Receiving Total Cost:</label>
+                         Total Receiving Cost:</label>
                     <div class="col-sm-3">
                         <asp:Label ID="txtReceivingTotalCost" runat="server" CssClass="Pdringtop1" ></asp:Label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-9 Pdringtop" for="inputName">
-                        Received Total Cost:</label>
+                         Total Received Cost:</label>
                     <div class="col-sm-3">
                         <asp:Label ID="txtPaymentTotalReceivedCost" runat="server" CssClass="Pdringtop1" ></asp:Label>
                     </div>

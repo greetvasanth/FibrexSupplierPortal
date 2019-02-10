@@ -1444,6 +1444,24 @@ namespace FibrexSupplierPortal.Mgment {
         protected global::System.Web.UI.WebControls.HiddenField hdnItemDesc;
         
         /// <summary>
+        /// txtSpecification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSpecification;
+        
+        /// <summary>
+        /// txtDRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDRemarks;
+        
+        /// <summary>
         /// txtDCostCode control.
         /// </summary>
         /// <remarks>
@@ -1469,15 +1487,6 @@ namespace FibrexSupplierPortal.Mgment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage img5;
-        
-        /// <summary>
-        /// txtDRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDRemarks;
         
         /// <summary>
         /// txtDModel control.
@@ -2821,22 +2830,22 @@ namespace FibrexSupplierPortal.Mgment {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// div1 control.
+        /// divRevisionPopUpError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRevisionPopUpError;
         
         /// <summary>
-        /// Label1 control.
+        /// lblRevisionPopUpError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblRevisionPopUpError;
         
         /// <summary>
         /// lblRevisionRef control.

@@ -14,10 +14,16 @@
         <elementListCompartment Id="7c95893a-2165-4e7b-91e9-c96ed20d9bd3" absoluteBounds="0.89000000000000012, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e2605085-fdb9-41c0-95c1-3f34e9348d6c" absoluteBounds="3.25, 2.875, 2, 4.0785139973958326">
+    <classShape Id="0b23c591-7eb8-4418-9195-bbcbe80d29e3" absoluteBounds="3.875, 0.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/tmpFibConsoDataContext/VW_PRODUCT_MASTER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9b4b0a55-f5cf-4e7a-b3cb-50d15c4cd881" absoluteBounds="3.89, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f99117a8-5db5-486b-b866-036767017528" absoluteBounds="3.125, 3, 2, 4.0785139973958326">
       <DataClassMoniker Name="/tmpFibConsoDataContext/VW_MATRECTRAN" />
       <nestedChildShapes>
-        <elementListCompartment Id="baab7f2f-9429-404d-b192-2d951785c39e" absoluteBounds="3.265, 3.335, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9f12589f-9283-4f71-8a5b-a6bf5a1b922e" absoluteBounds="3.14, 3.46, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

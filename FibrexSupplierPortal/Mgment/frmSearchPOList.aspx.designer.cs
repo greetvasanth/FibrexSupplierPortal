@@ -211,13 +211,13 @@ namespace FibrexSupplierPortal.Mgment {
         protected global::System.Web.UI.WebControls.TextBox txtDItemCode;
         
         /// <summary>
-        /// img7 control.
+        /// imgItemCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage img7;
+        protected global::System.Web.UI.WebControls.ImageButton imgItemCode;
         
         /// <summary>
         /// txtDescription control.
@@ -229,6 +229,15 @@ namespace FibrexSupplierPortal.Mgment {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
+        /// txtSpecification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSpecification;
+        
+        /// <summary>
         /// txtCostCode control.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,24 @@ namespace FibrexSupplierPortal.Mgment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCostCode;
+        
+        /// <summary>
+        /// hdntxtCostCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdntxtCostCode;
+        
+        /// <summary>
+        /// img5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton img5;
         
         /// <summary>
         /// txtDRequestedBy control.
@@ -614,6 +641,33 @@ namespace FibrexSupplierPortal.Mgment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView gvITEMCODE;
+        
+        /// <summary>
+        /// popupCostCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl popupCostCode;
+        
+        /// <summary>
+        /// gvCostCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView gvCostCode;
+        
+        /// <summary>
+        /// tmpFibConso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource tmpFibConso;
         
         /// <summary>
         /// popupRequestor control.

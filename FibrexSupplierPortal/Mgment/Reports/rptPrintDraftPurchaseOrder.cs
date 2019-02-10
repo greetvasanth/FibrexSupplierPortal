@@ -69,6 +69,7 @@ namespace FibrexSupplierPortal.Mgment.Reports
                 lblDraft.Visible = false;
                 this.Watermark.Text = "";
                 
+
             }
             else
             {
@@ -76,6 +77,20 @@ namespace FibrexSupplierPortal.Mgment.Reports
                 lblDraft.Visible = true;
                 this.Watermark.Text = "FIBREX INTERNAL REVIEW ONLY";
             }
+            //Detail.Visible = false;
+            //lblSupplierNote.Visible = false;
+            var ExternalNotevalues = GetCurrentColumnValue("EXTNOTE").ToString();
+            if (string.IsNullOrWhiteSpace(ExternalNotevalues))
+            {
+                lblSupplierNote.Visible = false;
+                Detail.Visible = false;
+            }
+            else
+            {
+                Detail.Visible = true;
+                lblSupplierNote.Visible = true;
+            }
+
         }
 
         private void lblExternalNotevalues_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

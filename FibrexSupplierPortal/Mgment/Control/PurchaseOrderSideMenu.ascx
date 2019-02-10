@@ -14,7 +14,7 @@
     <li id="SideMenuSearchPOTemplates" runat="server">
         <a href="frmSearchPOTemplates"><i class="fa fa-edit fa-fw"></i>Search Purchase Order Templates</a>
     </li>
-    <li id="SideMenuReports" runat="server">
+    <li id="SideMenuReports" visible="false" runat="server">
         <a href="frmFilterSpendByTopSupplier"><i class="fa fa-edit fa-fw"></i>Reports</a>
     </li>
 </ul>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FSPPO" Class="FSPDataAccessModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=172.172.101.53;Initial Catalog=FSPPO;User ID=myhr_user" SettingsObjectName="FSPBAL.Properties.Settings" SettingsPropertyName="FSPPOConnectionString10" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=172.172.101.53;Initial Catalog=FSPPO;User ID=myhr_user" SettingsObjectName="FSPBAL.Properties.Settings" SettingsPropertyName="FSPPOConnectionString11" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ActivityLog" Member="ActivityLogs">
     <Type Name="ActivityLog">
       <Column Name="ActivityID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -1016,38 +1016,6 @@
       <Column Name="ModifiedDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.A_POLINE" Member="A_POLINEs">
-    <Type Name="A_POLINE">
-      <Column Name="AUDITID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AUDITACTION" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="AUDITBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="AUDITTIMESTAMP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="POLINEID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0)" CanBeNull="true" />
-      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="POLINENUM" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="LINETYPE" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="COSTCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="CATALOGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="ORDERQTY" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
-      <Column Name="ORDERUNIT" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="UNITCOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
-      <Column Name="LINECOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
-      <Column Name="ITEMNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="MODELNUM" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
-      <Column Name="REQUESTEDBYCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="REQUESTEDBYNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="REQDELIVERYDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="MANUFACUTRER" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="REMARK" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="TAXCODE" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="TAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="TAXED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ROWSTAMP" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="TAXRATE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Users" Member="Users">
     <Type Name="User">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
@@ -1086,129 +1054,6 @@
       <Column Name="AuthSystem" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="OrgCode" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="emp_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PO" Member="POs">
-    <Type Name="PO">
-      <Column Name="POID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="POREF" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="POSID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ORGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="ORGNAME" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PROJECTCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="PROJECTNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="MRNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="QNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="QDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ORDERDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="REQUIREDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="VENDORDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="POTYPE" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
-      <Column Name="ORIGINALPONUM" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="STATUS" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="STATUSDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="BUYERCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="BUYERNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="VENDORID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VENDORNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="VENDORADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="VENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="SHIPTOADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TOTALCOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
-      <Column Name="CURRENCYCODE" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
-      <Column Name="TOTALTAX" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="PRETAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="CREATEDBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="CREATIONDATETIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="LASTMODIFIEDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CONTRACTREFNUM" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="REVCOMMENTS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="HISTORYFLAG" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="INTNOTE" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="EXTNOTE" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="SENDNOTETOACCTS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="PO_A_PO" Member="A_POs" ThisKey="PONUM,POREVISION" OtherKey="PONUM,POREVISION" Type="A_PO" />
-    </Type>
-  </Table>
-  <Table Name="dbo.A_PO" Member="A_POs">
-    <Type Name="A_PO">
-      <Column Name="AUDITID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AUDITACTION" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="AUDITBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="AUDITTIMESTAMP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0)" CanBeNull="true" />
-      <Column Name="POREF" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
-      <Column Name="POSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ORGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="ORGNAME" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PROJECTCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="PROJECTNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="MRNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="QNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="QDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="PAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="ORDERDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="REQUIREDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="VENDORDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="POTYPE" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
-      <Column Name="ORIGINALPONUM" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="STATUS" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="STATUSDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="BUYERCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="BUYERNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="VENDORID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VENDORNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="VENDORADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="VENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="VENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="SHIPTOADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="SHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CONTRACTREFNUM" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="REVCOMMENTS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="CURRENCYCODE" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
-      <Column Name="TOTALTAX" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="PRETAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
-      <Column Name="HISTORYFLAG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="PO_A_PO" Member="PO" ThisKey="PONUM,POREVISION" OtherKey="PONUM,POREVISION" Type="PO" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.VW_AllPOSignatureTemplates" Member="VW_AllPOSignatureTemplates">
@@ -1453,6 +1298,166 @@
       <Column Name="LASTMODIFIEDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.PO" Member="POs">
+    <Type Name="PO">
+      <Column Name="POID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="POREF" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="POSID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ORGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ORGNAME" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PROJECTCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="PROJECTNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="MRNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="QNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="QDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ORDERDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="REQUIREDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VENDORDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="POTYPE" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="ORIGINALPONUM" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="STATUSDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BUYERCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="BUYERNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="VENDORID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VENDORNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="VENDORADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="VENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SHIPTOADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TOTALCOST" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
+      <Column Name="CURRENCYCODE" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="TOTALTAX" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="PRETAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="CREATEDBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CREATIONDATETIME" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="LASTMODIFIEDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CONTRACTREFNUM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REVCOMMENTS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="HISTORYFLAG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="INTNOTE" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="EXTNOTE" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="SENDNOTETOACCTS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="PO1_A_PO1" Member="A_POs" ThisKey="PONUM,POREVISION" OtherKey="PONUM,POREVISION" Type="A_PO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.A_PO" Member="A_POs">
+    <Type Name="A_PO">
+      <Column Name="AUDITID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AUDITACTION" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="AUDITBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="AUDITTIMESTAMP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0)" CanBeNull="true" />
+      <Column Name="POREF" Type="System.String" DbType="VarChar(80)" CanBeNull="true" />
+      <Column Name="POSID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ORGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ORGNAME" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PROJECTCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="PROJECTNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="MRNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="QNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="QDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="PAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ORDERDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="REQUIREDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="VENDORDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="POTYPE" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="ORIGINALPONUM" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="STATUS" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="STATUSDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BUYERCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="BUYERNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="VENDORID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VENDORNAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="VENDORADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="VENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="VENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SHIPTOADDR" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CONTRACTREFNUM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REVCOMMENTS" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="HISTORYFLAG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CURRENCYCODE" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="TOTALTAX" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="PRETAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="INTNOTE" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="EXTNOTE" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="SENDNOTETOACCTS" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="PO1_A_PO1" Member="PO" ThisKey="PONUM,POREVISION" OtherKey="PONUM,POREVISION" Type="PO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.A_POLINE" Member="A_POLINEs">
+    <Type Name="A_POLINE">
+      <Column Name="AUDITID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AUDITACTION" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="AUDITBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="AUDITTIMESTAMP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="POLINEID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PONUM" Type="System.Decimal" DbType="Decimal(8,0)" CanBeNull="true" />
+      <Column Name="POREVISION" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="POLINENUM" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="LINETYPE" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="COSTCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="CATALOGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="ORDERQTY" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
+      <Column Name="ORDERUNIT" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="UNITCOST" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
+      <Column Name="LINECOST" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
+      <Column Name="ITEMNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="MODELNUM" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="REQUESTEDBYCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="REQUESTEDBYNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="REQDELIVERYDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MANUFACUTRER" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="REMARK" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TAXCODE" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="TAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="TAXED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ROWSTAMP" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="TAXRATE" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="RECEIPTTOLERANCE" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="SPECIFICATION" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.POLINE" Member="POLINEs">
     <Type Name="POLINE">
       <Column Name="POLINEID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -1463,27 +1468,28 @@
       <Column Name="COSTCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="CATALOGCODE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="DESCRIPTION" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="ORDERQTY" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="ORDERQTY" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
       <Column Name="ORDERUNIT" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="UNITCOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
-      <Column Name="LINECOST" Type="System.Decimal" DbType="Decimal(16,2)" CanBeNull="true" />
+      <Column Name="UNITCOST" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
+      <Column Name="LINECOST" Type="System.Decimal" DbType="Decimal(16,4)" CanBeNull="true" />
       <Column Name="ITEMNUM" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="MODELNUM" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
+      <Column Name="MODELNUM" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="REQUESTEDBYCODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="REQUESTEDBYNAME" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
       <Column Name="REQDELIVERYDATE" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MANUFACUTRER" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="REMARK" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="TAXCODE" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="TAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="TAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
       <Column Name="TAXED" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="ROWSTAMP" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="TAXRATE" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="TAXRATE" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
       <Column Name="CREATIONDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CREATEDBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="LASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="LASTMODIFIEDDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="RECEIPTTOLERANCE" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="SPECIFICATION" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.ViewSPAllSupplier" Method="ViewSPAllSupplier">
@@ -1916,126 +1922,6 @@
       <Column Name="emp_desig_code" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.PO_DeletePOSignature" Method="PO_DeletePOSignature">
-    <Parameter Name="OrgCode" Parameter="orgCode" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="OrderNo" Parameter="orderNo" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PONum" Parameter="pONum" Type="System.Decimal" DbType="Decimal(8,0)" />
-    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="AuditBy" Parameter="auditBy" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.PO_EditPO" Method="PO_EditPO">
-    <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
-    <Parameter Name="POREF" Parameter="pOREF" Type="System.String" DbType="VarChar(80)" />
-    <Parameter Name="POSID" Parameter="pOSID" Type="System.Int64" DbType="BigInt" />
-    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="ORGCODE" Parameter="oRGCODE" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="ORGNAME" Parameter="oRGNAME" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="PROJECTCODE" Parameter="pROJECTCODE" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="PROJECTNAME" Parameter="pROJECTNAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="MRNUM" Parameter="mRNUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="QNUM" Parameter="qNUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="QDATE" Parameter="qDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="PAYMENTTERMS" Parameter="pAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="ORDERDATE" Parameter="oRDERDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="REQUIREDATE" Parameter="rEQUIREDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="VENDORDATE" Parameter="vENDORDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="POTYPE" Parameter="pOTYPE" Type="System.String" DbType="NVarChar(8)" />
-    <Parameter Name="ORIGINALPONUM" Parameter="oRIGINALPONUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="BUYERCODE" Parameter="bUYERCODE" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="BUYERNAME" Parameter="bUYERNAME" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="VENDORID" Parameter="vENDORID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="VENDORNAME" Parameter="vENDORNAME" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="VENDORADDR" Parameter="vENDORADDR" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="VENDORATTN1NAME" Parameter="vENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN1POS" Parameter="vENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN1MOB" Parameter="vENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN1TEL" Parameter="vENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN1FAX" Parameter="vENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN1EMAIL" Parameter="vENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN2NAME" Parameter="vENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN2POS" Parameter="vENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN2MOB" Parameter="vENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN2TEL" Parameter="vENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN2FAX" Parameter="vENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN2EMAIL" Parameter="vENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="SHIPTOADDR" Parameter="sHIPTOADDR" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="SHIPTOATTN1NAME" Parameter="sHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="SHIPTOATTN1MOB" Parameter="sHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="SHIPTOATTN1POS" Parameter="sHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="SHIPTOATTN2NAME" Parameter="sHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="SHIPTOATTN2MOB" Parameter="sHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="SHIPTOATTN2POS" Parameter="sHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="TOTALCOST" Parameter="tOTALCOST" Type="System.Decimal" DbType="Decimal(16,4)" />
-    <Parameter Name="LASTMODIFIEDBY" Parameter="lASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="CONTRACTREFNUM" Parameter="cONTRACTREFNUM" Type="System.Int32" DbType="Int" />
-    <Parameter Name="STATUS" Parameter="sTATUS" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="STATUSDATE" Parameter="sTATUSDATE" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="CURRENCYCODE" Parameter="cURRENCYCODE" Type="System.String" DbType="VarChar(8)" />
-    <Parameter Name="TOTALTAX" Parameter="tOTALTAX" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="PRETAXTOTAL" Parameter="pRETAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="INTNOTE" Parameter="iNTNOTE" Type="System.String" DbType="NVarChar(500)" />
-    <Parameter Name="EXTNOTE" Parameter="eXTNOTE" Type="System.String" DbType="NVarChar(500)" />
-    <Parameter Name="SENDNOTETOACCTS" Parameter="sENDNOTETOACCTS" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.PO_ADDPO" Method="PO_ADDPO">
-    <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
-    <Parameter Name="POREF" Parameter="pOREF" Type="System.String" DbType="VarChar(80)" />
-    <Parameter Name="POSID" Parameter="pOSID" Type="System.Int64" DbType="BigInt" />
-    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="ORGCODE" Parameter="oRGCODE" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="ORGNAME" Parameter="oRGNAME" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="PROJECTCODE" Parameter="pROJECTCODE" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="PROJECTNAME" Parameter="pROJECTNAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="MRNUM" Parameter="mRNUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="QNUM" Parameter="qNUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="QDATE" Parameter="qDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="PAYMENTTERMS" Parameter="pAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="ORDERDATE" Parameter="oRDERDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="REQUIREDATE" Parameter="rEQUIREDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="VENDORDATE" Parameter="vENDORDATE" Type="System.DateTime" DbType="Date" />
-    <Parameter Name="POTYPE" Parameter="pOTYPE" Type="System.String" DbType="NVarChar(8)" />
-    <Parameter Name="ORIGINALPONUM" Parameter="oRIGINALPONUM" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="BUYERCODE" Parameter="bUYERCODE" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="BUYERNAME" Parameter="bUYERNAME" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="VENDORID" Parameter="vENDORID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="VENDORNAME" Parameter="vENDORNAME" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="VENDORADDR" Parameter="vENDORADDR" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="VENDORATTN1NAME" Parameter="vENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN1POS" Parameter="vENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN1MOB" Parameter="vENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN1TEL" Parameter="vENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN1FAX" Parameter="vENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN1EMAIL" Parameter="vENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN2NAME" Parameter="vENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN2POS" Parameter="vENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="VENDORATTN2MOB" Parameter="vENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN2TEL" Parameter="vENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN2FAX" Parameter="vENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="VENDORATTN2EMAIL" Parameter="vENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="SHIPTOADDR" Parameter="sHIPTOADDR" Type="System.String" DbType="NVarChar(250)" />
-    <Parameter Name="SHIPTOATTN1NAME" Parameter="sHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="SHIPTOATTN1MOB" Parameter="sHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="SHIPTOATTN1POS" Parameter="sHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="SHIPTOATTN2NAME" Parameter="sHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="SHIPTOATTN2MOB" Parameter="sHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="SHIPTOATTN2POS" Parameter="sHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="TOTALCOST" Parameter="tOTALCOST" Type="System.Decimal" DbType="Decimal(16,4)" />
-    <Parameter Name="CREATEDBY" Parameter="cREATEDBY" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="CREATIONDATE" Parameter="cREATIONDATE" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="CONTRACTREFNUM" Parameter="cONTRACTREFNUM" Type="System.Int32" DbType="Int" />
-    <Parameter Name="REVCOMMENTS" Parameter="rEVCOMMENTS" Type="System.String" DbType="VarChar(250)" />
-    <Parameter Name="CURRENCYCODE" Parameter="cURRENCYCODE" Type="System.String" DbType="VarChar(8)" />
-    <Parameter Name="TOTALTAX" Parameter="tOTALTAX" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="PRETAXTOTAL" Parameter="pRETAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.FIRMS_GetAllEmployee" Method="FIRMS_GetAllEmployee">
     <ElementType Name="FIRMS_GetAllEmployeeResult">
       <Column Name="emp_code" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -2177,42 +2063,28 @@
       <Column Name="JUSTIFICATION" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.PO_EditPOLine" Method="PO_EditPOLine">
-    <Parameter Name="POLINEID" Parameter="pOLINEID" Type="System.Int64" DbType="BigInt" />
-    <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
-    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="POLINENUM" Parameter="pOLINENUM" Type="System.Int16" DbType="SmallInt" />
-    <Parameter Name="LINETYPE" Parameter="lINETYPE" Type="System.String" DbType="NVarChar(5)" />
-    <Parameter Name="CATALOGCODE" Parameter="cATALOGCODE" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="COSTCODE" Parameter="cOSTCODE" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(500)" />
-    <Parameter Name="ORDERQTY" Parameter="oRDERQTY" Type="System.Decimal" DbType="Decimal(16,2)" />
-    <Parameter Name="ORDERUNIT" Parameter="oRDERUNIT" Type="System.String" DbType="NVarChar(15)" />
-    <Parameter Name="UNITCOST" Parameter="uNITCOST" Type="System.Decimal" DbType="Decimal(16,2)" />
-    <Parameter Name="LINECOST" Parameter="lINECOST" Type="System.Decimal" DbType="Decimal(16,2)" />
-    <Parameter Name="ITEMNUM" Parameter="iTEMNUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="MODELNUM" Parameter="mODELNUM" Type="System.String" DbType="NVarChar(8)" />
-    <Parameter Name="REQUESTEDBYCODE" Parameter="rEQUESTEDBYCODE" Type="System.String" DbType="NVarChar(10)" />
-    <Parameter Name="REQUESTEDBYNAME" Parameter="rEQUESTEDBYNAME" Type="System.String" DbType="NVarChar(80)" />
-    <Parameter Name="MANUFACUTRER" Parameter="mANUFACUTRER" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="REMARK" Parameter="rEMARK" Type="System.String" DbType="NVarChar(100)" />
-    <Parameter Name="TAXCODE" Parameter="tAXCODE" Type="System.String" DbType="NVarChar(5)" />
-    <Parameter Name="TAXRATE" Parameter="tAXRATE" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TAXTOTAL" Parameter="tAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" />
-    <Parameter Name="TAXED" Parameter="tAXED" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="ROWSTAMP" Parameter="rOWSTAMP" Type="System.String" DbType="NVarChar(40)" />
-    <Parameter Name="LASTMODIFIEDBY" Parameter="lASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="LASTMODIFIEDDATE" Parameter="lASTMODIFIEDDATE" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="STATUSCODE" Parameter="sTATUSCODE" Type="System.String" DbType="VarChar(50)" />
-    <Parameter Name="RECEIPTTOLERANCE" Parameter="rECEIPTTOLERANCE" Type="System.Decimal" DbType="Decimal(5,2)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.PO_ValidateLineType" Method="PO_ValidateLineType">
     <Parameter Name="INPUTPONUM" Parameter="iNPUTPONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
     <Parameter Name="INPUTPOREV" Parameter="iNPUTPOREV" Type="System.Int16" DbType="SmallInt" />
     <Parameter Name="POTYPE" Parameter="pOTYPE" Type="System.String" DbType="VarChar(100)" />
     <Parameter Name="ERRORSTATUS" Parameter="eRRORSTATUS" Type="System.String" DbType="VarChar(500)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PO_LoadLineTypes" Method="PO_LoadLineTypes">
+    <Parameter Name="PoNumber" Parameter="poNumber" Type="System.String" DbType="VarChar(10)" />
+    <ElementType Name="PO_LoadLineTypesResult">
+      <Column Name="Value" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.PO_DeletePOSignature" Method="PO_DeletePOSignature">
+    <Parameter Name="OrgCode" Parameter="orgCode" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="POSignID" Parameter="pOSignID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OrderNo" Parameter="orderNo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PONum" Parameter="pONum" Type="System.Decimal" DbType="Decimal(8,0)" />
+    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="AuditBy" Parameter="auditBy" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.PO_AddPOLine" Method="PO_AddPOLine">
@@ -2223,19 +2095,19 @@
     <Parameter Name="CATALOGCODE" Parameter="cATALOGCODE" Type="System.String" DbType="NVarChar(30)" />
     <Parameter Name="COSTCODE" Parameter="cOSTCODE" Type="System.String" DbType="NVarChar(30)" />
     <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(500)" />
-    <Parameter Name="ORDERQTY" Parameter="oRDERQTY" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="ORDERQTY" Parameter="oRDERQTY" Type="System.Decimal" DbType="Decimal(16,4)" />
     <Parameter Name="ORDERUNIT" Parameter="oRDERUNIT" Type="System.String" DbType="NVarChar(15)" />
-    <Parameter Name="UNITCOST" Parameter="uNITCOST" Type="System.Decimal" DbType="Decimal(16,2)" />
-    <Parameter Name="LINECOST" Parameter="lINECOST" Type="System.Decimal" DbType="Decimal(16,2)" />
+    <Parameter Name="UNITCOST" Parameter="uNITCOST" Type="System.Decimal" DbType="Decimal(16,4)" />
+    <Parameter Name="LINECOST" Parameter="lINECOST" Type="System.Decimal" DbType="Decimal(16,4)" />
     <Parameter Name="ITEMNUM" Parameter="iTEMNUM" Type="System.String" DbType="NVarChar(30)" />
-    <Parameter Name="MODELNUM" Parameter="mODELNUM" Type="System.String" DbType="NVarChar(8)" />
+    <Parameter Name="MODELNUM" Parameter="mODELNUM" Type="System.String" DbType="NVarChar(20)" />
     <Parameter Name="REQUESTEDBYCODE" Parameter="rEQUESTEDBYCODE" Type="System.String" DbType="NVarChar(10)" />
     <Parameter Name="REQUESTEDBYNAME" Parameter="rEQUESTEDBYNAME" Type="System.String" DbType="NVarChar(80)" />
     <Parameter Name="MANUFACUTRER" Parameter="mANUFACUTRER" Type="System.String" DbType="NVarChar(30)" />
     <Parameter Name="REMARK" Parameter="rEMARK" Type="System.String" DbType="NVarChar(100)" />
     <Parameter Name="TAXCODE" Parameter="tAXCODE" Type="System.String" DbType="NVarChar(5)" />
-    <Parameter Name="TAXRATE" Parameter="tAXRATE" Type="System.Decimal" DbType="Decimal(18,0)" />
-    <Parameter Name="TAXTOTAL" Parameter="tAXTOTAL" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="TAXRATE" Parameter="tAXRATE" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="TAXTOTAL" Parameter="tAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" />
     <Parameter Name="TAXED" Parameter="tAXED" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="ROWSTAMP" Parameter="rOWSTAMP" Type="System.String" DbType="NVarChar(40)" />
     <Parameter Name="CREATEDBY" Parameter="cREATEDBY" Type="System.String" DbType="NVarChar(30)" />
@@ -2243,13 +2115,153 @@
     <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
     <Parameter Name="STATUSCODE" Parameter="sTATUSCODE" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="RECEIPTTOLERANCE" Parameter="rECEIPTTOLERANCE" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="SPECIFICATION" Parameter="sPECIFICATION" Type="System.String" DbType="NVarChar(250)" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.PO_LoadLineTypes" Method="PO_LoadLineTypes">
-    <Parameter Name="PoNumber" Parameter="poNumber" Type="System.String" DbType="VarChar(10)" />
-    <ElementType Name="PO_LoadLineTypesResult">
-      <Column Name="Value" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
-    </ElementType>
+  <Function Name="dbo.PO_ADDPO" Method="PO_ADDPO">
+    <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
+    <Parameter Name="POREF" Parameter="pOREF" Type="System.String" DbType="VarChar(80)" />
+    <Parameter Name="POSID" Parameter="pOSID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ORGCODE" Parameter="oRGCODE" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="ORGNAME" Parameter="oRGNAME" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PROJECTCODE" Parameter="pROJECTCODE" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="PROJECTNAME" Parameter="pROJECTNAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="MRNUM" Parameter="mRNUM" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="QNUM" Parameter="qNUM" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="QDATE" Parameter="qDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PAYMENTTERMS" Parameter="pAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="ORDERDATE" Parameter="oRDERDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="REQUIREDATE" Parameter="rEQUIREDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="VENDORDATE" Parameter="vENDORDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="POTYPE" Parameter="pOTYPE" Type="System.String" DbType="NVarChar(8)" />
+    <Parameter Name="ORIGINALPONUM" Parameter="oRIGINALPONUM" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="BUYERCODE" Parameter="bUYERCODE" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="BUYERNAME" Parameter="bUYERNAME" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="VENDORID" Parameter="vENDORID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="VENDORNAME" Parameter="vENDORNAME" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="VENDORADDR" Parameter="vENDORADDR" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="VENDORATTN1NAME" Parameter="vENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN1POS" Parameter="vENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN1MOB" Parameter="vENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN1TEL" Parameter="vENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN1FAX" Parameter="vENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN1EMAIL" Parameter="vENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN2NAME" Parameter="vENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN2POS" Parameter="vENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN2MOB" Parameter="vENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN2TEL" Parameter="vENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN2FAX" Parameter="vENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN2EMAIL" Parameter="vENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="SHIPTOADDR" Parameter="sHIPTOADDR" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="SHIPTOATTN1NAME" Parameter="sHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="SHIPTOATTN1MOB" Parameter="sHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SHIPTOATTN1POS" Parameter="sHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SHIPTOATTN2NAME" Parameter="sHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="SHIPTOATTN2MOB" Parameter="sHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SHIPTOATTN2POS" Parameter="sHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TOTALCOST" Parameter="tOTALCOST" Type="System.Decimal" DbType="Decimal(16,4)" />
+    <Parameter Name="CREATEDBY" Parameter="cREATEDBY" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="CREATIONDATE" Parameter="cREATIONDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CONTRACTREFNUM" Parameter="cONTRACTREFNUM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="REVCOMMENTS" Parameter="rEVCOMMENTS" Type="System.String" DbType="VarChar(250)" />
+    <Parameter Name="CURRENCYCODE" Parameter="cURRENCYCODE" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="TOTALTAX" Parameter="tOTALTAX" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="PRETAXTOTAL" Parameter="pRETAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="INTNOTE" Parameter="iNTNOTE" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="EXTNOTE" Parameter="eXTNOTE" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="SENDNOTETOACCTS" Parameter="sENDNOTETOACCTS" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PO_EditPO" Method="PO_EditPO">
+    <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
+    <Parameter Name="POREF" Parameter="pOREF" Type="System.String" DbType="VarChar(80)" />
+    <Parameter Name="POSID" Parameter="pOSID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ORGCODE" Parameter="oRGCODE" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="ORGNAME" Parameter="oRGNAME" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PROJECTCODE" Parameter="pROJECTCODE" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="PROJECTNAME" Parameter="pROJECTNAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="MRNUM" Parameter="mRNUM" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="QNUM" Parameter="qNUM" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="QDATE" Parameter="qDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="PAYMENTTERMS" Parameter="pAYMENTTERMS" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="ORDERDATE" Parameter="oRDERDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="REQUIREDATE" Parameter="rEQUIREDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="VENDORDATE" Parameter="vENDORDATE" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="POTYPE" Parameter="pOTYPE" Type="System.String" DbType="NVarChar(8)" />
+    <Parameter Name="ORIGINALPONUM" Parameter="oRIGINALPONUM" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="BUYERCODE" Parameter="bUYERCODE" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="BUYERNAME" Parameter="bUYERNAME" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="VENDORID" Parameter="vENDORID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="VENDORNAME" Parameter="vENDORNAME" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="VENDORADDR" Parameter="vENDORADDR" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="VENDORATTN1NAME" Parameter="vENDORATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN1POS" Parameter="vENDORATTN1POS" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN1MOB" Parameter="vENDORATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN1TEL" Parameter="vENDORATTN1TEL" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN1FAX" Parameter="vENDORATTN1FAX" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN1EMAIL" Parameter="vENDORATTN1EMAIL" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN2NAME" Parameter="vENDORATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN2POS" Parameter="vENDORATTN2POS" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="VENDORATTN2MOB" Parameter="vENDORATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN2TEL" Parameter="vENDORATTN2TEL" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN2FAX" Parameter="vENDORATTN2FAX" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="VENDORATTN2EMAIL" Parameter="vENDORATTN2EMAIL" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="SHIPTOADDR" Parameter="sHIPTOADDR" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="SHIPTOATTN1NAME" Parameter="sHIPTOATTN1NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="SHIPTOATTN1MOB" Parameter="sHIPTOATTN1MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SHIPTOATTN1POS" Parameter="sHIPTOATTN1POS" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SHIPTOATTN2NAME" Parameter="sHIPTOATTN2NAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="SHIPTOATTN2MOB" Parameter="sHIPTOATTN2MOB" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SHIPTOATTN2POS" Parameter="sHIPTOATTN2POS" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TOTALCOST" Parameter="tOTALCOST" Type="System.Decimal" DbType="Decimal(16,4)" />
+    <Parameter Name="LASTMODIFIEDBY" Parameter="lASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="CONTRACTREFNUM" Parameter="cONTRACTREFNUM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="STATUS" Parameter="sTATUS" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="STATUSDATE" Parameter="sTATUSDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CURRENCYCODE" Parameter="cURRENCYCODE" Type="System.String" DbType="VarChar(8)" />
+    <Parameter Name="TOTALTAX" Parameter="tOTALTAX" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="PRETAXTOTAL" Parameter="pRETAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="INTNOTE" Parameter="iNTNOTE" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="EXTNOTE" Parameter="eXTNOTE" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="SENDNOTETOACCTS" Parameter="sENDNOTETOACCTS" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.PO_EditPOLine" Method="PO_EditPOLine">
+    <Parameter Name="POLINEID" Parameter="pOLINEID" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="PONUM" Parameter="pONUM" Type="System.Decimal" DbType="Decimal(8,0)" />
+    <Parameter Name="POREVISION" Parameter="pOREVISION" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="POLINENUM" Parameter="pOLINENUM" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="LINETYPE" Parameter="lINETYPE" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="CATALOGCODE" Parameter="cATALOGCODE" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="COSTCODE" Parameter="cOSTCODE" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="DESCRIPTION" Parameter="dESCRIPTION" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="ORDERQTY" Parameter="oRDERQTY" Type="System.Decimal" DbType="Decimal(16,4)" />
+    <Parameter Name="ORDERUNIT" Parameter="oRDERUNIT" Type="System.String" DbType="NVarChar(15)" />
+    <Parameter Name="UNITCOST" Parameter="uNITCOST" Type="System.Decimal" DbType="Decimal(16,4)" />
+    <Parameter Name="LINECOST" Parameter="lINECOST" Type="System.Decimal" DbType="Decimal(16,4)" />
+    <Parameter Name="ITEMNUM" Parameter="iTEMNUM" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="MODELNUM" Parameter="mODELNUM" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="REQUESTEDBYCODE" Parameter="rEQUESTEDBYCODE" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="REQUESTEDBYNAME" Parameter="rEQUESTEDBYNAME" Type="System.String" DbType="NVarChar(80)" />
+    <Parameter Name="MANUFACUTRER" Parameter="mANUFACUTRER" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="REMARK" Parameter="rEMARK" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="TAXCODE" Parameter="tAXCODE" Type="System.String" DbType="NVarChar(5)" />
+    <Parameter Name="TAXRATE" Parameter="tAXRATE" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="TAXTOTAL" Parameter="tAXTOTAL" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="TAXED" Parameter="tAXED" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ROWSTAMP" Parameter="rOWSTAMP" Type="System.String" DbType="NVarChar(40)" />
+    <Parameter Name="LASTMODIFIEDBY" Parameter="lASTMODIFIEDBY" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="LASTMODIFIEDDATE" Parameter="lASTMODIFIEDDATE" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="AUTOCOMMIT" Parameter="aUTOCOMMIT" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="STATUSCODE" Parameter="sTATUSCODE" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="RECEIPTTOLERANCE" Parameter="rECEIPTTOLERANCE" Type="System.Decimal" DbType="Decimal(5,2)" />
+    <Parameter Name="SPECIFICATION" Parameter="sPECIFICATION" Type="System.String" DbType="NVarChar(250)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

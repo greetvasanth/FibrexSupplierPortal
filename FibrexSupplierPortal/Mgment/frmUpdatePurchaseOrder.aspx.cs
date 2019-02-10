@@ -53,7 +53,7 @@ namespace FibrexSupplierPortal.Mgment
             {
                 LockAllControl();
             }
-            if (txtStatus.Text != "Draft")
+            if (txtStatus.Text == "Approved" || txtStatus.Text == "Revised" || txtStatus.Text == "Cancelled")
             {
                 imgSupplier.Visible = false;
                 txtCompanyID.ReadOnly = true;
@@ -62,7 +62,7 @@ namespace FibrexSupplierPortal.Mgment
             else
             {
                 imgSupplier.Visible = true;
-              //  txtCompanyID.ReadOnly = false;
+                //  txtCompanyID.ReadOnly = false;
                 //txtCompanyName.ReadOnly = false;
             }
             if (!IsPostBack)
@@ -128,8 +128,8 @@ namespace FibrexSupplierPortal.Mgment
                 var getPoReceiving = getRecievedInfo(POLINEID.ToString());
                 if (getPoReceiving != null)
                 {
-                    dr["RECEIVEDQTY"] = Convert.ToDecimal(getPoReceiving.RECEIVEDQTY).ToString("#,##0.00");
-                    dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#,##0.00");
+                    dr["RECEIVEDQTY"] = Convert.ToDecimal(getPoReceiving.RECEIVEDQTY).ToString("#,###0.############################");
+                    dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#,###0.############################");
                     //dr["RECEIPTTOLERANCE"] = Convert.ToDecimal(getPoReceiving.RECEIPTTOLERANCE).ToString("#,##0.00");
                     dr["RECEIPT"] = (getPoReceiving.RECEIPTSTATUS == "COMPLETE" ? "True" : "False");
 
@@ -188,7 +188,7 @@ namespace FibrexSupplierPortal.Mgment
                         dr["RECEIVEDQTY"] = getPoReceiving.RECEIVEDQTY.ToString("#.##");
                         // dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#.##"); ;
                         //dr["RECEIVEDVAL"] = getPoReceiving.RECEIVEDTOTALCOST.ToString();
-                        dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#,##0.00");
+                        dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#,###0.############################");
                         if (getPoReceiving.RECEIPTSTATUS == "COMPLETE")
                         {
                             dr["RECEIPT"] = "COMPLETE";
@@ -255,10 +255,10 @@ namespace FibrexSupplierPortal.Mgment
             }
 
 
-            if (txtStatus.Text == "Approved")
-            {
-                grd.EditIndex = -1;
-            }
+            //if (txtStatus.Text == "Approved")
+            //{
+            //    grd.EditIndex = -1;
+            //}
 
             if (dt.Rows.Count > 0)
             {
@@ -497,13 +497,13 @@ namespace FibrexSupplierPortal.Mgment
                     }
                     else
                         if (dt.Rows.Count > 0)
-                        {
-                            res = dt.Rows.Count + 1;
-                        }
-                        else
-                        {
-                            res = 1;
-                        }
+                    {
+                        res = dt.Rows.Count + 1;
+                    }
+                    else
+                    {
+                        res = 1;
+                    }
 
 
                     //int max = (from o in res select new { o.value }).Max();
@@ -591,7 +591,9 @@ namespace FibrexSupplierPortal.Mgment
                 DataRow dr = dt.Select("POLINEID='" + rowID + "'").FirstOrDefault();
                 string PoNum = Security.URLDecrypt(Request.QueryString["ID"]);
                 string revision = Security.URLDecrypt(Request.QueryString["revision"].ToString());
+                PO ObjPO = db.POs.SingleOrDefault(x => x.PONUM == int.Parse(PoNum) && x.POREVISION == short.Parse(revision));
 
+               
                 //PO ObjPO = db.POs.SingleOrDefault(x => x.PONUM == int.Parse(PoNum) && x.POREVISION == short.Parse(revision));
                 //if (ObjPO != null)
                 //{
@@ -606,8 +608,10 @@ namespace FibrexSupplierPortal.Mgment
                     if (dr["ERROR"].ToString() != "")
                     {
                         ImageButton ibd = (ImageButton)e.Row.FindControl("imgerror");
+                        if(ibd != null) { 
                         ibd.Visible = true;
                         ibd.ToolTip = dr["ERRORFTIP"].ToString().Replace("|", ",");
+                        }
                     }
 
                     if (e.Row.RowIndex != grd.EditIndex)
@@ -654,8 +658,10 @@ namespace FibrexSupplierPortal.Mgment
                         if (dr["ERROR"].ToString() != "")
                         {
                             ImageButton ibd = (ImageButton)e.Row.FindControl("imgerror");
+                            if(ibd != null) { 
                             ibd.Visible = true;
                             ibd.ToolTip = dr["ERRORFTIP"].ToString().Replace("|", ",");
+                            }
                         }
 
 
@@ -666,15 +672,31 @@ namespace FibrexSupplierPortal.Mgment
                         {
                             string potype = dr["POType"].ToString().ToLower();
 
+                            if (ObjPO != null)
+                            {
+                                if (!(string.IsNullOrEmpty(ObjPO.POTYPE)))
+                                {
+                                    var strVal = (from o in db.SS_ALNDomains where o.DomainName == "POTYPE" && o.Value == ObjPO.POTYPE select o.Value).FirstOrDefault();
+                                    if (ObjPO.POTYPE == "STD" || ObjPO.POTYPE == "INSTL")
+                                    {
+                                        txReceiptTolerance.ReadOnly = false;
+                                    }
+                                    else
+                                    {
+                                        txReceiptTolerance.ReadOnly = true;
+                                    }
+                                }
+                            }
                             //FillFeildsinTable("ITEM", int.Parse(rowID), "", null);
                             switch (potype)
                             {
                                 case "item":
 
-                                    txtDItemDesc.ReadOnly = false;// Convert.ToBoolean(dr["VERIFIED"].ToString());
+                                    txtDItemDesc.ReadOnly = true;// Convert.ToBoolean(dr["VERIFIED"].ToString());
                                     txtDItemCode.ReadOnly = false;//Convert.ToBoolean(dr["VERIFIED"].ToString());
+                                    txtSpecification.ReadOnly = false;
                                     txtDQty.ReadOnly = false;
-                                    txtDUOM.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());
+                                    //txtDUOM.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());
                                     txtDUP.ReadOnly = false;
                                     txtDModel.ReadOnly = false;
                                     txtDBrand.ReadOnly = false;
@@ -689,12 +711,13 @@ namespace FibrexSupplierPortal.Mgment
                                             ((DropDownList)e.Row.FindControl("ddlLineTypeEdit")).Enabled = false;
                                             ((TextBox)e.Row.FindControl("txtPOEditItem")).ReadOnly = true;
                                             ((TextBox)e.Row.FindControl("txtgvDescriptionEdit")).ReadOnly = true;
-                                            ((TextBox)e.Row.FindControl("txtPOUnitEdit")).ReadOnly = true;
+                                            //((TextBox)e.Row.FindControl("txtPOUnitEdit")).ReadOnly = true;
                                             ((TextBox)e.Row.FindControl("txtPOUnitPriceEdit")).ReadOnly = true;
                                             ((TextBox)e.Row.FindControl("txtTotalPriceEdit")).ReadOnly = true;
                                             ((System.Web.UI.WebControls.Image)e.Row.FindControl("img3")).Visible = false;
                                             txtDItemCode.ReadOnly = true;
-                                            txtDUOM.ReadOnly = true;
+                                            //txtDUOM.ReadOnly = true;
+                                            txtDItemDesc.ReadOnly = true;
                                             txtDUP.ReadOnly = true;
                                             txtDModel.ReadOnly = true;
                                             txtDBrand.ReadOnly = true;
@@ -711,7 +734,7 @@ namespace FibrexSupplierPortal.Mgment
                                             dl.ReadOnly = false;
                                             dl = (TextBox)e.Row.FindControl("txtgvDescriptionEdit");
                                             dl.ReadOnly = false;// Convert.ToBoolean(dr["VERIFIED"].ToString());
-                                            dl = (TextBox)e.Row.FindControl("txtPOUnitEdit");
+                                            //dl = (TextBox)e.Row.FindControl("txtPOUnitEdit");
                                             dl.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());//txtPOUnitPriceEdit
 
                                             System.Web.UI.WebControls.Image img = (System.Web.UI.WebControls.Image)e.Row.FindControl("img3");
@@ -729,6 +752,7 @@ namespace FibrexSupplierPortal.Mgment
                                     //dl = (TextBox)e.Row.FindControl("txtPOUnitEdit");
                                     //dl.ReadOnly = false;
                                     txtDItemDesc.ReadOnly = false;
+                                    txtSpecification.ReadOnly = false;
                                     txtDItemCode.ReadOnly = true;
                                     txtDQty.ReadOnly = false;
                                     txtDUOM.ReadOnly = false;
@@ -759,6 +783,7 @@ namespace FibrexSupplierPortal.Mgment
                                     //dl = (TextBox)e.Row.FindControl("txtPOUnitEdit");
                                     //dl.ReadOnly = false;
                                     txtDItemDesc.ReadOnly = false;
+                                    txtSpecification.ReadOnly = false;
                                     txtDItemCode.ReadOnly = true;
                                     txtDQty.ReadOnly = false;
                                     txtDUOM.ReadOnly = false;
@@ -789,6 +814,7 @@ namespace FibrexSupplierPortal.Mgment
                                     //dl = (TextBox)e.Row.FindControl("txtPOUnitEdit");
                                     //dl.ReadOnly = false;
                                     txtDItemDesc.ReadOnly = false;
+                                    txtSpecification.ReadOnly = false;
                                     txtDItemCode.ReadOnly = true;
                                     txtDQty.ReadOnly = false;
                                     txtDUOM.ReadOnly = false;
@@ -819,6 +845,7 @@ namespace FibrexSupplierPortal.Mgment
                                     //dl = (TextBox)e.Row.FindControl("txtPOUnitEdit");
                                     //dl.ReadOnly = false;
                                     txtDItemDesc.ReadOnly = false;
+                                    txtSpecification.ReadOnly = false;
                                     txtDItemCode.ReadOnly = true;
                                     txtDQty.ReadOnly = false;
                                     txtDUOM.ReadOnly = true;
@@ -894,6 +921,7 @@ namespace FibrexSupplierPortal.Mgment
                             txtDCatalogCode.Text = dr["CATALOGCODE"].ToString();
                             txtDItemDesc.Text = dr["Description"].ToString();
                             txtDItemDesc.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());
+                            txtSpecification.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());
                             txtDItemCode.Text = dr["ITEMNUM"].ToString();
                             //txtDItemCode.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());
 
@@ -909,6 +937,7 @@ namespace FibrexSupplierPortal.Mgment
                             txtDTotalTax.Text = dr["TAXTOTAL"].ToString();// = taxcode;
 
                             txtDRequestedBy.Text = dr["REQUESTEDBYNAME"].ToString();// = requestedby;
+                            txtSpecification.Text = dr["SPECIFICATION"].ToString();// = specification;
                             txtDRemarks.Text = dr["REMARKS"].ToString(); //= remarks;rowID.ToString() + " " + 
                             chkDReceipt.Checked = (dr["RECEIPT"].ToString() == "" ? false : (dr["RECEIPT"].ToString() == "COMPLETE" ? true : false));
                             txtDQuantityReceived.Text = (dr["RECEIVEDQTY"].ToString());// == "" ? false : (dr["RECEIVED"].ToString() == "No" ? false : true));
@@ -969,9 +998,12 @@ namespace FibrexSupplierPortal.Mgment
 
                             if ((from o in flds where o.Equals("ITEMNUM") select o).Count() > 0)
                             {
-                                txtDItemCode.BorderColor = Color.Red;//txtPOLineNumEdit
+                                //txtDItemCode.BorderColor = Color.Red;//txtPOLineNumEdit
+                                txtDItemCode.CssClass += " boxshow";
                                 dl = (TextBox)e.Row.FindControl("txtPOEditItem");
-                                dl.BorderColor = Color.Red;
+                                //dl.BorderColor = Color.Red;
+                                dl.CssClass += " boxshow";
+                                dl.ReadOnly = Convert.ToBoolean(dr["VERIFIED"].ToString());
                             }
                             else { txtDItemCode.BorderColor = Color.Empty; }
 
@@ -1062,7 +1094,7 @@ namespace FibrexSupplierPortal.Mgment
                 TextBox txtUnite = (TextBox)grd.FooterRow.FindControl("txtPOUnitNew");
                 TextBox txtGvPrice = (TextBox)grd.FooterRow.FindControl("txtPOUnitPriceNew");
                 TextBox txtGvTotalPrice = (TextBox)grd.FooterRow.FindControl("txtPOUnitTotalNew");
-                
+
                 //insert the new product into database
                 //clear the view state so that latest list will be retrieved from db
                 DataTable dtCurrentTable = getTable();
@@ -1086,12 +1118,12 @@ namespace FibrexSupplierPortal.Mgment
                 dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["Quantity"] = txtGvQuantity.Text;
                 dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["Unit"] = txtUnite.Text;
                 dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["UnitPrice"] = txtGvPrice.Text;
-                dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["TotalPrice"] = (Convert.ToDecimal(txtGvPrice.Text) * Convert.ToDecimal(txtGvQuantity.Text)).ToString("#,##0.00");
+                dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["TotalPrice"] = (Convert.ToDecimal(txtGvPrice.Text) * Convert.ToDecimal(txtGvQuantity.Text)).ToString("#,###0.############################");
                 dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["POLINEID"] = (res * res) * (-1);
 
                 if (txtGvQuantity.Text != "")
                 {
-                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["Quantity"] = Convert.ToDecimal(txtGvQuantity.Text).ToString("#,##0.00");// Quantity;
+                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["Quantity"] = Convert.ToDecimal(txtGvQuantity.Text).ToString("#,###0.############################");// Quantity;
                 }
                 else
                 {
@@ -1100,7 +1132,7 @@ namespace FibrexSupplierPortal.Mgment
 
                 if (txtGvPrice.Text != "")
                 {
-                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["UnitPrice"] = Convert.ToDecimal(txtGvPrice.Text).ToString("#,##0.00");  //UnitPrice;
+                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["UnitPrice"] = Convert.ToDecimal(txtGvPrice.Text).ToString("#,###0.############################");  //UnitPrice;
                 }
                 else
                 {
@@ -1108,7 +1140,7 @@ namespace FibrexSupplierPortal.Mgment
                 }
                 if (txtGvPrice.Text != "")
                 {
-                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["TotalPrice"] = Convert.ToDecimal(dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["TotalPrice"]).ToString("#,##0.00"); ; //TotalPrice.ToString("N4");
+                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["TotalPrice"] = Convert.ToDecimal(dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["TotalPrice"]).ToString("#,###0.############################"); ; //TotalPrice.ToString("N4");
                 }
                 else
                 {
@@ -1174,6 +1206,7 @@ namespace FibrexSupplierPortal.Mgment
                     txtDReceivedCost.Text = (dr["RECEIVEDVAL"].ToString());
                     txReceiptTolerance.Text = dr["RECEIPTTOLERANCE"].ToString();
                     txtDItemCode.Text = dr["ITEMNUM"].ToString();
+                    txtSpecification.Text = dr["SPECIFICATION"].ToString();
                     txtDRemarks.Text = dr["REMARKS"].ToString(); //= remarks;rowID.ToString() + " " + 
                     /*******MRV Change Status**********/
                     string StatusCode = objDomain.GetStatusCode(txtStatus.Text, "POSTATUS");
@@ -1291,7 +1324,7 @@ namespace FibrexSupplierPortal.Mgment
             dr["UnitPrice"] = "0.0";
             dr["TotalPrice"] = "0.0";
             dr["TAXRATE"] = (tax == null ? null : ((decimal)tax.TAXRATE).ToString("#,##0.00"));
-            dr["TAXTOTAL"] = Convert.ToDecimal("0.00").ToString("#,##0.00");
+            dr["TAXTOTAL"] = Convert.ToDecimal("0.00").ToString("#,###0.############################");
 
             dr["ADDEDBY"] = UserName;
             dr["ADDEDON"] = DateTime.Now.ToString();//ActionTaken
@@ -1335,49 +1368,49 @@ namespace FibrexSupplierPortal.Mgment
         protected void grd_RowEditing(object sender, GridViewEditEventArgs e)
         {
 
-                DataTable dt = getTable();
-                if (btnPaste.Text != "Paste")
-                {
+            DataTable dt = getTable();
+            if (btnPaste.Text != "Paste")
+            {
 
-                    mydiv.Visible = false;
-                    bindGrid(dt);
-                    grd.SelectedIndex = e.NewEditIndex;
-                    return;
-                }
-
-                grd.EditIndex = e.NewEditIndex;
-                grd.SelectedIndex = e.NewEditIndex;
-
-                if (btnPaste.Text != "Paste")
-                {
-                    grd.EditIndex = -1;
-                    mydiv.Visible = false;
-                    bindGrid(dt);
-                    return;
-                }
-
-
+                mydiv.Visible = false;
                 bindGrid(dt);
-            if (txtStatus.Text == "Approved")
-            {
-                TextBox lblExpand = (TextBox)grd.Rows[e.NewEditIndex].FindControl("btnImage");
-                if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
-                {
-                    lblExpand.Text = "-";
-                }
-
-                mydiv.Visible = true;
+                grd.SelectedIndex = e.NewEditIndex;
+                return;
             }
-            else
-            {
-                Button lblExpand = (Button)grd.Rows[e.NewEditIndex].FindControl("lblExpand");
-                if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
-                {
-                    lblExpand.Text = "-";
-                }
 
-                mydiv.Visible = true;
+            grd.EditIndex = e.NewEditIndex;
+            grd.SelectedIndex = e.NewEditIndex;
+
+            if (btnPaste.Text != "Paste")
+            {
+                grd.EditIndex = -1;
+                mydiv.Visible = false;
+                bindGrid(dt);
+                return;
             }
+
+
+            bindGrid(dt);
+            //if (txtStatus.Text == "Approved")
+            //{
+            //    TextBox lblExpand = (TextBox)grd.Rows[e.NewEditIndex].FindControl("btnImage");
+            //    if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
+            //    {
+            //        lblExpand.Text = "-";
+            //    }
+
+            //    mydiv.Visible = true;
+            //}
+            //else
+            //{
+            Button lblExpand = (Button)grd.Rows[e.NewEditIndex].FindControl("lblExpand");
+            if (lblExpand == null || lblExpand.Text != null || lblExpand.Text != string.Empty)
+            {
+                lblExpand.Text = "-";
+            }
+
+            mydiv.Visible = true;
+            //}
 
             if (txtStatus.Text != "Approved")
             {
@@ -1391,9 +1424,9 @@ namespace FibrexSupplierPortal.Mgment
                     dl.SelectedValue = dr["POType"].ToString();
                 }
             }
-                //loadMyDIV(dr, e.NewEditIndex);
+            //loadMyDIV(dr, e.NewEditIndex);
 
-            
+
         }
         protected void loadMyDIV(bool bol)
         {
@@ -1418,6 +1451,7 @@ namespace FibrexSupplierPortal.Mgment
             txtDTotalTax.ReadOnly = bol;//.Text = dr["TAXTOTAL"].ToString();// = taxcode;
 
             txtDRequestedBy.ReadOnly = bol;//.Text = dr["REQUESTEDBYNAME"].ToString();// = requestedby;
+            txtSpecification.ReadOnly = bol;
             txtDRemarks.ReadOnly = bol;//.Text = dr["REMARKS"].ToString(); //= remarks;
             //chkDReceipt.Checked = (dr["RECEIPT"].ToString() == "" ? false : (dr["RECEIPT"].ToString() == "No" ? false : true));
             //txtDQuantityReceived.ReadOnly = bol;//.Text = (dr["RECEIVEDQTY"].ToString());// == "" ? false : (dr["RECEIVED"].ToString() == "No" ? false : true));
@@ -1930,12 +1964,12 @@ namespace FibrexSupplierPortal.Mgment
 
                         if (ObjgetPo.TOTALCOST != null)
                         {
-                            txtPOLinesPurchaseOrderTotalCost.Text = Convert.ToDecimal(ObjgetPo.TOTALCOST).ToString("#,##0.00");
-                            txtTotalCost.Text = Convert.ToDecimal(ObjgetPo.TOTALCOST).ToString("#,##0.00");
+                            txtPOLinesPurchaseOrderTotalCost.Text = Convert.ToDecimal(ObjgetPo.TOTALCOST).ToString("#,###0.############################");
+                            txtTotalCost.Text = Convert.ToDecimal(ObjgetPo.TOTALCOST).ToString("#,###0.############################");
                         }
                         if (ObjgetPo.TOTALTAX != null)
                         {
-                            txtPOTotalTax.Text = Convert.ToDecimal(ObjgetPo.TOTALTAX).ToString("#,##0.00");
+                            txtPOTotalTax.Text = Convert.ToDecimal(ObjgetPo.TOTALTAX).ToString("#,###0.############################");
                         }
                         if (ObjgetPo.CURRENCYCODE != null)
                         {
@@ -1994,6 +2028,16 @@ namespace FibrexSupplierPortal.Mgment
                             imgProject.Visible = false;
                             imgSupplier.Visible = false;
 
+                        }
+                        if (ObjgetPo.STATUS == "APRV" || ObjgetPo.STATUS == "CANC" || ObjgetPo.STATUS == "REVISD")
+                        {
+                            imgSupplier.Visible = false;
+                            txtCompanyID.ReadOnly = true;
+                            txtCompanyName.ReadOnly = true;
+                        }
+                        else
+                        {
+                            imgSupplier.Visible = true;
                         }
                         //totalGridCountr();
                         ControlPermission(ObjgetPo.PONUM.ToString());
@@ -2113,7 +2157,7 @@ namespace FibrexSupplierPortal.Mgment
                         {
                             if (dtAttachment.Rows.Count == 0)
                             {
-                                AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY,g.Status);
+                                AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY, g.Status);
                             }
                             else
                             {
@@ -2123,7 +2167,7 @@ namespace FibrexSupplierPortal.Mgment
                         }
                         else
                         {
-                            AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY,g.Status);
+                            AddAttachmentSession(g.Title, g.Description, g.FileName, g.FileURL, dt, g.AttachmentID.ToString(), "", CreatedBY, g.Status);
                         }
                     }
                 }
@@ -2239,7 +2283,8 @@ namespace FibrexSupplierPortal.Mgment
                     FillFeildsinTable("TAXTOTAL", rowIndex, TotalTax.ToString(), null);
 
                     GridViewRow gvr = grd.Rows[int.Parse(lblrowindex.Text)];
-                    ((TextBox)gvr.FindControl("txtTotalTAXEdit")).Text = Convert.ToDecimal(TotalTax.ToString()).ToString("#,##0.00");
+                    string strdec = (TotalTax).ToString(CultureInfo.InvariantCulture);
+                    ((TextBox)gvr.FindControl("txtTotalTAXEdit")).Text = strdec.Contains(".") ? strdec.TrimEnd('0').TrimEnd('.') : strdec;
 
                     // chkDTAXExempt.Checked = false;
                 }
@@ -2253,20 +2298,21 @@ namespace FibrexSupplierPortal.Mgment
             ASPxGridView grid = (ASPxGridView)sender;
             string MODELNUM = string.Empty;
             string MANUFACUTRER = string.Empty;
+            string UNIT = string.Empty;
             object id = e.KeyValue;
-            string ITEMCODE = grid.GetRowValuesByKeyValue(id, "ITEMCODE").ToString();
+            string ITEMCODE = grid.GetRowValuesByKeyValue(id, "prm_item_code").ToString();
             hdnItemCode.Value = ITEMCODE;
-            string ITEMDESC = grid.GetRowValuesByKeyValue(id, "ITEMDESC").ToString();
+            string ITEMDESC = grid.GetRowValuesByKeyValue(id, "prm_item_desc").ToString();
             hdnItemDesc.Value = ITEMDESC;
-            if (grid.GetRowValuesByKeyValue(id, "MODELNUM") != null)
-            {
-                MODELNUM = grid.GetRowValuesByKeyValue(id, "MODELNUM").ToString();
-            }
-            if (grid.GetRowValuesByKeyValue(id, "MANUFACUTRER") != null)
-            {
-                MANUFACUTRER = grid.GetRowValuesByKeyValue(id, "MANUFACUTRER").ToString();
-            }
-            string UNIT = grid.GetRowValuesByKeyValue(id, "ORDERUNIT").ToString();
+            //if (grid.GetRowValuesByKeyValue(id, "MODELNUM") != null)
+            //{
+            //    MODELNUM = grid.GetRowValuesByKeyValue(id, "MODELNUM").ToString();
+            //}
+            //if (grid.GetRowValuesByKeyValue(id, "MANUFACUTRER") != null)
+            //{
+            //    MANUFACUTRER = grid.GetRowValuesByKeyValue(id, "MANUFACUTRER").ToString();
+            //}
+           // string UNIT = grid.GetRowValuesByKeyValue(id, "uom_desc").ToString();
 
             int rowIndex = int.Parse(lblrowindex.Text);
 
@@ -2519,6 +2565,9 @@ namespace FibrexSupplierPortal.Mgment
                 int MaxREMARK = Sup.GetFieldMaxlength("POLINE", "REMARK");
                 txtDRemarks.Attributes.Add("maxlength", MaxREMARK.ToString());
 
+                int MaxSPECIFICATION = Sup.GetFieldMaxlength("POLINE", "SPECIFICATION");
+                txtSpecification.Attributes.Add("maxlength", MaxSPECIFICATION.ToString());
+
                 int maxDESCRIPTION = Sup.GetFieldMaxlength("POLINE", "DESCRIPTION");
                 txtPOLinePurchaseOrderDescription.Attributes.Add("maxlength", maxDESCRIPTION.ToString());
 
@@ -2607,11 +2656,27 @@ namespace FibrexSupplierPortal.Mgment
                 divError.Attributes["class"] = smsg.GetMessageBg(1020); upError.Update();
                 //1020
             }
+            Session["AttachmentUpload"] = null;
             DataTable table = new DataTable();
             table = (DataTable)Session["Attachment"];
+            if (table != null)
+            {
+                if (table.Rows.Count > 0)
+                {
+                    if (table.Rows[0]["AttachmentID"].ToString() == "0")
+                    {
+                        if (!(table.Columns.Contains("Status")))
+                        {
+                            table.Columns.Add("Status", typeof(string));
+                            table.Rows[0]["Status"] = null;
+                        }
+                        //table.Rows.Add();
+                    }
+                }
+            }
             gvShowSeletSupplierAttachment.DataSource = table;
             gvShowSeletSupplierAttachment.DataBind();
-            Session["AttachmentUpload"] = "";
+            //Session["AttachmentUpload"] = "";
             upShowAttachmentList.Update();
             // BindGvPolines();
         }
@@ -2689,64 +2754,66 @@ namespace FibrexSupplierPortal.Mgment
 
             try
             {
-                //mms
-                string CheckAction = string.Empty;
-                int ValidACtion = 0;
-                lblError.Text = "";
-                divError.Visible = false;
-                int RowNo = Convert.ToInt32(HidRowIndex.Value);
-                DataTable dt = (DataTable)Session["Attachment"];
-                if (HIDAttachmentID.Value == "0")
+                if (HIDAttachmentID.Value != "")
                 {
-                    dt.Rows[RowNo]["Title"] = txtPopupFileTitle.Text;
-                    dt.Rows[RowNo]["Description"] = txtPopupFileDescription.Text;
-                    dt.Rows[RowNo]["LastModifiedDate"] = DateTime.Now;
-                    dt.Rows[RowNo]["LastModifiedBy"] = UserName;
-                    ValidACtion = 1;
-                }
-                else
-                {
-                    int UpdatValue = 0;
-                    Attachment Objatt = db.Attachments.FirstOrDefault(x => x.AttachmentID == int.Parse(HIDAttachmentID.Value) && x.OwnerTable == "PO");
-                    if (Objatt != null)
+                    //mms
+                    string CheckAction = string.Empty;
+                    int ValidACtion = 0;
+                    lblError.Text = "";
+                    divError.Visible = false;
+                    int RowNo = Convert.ToInt32(HidRowIndex.Value);
+                    DataTable dt = (DataTable)Session["Attachment"];
+                    if (HIDAttachmentID.Value == "0")
                     {
-                        if (txtPopupFileTitle.Text.Trim() != "")
+                        dt.Rows[RowNo]["Title"] = txtPopupFileTitle.Text;
+                        dt.Rows[RowNo]["Description"] = txtPopupFileDescription.Text;
+                        dt.Rows[RowNo]["LastModifiedDate"] = DateTime.Now;
+                        dt.Rows[RowNo]["LastModifiedBy"] = UserName;
+                        ValidACtion = 1;
+                    }
+                    else
+                    {
+                        int UpdatValue = 0;
+                        Attachment Objatt = db.Attachments.FirstOrDefault(x => x.AttachmentID == int.Parse(HIDAttachmentID.Value) && x.OwnerTable == "PO");
+                        if (Objatt != null)
                         {
-                            if (Objatt.Title != txtPopupFileTitle.Text)
+                            if (txtPopupFileTitle.Text.Trim() != "")
                             {
-                                UpdatValue = 1;
-                                dt.Rows[RowNo]["Title"] = txtPopupFileTitle.Text;
+                                if (Objatt.Title != txtPopupFileTitle.Text)
+                                {
+                                    UpdatValue = 1;
+                                    dt.Rows[RowNo]["Title"] = txtPopupFileTitle.Text;
+                                }
                             }
-                        }
-                        if (txtPopupFileDescription.Text.Trim() != "")
-                        {
-                            if (Objatt.Description != txtPopupFileDescription.Text)
+                            if (txtPopupFileDescription.Text.Trim() != "")
                             {
-                                UpdatValue = 1;
-                                dt.Rows[RowNo]["Description"] = txtPopupFileDescription.Text;
+                                if (Objatt.Description != txtPopupFileDescription.Text)
+                                {
+                                    UpdatValue = 1;
+                                    dt.Rows[RowNo]["Description"] = txtPopupFileDescription.Text;
+                                }
                             }
-                        }
-                        if (UpdatValue == 1)
-                        {
-                            dt.Rows[RowNo]["ActionTaken"] = "Update";
-                            dt.Rows[RowNo]["LastModifiedDate"] = DateTime.Now; ValidACtion = 1;
-                            dt.Rows[RowNo]["LastModifiedBy"] = UserName;
+                            if (UpdatValue == 1)
+                            {
+                                dt.Rows[RowNo]["ActionTaken"] = "Update";
+                                dt.Rows[RowNo]["LastModifiedDate"] = DateTime.Now; ValidACtion = 1;
+                                dt.Rows[RowNo]["LastModifiedBy"] = UserName;
+                            }
                         }
                     }
-                }
-                gvShowSeletSupplierAttachment.EditIndex = -1;
-                BindMyGridview();
-                HIDAttachmentID.Value = "";
-                if (ValidACtion == 1)
-                {
-                    lblError.Text = smsg.getMsgDetail(1056);
-                    divError.Visible = true;
-                    divError.Attributes["class"] = smsg.GetMessageBg(1056);
-                    upError.Update();
-                }
-                modalAttachment.Hide();
+                    gvShowSeletSupplierAttachment.EditIndex = -1;
+                    BindMyGridview();
+                    HIDAttachmentID.Value = "";
+                    if (ValidACtion == 1)
+                    {
+                        lblError.Text = smsg.getMsgDetail(1056);
+                        divError.Visible = true;
+                        divError.Attributes["class"] = smsg.GetMessageBg(1056);
+                        upError.Update();
+                    }
+                    modalAttachment.Hide();
 
-
+                }
             }
             catch (Exception ex)
             {
@@ -2894,6 +2961,7 @@ namespace FibrexSupplierPortal.Mgment
             dt.Columns.Add(new DataColumn("TAXRATE", typeof(string)));
             dt.Columns.Add(new DataColumn("TAXTOTAL", typeof(string)));
             dt.Columns.Add(new DataColumn("TAXED", typeof(string)));
+            dt.Columns.Add(new DataColumn("SPECIFICATION", typeof(string)));
             dt.Columns.Add(new DataColumn("REMARKS", typeof(string)));
             dt.Columns.Add(new DataColumn("RECEIPT", typeof(string)));
             dt.Columns.Add(new DataColumn("RECEIVEDQTY", typeof(string)));
@@ -2935,7 +3003,7 @@ namespace FibrexSupplierPortal.Mgment
             return dt;
         }
         //SetPoLines(g.COSTCODE, g.LINETYPE, g.CATALOGCODE, g.ITEMNUM , g.DESCRIPTION, ReturnValue(g.ORDERQTY.ToString()), OrderUnit, ReturnValue(g.UNITCOST.ToString()), ReturnValue(g.LINECOST.ToString()), "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, Remarks, TaxCode, TotalTax, Taxed, g.RECEIVEDQTY, Recieved, RequestedByName, g.CREATEDBY, g.CREATIONDATE, g.LASTMODIFIEDBY, g.LASTMODIFIEDDATE);
-        private void SetPoLines(string CostCode, string RECEIPTTOLERANCE, string POType, string CatalogCode, string ITEMCODE, string Description, string Quantity, string Unit, string UnitPrice, string TotalPrice, string ActionTaken, string PoLineID, string POLINENUM, string model, string brand, string requestedby, string requestedName, string remarks, string taxcode, string taxrate, string totaltax, string taxed, string receipt, string recieved, string createdby, string createdon, string editedby, string editedon)
+        private void SetPoLines(string CostCode, string RECEIPTTOLERANCE, string POType, string CatalogCode, string ITEMCODE, string Description, string Quantity, string Unit, string UnitPrice, string TotalPrice, string ActionTaken, string PoLineID, string POLINENUM, string model, string brand, string requestedby, string requestedName, string specification,string remarks, string taxcode, string taxrate, string totaltax, string taxed, string receipt, string recieved, string createdby, string createdon, string editedby, string editedon)
         {
             DataRow dr = null;
 
@@ -2954,7 +3022,7 @@ namespace FibrexSupplierPortal.Mgment
             dr["EDITEDON"] = editedon;
             if (Quantity != "")
             {
-                dr["Quantity"] = Convert.ToDecimal(Quantity).ToString("#,##0.00");// Quantity;
+                dr["Quantity"] = Convert.ToDecimal(Quantity).ToString("#,###0.############################");// Quantity;
             }
             else
             {
@@ -2962,7 +3030,7 @@ namespace FibrexSupplierPortal.Mgment
             }
             if (taxrate != "")
             {
-                dr["TAXRATE"] = Convert.ToDecimal(Quantity).ToString("#,##0.00");// Quantity;
+                dr["TAXRATE"] = Convert.ToDecimal(Quantity).ToString("#,###0.############################");// Quantity;
             }
             else
             {
@@ -2972,7 +3040,7 @@ namespace FibrexSupplierPortal.Mgment
             dr["Unit"] = Unit;
             if (UnitPrice != "")
             {
-                dr["UnitPrice"] = Convert.ToDecimal(UnitPrice).ToString("#,##0.00");  //UnitPrice;
+                dr["UnitPrice"] = Convert.ToDecimal(UnitPrice).ToString("#,###0.############################");  //UnitPrice;
             }
             else
             {
@@ -2980,7 +3048,7 @@ namespace FibrexSupplierPortal.Mgment
             }
             if (UnitPrice != "")
             {
-                dr["TotalPrice"] = Convert.ToDecimal(TotalPrice).ToString("#,##0.00"); ; //TotalPrice.ToString("N4");
+                dr["TotalPrice"] = Convert.ToDecimal(TotalPrice).ToString("#,###0.############################"); ; //TotalPrice.ToString("N4");
             }
             else
             {
@@ -2989,7 +3057,7 @@ namespace FibrexSupplierPortal.Mgment
 
             if (totaltax != "")
             {
-                dr["TAXTOTAL"] = Convert.ToDecimal(totaltax).ToString("#,##0.00"); ; //TotalPrice.ToString("N4");
+                dr["TAXTOTAL"] = Convert.ToDecimal(totaltax).ToString("#,###0.############################"); ; //TotalPrice.ToString("N4");
             }
             else
             {
@@ -3010,6 +3078,7 @@ namespace FibrexSupplierPortal.Mgment
             dr["TAXCODE"] = taxcode;
             dr["TAXED"] = taxed;
             dr["REMARKS"] = remarks;
+            dr["SPECIFICATION"] = specification;
             //dr["RECEIPT"] = receipt;
             dr["RECEIVEDQTY"] = recieved;
             dr["ERRSTATUS"] = "";
@@ -3059,7 +3128,7 @@ namespace FibrexSupplierPortal.Mgment
 
 
 
-        protected void EditPoLines(DataTable table, string CostCode, string RECEIPTTOLERANCE, string POType, string CatalogCode, string ITEMCODE, string Description, string Quantity, string Unit, string UnitPrice, string TotalPrice, string ActionTaken, string PoLineID, string POLINENUM, string model, string brand, string requestedby, string requestedName, string remarks, string taxcode, string taxrate, string totaltax, string taxed, string receipt, string recieved, string createdby, string createdon, string editedby, string editedon)
+        protected void EditPoLines(DataTable table, string CostCode, string RECEIPTTOLERANCE, string POType, string CatalogCode, string ITEMCODE, string Description, string Quantity, string Unit, string UnitPrice, string TotalPrice, string ActionTaken, string PoLineID, string POLINENUM, string model, string brand, string requestedby, string requestedName,string specification, string remarks, string taxcode, string taxrate, string totaltax, string taxed, string receipt, string recieved, string createdby, string createdon, string editedby, string editedon)
         {
             if (ViewState["PoLines"] != null)
             {
@@ -3082,7 +3151,7 @@ namespace FibrexSupplierPortal.Mgment
                 }
                 if (taxrate != "")
                 {
-                    dr["TAXRATE"] = Convert.ToDecimal(taxrate).ToString("#,##0.00");// Quantity;
+                    dr["TAXRATE"] = Convert.ToDecimal(taxrate).ToString("#,###0.############################");// Quantity;
                 }
                 else
                 {
@@ -3091,7 +3160,7 @@ namespace FibrexSupplierPortal.Mgment
 
                 if (Quantity != "")
                 {
-                    dr["Quantity"] = Convert.ToDecimal(Quantity).ToString("#,##0.00");// Quantity;
+                    dr["Quantity"] = Convert.ToDecimal(Quantity).ToString("#,###0.############################");// Quantity;
                 }
                 else
                 {
@@ -3100,7 +3169,7 @@ namespace FibrexSupplierPortal.Mgment
                 dr["Unit"] = Unit;
                 if (UnitPrice != "")
                 {
-                    dr["UnitPrice"] = Convert.ToDecimal(UnitPrice).ToString("#,##0.00");  //UnitPrice;
+                    dr["UnitPrice"] = Convert.ToDecimal(UnitPrice).ToString("#,###0.############################");  //UnitPrice;
                 }
                 else
                 {
@@ -3108,7 +3177,7 @@ namespace FibrexSupplierPortal.Mgment
                 }
                 if (UnitPrice != "")
                 {
-                    dr["TotalPrice"] = Convert.ToDecimal(TotalPrice).ToString("#,##0.00"); ; //TotalPrice.ToString("N4");
+                    dr["TotalPrice"] = Convert.ToDecimal(TotalPrice).ToString("#,###0.############################"); ; //TotalPrice.ToString("N4");
                 }
                 else
                 {
@@ -3117,7 +3186,7 @@ namespace FibrexSupplierPortal.Mgment
 
                 if (totaltax != "")
                 {
-                    dr["TAXTOTAL"] = Convert.ToDecimal(totaltax).ToString("#,##0.00"); ; //TotalPrice.ToString("N4");
+                    dr["TAXTOTAL"] = Convert.ToDecimal(totaltax).ToString("#,###0.############################"); ; //TotalPrice.ToString("N4");
                 }
                 else
                 {
@@ -3134,6 +3203,7 @@ namespace FibrexSupplierPortal.Mgment
                 dr["REQUESTEDBYNAME"] = requestedName;
                 dr["TAXCODE"] = taxcode;
                 dr["TAXED"] = taxed;
+                dr["SPECIFICATION"] = specification;
                 dr["REMARKS"] = remarks;
                 // dr["RECEIPT"] = receipt;
                 dr["RECEIVEDQTY"] = recieved;
@@ -3204,6 +3274,8 @@ namespace FibrexSupplierPortal.Mgment
                         string Model = string.Empty;
                         string Brand = string.Empty;
 
+                        string Specification = string.Empty;
+
                         string Remarks = string.Empty;
                         string Receipt = string.Empty;
                         string Recieved = string.Empty;
@@ -3267,6 +3339,10 @@ namespace FibrexSupplierPortal.Mgment
                         if (g.REMARK != null)
                         {
                             Remarks = g.REMARK;
+                        }
+                        if (g.SPECIFICATION != null)
+                        {
+                            Specification = g.SPECIFICATION;
                         }
                         if (g.MODELNUM != null)
                         {
@@ -3340,17 +3416,17 @@ namespace FibrexSupplierPortal.Mgment
                         {
                             if (dt.Rows.Count == 0)
                             {
-                                SetPoLines(CostCode, RECEIPTTOLERANCE, Linetype, CatalogCode, ItemCode, Description, Quantity, Unit, UnitCost, LineCost, "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, RequestedByName, Remarks, Taxcode, TaxRate, TaxAmount, TaxExempted, Receipt, Recieved, AddedBY, AddedON, EditedBY, EditedON);
+                                SetPoLines(CostCode, RECEIPTTOLERANCE, Linetype, CatalogCode, ItemCode, Description, Quantity, Unit, UnitCost, LineCost, "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, RequestedByName,Specification, Remarks, Taxcode, TaxRate, TaxAmount, TaxExempted, Receipt, Recieved, AddedBY, AddedON, EditedBY, EditedON);
                             }
                             else
                             {
-                                EditPoLines(dt, CostCode, RECEIPTTOLERANCE, Linetype, CatalogCode, ItemCode, Description, Quantity, Unit, UnitCost, LineCost, "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, RequestedByName, Remarks, Taxcode, TaxRate, TaxAmount, TaxExempted, Receipt, Recieved, AddedBY, AddedON, EditedBY, EditedON);
+                                EditPoLines(dt, CostCode, RECEIPTTOLERANCE, Linetype, CatalogCode, ItemCode, Description, Quantity, Unit, UnitCost, LineCost, "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, RequestedByName, Specification, Remarks, Taxcode, TaxRate, TaxAmount, TaxExempted, Receipt, Recieved, AddedBY, AddedON, EditedBY, EditedON);
                             }
                         }
                         else
                         {
                             //SetPoLines(g.COSTCODE, g.LINETYPE, g.CATALOGCODE, g.DESCRIPTION, ReturnValue(g.ORDERQTY.ToString()), OrderUnit, ReturnValue(g.UNITCOST.ToString()), ReturnValue(g.LINECOST.ToString()), "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, Remarks, TaxCode, TotalTax, Taxed, "", Recieved, RequestedByName);
-                            SetPoLines(CostCode, RECEIPTTOLERANCE, Linetype, CatalogCode, ItemCode, Description, Quantity, Unit, UnitCost, LineCost, "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, RequestedByName, Remarks, Taxcode, TaxRate, TaxAmount, TaxExempted, Receipt, Recieved, AddedBY, AddedON, EditedBY, EditedON);
+                            SetPoLines(CostCode, RECEIPTTOLERANCE, Linetype, CatalogCode, ItemCode, Description, Quantity, Unit, UnitCost, LineCost, "", g.POLINEID.ToString(), g.POLINENUM.ToString(), Model, Brand, RequestedBy, RequestedByName, Specification, Remarks, Taxcode, TaxRate, TaxAmount, TaxExempted, Receipt, Recieved, AddedBY, AddedON, EditedBY, EditedON);
                         }
                     }
                 }
@@ -3434,7 +3510,8 @@ namespace FibrexSupplierPortal.Mgment
 
                 if (val != "")
                 {
-                    var getPoReceiving = dbTemp.VW_MATRECTRANs.SingleOrDefault(x => x.mrvd_po_line_id == int.Parse(val)); //&& x=>x.mrvm_po_rev == short.Parse(txtPOLinesPurchaseOrderRevision.Text));
+                    //var getPoReceiving = dbTemp.VW_MATRECTRANs.SingleOrDefault(x => x.mrvd_po_line_id == int.Parse(val)); //&& x=>x.mrvm_po_rev == short.Parse(txtPOLinesPurchaseOrderRevision.Text));
+                    var getPoReceiving = dbTemp.VW_MATRECTRANs.SingleOrDefault(x => x.mrvd_po_line_id == int.Parse(val));
                     if (getPoReceiving != null)
                     {
                         lblError.Text = smsg.getMsgDetail(1132);
@@ -3705,7 +3782,8 @@ namespace FibrexSupplierPortal.Mgment
                                 i = 1;
                                 //ObjPO.CONTRACTREFNUM = int.Parse(txtContractRef.Text.ToString());
                             }
-                        } if (txtOriginalPO.Text != "")
+                        }
+                        if (txtOriginalPO.Text != "")
                         {
                             if (txtOriginalPO.Text != Convert.ToString(ObjPO.ORIGINALPONUM))
                             {
@@ -4133,6 +4211,21 @@ namespace FibrexSupplierPortal.Mgment
                                         divError.Attributes["class"] = smsg.GetMessageBg(1086);
                                         //upError.Update();
                                     }
+                                    else if (confirmPoLines.Contains("1162"))
+                                    {
+                                        // lblError.Text = smsg.getMsgDetail(1151);
+                                        string confirmPoLinesValue = confirmPoLines;
+                                        string[] confirmPoLinesSplit = confirmPoLinesValue.Split(';');
+                                        string txtPoNumber = confirmPoLinesSplit[1];
+                                        //lblError.Text = smsg.getMsgDetail(1162).Replace("{0}", txtPoNumber);
+                                        //divError.Visible = true;
+                                        //divError.Attributes["class"] = smsg.GetMessageBg(1162);
+                                        lblError.Text = smsg.getMsgDetail(1162).Replace("{0}", txtPoNumber);
+                                        divError.Visible = true;
+                                        divError.Attributes["class"] = smsg.GetMessageBg(1162);
+                                        //upError.Update();
+                                        //return;
+                                    }
                                     else if (confirmPoLines.Contains("1151"))
                                     {
                                         // lblError.Text = smsg.getMsgDetail(1151);
@@ -4142,6 +4235,7 @@ namespace FibrexSupplierPortal.Mgment
                                         lblError.Text = smsg.getMsgDetail(1151).Replace("{0}", lblReceiptTolerance.InnerText);
                                         divError.Visible = true;
                                         divError.Attributes["class"] = smsg.GetMessageBg(1151);
+                                        return;
                                         //upError.Update();
                                     }
                                     else
@@ -4192,7 +4286,7 @@ namespace FibrexSupplierPortal.Mgment
                                     trans.Dispose();
                                     return;
                                 }
-                                if (value == "Success")
+                                if (value1 == "Success")
                                 {
                                     i = 1;
                                 }
@@ -4385,6 +4479,7 @@ namespace FibrexSupplierPortal.Mgment
                 string lblPurchaseActionTaken = dr["ActionTaken"].ToString();
                 long gvHIdPoLineID = (dr["POLINEID"] == DBNull.Value ? 1 : long.Parse(dr["POLINEID"].ToString()));
                 int? gvHidPOLINENUM = (dr["POLINENUM"] == DBNull.Value ? null : (int?)int.Parse(dr["POLINENUM"].ToString()));
+                int? gvPOLINENUM = (dr["POLINENUM"] == DBNull.Value ? null : (int?)int.Parse(dr["POLINENUM"].ToString()));
 
 
                 if (StatusCode == "APRV" || StatusCode == "WAPPR")
@@ -4398,6 +4493,13 @@ namespace FibrexSupplierPortal.Mgment
                                 strflds[cnt] += "POLINENUM|";
                                 strmsg[cnt] += "Line Number is Missing|";
                                 errmsg = "1086";
+                            }
+                            if (txtITEMCODE == "" || txtITEMCODE == null) //|| txtITEMCODE.Trim() == "" || txtITEMCODE.Trim() == null
+                            {
+                                strerr[cnt] = "1162";
+                                strflds[cnt] += "ITEMNUM|";
+                                strmsg[cnt] += "ITEMNUM is Missing|";
+                                errmsg = "1162" + ";" + gvPOLINENUM;
                             }
                             if (txtgvPODescription.Trim() == "") //|| txtITEMCODE.Trim() == "" || txtITEMCODE.Trim() == null
                             {
@@ -4544,6 +4646,23 @@ namespace FibrexSupplierPortal.Mgment
                                 errmsg = "1086";
                             }
                             break;
+                        case "item":
+                            if (gvHidPOLINENUM == null)
+                            {
+                                strerr[cnt] = "1086";
+                                strflds[cnt] += "POLINENUM|";
+                                strmsg[cnt] += "Line Number is Missing|";
+                                errmsg = "1086";
+                            }
+                            if (txtITEMCODE == "" || txtITEMCODE == null) //|| txtITEMCODE.Trim() == "" || txtITEMCODE.Trim() == null
+                            {
+                                strerr[cnt] = "1162";
+                                strflds[cnt] += "ITEMNUM|";
+                                strmsg[cnt] += "ITEMNUM is Missing|";
+                                errmsg = "1162" + ";" + gvPOLINENUM;
+                            }
+                           
+                            break;
                         case "serv":
                             if (gvHidPOLINENUM == null)
                             {
@@ -4642,11 +4761,48 @@ namespace FibrexSupplierPortal.Mgment
             }
             return errmsg;
         }
+
+        public string ValidateItemCode()
+        {
+            string errmsg = "";
+            DataTable dt = getTable();
+            DropDownList ddl;
+            //Nullable<decimal> DecReceiptTolerance = null;
+            foreach (DataRow dr in dt.Select("ActionTaken <>'Delete'"))
+            {
+
+                string txItemCode = dr["ITEMNUM"].ToString();
+                int? gvPOLINENUM = (dr["POLINENUM"] == DBNull.Value ? null : (int?)int.Parse(dr["POLINENUM"].ToString()));
+                string ddlLineType = dr["POType"].ToString();
+
+                switch (ddlLineType.ToLower())
+                {
+                    case "item":
+
+                        if ((string.IsNullOrWhiteSpace(txItemCode)))
+                        {
+                            lblError.Text = smsg.getMsgDetail(1162);
+                            divError.Visible = true;
+                            divError.Attributes["class"] = smsg.GetMessageBg(1162);
+                            errmsg = "1162";
+                            txtDItemCode.BorderColor = Color.Red;//txtPOLineNumEdit
+                            txtDItemCode.CssClass += " boxshow";
+                            //ddl = (TextBox).FindControl("txtPOEditItem");
+                            // ddl.BorderColor = Color.Red;
+                            upError.Update();
+                            return errmsg + ";" + gvPOLINENUM;
+                        }
+                        break;
+                }
+            }
+            return errmsg;
+        }
         public string SavePOLines(int PoNum, short Revision, string StatusCode)
         {
 
             var msg = ValidatePOLINE(PoNum, Revision, StatusCode);
             var validateReceiptTolerance = ValidateReceiptTolerance();
+            //var validateItemCode = ValidateItemCode();
             DataTable dt = getTable();
             if (validateReceiptTolerance != "")
             {
@@ -4654,6 +4810,12 @@ namespace FibrexSupplierPortal.Mgment
                 return validateReceiptTolerance;
                 //bindGrid(dt);
             }
+            //if (validateItemCode != "")
+            //{
+            //    //bindGrid(dt);
+            //    return validateItemCode;
+               
+            //}
             if (msg != "")
             {
                 bindGrid(dt);
@@ -4708,6 +4870,7 @@ namespace FibrexSupplierPortal.Mgment
                     decimal? TAXRATE = (dr["TAXRATE"].ToString() == "" ? null : (decimal?)decimal.Parse(dr["TAXRATE"].ToString()));// = taxcode;
                     string TAXTOTAL = dr["TAXTOTAL"].ToString();// = taxcode;
                     string Remarks = (dr["REMARKS"].ToString() == "" ? null : dr["REMARKS"].ToString()); //= remarks;
+                    string Specification = (dr["SPECIFICATION"].ToString() == "" ? null : dr["SPECIFICATION"].ToString());
                     string RECEIPTQTN = (dr["RECEIPT"].ToString());// == "" ? false : (dr["RECEIPT"].ToString() == "No" ? false : true));
                     string RECEIVEDQTN = (dr["RECEIVEDQTY"].ToString());// == "" ? false : (dr["RECEIVED"].ToString() == "No" ? false : true));
                     string txReceiptTolerance = dr["RECEIPTTOLERANCE"].ToString();
@@ -4822,7 +4985,7 @@ namespace FibrexSupplierPortal.Mgment
                             try
                             {
                                 var Masg = db.PO_AddPOLine(PoNum, Revision, short.Parse(indexValue.ToString()), ddlLineType, ReturnValue(txtgvCATALOGCODE), ReturnValue(txtgvPostCode), ReturnValue(txtgvPODescription),
-                                    txtgvOQtn, ReturnValue(txtgvPOUnit), txtgvPOUnitPrice, txtgvPOUnitTotal, txtITEMCODE, ModelNum, requestedBy, requestName, Brand, Remarks, TAXCODE, TAXRATE, DecTAXTOTAL, TAXED, null, UserName, DateTime.Now, false, StatusCode, DecReceiptTolerance);
+                                    txtgvOQtn, ReturnValue(txtgvPOUnit), txtgvPOUnitPrice, txtgvPOUnitTotal, txtITEMCODE, ModelNum, requestedBy, requestName, Brand, Remarks, TAXCODE, TAXRATE, DecTAXTOTAL, TAXED, null, UserName, DateTime.Now, false, StatusCode, DecReceiptTolerance,Specification);
                                 dr["ActionTaken"] = "";
                                 value = 1;
                             }
@@ -4912,7 +5075,7 @@ namespace FibrexSupplierPortal.Mgment
                                 {
 
                                     var Masg = db.PO_EditPOLine(gvHIdPoLineID, PoNum, Revision, short.Parse(indexValue.ToString()), ddlLineType, ReturnValue(txtgvCATALOGCODE), ReturnValue(txtgvPostCode), ReturnValue(txtgvPODescription),
-                                                txtgvOQtn, ReturnValue(txtgvPOUnit), txtgvPOUnitPrice, txtgvPOUnitTotal, txtITEMCODE, ModelNum, requestedBy, requestName, Brand, Remarks, TAXCODE, TAXRATE, DecTAXTOTAL, TAXED, null, UserName, DateTime.Now, false, StatusCode, DecReceiptTolerance);
+                                                txtgvOQtn, ReturnValue(txtgvPOUnit), txtgvPOUnitPrice, txtgvPOUnitTotal, txtITEMCODE, ModelNum, requestedBy, requestName, Brand, Remarks, TAXCODE, TAXRATE, DecTAXTOTAL, TAXED, null, UserName, DateTime.Now, false, StatusCode, DecReceiptTolerance, Specification);
 
 
 
@@ -5080,7 +5243,7 @@ namespace FibrexSupplierPortal.Mgment
         }
         protected void gvITEMCODE_AfterPerformCallback(object sender, ASPxGridViewAfterPerformCallbackEventArgs e)
         {
-            LoadITEMCODE();
+            LoadITEMCODE(HIDOrganizationCode.Value);
         }
         protected void gvRequestor_AfterPerformCallback(object sender, ASPxGridViewAfterPerformCallbackEventArgs e)
         {
@@ -5102,10 +5265,18 @@ namespace FibrexSupplierPortal.Mgment
             var res = (from o in dt.AsEnumerable() where o.Field<string>("ActionTaken") != "DELETE" select Convert.ToDecimal(o.Field<string>("TotalPrice"))).ToList().Sum();
             var tax = (from o in dt.AsEnumerable() where o.Field<string>("ActionTaken") != "DELETE" select Convert.ToDecimal(o.Field<string>("TAXTOTAL"))).ToList().Sum();
 
-            txtPOTotalTax.Text = tax.ToString();
-            txtPretaxTotal.Text = res.ToString();
-            txtTotalCost.Text = (res + tax).ToString("0,0.00", CultureInfo.InvariantCulture);
-            txtPOLinesPurchaseOrderTotalCost.Text = (res + tax).ToString("0,0.00", CultureInfo.InvariantCulture);
+            txtPOTotalTax.Text = tax.ToString("#,###0.############################");
+            //string strDecPOTotalTax = tax.ToString(CultureInfo.InvariantCulture);
+            //txtPOTotalTax.Text = strDecPOTotalTax.Contains(".") ? strDecPOTotalTax.TrimEnd('0').TrimEnd('.') : strDecPOTotalTax;
+            txtPretaxTotal.Text = res.ToString("#,###0.############################");
+            //string strDecPretaxTotal = res.ToString(CultureInfo.InvariantCulture);
+            //txtPretaxTotal.Text = strDecPretaxTotal.Contains(".") ? strDecPretaxTotal.TrimEnd('0').TrimEnd('.') : strDecPretaxTotal;
+            txtTotalCost.Text = (res + tax).ToString("#,###0.############################");
+            //string strDecTotalCost = (res + tax).ToString(CultureInfo.InvariantCulture);
+            //txtTotalCost.Text = strDecTotalCost.Contains(".") ? strDecTotalCost.TrimEnd('0').TrimEnd('.') : strDecTotalCost;
+            txtPOLinesPurchaseOrderTotalCost.Text = (res + tax).ToString("#,###0.############################");
+            //string strDecPOLinesTotalCost = (res + tax).ToString(CultureInfo.InvariantCulture);
+            //txtPOLinesPurchaseOrderTotalCost.Text = strDecPOLinesTotalCost.Contains(".") ? strDecPOLinesTotalCost.TrimEnd('0').TrimEnd('.') : strDecPOLinesTotalCost;
             upPoDetail.Update();
 
         }
@@ -5180,7 +5351,7 @@ namespace FibrexSupplierPortal.Mgment
             Session["Attachment"] = table;
 
         }
-        protected void EditAttachmentSession(string Title, string Description, string FileName, string FileURL, string AttachmentID, DateTime LastModifiedDate, string ActionTaken, string LastModifiedBy,string Status, DataTable table)
+        protected void EditAttachmentSession(string Title, string Description, string FileName, string FileURL, string AttachmentID, DateTime LastModifiedDate, string ActionTaken, string LastModifiedBy, string Status, DataTable table)
         {
             if (Session["Attachment"] != null)
             {
@@ -6035,35 +6206,35 @@ namespace FibrexSupplierPortal.Mgment
                     Label lblStatus = (Label)e.Row.FindControl("lblStatus");
                     if (HidPoStatus.Value == "APRV" || HidPoStatus.Value == "CANC" || HidPoStatus.Value == "REVISD")
                     {
-                        lnkEdit.Visible = false;
-                        lnkDelete.Visible = false;
-                        e.Row.Cells[6].Visible = false;
-                        e.Row.Cells[7].Visible = false;
-                        gvShowSeletSupplierAttachment.HeaderRow.Cells[6].Visible = false;
-                        gvShowSeletSupplierAttachment.HeaderRow.Cells[7].Visible = false;
+                        lnkEdit.Enabled = false;
+                        lnkDelete.Enabled = false;
+                        e.Row.Cells[6].Enabled = false;
+                        e.Row.Cells[7].Enabled = false;
+                        gvShowSeletSupplierAttachment.HeaderRow.Cells[6].Enabled = false;
+                        gvShowSeletSupplierAttachment.HeaderRow.Cells[7].Enabled = false;
                     }
                     //var permissionAttachment = (from sec in db.SS_UserSecurityGroups
                     //                            join
                     //                            grp in db.SS_SecurityGroups on sec.SecurityGroupID equals grp.SecurityGroupID
                     //                            where sec.UserID == UserName && grp.SecurityGroupID == 16
                     //                            select grp).FirstOrDefault(); ;
-                    if (lblStatus.Text == "PROT") 
-                    { 
-                    bool permissionAttachment = UserPermissions.SS_SecurityGroupPermission.SearchPermissionWithPermissionID(95);
-                    if (permissionAttachment)
+                    if (lblStatus.Text == "PROT")
                     {
-                        lnkEdit.Enabled = true;
-                        lnkDelete.Enabled = true;
-                    }
-                    else
-                    {
-                        lnkEdit.Enabled = false;
-                        e.Row.Cells[6].Enabled = false;
-                        gvShowSeletSupplierAttachment.HeaderRow.Cells[6].Enabled = false;
-                        lnkDelete.Enabled = false;
-                        e.Row.Cells[7].Enabled = false;
-                        gvShowSeletSupplierAttachment.HeaderRow.Cells[7].Enabled = false;
-                    }
+                        bool permissionAttachment = UserPermissions.SS_SecurityGroupPermission.SearchPermissionWithPermissionID(95);
+                        if (permissionAttachment)
+                        {
+                            lnkEdit.Enabled = true;
+                            lnkDelete.Enabled = true;
+                        }
+                        else
+                        {
+                            lnkEdit.Enabled = false;
+                            e.Row.Cells[6].Enabled = false;
+                            gvShowSeletSupplierAttachment.HeaderRow.Cells[6].Enabled = false;
+                            lnkDelete.Enabled = false;
+                            e.Row.Cells[7].Enabled = false;
+                            gvShowSeletSupplierAttachment.HeaderRow.Cells[7].Enabled = false;
+                        }
                     }
                     bool chkEditAttachment = UserPermissions.SS_SecurityGroupPermission.SearchPermissionWithPermissionID(59);
                     if (chkEditAttachment)
@@ -6207,6 +6378,8 @@ namespace FibrexSupplierPortal.Mgment
             {
                 lblError.Text = "";
                 divError.Visible = false;
+                lblRevisionPopUpError.Text = "";
+                divRevisionPopUpError.Visible = false;
                 if (Request.QueryString["ID"] != null)
                 {
                     string RegID = Security.URLDecrypt(Request.QueryString["ID"].ToString());
@@ -6214,7 +6387,14 @@ namespace FibrexSupplierPortal.Mgment
                     decimal PoNum = decimal.Parse(RegID);
                     short Revision = short.Parse(revision);
                     short? NextRevisionNum = 0;
-                    var Masg = db.PO_CreatePORev(PoNum, Revision, txtPORevisionComments.Text, UserName, ref NextRevisionNum);
+                    if ((string.IsNullOrWhiteSpace(txtPORevisionComments.Text)))
+                    {
+                        lblRevisionPopUpError.Text = smsg.getMsgDetail(1031);
+                        divRevisionPopUpError.Visible = true;
+                        divRevisionPopUpError.Attributes["class"] = smsg.GetMessageBg(1031);
+                        return;
+                    }
+                        var Masg = db.PO_CreatePORev(PoNum, Revision, txtPORevisionComments.Text, UserName, ref NextRevisionNum);
                     //if (NextRevisionNum.Value != 0)
                     //{
                     modalRevisionPO.Hide();
@@ -6555,7 +6735,7 @@ namespace FibrexSupplierPortal.Mgment
             HidPOType.Value = Value;
             if (HidPOType.Value == "MATLPA" || HidPOType.Value == "SRVCPA")
             {
-                lblRequiredDate.Text = @"<span class='showAstrik'>* </span>" +   "Validity Date";
+                lblRequiredDate.Text = @"<span class='showAstrik'>* </span>" + "Validity Date";
             }
             else
             {
@@ -6933,15 +7113,15 @@ namespace FibrexSupplierPortal.Mgment
                 case "TT":
                     if (Decimal.TryParse(Value, out d))
                     {
-                        dr["TotalPrice"] = (Value != "" ? Convert.ToDecimal(Value).ToString("#,##0.00") : "");
-                        txtDTP.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
+                        dr["TotalPrice"] = (Value != "" ? Convert.ToDecimal(Value).ToString("#,###0.############################") : "");
+                        txtDTP.Text = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     }
                     break;
                 case "RT":
                     if (Decimal.TryParse(Value, out d))
                     {
-                        dr["RECEIPTTOLERANCE"] = (Value != "" ? Convert.ToDecimal(Value).ToString("#,##0.00") : "");
-                        txReceiptTolerance.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
+                        dr["RECEIPTTOLERANCE"] = (Value != "" ? Convert.ToDecimal(Value).ToString("#,###0.############################") : "");
+                        txReceiptTolerance.Text = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     }
                     break;
                 case "QTY":
@@ -6957,8 +7137,8 @@ namespace FibrexSupplierPortal.Mgment
                                 //dr["Quantity"] = Convert.ToDecimal(Value).ToString("#,##0.00");
                                 //txtDQty.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
 
-                                dr["RECEIVEDQTY"] = Convert.ToDecimal(getPoReceiving.RECEIVEDQTY).ToString("#,##0.00");
-                                dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#,##0.00");
+                                dr["RECEIVEDQTY"] = Convert.ToDecimal(getPoReceiving.RECEIVEDQTY).ToString("#,###0.############################");
+                                dr["RECEIVEDVAL"] = Convert.ToDecimal(getPoReceiving.RECEIVEDTOTALCOST).ToString("#,###0.############################");
                                 dr["RECEIPT"] = (getPoReceiving.RECEIPTSTATUS == "COMPLETE" ? "True" : "False");
 
                                 dr["ERROR"] = "1129";
@@ -6972,15 +7152,15 @@ namespace FibrexSupplierPortal.Mgment
                             }
                             else
                             {
-                                dr["Quantity"] = Convert.ToDecimal(Value).ToString("#,##0.00");
-                                txtDQty.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
+                                dr["Quantity"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
+                                txtDQty.Text = Convert.ToDecimal(Value).ToString("#,###0.############################");
 
                             }
                         }
                         else
                         {
-                            dr["Quantity"] = Convert.ToDecimal(Value).ToString("#,##0.00");
-                            txtDQty.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
+                            dr["Quantity"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
+                            txtDQty.Text = Convert.ToDecimal(Value).ToString("#,###0.############################");
 
                         }
 
@@ -7004,8 +7184,8 @@ namespace FibrexSupplierPortal.Mgment
                 case "UP":
                     if (Decimal.TryParse(Value, out d))
                     {
-                        dr["UnitPrice"] = Convert.ToDecimal(Value).ToString("#,##0.00");
-                        txtDUP.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
+                        dr["UnitPrice"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
+                        txtDUP.Text = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     }
                     else
                     {
@@ -7042,6 +7222,9 @@ namespace FibrexSupplierPortal.Mgment
                 case "REQUESTEDBYNAME":
                     dr["REQUESTEDBYNAME"] = Value;
                     break;
+                case "SPECIFICATION":
+                    dr["SPECIFICATION"] = Value;
+                    break;
                 case "REMARKS":
                     dr["REMARKS"] = Value;
                     break;
@@ -7057,9 +7240,9 @@ namespace FibrexSupplierPortal.Mgment
                     {
                         dr["TAXCODE"] = DBNull.Value;
                         dr["TAXRATE"] = 0.0;
-                        dr["TAXTOTAL"] = Convert.ToDecimal(0).ToString("#,##0.00");
+                        dr["TAXTOTAL"] = Convert.ToDecimal(0).ToString("#,###0.############################");
                         txtDDTAXCODE.Text = "";
-                        txtDTotalTax.Text = Convert.ToDecimal(0).ToString("#,##0.00");
+                        txtDTotalTax.Text = Convert.ToDecimal(0).ToString("#,###0.############################");
                     }
                     else
                     {
@@ -7070,8 +7253,8 @@ namespace FibrexSupplierPortal.Mgment
                 case "TAXTOTAL":
                     if (Decimal.TryParse(Value, out d))
                     {
-                        dr["TAXTOTAL"] = Convert.ToDecimal(Value).ToString("#,##0.00");
-                        txtDTotalTax.Text = Convert.ToDecimal(Value).ToString("#,##0.00");
+                        dr["TAXTOTAL"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
+                        txtDTotalTax.Text = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     }
                     else
                     {
@@ -7079,13 +7262,13 @@ namespace FibrexSupplierPortal.Mgment
                     }
                     break;
                 case "RECEIVEDQTY":
-                    dr["RECEIVEDQTY"] = Convert.ToDecimal(Value).ToString("#,##0.00");
+                    dr["RECEIVEDQTY"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     break;
                 case "RECEIVEDVAL":
-                    dr["RECEIVEDVAL"] = Convert.ToDecimal(Value).ToString("#,##0.00");
+                    dr["RECEIVEDVAL"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     break;
                 case "RECEIPTTOLERANCE":
-                    dr["RECEIPTTOLERANCE"] = Convert.ToDecimal(Value).ToString("#,##0.00");
+                    dr["RECEIPTTOLERANCE"] = Convert.ToDecimal(Value).ToString("#,###0.############################");
                     break;
                 case "RECEIPT":
                     dr["RECEIPT"] = Value;
@@ -7187,13 +7370,13 @@ namespace FibrexSupplierPortal.Mgment
                     if (qtyd > 0 && unitpriced > 0)
                     {
                         linecostd = qtyd * unitpriced;
-                        dr["TotalPrice"] = linecostd.ToString("#,##0.00"); ;
+                        dr["TotalPrice"] = linecostd.ToString("0.0000");
                     }
                     else if (qtyd > 0 && linecostd > 0)
                     {
 
                         unitpriced = linecostd / qtyd;
-                        dr["UnitPrice"] = unitpriced.ToString("#,##0.00"); ;
+                        dr["UnitPrice"] = unitpriced.ToString("0.0000");
                     }
 
                 }
@@ -7203,13 +7386,13 @@ namespace FibrexSupplierPortal.Mgment
                     if (qtyd > 0 && unitpriced > 0)
                     {
                         linecostd = unitpriced * qtyd;
-                        dr["TotalPrice"] = linecostd.ToString("#,##0.00"); ;
+                        dr["TotalPrice"] = linecostd.ToString("0.0000");
                     }
                     else if (unitpriced > 0 && linecostd > 0)
                     {
 
                         qtyd = linecostd / unitpriced;
-                        dr["Quantity"] = qtyd.ToString("#,##0.00"); ;
+                        dr["Quantity"] = qtyd.ToString("0.0000"); ;
                     }
                 }
                 else if (HdnQtyUnitLineCost == "ContentPlaceHolder1_txtDTP" || HdnQtyUnitLineCost == "txtTotalPriceEdit")
@@ -7217,13 +7400,13 @@ namespace FibrexSupplierPortal.Mgment
                     if (qtyd > 0 && linecostd > 0)
                     {
                         unitpriced = linecostd / qtyd;
-                        dr["UnitPrice"] = unitpriced.ToString("#,##0.00"); ;
+                        dr["UnitPrice"] = unitpriced.ToString("0.0000"); 
                     }
                     else if (linecostd > 0 && unitpriced > 0)
                     {
 
                         qtyd = linecostd / unitpriced;
-                        dr["Quantity"] = qtyd.ToString("#,##0.00"); ;
+                        dr["Quantity"] = qtyd.ToString("0.0000"); 
                     }
 
                 }
@@ -7246,7 +7429,7 @@ namespace FibrexSupplierPortal.Mgment
                 if (taxrated > 0)
                 {
                     totaltaxd = linecostd * taxrated / 100;
-                    dr["TAXTOTAL"] = totaltaxd.ToString("#,##0.00"); ;
+                    dr["TAXTOTAL"] = totaltaxd.ToString("0.0000") ;
                 }
             }
             catch (Exception ex) { }
@@ -7256,6 +7439,7 @@ namespace FibrexSupplierPortal.Mgment
         {
             TextBox edit = (TextBox)sender;
             int rowIndex = int.Parse(lblrowindex.Text);
+            string tmpItemCode = edit.Text;
             if (edit.Text == "")
             {
                 FillFeildsinTable("ITEMNUM", rowIndex, "", null);
@@ -7279,14 +7463,16 @@ namespace FibrexSupplierPortal.Mgment
             //    edit.Focus();
             //}
             //FillFeildsinTable("ITEMNUM", rowIndex, edit.Text, null);
-            var item = (from o in db.ItemMasters where o.ITEMCODE == i select o).FirstOrDefault();
+           // var item = (from o in db.ItemMasters where o.ITEMCODE == i select o).FirstOrDefault();
+
+            var item = dbTemp.VW_PRODUCT_MASTERs.Where(x => x.prm_item_code == tmpItemCode).FirstOrDefault();
 
             if (item != null)
             {
-                FillFeildsinTable("ITEM", rowIndex, item.ITEMDESC, null);
-                FillFeildsinTable("Unit", rowIndex, item.ORDERUNIT, null);
-                FillFeildsinTable("BRAND", rowIndex, item.MANUFACUTRER, null);
-                FillFeildsinTable("MODEL", rowIndex, item.MODELNUM, null);
+                FillFeildsinTable("ITEM", rowIndex, item.prm_item_desc, null);
+                FillFeildsinTable("Unit", rowIndex, item.uom_desc, null);
+               // FillFeildsinTable("BRAND", rowIndex, item.MANUFACUTRER, null);
+               // FillFeildsinTable("MODEL", rowIndex, item.MODELNUM, null);
                 FillFeildsinTable("VERIFIED", rowIndex, "true", null);
             }
             else
@@ -7297,7 +7483,7 @@ namespace FibrexSupplierPortal.Mgment
                 FillFeildsinTable("ERRORFLDS", rowIndex, "ITEMNUM", null);
                 FillFeildsinTable("ERRORFTIP", rowIndex, "Item Code is Wrong", null);
 
-                lblError.Text = smsg.getMsgDetail(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", txtDItemCode.Text);
+                lblError.Text = smsg.getMsgDetail(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", tmpItemCode);
                 divError.Visible = true;
                 divError.Attributes["class"] = smsg.GetMessageBg(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", txtDItemCode.Text);
                 if (!(string.IsNullOrWhiteSpace(hdnItemCode.Value)))
@@ -7423,9 +7609,11 @@ namespace FibrexSupplierPortal.Mgment
             Decimal d = 0;
             if (Decimal.TryParse(edit.Text, out d))
             {
-                edit.Text = d.ToString("#,##0.00");
-                txtDUP.Text = d.ToString("#,##0.00");
-
+                edit.Text = d.ToString("#,###0.############################");
+                txtDUP.Text = d.ToString("#,###0.############################");
+                // edit.Text = Math.Round(d, 4).ToString();
+                // edit.Text = String.Format("{0:0.0000}", d);
+                edit.Text = d.ToString("0.0000");
             }
             //else { edit.Text = ""; edit.Focus(); }
 
@@ -7456,9 +7644,14 @@ namespace FibrexSupplierPortal.Mgment
             Decimal d = 0;
             if (Decimal.TryParse(edit.Text, out d))
             {
-                edit.Text = d.ToString("#,##0.00");
-                txtDQty.Text = d.ToString("#,##0.00");
+                edit.Text = d.ToString("#,###0.############################");
+                txtDQty.Text = d.ToString("#,###0.############################");
+                //DecimalFormat("##.##").format(i2);
+               // edit.Text = String.Format("{0:0.0000}", d);
+                 edit.Text = d.ToString("0.0000") ;
+                //edit.Text = String.Format("%.2f", d);
             }
+            
             //else
             //{
 
@@ -7481,8 +7674,11 @@ namespace FibrexSupplierPortal.Mgment
             Decimal d = 0;
             if (Decimal.TryParse(edit.Text, out d))
             {
-                edit.Text = d.ToString("#,##0.00");
-                txtDQty.Text = d.ToString("#,##0.00");
+                edit.Text = d.ToString("#,###0.############################");
+                txtDQty.Text = d.ToString("#,###0.############################");
+                //edit.Text = Math.Round(d, 2).ToString();
+               // edit.Text = Math.Truncate(4,d);
+                //String.format("%.2f", i2)
             }
             //else
             //{
@@ -7512,8 +7708,8 @@ namespace FibrexSupplierPortal.Mgment
             Decimal d = 0;
             if (Decimal.TryParse(edit.Text, out d))
             {
-                edit.Text = d.ToString("#,##0.00");
-                txReceiptTolerance.Text = d.ToString("#,##0.00");
+                edit.Text = d.ToString("#,###0.############################");
+                txReceiptTolerance.Text = d.ToString("#,###0.############################");
                 FillFeildsinTable("RT", rowIndex, edit.Text, null);
             }
             else
@@ -7557,49 +7753,49 @@ namespace FibrexSupplierPortal.Mgment
             //GridView Grid = (GridView)gvrow.NamingContainer;
             int rowIndex = gvrow.RowIndex;
             FillFeildsinTable("ITEM", rowIndex, edit.Text, null);
-            ItemMaster item = null;
+           // ItemMaster item = null;
 
             try
             {
-                item = (from o in db.ItemMasters where o.ITEMDESC == edit.Text select o).FirstOrDefault();
+                //item = (from o in db.ItemMasters where o.ITEMDESC == edit.Text select o).FirstOrDefault();
             }
             catch (Exception ex) { }
 
 
-            if (item != null)
-            {
-                FillFeildsinTable("ITEMNUM", rowIndex, item.ITEMCODE.ToString(), null);
-                FillFeildsinTable("Unit", rowIndex, item.ORDERUNIT, null);
-                FillFeildsinTable("BRAND", rowIndex, item.MANUFACUTRER, null);
-                FillFeildsinTable("MODEL", rowIndex, item.MODELNUM, null);
-                FillFeildsinTable("VERIFIED", rowIndex, "true", null);
+            //if (item != null)
+            //{
+            //    //FillFeildsinTable("ITEMNUM", rowIndex, item.ITEMCODE.ToString(), null);
+            //    //FillFeildsinTable("Unit", rowIndex, item.ORDERUNIT, null);
+            //   // FillFeildsinTable("BRAND", rowIndex, item.MANUFACUTRER, null);
+            //   //// FillFeildsinTable("MODEL", rowIndex, item.MODELNUM, null);
+            //   // FillFeildsinTable("VERIFIED", rowIndex, "true", null);
 
-                //TextBox dl = (TextBox)gvrow.FindControl("txtgvDescriptionEdit");
-                //dl.ReadOnly = true;
-                //txtDItemDesc.ReadOnly = true;
+            //    //TextBox dl = (TextBox)gvrow.FindControl("txtgvDescriptionEdit");
+            //    //dl.ReadOnly = true;
+            //    //txtDItemDesc.ReadOnly = true;
 
-                //dl = (TextBox)gvrow.FindControl("txtPOUnitEdit");
-                //dl.ReadOnly = true;
-                //txtDUOM.ReadOnly = true;
-                //txtDModel.ReadOnly = true;
-                //txtDBrand.ReadOnly = true;
+            //    //dl = (TextBox)gvrow.FindControl("txtPOUnitEdit");
+            //    //dl.ReadOnly = true;
+            //    //txtDUOM.ReadOnly = true;
+            //    //txtDModel.ReadOnly = true;
+            //    //txtDBrand.ReadOnly = true;
 
-                lblError.Text = smsg.getMsgDetail(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", txtDItemCode.Text);//change with the wrong line number msg
-                divError.Visible = true;
-                divError.Attributes["class"] = smsg.GetMessageBg(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", txtDItemCode.Text);
-                upError.Update();
-            }
-            else
-            {
-                //TextBox dl = (TextBox)gvrow.FindControl("txtgvDescriptionEdit");
-                //dl.ReadOnly = false;
-                //txtDItemDesc.ReadOnly = false;
-                //dl = (TextBox)gvrow.FindControl("txtPOUnitEdit");
-                //dl.ReadOnly = false;
-                //txtDUOM.ReadOnly = false;
-                //txtDModel.ReadOnly = false;
-                //txtDBrand.ReadOnly = false;
-            }
+            //    lblError.Text = smsg.getMsgDetail(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", txtDItemCode.Text);//change with the wrong line number msg
+            //    divError.Visible = true;
+            //    divError.Attributes["class"] = smsg.GetMessageBg(1121).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", txtDItemCode.Text);
+            //    upError.Update();
+            //}
+            //else
+            //{
+            //    //TextBox dl = (TextBox)gvrow.FindControl("txtgvDescriptionEdit");
+            //    //dl.ReadOnly = false;
+            //    //txtDItemDesc.ReadOnly = false;
+            //    //dl = (TextBox)gvrow.FindControl("txtPOUnitEdit");
+            //    //dl.ReadOnly = false;
+            //    //txtDUOM.ReadOnly = false;
+            //    //txtDModel.ReadOnly = false;
+            //    //txtDBrand.ReadOnly = false;
+            //}
 
         }
         protected void txtTotalPriceEdit_TextChanged(object sender, EventArgs e)
@@ -7612,8 +7808,11 @@ namespace FibrexSupplierPortal.Mgment
             Decimal d = 0;
             if (Decimal.TryParse(edit.Text, out d))
             {
-                edit.Text = d.ToString("#,##0.00");
-                txtDTP.Text = d.ToString("#,##0.00");
+                edit.Text = d.ToString("#,###0.############################");
+                txtDTP.Text = d.ToString("#,###0.############################");
+                // edit.Text = Math.Round(d, 4).ToString();
+                //edit.Text = String.Format("{0:0.0000}", d);
+                edit.Text = d.ToString("0.0000");
             }
 
             int rowIndex = gvrow.RowIndex;
@@ -7685,9 +7884,9 @@ namespace FibrexSupplierPortal.Mgment
             }
             catch (Exception ex)
             {
-                lblError.Text = smsg.getMsgDetail(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text); 
+                lblError.Text = smsg.getMsgDetail(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text);
                 divError.Visible = true;
-                divError.Attributes["class"] = smsg.GetMessageBg(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text);;
+                divError.Attributes["class"] = smsg.GetMessageBg(1076).Replace("{0}", txtDPOLineNum.Text).Replace("{1}", edit.Text); ;
                 txtDRequestedBy.CssClass += " boxshow";
                 txtDRequestedBy.Text = null;
                 FillFeildsinTable("REQUESTEDBY", rowIndex, null, null);
@@ -7801,6 +8000,15 @@ namespace FibrexSupplierPortal.Mgment
 
             int rowIndex = int.Parse(lblrowindex.Text);
             FillFeildsinTable("REMARKS", rowIndex, edit.Text, null);
+        }
+        protected void txtSpecification_TextChanged(object sender, EventArgs e)
+        {
+            TextBox edit = (TextBox)sender;
+            //GridViewRow gvrow = (GridViewRow)edit.Parent.Parent;
+            //GridView Grid = (GridView)gvrow.NamingContainer;
+
+            int rowIndex = int.Parse(lblrowindex.Text);
+            FillFeildsinTable("SPECIFICATION", rowIndex, edit.Text, null);
         }
         protected void txtDTAX_TextChanged(object sender, EventArgs e)
         {
@@ -8001,12 +8209,14 @@ namespace FibrexSupplierPortal.Mgment
             }
         }
 
-        public void LoadITEMCODE()
+        public void LoadITEMCODE(string orgCode)
         {
             try
             {
                 ResetLabel();
-                gvITEMCODE.DataSource = db.ItemMasters.ToList();//.FirstOrDefault().;
+                //gvITEMCODE.DataSource = db.ItemMasters.ToList();//.FirstOrDefault().;
+                //gvITEMCODE.DataSource = dbTemp.VW_PRODUCT_MASTERs.ToList();
+                gvITEMCODE.DataSource = dbTemp.VW_PRODUCT_MASTERs.Where(x => x.orgCode == orgCode).ToList();
                 gvITEMCODE.DataBind();
             }
             catch (SqlException ex)
@@ -8050,7 +8260,7 @@ namespace FibrexSupplierPortal.Mgment
 
         protected void gvITEMCODE_BeforeColumnSortingGrouping(object sender, ASPxGridViewBeforeColumnGroupingSortingEventArgs e)
         {
-            LoadITEMCODE();
+            LoadITEMCODE(HIDOrganizationCode.Value);
         }
         protected void gvRequestor_BeforeColumnSortingGrouping(object sender, ASPxGridViewBeforeColumnGroupingSortingEventArgs e)
         {
@@ -8229,7 +8439,7 @@ namespace FibrexSupplierPortal.Mgment
                     if (!(string.IsNullOrEmpty(ObjPO.POTYPE)))
                     {
                         var strVal = (from o in db.SS_ALNDomains where o.DomainName == "POTYPE" && o.Value == ObjPO.POTYPE select o.Value).FirstOrDefault();
-                        if (ObjPO.POTYPE == "STD" || ObjPO.POTYPE == "INSTL" || ObjPO.POTYPE == "LS")
+                        if (ObjPO.POTYPE == "STD" || ObjPO.POTYPE == "INSTL" || ObjPO.POTYPE == "LS" || ObjPO.POTYPE == "MATLPA")
                         {
                             lnkDefinePOPermission.Visible = true;
                         }
@@ -8409,13 +8619,14 @@ namespace FibrexSupplierPortal.Mgment
             //Poline Control Disable
             txtDPOLineNum.ReadOnly = true;
             ddlDLineType.Enabled = false;
-            txtDItemCode.ReadOnly = true;
+            //txtDItemCode.ReadOnly = true;
             txtDCostCode.ReadOnly = true;
-            txReceiptTolerance.ReadOnly = true;
+           // txReceiptTolerance.ReadOnly = true;
             txtDItemDesc.ReadOnly = true;
+            txtSpecification.ReadOnly = true;
             txtDRemarks.ReadOnly = true;
-            txtDModel.ReadOnly = true;
-            txtDBrand.ReadOnly = true;
+           // txtDModel.ReadOnly = true;
+           // txtDBrand.ReadOnly = true;
             txtDCatalogCode.ReadOnly = true;
             txtDRequestedBy.ReadOnly = true;
 
@@ -8463,6 +8674,7 @@ namespace FibrexSupplierPortal.Mgment
                 txtQuotationRef.ReadOnly = false;
                 txtContractRef.ReadOnly = false;
                 txtOriginalPO.ReadOnly = false;
+                //txtSpecification.ReadOnly = false;
                 txtDRemarks.ReadOnly = false;
                 txtDRequestedBy.ReadOnly = false;
                 imgShowRequesters.Visible = true;
@@ -8479,8 +8691,8 @@ namespace FibrexSupplierPortal.Mgment
             txtProjectCode.ReadOnly = false;
             txtBuyers.ReadOnly = false;
             txtPOType.ReadOnly = false;
-           // txtCompanyID.ReadOnly = false;
-           // txtCompanyName.ReadOnly = false;
+            // txtCompanyID.ReadOnly = false;
+            // txtCompanyName.ReadOnly = false;
             txtCompanyAddress.ReadOnly = false;
             txtContactPerson1Name.ReadOnly = false;
             txtContactPerson1Position.ReadOnly = false;
@@ -8550,13 +8762,14 @@ namespace FibrexSupplierPortal.Mgment
             //Poline Control Enable
             txtDPOLineNum.ReadOnly = false;
             ddlDLineType.Enabled = true;
-            txtDItemCode.ReadOnly = false;
+           // txtDItemCode.ReadOnly = false;
             txtDCostCode.ReadOnly = false;
-            txReceiptTolerance.ReadOnly = false;
+            //txReceiptTolerance.ReadOnly = false;
             txtDItemDesc.ReadOnly = false;
+            txtSpecification.ReadOnly = false;
             txtDRemarks.ReadOnly = false;
-            txtDModel.ReadOnly = false;
-            txtDBrand.ReadOnly = false;
+            //txtDModel.ReadOnly = false;
+           // txtDBrand.ReadOnly = false;
             txtDCatalogCode.ReadOnly = false;
             txtDRequestedBy.ReadOnly = false;
 
@@ -8706,7 +8919,7 @@ namespace FibrexSupplierPortal.Mgment
                 //if (txtStatus.Text == "Approved" || txtStatus.Text == "Cancelled" || txtStatus.Text == "Revised")
                 if (HidPoStatus.Value == "APRV" || HidPoStatus.Value == "CANC" || HidPoStatus.Value == "REVISD")
                 {
-                    for (int i = 4; i <= 10; i++)
+                    for (int i = 1; i <= 10; i++)
                     {
 
                         e.Row.Cells[i].Enabled = false;
@@ -8717,7 +8930,7 @@ namespace FibrexSupplierPortal.Mgment
                     btnSave.Enabled = false;
                     LockAllControl();
                 }
-               
+
                 if ((e.Row.RowState & DataControlRowState.Edit) > 0)
                 {
                     TextBox txtPOLineNumEdit = (TextBox)e.Row.FindControl("txtPOLineNumEdit");
@@ -8746,7 +8959,7 @@ namespace FibrexSupplierPortal.Mgment
                     txtgvDescriptionEdit.Attributes.Add("maxlength", "500");
                     txtPOUnitPriceEdit.MaxLength = 10;
                     txtTotalPriceEdit.MaxLength = 10;
-                    txtTotalTAXEdit.MaxLength = 8;
+                    txtTotalTAXEdit.MaxLength = 12;
 
                     txtPOQtnEdit.MaxLength = 10;
 
@@ -9015,6 +9228,7 @@ namespace FibrexSupplierPortal.Mgment
                     Label lblPopupSignaturedgt_desig_name = (Label)item.FindControl("lblPopupSignaturedgt_desig_name");
                     Label lblSecuritTeamMemberCode = (Label)item.FindControl("lblSecuritTeamMemberCode");
                     Label lblPopupSecuritTeamMemberName = (Label)item.FindControl("lblPopupSecuritTeamMemberName");
+
                     if (HIDSignatureAction.Value == "NEW" || HIDSignatureAction.Value == "New")
                     {
                         try
@@ -9027,9 +9241,12 @@ namespace FibrexSupplierPortal.Mgment
                             return ex.Message;
                         }
                     }
+                    if(!String.IsNullOrWhiteSpace(gHidSignID.Value))
+                    { 
+                    POSignature ObjSign = db.POSignatures.FirstOrDefault(x => x.POSignID == int.Parse(gHidSignID.Value) && x.PONum == decimal.Parse(txtSignaturePONum.Text) && x.PoRevision == short.Parse(txtSignaturePORevision.Text));
                     if (HIDSignatureAction.Value == "Update" || HIDSignatureAction.Value == "UPDATE")
                     {
-                        POSignature ObjSign = db.POSignatures.FirstOrDefault(x => x.OrgCode == HIDOrganizationCode.Value && x.PONum == decimal.Parse(txtSignaturePONum.Text) && x.PoRevision == short.Parse(txtSignaturePORevision.Text));
+
                         if (ObjSign != null)
                         {
                             int? OrderNo = 0;
@@ -9073,22 +9290,26 @@ namespace FibrexSupplierPortal.Mgment
                     //Delete
                     if (HIDSignatureAction.Value == "Delete" || HIDSignatureAction.Value == "DELETE")
                     {
-                        try
+                        if (ObjSign != null)
                         {
-                            db.PO_DeletePOSignature(HIDOrganizationCode.Value, int.Parse(lblPopupSignatureOrderNumber.Text), decimal.Parse(txtSignaturePONum.Text), short.Parse(txtSignaturePORevision.Text), UserName, true);
+                            try
+                            {
+                                db.PO_DeletePOSignature(HIDOrganizationCode.Value, ObjSign.POSignID, int.Parse(lblPopupSignatureOrderNumber.Text), decimal.Parse(txtSignaturePONum.Text), short.Parse(txtSignaturePORevision.Text), UserName, true);
 
-                            UpdateAction = 1;
-                        }
-                        catch (SqlException ex)
-                        {
-                            return ex.Message;
+                                UpdateAction = 1;
+                            }
+                            catch (SqlException ex)
+                            {
+                                return ex.Message;
+                            }
                         }
                     }
+                     }
                 }
                 if (UpdateAction == 1)
                 {
                     ShoMasg = "Success";
-                    Session["POSignature"] = null;
+                   //Session["POSignature"] = null;
                 }
                 else
                 {
@@ -9522,7 +9743,7 @@ namespace FibrexSupplierPortal.Mgment
                 //db.FieldHelps.SingleOrDefault(x => x. == HidControlID.Value)
                 var getTooltipInformation = from FlHelp in db.FieldHelps
                                             join
-                                            FlControl in db.ControlFieldRELs on FlHelp.COLUMNID equals FlControl.COLUMNID
+                                             FlControl in db.ControlFieldRELs on FlHelp.COLUMNID equals FlControl.COLUMNID
                                             where FlControl.CONTROLID == HidControlID.Value
                                             select new { FlHelp.COLUMNNAME, FlHelp.COLUMNDESC, FlHelp.TABLENAME };
                 if (getTooltipInformation != null)

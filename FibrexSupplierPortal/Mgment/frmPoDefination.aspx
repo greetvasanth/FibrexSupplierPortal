@@ -156,7 +156,7 @@
     <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></ajax:ToolkitScriptManager>
     <div class="row">
         <div class="RPTheadingName">
-            <asp:Label ID="lblGeneralSupplierName" runat="server" Text="PO Defination"></asp:Label>
+            <asp:Label ID="lblGeneralSupplierName" runat="server" Text="PO Definition"></asp:Label>
             <div class="form-group" style="float: right; margin-top: -2px;">
             </div>
         </div>

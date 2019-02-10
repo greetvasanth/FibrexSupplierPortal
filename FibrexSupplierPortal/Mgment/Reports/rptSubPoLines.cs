@@ -100,7 +100,8 @@ namespace FibrexSupplierPortal.Mgment.Reports
             SqlCommand cmd = new SqlCommand();
             DataSet ds = new DataSet();
             cmd.Connection = con;
-            cmd.CommandText = string.Format("SELECT * FROM POLINE where PONUM= '{0}' AND POREVISION={1} AND DESCRIPTION='{2}'", PoNum, Revision, xrDescription.Text);
+           // cmd.CommandText = string.Format("SELECT * FROM POLINE where PONUM= '{0}' AND POREVISION={1} AND DESCRIPTION='{2}' AND REMARK='{3}'", PoNum, Revision, xrDescription.Text, xrTableCell2.Text);
+            cmd.CommandText = string.Format("SELECT * FROM POLINE where PONUM= '{0}' AND POREVISION={1} AND POLINENUM='{2}'", PoNum, Revision, xrRecordID.Text);
             SqlDataAdapter dr = new SqlDataAdapter(cmd);
             dr.Fill(ds);
            // if (ds.Tables[0].Rows.Count == 0)
@@ -112,18 +113,22 @@ namespace FibrexSupplierPortal.Mgment.Reports
                     {
                         Description += " " + ds.Tables[0].Rows[0]["DESCRIPTION"].ToString();
                     }
-
+                    if (ds.Tables[0].Rows[i]["SPECIFICATION"].ToString() != "")
+                    {
+                    // Description += Environment.NewLine + " " + ds.Tables[0].Rows[0]["SPECIFICATION"].ToString();
+                    Description += "." + " " + ds.Tables[0].Rows[0]["SPECIFICATION"].ToString();
+                    }
                     if (ds.Tables[0].Rows[i]["CATALOGCODE"].ToString() != "")
                     {
-                        Description += Environment.NewLine + " Supplier Ref No.: " + ds.Tables[0].Rows[0]["CATALOGCODE"].ToString();
+                        Description += "." + " Supplier Ref No.: " + ds.Tables[0].Rows[0]["CATALOGCODE"].ToString();
                     }
                     if (ds.Tables[0].Rows[i]["MODELNUM"].ToString() != "")
                     {
-                        Description += Environment.NewLine + " Model: " + ds.Tables[0].Rows[0]["MODELNUM"].ToString();
+                        Description += "." + " Model: " + ds.Tables[0].Rows[0]["MODELNUM"].ToString();
                     }
                     if (ds.Tables[0].Rows[i]["MANUFACUTRER"].ToString() != "")
                     {
-                        Description += Environment.NewLine + " Manufacturer : " + ds.Tables[0].Rows[0]["MANUFACUTRER"].ToString();
+                        Description += "." + " Manufacturer : " + ds.Tables[0].Rows[0]["MANUFACUTRER"].ToString();
                     } if (ds.Tables[0].Rows[i]["REMARK"].ToString() != "")
                     {
                         Description += Environment.NewLine + " Remark : " + ds.Tables[0].Rows[0]["REMARK"].ToString();

@@ -78,6 +78,14 @@ namespace FSPBAL
 			}
 		}
 		
+		public System.Data.Linq.Table<VW_PRODUCT_MASTER> VW_PRODUCT_MASTERs
+		{
+			get
+			{
+				return this.GetTable<VW_PRODUCT_MASTER>();
+			}
+		}
+		
 		public System.Data.Linq.Table<VW_MATRECTRAN> VW_MATRECTRANs
 		{
 			get
@@ -483,6 +491,123 @@ namespace FSPBAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_PRODUCT_MASTER")]
+	public partial class VW_PRODUCT_MASTER
+	{
+		
+		private string _orgCode;
+		
+		private string _orgName;
+		
+		private string _prm_item_code;
+		
+		private string _prm_item_desc;
+		
+		private System.Nullable<short> _prm_uom_code;
+		
+		private string _uom_desc;
+		
+		public VW_PRODUCT_MASTER()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_orgCode", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string orgCode
+		{
+			get
+			{
+				return this._orgCode;
+			}
+			set
+			{
+				if ((this._orgCode != value))
+				{
+					this._orgCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_orgName", DbType="VarChar(16) NOT NULL", CanBeNull=false)]
+		public string orgName
+		{
+			get
+			{
+				return this._orgName;
+			}
+			set
+			{
+				if ((this._orgName != value))
+				{
+					this._orgName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prm_item_code", DbType="NVarChar(25) NOT NULL", CanBeNull=false)]
+		public string prm_item_code
+		{
+			get
+			{
+				return this._prm_item_code;
+			}
+			set
+			{
+				if ((this._prm_item_code != value))
+				{
+					this._prm_item_code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prm_item_desc", DbType="VarChar(50)")]
+		public string prm_item_desc
+		{
+			get
+			{
+				return this._prm_item_desc;
+			}
+			set
+			{
+				if ((this._prm_item_desc != value))
+				{
+					this._prm_item_desc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prm_uom_code", DbType="SmallInt")]
+		public System.Nullable<short> prm_uom_code
+		{
+			get
+			{
+				return this._prm_uom_code;
+			}
+			set
+			{
+				if ((this._prm_uom_code != value))
+				{
+					this._prm_uom_code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uom_desc", DbType="VarChar(50)")]
+		public string uom_desc
+		{
+			get
+			{
+				return this._uom_desc;
+			}
+			set
+			{
+				if ((this._uom_desc != value))
+				{
+					this._uom_desc = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_MATRECTRANS")]
 	public partial class VW_MATRECTRAN
 	{
@@ -505,7 +630,7 @@ namespace FSPBAL
 		
 		private string _mrvd_item_code;
 		
-		private System.Nullable<decimal> _mrvd_qty;
+		private System.Nullable<decimal> _mrvd_rcvd_order_unit;
 		
 		private System.Nullable<decimal> _mrvd_unit_rate_lc;
 		
@@ -669,18 +794,18 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mrvd_qty", DbType="Decimal(12,3)")]
-		public System.Nullable<decimal> mrvd_qty
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mrvd_rcvd_order_unit", DbType="Decimal(12,2)")]
+		public System.Nullable<decimal> mrvd_rcvd_order_unit
 		{
 			get
 			{
-				return this._mrvd_qty;
+				return this._mrvd_rcvd_order_unit;
 			}
 			set
 			{
-				if ((this._mrvd_qty != value))
+				if ((this._mrvd_rcvd_order_unit != value))
 				{
-					this._mrvd_qty = value;
+					this._mrvd_rcvd_order_unit = value;
 				}
 			}
 		}

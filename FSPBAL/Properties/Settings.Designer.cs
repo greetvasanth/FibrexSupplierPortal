@@ -12,7 +12,7 @@ namespace FSPBAL.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -200,7 +200,7 @@ namespace FSPBAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.172.101.53;Initial Catalog=FSPPO;User ID=myhr_user")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.172.101.53;Initial Catalog=FSPPOUAT;User ID=myhr_user")]
         public string FSPPOConnectionString10 {
             get {
                 return ((string)(this["FSPPOConnectionString10"]));
@@ -236,6 +236,16 @@ namespace FSPBAL.Properties {
         public string FSPPOUATConnectionString {
             get {
                 return ((string)(this["FSPPOUATConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.172.101.53;Initial Catalog=FSPPO;User ID=myhr_user")]
+        public string FSPPOConnectionString11 {
+            get {
+                return ((string)(this["FSPPOConnectionString11"]));
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 25.375, 24.625" name="FSPDataAccessModel">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 25.375, 25.375" name="FSPDataAccessModel">
   <DataContextMoniker Name="/FSPDataAccessModelDataContext" />
   <nestedChildShapes>
     <classShape Id="a11d72c8-002a-4d75-a8a4-6213dc374302" isExpanded="false" absoluteBounds="14.5, 0.75, 2, 0.45">
@@ -14,10 +14,10 @@
         <elementListCompartment Id="2fee1567-480a-4f88-9174-8de092190d10" absoluteBounds="3.8900000000000006, 15.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="49042201-4f49-46ac-b59a-9702402853a0" isExpanded="false" absoluteBounds="12.125, 3, 2, 0.45">
+    <classShape Id="49042201-4f49-46ac-b59a-9702402853a0" isExpanded="false" absoluteBounds="12.125, 3.25, 2, 0.45">
       <DataClassMoniker Name="/FSPDataAccessModelDataContext/SS_LookUpMap" />
       <nestedChildShapes>
-        <elementListCompartment Id="25e5199e-3331-415d-a0dd-9b0dfd0517e4" absoluteBounds="12.14, 3.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="25e5199e-3331-415d-a0dd-9b0dfd0517e4" absoluteBounds="12.14, 3.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="d986d18b-757c-41f6-b205-97cf403fa4f8" isExpanded="false" absoluteBounds="17.5, 0.75, 2, 0.45">
@@ -99,7 +99,7 @@
         <elementListCompartment Id="fea4dc19-1d56-478c-a391-032bc1f91152" absoluteBounds="11.64, 12.835, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(15.875 : 12.6625); (13.625 : 12.6625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(15.875 : 12.6625); (13.625 : 12.6625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/ChangeRequest/ChangeRequest_ChangeRequestDetail" />
       <nodes>
         <classShapeMoniker Id="5640592e-795d-4ae2-8c5a-307f1a0ffdc3" />
@@ -136,7 +136,7 @@
         <elementListCompartment Id="0e01770a-77a2-4a1e-a9d5-8b9b65dbe650" absoluteBounds="15.39, 10.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(13.75 : 10.5375); (15.375 : 10.5375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(13.75 : 10.5375); (15.375 : 10.5375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/RegSupplierAddress/RegSupplierAddress_A_RegSupplierAddress" />
       <nodes>
         <classShapeMoniker Id="2f30e91b-a37c-4af5-a37f-e03dd0e3d395" />
@@ -149,7 +149,7 @@
         <elementListCompartment Id="855ef595-8165-4d9b-854e-c57717989754" absoluteBounds="1.1399999999999997, 10.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.9375 : 11.5); (1.9375 : 10.825)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.9375 : 11.5); (1.9375 : 10.825)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/SupplierBankingDetail/SupplierBankingDetail_A_SupplierBankingDetail" />
       <nodes>
         <classShapeMoniker Id="16046b27-6c5e-40ae-9951-feeeedf80ce8" />
@@ -290,14 +290,14 @@
         <elementListCompartment Id="ea64520c-1711-4b58-a1dd-954620f2f0b0" absoluteBounds="0.89000000000000012, 3.7100000000000009, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.3125 : 6.325); (2.3125 : 9.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.3125 : 6.325); (2.3125 : 9.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/Supplier/Supplier_SupplierStatusHistory" />
       <nodes>
         <classShapeMoniker Id="40d000b2-002b-436f-8d3f-b9ef93854f4d" />
         <classShapeMoniker Id="5ba47a62-8271-42a6-b407-93321cf3e741" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.34375 : 6.325); (3.34375 : 11.725); (2.75 : 11.725)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.3124975 : 6.325); (3.3124975 : 11.725); (2.75 : 11.725)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/Supplier/Supplier_SupplierBankingDetail" />
       <nodes>
         <classShapeMoniker Id="40d000b2-002b-436f-8d3f-b9ef93854f4d" />
@@ -311,7 +311,7 @@
         <classShapeMoniker Id="4f7e9c12-6896-4e61-b1f3-71a84981898c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.1875 : 5.875); (2.1875 : 3.7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.1875 : 5.875); (2.1875 : 3.7)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/Supplier/Supplier_A_Supplier" />
       <nodes>
         <classShapeMoniker Id="40d000b2-002b-436f-8d3f-b9ef93854f4d" />
@@ -330,21 +330,21 @@
         <elementListCompartment Id="a37f308f-2dbb-463e-9c45-ec8c3e18e757" absoluteBounds="16.89, 8.835, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(12 : 7.975); (10 : 7.975); (10 : 8.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(14 : 8.118752); (14.375 : 8.118752); (14.375 : 10); (13.5520833333333 : 10 : JumpStart); (13.3854166666667 : 10 : JumpEnd); (11.5 : 10); (11.5 : 10.2034326171875); (8.625 : 10.2034326171875); (8.625 : 9.1); (9 : 9.1)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/Registration/Registration_RegistrationStatusHistory" />
       <nodes>
         <classShapeMoniker Id="eeb2a060-32bb-4489-a1b3-9a14896d3257" />
         <classShapeMoniker Id="470dc4ed-1d36-45ca-9b4f-44b44f38c540" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.07812525 : 8.2); (13.07812525 : 10.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(13.46875 : 8.2); (13.46875 : 10.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/Registration/Registration_RegSupplierAddress" />
       <nodes>
         <classShapeMoniker Id="eeb2a060-32bb-4489-a1b3-9a14896d3257" />
         <classShapeMoniker Id="2f30e91b-a37c-4af5-a37f-e03dd0e3d395" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 7.975); (17.875 : 7.975); (17.875 : 8.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(14 : 7.975); (17.875 : 7.975); (17.875 : 8.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/Registration/Registration_A_Registration" />
       <nodes>
         <classShapeMoniker Id="eeb2a060-32bb-4489-a1b3-9a14896d3257" />
@@ -411,7 +411,7 @@
         <elementListCompartment Id="4e66c999-f002-4e7c-a8a9-95d8ccab3eb2" absoluteBounds="11.39, 16.71, 1.9700000000000002, 7.3645426432291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(13.375 : 16.475); (14.125 : 16.475)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(13.375 : 16.475); (14.125 : 16.475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/POTEMPLATE/POTEMPLATE_A_POTEMPLATE" />
       <nodes>
         <classShapeMoniker Id="ef0a3ff2-78e3-4c8a-864e-0c87867fa0cb" />
@@ -454,19 +454,13 @@
         <elementListCompartment Id="c1bd40d7-6a45-4730-bb1a-bc8f428e4192" absoluteBounds="3.1400000000000006, 20.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e8013987-59b2-4037-b4a5-369129a0b777" isExpanded="false" absoluteBounds="9.625, 17.25, 2, 0.45">
-      <DataClassMoniker Name="/FSPDataAccessModelDataContext/A_POLINE" />
-      <nestedChildShapes>
-        <elementListCompartment Id="cacb4e69-5a11-445a-8701-a70162f55256" absoluteBounds="9.64, 17.71, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="c382d7eb-1d1f-4d07-a3e7-7370a3ea7a28" isExpanded="false" absoluteBounds="9.375, 1.875, 2, 0.45">
       <DataClassMoniker Name="/FSPDataAccessModelDataContext/User" />
       <nestedChildShapes>
         <elementListCompartment Id="5a0a4f54-c37d-4c56-9863-2fc25342a7c9" absoluteBounds="9.39, 2.335, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 2.6); (10.375 : 2.6); (10.375 : 2.325)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.375 : 2.6); (10.375 : 2.6); (10.375 : 2.325)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/SS_UserLoginActivity/SS_UserLoginActivity_User" />
       <nodes>
         <classShapeMoniker Id="263850d3-b3c4-4dd6-80db-7be87c942356" />
@@ -479,25 +473,6 @@
         <elementListCompartment Id="75018caa-ffd9-481d-9d59-8c6c72f8e23c" absoluteBounds="9.39, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="06220964-b02d-4bce-872d-0e346f7f2603" isExpanded="false" absoluteBounds="8.25, 18, 1.875, 0.45">
-      <DataClassMoniker Name="/FSPDataAccessModelDataContext/PO" />
-      <nestedChildShapes>
-        <elementListCompartment Id="bc076eed-7209-4d70-a778-6e2e9c80936b" absoluteBounds="8.265, 18.46, 1.8450000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ec9aa8a7-8b9f-4d7c-8dda-6ae39ebb58b0" isExpanded="false" absoluteBounds="9.5, 18.75, 2, 0.45">
-      <DataClassMoniker Name="/FSPDataAccessModelDataContext/A_PO" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c29337dc-5c4d-438d-9ea8-7eb4b1d28141" absoluteBounds="9.515, 19.21, 1.9700000000000002, 10.6336669921875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(9.8125 : 18.45); (9.8125 : 18.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/FSPDataAccessModelDataContext/PO/PO_A_PO" />
-      <nodes>
-        <classShapeMoniker Id="06220964-b02d-4bce-872d-0e346f7f2603" />
-        <classShapeMoniker Id="ec9aa8a7-8b9f-4d7c-8dda-6ae39ebb58b0" />
-      </nodes>
-    </associationConnector>
     <classShape Id="69e99bf6-d822-4fb2-af34-bfae8c725cc9" isExpanded="false" absoluteBounds="0.5, 20.5, 2, 0.45">
       <DataClassMoniker Name="/FSPDataAccessModelDataContext/VW_AllPOSignatureTemplate" />
       <nestedChildShapes>
@@ -522,7 +497,7 @@
         <elementListCompartment Id="0f86d109-ed17-4a86-b98f-74158295b024" absoluteBounds="8.265, 22.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.3437505 : 23.2); (4.3437505 : 24.0930511848958); (8.12712 : 24.0930511848958); (8.12712 : 21.75212); (9.25 : 21.75212); (9.25 : 21.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.625 : 22.975); (6.75 : 22.975); (6.75 : 24.8284326171875); (9.6562495 : 24.8284326171875); (9.6562495 : 23.0689925130208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FSPDataAccessModelDataContext/FieldHelp/FieldHelp_ControlFieldREL" />
       <nodes>
         <classShapeMoniker Id="fab11f31-72a4-4857-9d64-de7a2d3d2105" />
@@ -596,10 +571,35 @@
         <elementListCompartment Id="283da6e0-8824-4da1-bcc9-09171843550d" absoluteBounds="3.765, 2.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0022449d-5ebb-4069-b398-56fad4440902" isExpanded="false" absoluteBounds="5.125, 17.625, 2, 0.45">
+    <classShape Id="0a8995b4-2098-41c9-b84b-7ae0e892693d" isExpanded="false" absoluteBounds="12.125, 2.5, 2, 0.45">
+      <DataClassMoniker Name="/FSPDataAccessModelDataContext/PO" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f77575d5-5387-44f8-946a-69cd2e499634" absoluteBounds="12.14, 2.96, 1.9700000000000002, 11.595174153645832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff9da55d-e051-474b-a31f-1b2252ed5af8" isExpanded="false" absoluteBounds="8.5, 3.375, 2, 0.45">
+      <DataClassMoniker Name="/FSPDataAccessModelDataContext/A_PO" />
+      <nestedChildShapes>
+        <elementListCompartment Id="734044f5-292c-484d-81f9-4920d9af9dd9" absoluteBounds="8.515, 3.835, 1.9700000000000002, 11.2105712890625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(12.125 : 2.775); (9.4375 : 2.775); (9.4375 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FSPDataAccessModelDataContext/PO/PO1_A_PO1" />
+      <nodes>
+        <classShapeMoniker Id="0a8995b4-2098-41c9-b84b-7ae0e892693d" />
+        <classShapeMoniker Id="ff9da55d-e051-474b-a31f-1b2252ed5af8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="cbbb8bc7-4b2a-4051-92b1-a039232ec2e4" isExpanded="false" absoluteBounds="9.75, 5, 2, 0.45">
+      <DataClassMoniker Name="/FSPDataAccessModelDataContext/A_POLINE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7701c0f-5235-4f17-9098-ba19a3774d0d" absoluteBounds="9.765, 5.46, 1.9700000000000002, 6.0184326171875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9c8715a4-68c5-43a6-8b2f-35d486c19b9a" isExpanded="false" absoluteBounds="7, 18, 2, 0.45">
       <DataClassMoniker Name="/FSPDataAccessModelDataContext/POLINE" />
       <nestedChildShapes>
-        <elementListCompartment Id="7093a24a-36fb-422e-8392-432857b0f21d" absoluteBounds="5.14, 18.085, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="40f9c815-31ce-432a-9a20-1eb8e2013f1d" absoluteBounds="7.015, 18.46, 1.9700000000000002, 6.0184326171875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

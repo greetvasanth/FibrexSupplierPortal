@@ -16,6 +16,7 @@ namespace FibrexSupplierPortal.Mgment
     public partial class frmSearchPOList : System.Web.UI.Page
     {
         FSPBAL.FSPDataAccessModelDataContext db = new FSPBAL.FSPDataAccessModelDataContext(App_Code.HostSettings.CS);
+        tmpFibConsoDataContext dbTemp = new tmpFibConsoDataContext(App_Code.HostSettings.DS);
         string UserName = string.Empty;
         SS_Message smsg = new SS_Message();
         Supplier Sup = new Supplier();
@@ -102,6 +103,9 @@ namespace FibrexSupplierPortal.Mgment
 
                 int MaxITEMDESCRIPTION = Sup.GetFieldMaxlength("POLINE", "ITEMDESCRIPTION");
                 txtDescription.MaxLength = MaxITEMDESCRIPTION;
+
+                int MaxSpecification = Sup.GetFieldMaxlength("POLINE", "SPECIFICATION");
+                txtSpecification.MaxLength = MaxSpecification;
 
                 int MaxCOSTCODE = Sup.GetFieldMaxlength("POLINE", "COSTCODE");
                 txtCostCode.MaxLength = MaxCOSTCODE;
@@ -216,6 +220,7 @@ namespace FibrexSupplierPortal.Mgment
                 string CostCode = string.Empty;
                 string RequestedBy = string.Empty;
                 string ItemDescription = string.Empty;
+                string AdditionalSpecification = string.Empty;
                 string Query = "Select * from ViewAllPurchaseOrder ";
                 if (Request.QueryString["Status"] != null)
                 {
@@ -363,7 +368,7 @@ namespace FibrexSupplierPortal.Mgment
                 if (txtOrderDateTo.Text != "")
                 {
                     tablDates = 1;
-                    where += " AND ORDERDATE <='" + DateTime.Parse(txtOrderDatefrom.Text).AddHours(23).AddMinutes(59).AddSeconds(59) + "'";
+                    where += " AND ORDERDATE <='" + DateTime.Parse(txtOrderDateTo.Text).AddHours(23).AddMinutes(59).AddSeconds(59) + "'";
                 }
                 if (txtPromisedFrom.Text != "")
                 {
@@ -408,6 +413,19 @@ namespace FibrexSupplierPortal.Mgment
                     }
                 }
 
+                if (txtSpecification.Text != "")
+                {
+                    TabLines = 1;
+                    if (txtSpecification.Text.Contains('%'))
+                    {
+                        AdditionalSpecification += " AND SPECIFICATION like '" + txtSpecification.Text + "'";
+                    }
+                    else
+                    {
+                        AdditionalSpecification += " AND SPECIFICATION = '" + txtSpecification.Text + "'";
+                    }
+                }
+
                 if (txtCostCode.Text != "")
                 {
                     TabLines = 1;
@@ -432,12 +450,12 @@ namespace FibrexSupplierPortal.Mgment
                         RequestedBy += " AND REQUESTEDBYNAME = '" + txtDRequestedBy.Text + "'";
                     }
                 }
-                if (ItemDescription != "" || CostCode != "" || RequestedBy != "")
+                if (ItemDescription != "" || CostCode != "" || RequestedBy != "" || AdditionalSpecification != "")
                 {
                     where += @" AND EXISTS
                                                        (SELECT     1 AS Expr1
                                                          FROM          POLINE
-                                                         WHERE      (PONUM = ViewAllPurchaseOrder.PONUM)AND (POREVISION = ViewAllPurchaseOrder.POREVISION)  " + ItemDescription + " " + CostCode + " " + RequestedBy + ") ";
+                                                         WHERE      (PONUM = ViewAllPurchaseOrder.PONUM)AND (POREVISION = ViewAllPurchaseOrder.POREVISION)  " + ItemDescription + " " + AdditionalSpecification + " " + CostCode + " " + RequestedBy + ") ";
                 }
                 if (chkSearchRevisionHistory.Checked == false)
                 {
@@ -553,6 +571,72 @@ namespace FibrexSupplierPortal.Mgment
                     //upPoDetail.Update();
                 }
                 txtProjectCode.Focus();
+            }
+        }
+        protected void txtCostCode_TextChanged(object sender, EventArgs e)
+        {
+            lblError.Text = "";
+            divError.Visible = false;
+            TextBox edit = (TextBox)sender;
+
+            if (HIDOrganizationCode.Value == "")
+            {
+                lblError.Text = smsg.getMsgDetail(1158);
+                divError.Attributes["class"] = smsg.GetMessageBg(1158);
+                divError.Visible = true;
+                return ;
+            }
+
+            if (txtCostCode.Text != "")
+            {
+                tmpFibConso.SelectCommand = "Select * from VW_COST_CODE_MASTER  where ccm_cost_code ='" + txtCostCode.Text + "'   order By ccm_desc";
+                gvCostCode.DataSource = tmpFibConso;
+                gvCostCode.DataBind();
+                var countCostCode = gvCostCode.VisibleRowCount;
+                if (countCostCode <= 0)
+                {
+
+                    lblError.Text = smsg.getMsgDetail(1160);
+                    divError.Visible = true;
+                    divError.Attributes["class"] = smsg.GetMessageBg(1160);
+                    txtCostCode.Attributes["css"] = "boxshow";
+                    txtCostCode.Focus();
+                }
+            }
+        }
+
+        protected void txtItemCode_TextChanged(object sender, EventArgs e)
+        {
+            lblError.Text = "";
+            divError.Visible = false;
+            TextBox edit = (TextBox)sender;
+
+            if (HIDOrganizationCode.Value == "")
+            {
+                lblError.Text = smsg.getMsgDetail(1159);
+                divError.Attributes["class"] = smsg.GetMessageBg(1159);
+                divError.Visible = true;
+                return;
+            }
+
+            if (txtDItemCode.Text != "")
+            {
+                var executeItemMaster = dbTemp.VW_PRODUCT_MASTERs.Where(x => x.prm_item_code == txtDItemCode.Text).ToList();
+
+                if(executeItemMaster.Count > 0)
+                {
+                    var itemDescription = executeItemMaster[0].prm_item_desc;
+                    //txtDescription.Text = itemDescription;
+                }
+                else
+                {
+                    lblError.Text = smsg.getMsgDetail(1161);
+                    divError.Visible = true;
+                    divError.Attributes["class"] = smsg.GetMessageBg(1161);
+                    txtDItemCode.Attributes["css"] = "boxshow";
+                    txtDItemCode.Focus();
+                }
+                
             }
         }
         protected void PageAccess()
@@ -933,11 +1017,65 @@ namespace FibrexSupplierPortal.Mgment
         {
             LoadSearchRecords();
         }
-        public void LoadITEMCODE()
+
+        protected void imgItemCode_Click(object sender, ImageClickEventArgs e)
         {
             try
             {
-                gvITEMCODE.DataSource = db.ItemMasters.ToList();//.FirstOrDefault().;
+                //ResetLabel();
+                if (HIDOrganizationCode.Value != "")
+                {
+                     gvITEMCODE.FilterExpression = string.Empty;
+                     LoadITEMCODE(HIDOrganizationCode.Value);
+                     popupITEMCODE.ShowOnPageLoad = true;
+                }
+                else
+                {
+                    lblError.Text = smsg.getMsgDetail(1159);
+                    divError.Attributes["class"] = smsg.GetMessageBg(1159);
+                    divError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+                divError.Visible = true;
+                divError.Attributes["class"] = "alert alert-danger alert-dismissable";
+               // upError.Update();
+            }
+        }
+
+        protected void imgCostCode_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                //ResetLabel();
+                if (HIDOrganizationCode.Value != "")
+                {
+                    gvCostCode.FilterExpression = string.Empty;
+                    loadCostCode(HIDOrganizationCode.Value);
+                    popupCostCode.ShowOnPageLoad = true;
+                }
+                else
+                {
+                    lblError.Text = smsg.getMsgDetail(1158);
+                    divError.Attributes["class"] = smsg.GetMessageBg(1158);
+                    divError.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+                divError.Visible = true;
+                divError.Attributes["class"] = "alert alert-danger alert-dismissable";
+                // upError.Update();
+            }
+        }
+        public void LoadITEMCODE(string orgCode)
+        {
+            try
+            {
+                gvITEMCODE.DataSource = dbTemp.VW_PRODUCT_MASTERs.Where(x => x.orgCode == orgCode).ToList();
                 gvITEMCODE.DataBind();
             }
             catch (SqlException ex)
@@ -949,13 +1087,85 @@ namespace FibrexSupplierPortal.Mgment
             }
         }
 
+        public void loadCostCode(string orgCode)
+        {
+            try
+            {
+                // ResetLabel();
+                //if (HIDOrganizationCode.Value != "")
+                //{
+                try
+                {
+                    tmpFibConso.SelectCommand = "Select * from VW_COST_CODE_MASTER  where orgCode ='" + orgCode + "'   order By ccm_desc";
+                    gvCostCode.DataSource = tmpFibConso;
+                    gvCostCode.DataBind();
+                    popupCostCode.ShowOnPageLoad = true;
+                }
+                catch (SqlException ex)
+                {
+                    lblError.Text = ex.Message;
+                    divError.Visible = true;
+                    divError.Attributes["class"] = "alert alert-danger alert-dismissable";
+                    //upError.Update();
+                }
+                //}
+                //else
+                //{
+                //    lblError.Text = smsg.getMsgDetail(1158);
+                //    divError.Attributes["class"] = smsg.GetMessageBg(1158);
+                //    divError.Visible = true;
+                //}
+            }
+            catch (SqlException ex)
+            {
+                lblError.Text = ex.Message;
+                divError.Visible = true;
+                divError.Attributes["class"] = "alert alert-danger alert-dismissable";
+                //upError.Update();
+            }
+        }
+       
+        protected void gvCostCode_BeforeColumnSortingGrouping(object sender, ASPxGridViewBeforeColumnGroupingSortingEventArgs e)
+        {
+            loadCostCode(HIDOrganizationCode.Value);
+        }
+        protected void gvCostCode_AfterPerformCallback(object sender, ASPxGridViewAfterPerformCallbackEventArgs e)
+        {
+            loadCostCode(HIDOrganizationCode.Value);
+        }
+        protected void gvCostCode_RowCommand(object sender, ASPxGridViewRowCommandEventArgs e)
+        {
+            //ResetLabel();
+            txtCostCode.Text = "";
+            hdntxtCostCode.Value = "";
+            ASPxGridView grid = (ASPxGridView)sender;
+            object id = e.KeyValue;
+            string currentCostCode = grid.GetRowValuesByKeyValue(id, "ccm_cost_code").ToString();
+            hdntxtCostCode.Value = currentCostCode;
+            string currentCostCodeDescription = grid.GetRowValuesByKeyValue(id, "ccm_desc").ToString();
+            txtCostCode.Text = currentCostCode;
+            //int rowIndex = int.Parse(lblrowindex.Text);
+            //FillFeildsinTable("CC", rowIndex, currentCostCode, null);
+            //upPOLInes.Update();
+        }
+
+        protected void gvCostCode_RowCreated(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Text = "Name";
+                e.Row.Cells[1].Text = "City";
+                e.Row.Cells[2].Text = "Name";
+                e.Row.Cells[3].Text = "City";
+            }
+        }
         protected void gvITEMCODE_BeforeColumnSortingGrouping(object sender, ASPxGridViewBeforeColumnGroupingSortingEventArgs e)
         {
-            LoadITEMCODE();
+            LoadITEMCODE(HIDOrganizationCode.Value);
         }
         protected void gvITEMCODE_AfterPerformCallback(object sender, ASPxGridViewAfterPerformCallbackEventArgs e)
         {
-            LoadITEMCODE();
+            LoadITEMCODE(HIDOrganizationCode.Value);
         }
 
         protected void gvITEMCODE_RowCommand(object sender, ASPxGridViewRowCommandEventArgs e)
@@ -964,22 +1174,22 @@ namespace FibrexSupplierPortal.Mgment
             string MODELNUM = string.Empty;
             string MANUFACUTRER = string.Empty;
             object id = e.KeyValue;
-            string ITEMCODE = grid.GetRowValuesByKeyValue(id, "ITEMCODE").ToString();
-            string ITEMDESC = grid.GetRowValuesByKeyValue(id, "ITEMDESC").ToString();
-            if (grid.GetRowValuesByKeyValue(id, "MODELNUM") != null)
-            {
-                MODELNUM = grid.GetRowValuesByKeyValue(id, "MODELNUM").ToString();
-            }
-            if (grid.GetRowValuesByKeyValue(id, "MANUFACUTRER") != null)
-            {
-                MANUFACUTRER = grid.GetRowValuesByKeyValue(id, "MANUFACUTRER").ToString();
-            }
-            string UNIT = grid.GetRowValuesByKeyValue(id, "ORDERUNIT").ToString();
+            string ITEMCODE = grid.GetRowValuesByKeyValue(id, "prm_item_code").ToString();
+            string ITEMDESC = grid.GetRowValuesByKeyValue(id, "prm_item_desc").ToString();
+            //if (grid.GetRowValuesByKeyValue(id, "MODELNUM") != null)
+            //{
+            //    MODELNUM = grid.GetRowValuesByKeyValue(id, "MODELNUM").ToString();
+            //}
+            //if (grid.GetRowValuesByKeyValue(id, "MANUFACUTRER") != null)
+            //{
+            //    MANUFACUTRER = grid.GetRowValuesByKeyValue(id, "MANUFACUTRER").ToString();
+            //}
+            string UNIT = grid.GetRowValuesByKeyValue(id, "uom_desc").ToString();
 
             txtDItemCode.Text = ITEMCODE;
             txtDItemCode.CssClass = "form-control";
-            txtDescription.Text = ITEMDESC;
-            txtDescription.CssClass = "form-control";
+           // txtDescription.Text = ITEMDESC;
+            //txtDescription.CssClass = "form-control";
             popupProject.ShowOnPageLoad = false;
         }
 

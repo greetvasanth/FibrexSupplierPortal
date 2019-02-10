@@ -624,9 +624,9 @@ namespace FibrexSupplierPortal.Mgment
                 bool CheckVatRegistrationSpace = General.ValidateSpace(txtVATRegistrationNo.Text);
                 if (CheckVatRegistrationSpace == false)
                 {
-                    lblError.Text = smsg.getMsgDetail(1064).Replace("{0}", "VAT Registration Number");
+                    lblError.Text = smsg.getMsgDetail(1163).Replace("{0}", "VAT Registration Number");
                     divError.Visible = true;
-                    divError.Attributes["class"] = smsg.GetMessageBg(1064);
+                    divError.Attributes["class"] = smsg.GetMessageBg(1163);
                     return false;
                 }
                 if (ddlIsVatRegistered.Text == "1")

@@ -23,7 +23,7 @@ namespace FibrexSupplierPortal.Mgment
                 MailMessage ClientEmail = new MailMessage();
                 ClientEmail.From = new MailAddress("noreply@fibrexholding.com");
                 //ClientEmail.To.Add(new MailAddress("sfarah@fibrex.ae"));
-                ClientEmail.Bcc.Add("mshabbir@fibrexx.ae");
+                //ClientEmail.Bcc.Add("mshabbir@fibrexx.ae");
                 ClientEmail.Subject = "Fibrex Supplier Portal";
                 ClientEmail.IsBodyHtml = true;
                 string EmailBody;
@@ -35,11 +35,11 @@ namespace FibrexSupplierPortal.Mgment
                 SmtpClient mSmtpClient = new SmtpClient();
                 mSmtpClient.Timeout = Int32.MaxValue;
                 Object mailState = ClientEmail;
-                // mSmtpClient.Send(ClientEmail);
+                mSmtpClient.Send(ClientEmail);
                 mSmtpClient.SendAsync(ClientEmail, mailState);
                 mSmtpClient.EnableSsl = true;
-                //mSmtpClient.Dispose();
-               // ClientEmail.Dispose();
+                mSmtpClient.Dispose();
+                ClientEmail.Dispose();
                 Response.Write("Sent Successfully : Sending Time" + mSmtpClient.Timeout + " " );
             }
             catch (Exception ex)

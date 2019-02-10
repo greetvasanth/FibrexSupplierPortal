@@ -1641,7 +1641,7 @@ namespace FSPBAL
             {
                 string SupStatus = string.Empty;
                 FSPDataAccessModelDataContext db = new FSPDataAccessModelDataContext(ConfigurationManager.ConnectionStrings["CS"].ToString());
-                Supplier Sup = db.Suppliers.SingleOrDefault(x => x.SupplierID == int.Parse(CompanyID) && x.Status == "ACT");
+                Supplier Sup = db.Suppliers.SingleOrDefault(x => x.SupplierID == int.Parse(CompanyID) && x.Status != "BLKT");
                 if (Sup != null)
                 { 
                     SupStatus = Sup.Status.ToString();

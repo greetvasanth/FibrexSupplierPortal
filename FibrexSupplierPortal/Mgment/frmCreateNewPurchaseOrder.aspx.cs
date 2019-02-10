@@ -1048,7 +1048,7 @@ namespace FibrexSupplierPortal.Mgment
                         HidPOType.Value, ReturnValue(txtOriginalPO.Text), HidBuyersID.Value, txtBuyers.Text, CompanyID, ReturnValue(txtCompanyName.Text), ReturnValue(txtCompanyAddress.Text), ReturnValue(txtContactPerson1Name.Text),
                         ReturnValue(txtContactPerson1Position.Text), ReturnValue(txtContactPerson1Mobile.Text), ReturnValue(txtContactPerson1Phone.Text), ReturnValue(txtContactPerson1Fax.Text), ReturnValue(txtContactPerson1Email.Text), ReturnValue(txtContactPerson2Name.Text),
                         ReturnValue(txtContactPerson2Position.Text), ReturnValue(txtContactPerson2Mobile.Text), ReturnValue(txtContactPerson2Phone.Text), ReturnValue(txtContactPerson2Fax.Text), ReturnValue(txtContactPerson2Email.Text), ReturnValue(txtShiptoAddress.Text), ReturnValue(txtDeliverContact1Name.Text),
-                        ReturnValue(txtDeliverContact1Mobile.Text), ReturnValue(txtDeliverContact1Position.Text), ReturnValue(txtDeliverContact2Name.Text), ReturnValue(txtDeliverContact2Mobile.Text), ReturnValue(txtDeliverContact2Position.Text), null, UserName, DateTime.Now, ContractRef, null, ReturnValue(txtPOCurrency.Text), totalTotalTax,totalPreTotalTax, true);
+                        ReturnValue(txtDeliverContact1Mobile.Text), ReturnValue(txtDeliverContact1Position.Text), ReturnValue(txtDeliverContact2Name.Text), ReturnValue(txtDeliverContact2Mobile.Text), ReturnValue(txtDeliverContact2Position.Text), null, UserName, DateTime.Now, ContractRef, null, ReturnValue(txtPOCurrency.Text), totalTotalTax,totalPreTotalTax, null,null,null,true);
 
                     var lstTemp = db.POSignatureTemplates.Where(x => x.OrgCode == HIDOrganizationCode.Value);
                     if (lstTemp != null)
@@ -1352,7 +1352,7 @@ namespace FibrexSupplierPortal.Mgment
                             try
                             {
                                 var Masg = db.PO_AddPOLine(PoNum, Revision, short.Parse(i.ToString()), dt.Rows[i]["POType"].ToString(), dt.Rows[i]["C"].ToString(), dt.Rows[i]["CostCode"].ToString(), dt.Rows[i]["Description"].ToString(),
-                                short.Parse(dt.Rows[i]["Quantity"].ToString()), dt.Rows[i]["Unit"].ToString(), decimal.Parse(dt.Rows[i]["UnitPrice"].ToString()), decimal.Parse(dt.Rows[i]["TotalPrice"].ToString()),null,null,null,null,null,null,null,null,null,null, null, UserName, DateTime.Now, false,null,null);
+                                short.Parse(dt.Rows[i]["Quantity"].ToString()), dt.Rows[i]["Unit"].ToString(), decimal.Parse(dt.Rows[i]["UnitPrice"].ToString()), decimal.Parse(dt.Rows[i]["TotalPrice"].ToString()),null,null,null,null,null,null,null,null,null,null, null, UserName, DateTime.Now, false,null,null, null);
 
                             }
                             catch (SqlException ex)

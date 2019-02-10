@@ -180,21 +180,12 @@ namespace FSPBAL
     partial void InsertPOSignatureTemplate(POSignatureTemplate instance);
     partial void UpdatePOSignatureTemplate(POSignatureTemplate instance);
     partial void DeletePOSignatureTemplate(POSignatureTemplate instance);
-    partial void InsertA_POLINE(A_POLINE instance);
-    partial void UpdateA_POLINE(A_POLINE instance);
-    partial void DeleteA_POLINE(A_POLINE instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
     partial void InsertA_User(A_User instance);
     partial void UpdateA_User(A_User instance);
     partial void DeleteA_User(A_User instance);
-    partial void InsertPO(PO instance);
-    partial void UpdatePO(PO instance);
-    partial void DeletePO(PO instance);
-    partial void InsertA_PO(A_PO instance);
-    partial void UpdateA_PO(A_PO instance);
-    partial void DeleteA_PO(A_PO instance);
     partial void InsertFieldHelp(FieldHelp instance);
     partial void UpdateFieldHelp(FieldHelp instance);
     partial void DeleteFieldHelp(FieldHelp instance);
@@ -228,13 +219,22 @@ namespace FSPBAL
     partial void InsertPOPERMISSION(POPERMISSION instance);
     partial void UpdatePOPERMISSION(POPERMISSION instance);
     partial void DeletePOPERMISSION(POPERMISSION instance);
+    partial void InsertPO(PO instance);
+    partial void UpdatePO(PO instance);
+    partial void DeletePO(PO instance);
+    partial void InsertA_PO(A_PO instance);
+    partial void UpdateA_PO(A_PO instance);
+    partial void DeleteA_PO(A_PO instance);
+    partial void InsertA_POLINE(A_POLINE instance);
+    partial void UpdateA_POLINE(A_POLINE instance);
+    partial void DeleteA_POLINE(A_POLINE instance);
     partial void InsertPOLINE(POLINE instance);
     partial void UpdatePOLINE(POLINE instance);
     partial void DeletePOLINE(POLINE instance);
     #endregion
 		
 		public FSPDataAccessModelDataContext() : 
-				base(global::FSPBAL.Properties.Settings.Default.FSPPOConnectionString10, mappingSource)
+				base(global::FSPBAL.Properties.Settings.Default.FSPPOConnectionString11, mappingSource)
 		{
 			OnCreated();
 		}
@@ -735,14 +735,6 @@ namespace FSPBAL
 			}
 		}
 		
-		public System.Data.Linq.Table<A_POLINE> A_POLINEs
-		{
-			get
-			{
-				return this.GetTable<A_POLINE>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
@@ -756,22 +748,6 @@ namespace FSPBAL
 			get
 			{
 				return this.GetTable<A_User>();
-			}
-		}
-		
-		public System.Data.Linq.Table<PO> POs
-		{
-			get
-			{
-				return this.GetTable<PO>();
-			}
-		}
-		
-		public System.Data.Linq.Table<A_PO> A_POs
-		{
-			get
-			{
-				return this.GetTable<A_PO>();
 			}
 		}
 		
@@ -884,6 +860,30 @@ namespace FSPBAL
 			get
 			{
 				return this.GetTable<POPERMISSION>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PO> POs
+		{
+			get
+			{
+				return this.GetTable<PO>();
+			}
+		}
+		
+		public System.Data.Linq.Table<A_PO> A_POs
+		{
+			get
+			{
+				return this.GetTable<A_PO>();
+			}
+		}
+		
+		public System.Data.Linq.Table<A_POLINE> A_POLINEs
+		{
+			get
+			{
+				return this.GetTable<A_POLINE>();
 			}
 		}
 		
@@ -1295,132 +1295,6 @@ namespace FSPBAL
 			return ((ISingleResult<FIRMS_GetEmployeeInformationResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_DeletePOSignature")]
-		public int PO_DeletePOSignature([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgCode", DbType="NVarChar(30)")] string orgCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderNo", DbType="Int")] System.Nullable<int> orderNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONum", DbType="Decimal(8,0)")] System.Nullable<decimal> pONum, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AuditBy", DbType="NVarChar(30)")] string auditBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgCode, orderNo, pONum, pOREVISION, auditBy, aUTOCOMMIT);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_EditPO")]
-		public int PO_EditPO(
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREF", DbType="VarChar(80)")] string pOREF, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSID", DbType="BigInt")] System.Nullable<long> pOSID, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(100)")] string dESCRIPTION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGCODE", DbType="NVarChar(30)")] string oRGCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGNAME", DbType="NVarChar(50)")] string oRGNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTCODE", DbType="NVarChar(10)")] string pROJECTCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTNAME", DbType="NVarChar(80)")] string pROJECTNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MRNUM", DbType="NVarChar(30)")] string mRNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QNUM", DbType="NVarChar(30)")] string qNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QDATE", DbType="Date")] System.Nullable<System.DateTime> qDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PAYMENTTERMS", DbType="NVarChar(250)")] string pAYMENTTERMS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERDATE", DbType="Date")] System.Nullable<System.DateTime> oRDERDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUIREDATE", DbType="Date")] System.Nullable<System.DateTime> rEQUIREDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORDATE", DbType="Date")] System.Nullable<System.DateTime> vENDORDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POTYPE", DbType="NVarChar(8)")] string pOTYPE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORIGINALPONUM", DbType="NVarChar(30)")] string oRIGINALPONUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERCODE", DbType="NVarChar(10)")] string bUYERCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERNAME", DbType="NVarChar(100)")] string bUYERNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORID", DbType="Int")] System.Nullable<int> vENDORID, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORNAME", DbType="NVarChar(100)")] string vENDORNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORADDR", DbType="NVarChar(250)")] string vENDORADDR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1NAME", DbType="NVarChar(80)")] string vENDORATTN1NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1POS", DbType="NVarChar(80)")] string vENDORATTN1POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1MOB", DbType="NVarChar(30)")] string vENDORATTN1MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1TEL", DbType="NVarChar(30)")] string vENDORATTN1TEL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1FAX", DbType="NVarChar(30)")] string vENDORATTN1FAX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1EMAIL", DbType="NVarChar(80)")] string vENDORATTN1EMAIL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2NAME", DbType="NVarChar(80)")] string vENDORATTN2NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2POS", DbType="NVarChar(80)")] string vENDORATTN2POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2MOB", DbType="NVarChar(30)")] string vENDORATTN2MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2TEL", DbType="NVarChar(30)")] string vENDORATTN2TEL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2FAX", DbType="NVarChar(30)")] string vENDORATTN2FAX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2EMAIL", DbType="NVarChar(80)")] string vENDORATTN2EMAIL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOADDR", DbType="NVarChar(250)")] string sHIPTOADDR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1NAME", DbType="NVarChar(80)")] string sHIPTOATTN1NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1MOB", DbType="NVarChar(30)")] string sHIPTOATTN1MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1POS", DbType="NVarChar(50)")] string sHIPTOATTN1POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2NAME", DbType="NVarChar(80)")] string sHIPTOATTN2NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2MOB", DbType="NVarChar(30)")] string sHIPTOATTN2MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2POS", DbType="NVarChar(50)")] string sHIPTOATTN2POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALCOST", DbType="Decimal(16,4)")] System.Nullable<decimal> tOTALCOST, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTMODIFIEDBY", DbType="NVarChar(30)")] string lASTMODIFIEDBY, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CONTRACTREFNUM", DbType="Int")] System.Nullable<int> cONTRACTREFNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUS", DbType="NVarChar(10)")] string sTATUS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUSDATE", DbType="DateTime")] System.Nullable<System.DateTime> sTATUSDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CURRENCYCODE", DbType="VarChar(8)")] string cURRENCYCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALTAX", DbType="Decimal(10,2)")] System.Nullable<decimal> tOTALTAX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PRETAXTOTAL", DbType="Decimal(10,2)")] System.Nullable<decimal> pRETAXTOTAL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="INTNOTE", DbType="NVarChar(500)")] string iNTNOTE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXTNOTE", DbType="NVarChar(500)")] string eXTNOTE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SENDNOTETOACCTS", DbType="Bit")] System.Nullable<bool> sENDNOTETOACCTS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pONUM, pOREF, pOSID, pOREVISION, dESCRIPTION, oRGCODE, oRGNAME, pROJECTCODE, pROJECTNAME, mRNUM, qNUM, qDATE, pAYMENTTERMS, oRDERDATE, rEQUIREDATE, vENDORDATE, pOTYPE, oRIGINALPONUM, bUYERCODE, bUYERNAME, vENDORID, vENDORNAME, vENDORADDR, vENDORATTN1NAME, vENDORATTN1POS, vENDORATTN1MOB, vENDORATTN1TEL, vENDORATTN1FAX, vENDORATTN1EMAIL, vENDORATTN2NAME, vENDORATTN2POS, vENDORATTN2MOB, vENDORATTN2TEL, vENDORATTN2FAX, vENDORATTN2EMAIL, sHIPTOADDR, sHIPTOATTN1NAME, sHIPTOATTN1MOB, sHIPTOATTN1POS, sHIPTOATTN2NAME, sHIPTOATTN2MOB, sHIPTOATTN2POS, tOTALCOST, lASTMODIFIEDBY, cONTRACTREFNUM, sTATUS, sTATUSDATE, cURRENCYCODE, tOTALTAX, pRETAXTOTAL, iNTNOTE, eXTNOTE, sENDNOTETOACCTS, aUTOCOMMIT);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_ADDPO")]
-		public int PO_ADDPO(
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREF", DbType="VarChar(80)")] string pOREF, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSID", DbType="BigInt")] System.Nullable<long> pOSID, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(100)")] string dESCRIPTION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGCODE", DbType="NVarChar(30)")] string oRGCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGNAME", DbType="NVarChar(50)")] string oRGNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTCODE", DbType="NVarChar(10)")] string pROJECTCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTNAME", DbType="NVarChar(80)")] string pROJECTNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MRNUM", DbType="NVarChar(30)")] string mRNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QNUM", DbType="NVarChar(30)")] string qNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QDATE", DbType="Date")] System.Nullable<System.DateTime> qDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PAYMENTTERMS", DbType="NVarChar(250)")] string pAYMENTTERMS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERDATE", DbType="Date")] System.Nullable<System.DateTime> oRDERDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUIREDATE", DbType="Date")] System.Nullable<System.DateTime> rEQUIREDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORDATE", DbType="Date")] System.Nullable<System.DateTime> vENDORDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POTYPE", DbType="NVarChar(8)")] string pOTYPE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORIGINALPONUM", DbType="NVarChar(80)")] string oRIGINALPONUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERCODE", DbType="NVarChar(10)")] string bUYERCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERNAME", DbType="NVarChar(100)")] string bUYERNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORID", DbType="Int")] System.Nullable<int> vENDORID, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORNAME", DbType="NVarChar(100)")] string vENDORNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORADDR", DbType="NVarChar(250)")] string vENDORADDR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1NAME", DbType="NVarChar(80)")] string vENDORATTN1NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1POS", DbType="NVarChar(80)")] string vENDORATTN1POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1MOB", DbType="NVarChar(30)")] string vENDORATTN1MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1TEL", DbType="NVarChar(30)")] string vENDORATTN1TEL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1FAX", DbType="NVarChar(30)")] string vENDORATTN1FAX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1EMAIL", DbType="NVarChar(80)")] string vENDORATTN1EMAIL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2NAME", DbType="NVarChar(80)")] string vENDORATTN2NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2POS", DbType="NVarChar(80)")] string vENDORATTN2POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2MOB", DbType="NVarChar(30)")] string vENDORATTN2MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2TEL", DbType="NVarChar(30)")] string vENDORATTN2TEL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2FAX", DbType="NVarChar(30)")] string vENDORATTN2FAX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2EMAIL", DbType="NVarChar(80)")] string vENDORATTN2EMAIL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOADDR", DbType="NVarChar(250)")] string sHIPTOADDR, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1NAME", DbType="NVarChar(80)")] string sHIPTOATTN1NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1MOB", DbType="NVarChar(30)")] string sHIPTOATTN1MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1POS", DbType="NVarChar(50)")] string sHIPTOATTN1POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2NAME", DbType="NVarChar(80)")] string sHIPTOATTN2NAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2MOB", DbType="NVarChar(30)")] string sHIPTOATTN2MOB, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2POS", DbType="NVarChar(50)")] string sHIPTOATTN2POS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALCOST", DbType="Decimal(16,4)")] System.Nullable<decimal> tOTALCOST, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CREATEDBY", DbType="NVarChar(30)")] string cREATEDBY, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CREATIONDATE", DbType="DateTime")] System.Nullable<System.DateTime> cREATIONDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CONTRACTREFNUM", DbType="Int")] System.Nullable<int> cONTRACTREFNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REVCOMMENTS", DbType="VarChar(250)")] string rEVCOMMENTS, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CURRENCYCODE", DbType="VarChar(8)")] string cURRENCYCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALTAX", DbType="Decimal(10,2)")] System.Nullable<decimal> tOTALTAX, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PRETAXTOTAL", DbType="Decimal(10,2)")] System.Nullable<decimal> pRETAXTOTAL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pONUM, pOREF, pOSID, pOREVISION, dESCRIPTION, oRGCODE, oRGNAME, pROJECTCODE, pROJECTNAME, mRNUM, qNUM, qDATE, pAYMENTTERMS, oRDERDATE, rEQUIREDATE, vENDORDATE, pOTYPE, oRIGINALPONUM, bUYERCODE, bUYERNAME, vENDORID, vENDORNAME, vENDORADDR, vENDORATTN1NAME, vENDORATTN1POS, vENDORATTN1MOB, vENDORATTN1TEL, vENDORATTN1FAX, vENDORATTN1EMAIL, vENDORATTN2NAME, vENDORATTN2POS, vENDORATTN2MOB, vENDORATTN2TEL, vENDORATTN2FAX, vENDORATTN2EMAIL, sHIPTOADDR, sHIPTOATTN1NAME, sHIPTOATTN1MOB, sHIPTOATTN1POS, sHIPTOATTN2NAME, sHIPTOATTN2MOB, sHIPTOATTN2POS, tOTALCOST, cREATEDBY, cREATIONDATE, cONTRACTREFNUM, rEVCOMMENTS, cURRENCYCODE, tOTALTAX, pRETAXTOTAL, aUTOCOMMIT);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.FIRMS_GetAllEmployee")]
 		public ISingleResult<FIRMS_GetAllEmployeeResult> FIRMS_GetAllEmployee()
 		{
@@ -1511,46 +1385,25 @@ namespace FSPBAL
 			return ((ISingleResult<PO_ViewPermissionsHistoryResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_EditPOLine")]
-		public int PO_EditPOLine(
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POLINEID", DbType="BigInt")] System.Nullable<long> pOLINEID, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POLINENUM", DbType="SmallInt")] System.Nullable<short> pOLINENUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LINETYPE", DbType="NVarChar(5)")] string lINETYPE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CATALOGCODE", DbType="NVarChar(30)")] string cATALOGCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="COSTCODE", DbType="NVarChar(30)")] string cOSTCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(500)")] string dESCRIPTION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERQTY", DbType="Decimal(16,2)")] System.Nullable<decimal> oRDERQTY, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERUNIT", DbType="NVarChar(15)")] string oRDERUNIT, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UNITCOST", DbType="Decimal(16,2)")] System.Nullable<decimal> uNITCOST, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LINECOST", DbType="Decimal(16,2)")] System.Nullable<decimal> lINECOST, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ITEMNUM", DbType="NVarChar(30)")] string iTEMNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MODELNUM", DbType="NVarChar(8)")] string mODELNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUESTEDBYCODE", DbType="NVarChar(10)")] string rEQUESTEDBYCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUESTEDBYNAME", DbType="NVarChar(80)")] string rEQUESTEDBYNAME, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MANUFACUTRER", DbType="NVarChar(30)")] string mANUFACUTRER, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REMARK", DbType="NVarChar(100)")] string rEMARK, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXCODE", DbType="NVarChar(5)")] string tAXCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXRATE", DbType="Decimal(18,0)")] System.Nullable<decimal> tAXRATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXTOTAL", DbType="Decimal(10,2)")] System.Nullable<decimal> tAXTOTAL, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXED", DbType="Bit")] System.Nullable<bool> tAXED, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ROWSTAMP", DbType="NVarChar(40)")] string rOWSTAMP, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTMODIFIEDBY", DbType="NVarChar(30)")] string lASTMODIFIEDBY, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTMODIFIEDDATE", DbType="DateTime")] System.Nullable<System.DateTime> lASTMODIFIEDDATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUSCODE", DbType="VarChar(50)")] string sTATUSCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPTTOLERANCE", DbType="Decimal(5,2)")] System.Nullable<decimal> rECEIPTTOLERANCE)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pOLINEID, pONUM, pOREVISION, pOLINENUM, lINETYPE, cATALOGCODE, cOSTCODE, dESCRIPTION, oRDERQTY, oRDERUNIT, uNITCOST, lINECOST, iTEMNUM, mODELNUM, rEQUESTEDBYCODE, rEQUESTEDBYNAME, mANUFACUTRER, rEMARK, tAXCODE, tAXRATE, tAXTOTAL, tAXED, rOWSTAMP, lASTMODIFIEDBY, lASTMODIFIEDDATE, aUTOCOMMIT, sTATUSCODE, rECEIPTTOLERANCE);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_ValidateLineType")]
 		public int PO_ValidateLineType([global::System.Data.Linq.Mapping.ParameterAttribute(Name="INPUTPONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> iNPUTPONUM, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="INPUTPOREV", DbType="SmallInt")] System.Nullable<short> iNPUTPOREV, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POTYPE", DbType="VarChar(100)")] string pOTYPE, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ERRORSTATUS", DbType="VarChar(500)")] ref string eRRORSTATUS)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iNPUTPONUM, iNPUTPOREV, pOTYPE, eRRORSTATUS);
 			eRRORSTATUS = ((string)(result.GetParameterValue(3)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_LoadLineTypes")]
+		public ISingleResult<PO_LoadLineTypesResult> PO_LoadLineTypes([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PoNumber", DbType="VarChar(10)")] string poNumber)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poNumber);
+			return ((ISingleResult<PO_LoadLineTypesResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_DeletePOSignature")]
+		public int PO_DeletePOSignature([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrgCode", DbType="NVarChar(30)")] string orgCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSignID", DbType="Int")] System.Nullable<int> pOSignID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderNo", DbType="Int")] System.Nullable<int> orderNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONum", DbType="Decimal(8,0)")] System.Nullable<decimal> pONum, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AuditBy", DbType="NVarChar(30)")] string auditBy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orgCode, pOSignID, orderNo, pONum, pOREVISION, auditBy, aUTOCOMMIT);
 			return ((int)(result.ReturnValue));
 		}
 		
@@ -1563,36 +1416,188 @@ namespace FSPBAL
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CATALOGCODE", DbType="NVarChar(30)")] string cATALOGCODE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="COSTCODE", DbType="NVarChar(30)")] string cOSTCODE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(500)")] string dESCRIPTION, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERQTY", DbType="Decimal(16,2)")] System.Nullable<decimal> oRDERQTY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERQTY", DbType="Decimal(16,4)")] System.Nullable<decimal> oRDERQTY, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERUNIT", DbType="NVarChar(15)")] string oRDERUNIT, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UNITCOST", DbType="Decimal(16,2)")] System.Nullable<decimal> uNITCOST, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LINECOST", DbType="Decimal(16,2)")] System.Nullable<decimal> lINECOST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UNITCOST", DbType="Decimal(16,4)")] System.Nullable<decimal> uNITCOST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LINECOST", DbType="Decimal(16,4)")] System.Nullable<decimal> lINECOST, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ITEMNUM", DbType="NVarChar(30)")] string iTEMNUM, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MODELNUM", DbType="NVarChar(8)")] string mODELNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MODELNUM", DbType="NVarChar(20)")] string mODELNUM, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUESTEDBYCODE", DbType="NVarChar(10)")] string rEQUESTEDBYCODE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUESTEDBYNAME", DbType="NVarChar(80)")] string rEQUESTEDBYNAME, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MANUFACUTRER", DbType="NVarChar(30)")] string mANUFACUTRER, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REMARK", DbType="NVarChar(100)")] string rEMARK, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXCODE", DbType="NVarChar(5)")] string tAXCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXRATE", DbType="Decimal(18,0)")] System.Nullable<decimal> tAXRATE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXTOTAL", DbType="Decimal(10,2)")] System.Nullable<decimal> tAXTOTAL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXRATE", DbType="Decimal(5,2)")] System.Nullable<decimal> tAXRATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXTOTAL", DbType="Decimal(12,4)")] System.Nullable<decimal> tAXTOTAL, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXED", DbType="Bit")] System.Nullable<bool> tAXED, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ROWSTAMP", DbType="NVarChar(40)")] string rOWSTAMP, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CREATEDBY", DbType="NVarChar(30)")] string cREATEDBY, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CREATIONDATE", DbType="DateTime")] System.Nullable<System.DateTime> cREATIONDATE, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT, 
 					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUSCODE", DbType="VarChar(50)")] string sTATUSCODE, 
-					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPTTOLERANCE", DbType="Decimal(5,2)")] System.Nullable<decimal> rECEIPTTOLERANCE)
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPTTOLERANCE", DbType="Decimal(5,2)")] System.Nullable<decimal> rECEIPTTOLERANCE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SPECIFICATION", DbType="NVarChar(250)")] string sPECIFICATION)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pONUM, pOREVISION, pOLINENUM, lINETYPE, cATALOGCODE, cOSTCODE, dESCRIPTION, oRDERQTY, oRDERUNIT, uNITCOST, lINECOST, iTEMNUM, mODELNUM, rEQUESTEDBYCODE, rEQUESTEDBYNAME, mANUFACUTRER, rEMARK, tAXCODE, tAXRATE, tAXTOTAL, tAXED, rOWSTAMP, cREATEDBY, cREATIONDATE, aUTOCOMMIT, sTATUSCODE, rECEIPTTOLERANCE);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pONUM, pOREVISION, pOLINENUM, lINETYPE, cATALOGCODE, cOSTCODE, dESCRIPTION, oRDERQTY, oRDERUNIT, uNITCOST, lINECOST, iTEMNUM, mODELNUM, rEQUESTEDBYCODE, rEQUESTEDBYNAME, mANUFACUTRER, rEMARK, tAXCODE, tAXRATE, tAXTOTAL, tAXED, rOWSTAMP, cREATEDBY, cREATIONDATE, aUTOCOMMIT, sTATUSCODE, rECEIPTTOLERANCE, sPECIFICATION);
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_LoadLineTypes")]
-		public ISingleResult<PO_LoadLineTypesResult> PO_LoadLineTypes([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PoNumber", DbType="VarChar(10)")] string poNumber)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_ADDPO")]
+		public int PO_ADDPO(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREF", DbType="VarChar(80)")] string pOREF, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSID", DbType="BigInt")] System.Nullable<long> pOSID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(100)")] string dESCRIPTION, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGCODE", DbType="NVarChar(30)")] string oRGCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGNAME", DbType="NVarChar(50)")] string oRGNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTCODE", DbType="NVarChar(10)")] string pROJECTCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTNAME", DbType="NVarChar(80)")] string pROJECTNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MRNUM", DbType="NVarChar(30)")] string mRNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QNUM", DbType="NVarChar(30)")] string qNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QDATE", DbType="Date")] System.Nullable<System.DateTime> qDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PAYMENTTERMS", DbType="NVarChar(250)")] string pAYMENTTERMS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERDATE", DbType="Date")] System.Nullable<System.DateTime> oRDERDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUIREDATE", DbType="Date")] System.Nullable<System.DateTime> rEQUIREDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORDATE", DbType="Date")] System.Nullable<System.DateTime> vENDORDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POTYPE", DbType="NVarChar(8)")] string pOTYPE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORIGINALPONUM", DbType="NVarChar(80)")] string oRIGINALPONUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERCODE", DbType="NVarChar(10)")] string bUYERCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERNAME", DbType="NVarChar(100)")] string bUYERNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORID", DbType="Int")] System.Nullable<int> vENDORID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORNAME", DbType="NVarChar(100)")] string vENDORNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORADDR", DbType="NVarChar(250)")] string vENDORADDR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1NAME", DbType="NVarChar(80)")] string vENDORATTN1NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1POS", DbType="NVarChar(80)")] string vENDORATTN1POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1MOB", DbType="NVarChar(30)")] string vENDORATTN1MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1TEL", DbType="NVarChar(30)")] string vENDORATTN1TEL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1FAX", DbType="NVarChar(30)")] string vENDORATTN1FAX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1EMAIL", DbType="NVarChar(80)")] string vENDORATTN1EMAIL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2NAME", DbType="NVarChar(80)")] string vENDORATTN2NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2POS", DbType="NVarChar(80)")] string vENDORATTN2POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2MOB", DbType="NVarChar(30)")] string vENDORATTN2MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2TEL", DbType="NVarChar(30)")] string vENDORATTN2TEL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2FAX", DbType="NVarChar(30)")] string vENDORATTN2FAX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2EMAIL", DbType="NVarChar(80)")] string vENDORATTN2EMAIL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOADDR", DbType="NVarChar(250)")] string sHIPTOADDR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1NAME", DbType="NVarChar(80)")] string sHIPTOATTN1NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1MOB", DbType="NVarChar(30)")] string sHIPTOATTN1MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1POS", DbType="NVarChar(50)")] string sHIPTOATTN1POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2NAME", DbType="NVarChar(80)")] string sHIPTOATTN2NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2MOB", DbType="NVarChar(30)")] string sHIPTOATTN2MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2POS", DbType="NVarChar(50)")] string sHIPTOATTN2POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALCOST", DbType="Decimal(16,4)")] System.Nullable<decimal> tOTALCOST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CREATEDBY", DbType="NVarChar(30)")] string cREATEDBY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CREATIONDATE", DbType="DateTime")] System.Nullable<System.DateTime> cREATIONDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CONTRACTREFNUM", DbType="Int")] System.Nullable<int> cONTRACTREFNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REVCOMMENTS", DbType="VarChar(250)")] string rEVCOMMENTS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CURRENCYCODE", DbType="VarChar(8)")] string cURRENCYCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALTAX", DbType="Decimal(12,4)")] System.Nullable<decimal> tOTALTAX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PRETAXTOTAL", DbType="Decimal(12,4)")] System.Nullable<decimal> pRETAXTOTAL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="INTNOTE", DbType="NVarChar(500)")] string iNTNOTE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXTNOTE", DbType="NVarChar(500)")] string eXTNOTE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SENDNOTETOACCTS", DbType="Bit")] System.Nullable<bool> sENDNOTETOACCTS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), poNumber);
-			return ((ISingleResult<PO_LoadLineTypesResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pONUM, pOREF, pOSID, pOREVISION, dESCRIPTION, oRGCODE, oRGNAME, pROJECTCODE, pROJECTNAME, mRNUM, qNUM, qDATE, pAYMENTTERMS, oRDERDATE, rEQUIREDATE, vENDORDATE, pOTYPE, oRIGINALPONUM, bUYERCODE, bUYERNAME, vENDORID, vENDORNAME, vENDORADDR, vENDORATTN1NAME, vENDORATTN1POS, vENDORATTN1MOB, vENDORATTN1TEL, vENDORATTN1FAX, vENDORATTN1EMAIL, vENDORATTN2NAME, vENDORATTN2POS, vENDORATTN2MOB, vENDORATTN2TEL, vENDORATTN2FAX, vENDORATTN2EMAIL, sHIPTOADDR, sHIPTOATTN1NAME, sHIPTOATTN1MOB, sHIPTOATTN1POS, sHIPTOATTN2NAME, sHIPTOATTN2MOB, sHIPTOATTN2POS, tOTALCOST, cREATEDBY, cREATIONDATE, cONTRACTREFNUM, rEVCOMMENTS, cURRENCYCODE, tOTALTAX, pRETAXTOTAL, iNTNOTE, eXTNOTE, sENDNOTETOACCTS, aUTOCOMMIT);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_EditPO")]
+		public int PO_EditPO(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREF", DbType="VarChar(80)")] string pOREF, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSID", DbType="BigInt")] System.Nullable<long> pOSID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(100)")] string dESCRIPTION, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGCODE", DbType="NVarChar(30)")] string oRGCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORGNAME", DbType="NVarChar(50)")] string oRGNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTCODE", DbType="NVarChar(10)")] string pROJECTCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PROJECTNAME", DbType="NVarChar(80)")] string pROJECTNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MRNUM", DbType="NVarChar(30)")] string mRNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QNUM", DbType="NVarChar(30)")] string qNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="QDATE", DbType="Date")] System.Nullable<System.DateTime> qDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PAYMENTTERMS", DbType="NVarChar(250)")] string pAYMENTTERMS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERDATE", DbType="Date")] System.Nullable<System.DateTime> oRDERDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUIREDATE", DbType="Date")] System.Nullable<System.DateTime> rEQUIREDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORDATE", DbType="Date")] System.Nullable<System.DateTime> vENDORDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POTYPE", DbType="NVarChar(8)")] string pOTYPE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORIGINALPONUM", DbType="NVarChar(30)")] string oRIGINALPONUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERCODE", DbType="NVarChar(10)")] string bUYERCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="BUYERNAME", DbType="NVarChar(100)")] string bUYERNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORID", DbType="Int")] System.Nullable<int> vENDORID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORNAME", DbType="NVarChar(100)")] string vENDORNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORADDR", DbType="NVarChar(250)")] string vENDORADDR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1NAME", DbType="NVarChar(80)")] string vENDORATTN1NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1POS", DbType="NVarChar(80)")] string vENDORATTN1POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1MOB", DbType="NVarChar(30)")] string vENDORATTN1MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1TEL", DbType="NVarChar(30)")] string vENDORATTN1TEL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1FAX", DbType="NVarChar(30)")] string vENDORATTN1FAX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN1EMAIL", DbType="NVarChar(80)")] string vENDORATTN1EMAIL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2NAME", DbType="NVarChar(80)")] string vENDORATTN2NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2POS", DbType="NVarChar(80)")] string vENDORATTN2POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2MOB", DbType="NVarChar(30)")] string vENDORATTN2MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2TEL", DbType="NVarChar(30)")] string vENDORATTN2TEL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2FAX", DbType="NVarChar(30)")] string vENDORATTN2FAX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="VENDORATTN2EMAIL", DbType="NVarChar(80)")] string vENDORATTN2EMAIL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOADDR", DbType="NVarChar(250)")] string sHIPTOADDR, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1NAME", DbType="NVarChar(80)")] string sHIPTOATTN1NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1MOB", DbType="NVarChar(30)")] string sHIPTOATTN1MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN1POS", DbType="NVarChar(50)")] string sHIPTOATTN1POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2NAME", DbType="NVarChar(80)")] string sHIPTOATTN2NAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2MOB", DbType="NVarChar(30)")] string sHIPTOATTN2MOB, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SHIPTOATTN2POS", DbType="NVarChar(50)")] string sHIPTOATTN2POS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALCOST", DbType="Decimal(16,4)")] System.Nullable<decimal> tOTALCOST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTMODIFIEDBY", DbType="NVarChar(30)")] string lASTMODIFIEDBY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CONTRACTREFNUM", DbType="Int")] System.Nullable<int> cONTRACTREFNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUS", DbType="NVarChar(10)")] string sTATUS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUSDATE", DbType="DateTime")] System.Nullable<System.DateTime> sTATUSDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CURRENCYCODE", DbType="VarChar(8)")] string cURRENCYCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TOTALTAX", DbType="Decimal(12,4)")] System.Nullable<decimal> tOTALTAX, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PRETAXTOTAL", DbType="Decimal(12,4)")] System.Nullable<decimal> pRETAXTOTAL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="INTNOTE", DbType="NVarChar(500)")] string iNTNOTE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="EXTNOTE", DbType="NVarChar(500)")] string eXTNOTE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SENDNOTETOACCTS", DbType="Bit")] System.Nullable<bool> sENDNOTETOACCTS, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pONUM, pOREF, pOSID, pOREVISION, dESCRIPTION, oRGCODE, oRGNAME, pROJECTCODE, pROJECTNAME, mRNUM, qNUM, qDATE, pAYMENTTERMS, oRDERDATE, rEQUIREDATE, vENDORDATE, pOTYPE, oRIGINALPONUM, bUYERCODE, bUYERNAME, vENDORID, vENDORNAME, vENDORADDR, vENDORATTN1NAME, vENDORATTN1POS, vENDORATTN1MOB, vENDORATTN1TEL, vENDORATTN1FAX, vENDORATTN1EMAIL, vENDORATTN2NAME, vENDORATTN2POS, vENDORATTN2MOB, vENDORATTN2TEL, vENDORATTN2FAX, vENDORATTN2EMAIL, sHIPTOADDR, sHIPTOATTN1NAME, sHIPTOATTN1MOB, sHIPTOATTN1POS, sHIPTOATTN2NAME, sHIPTOATTN2MOB, sHIPTOATTN2POS, tOTALCOST, lASTMODIFIEDBY, cONTRACTREFNUM, sTATUS, sTATUSDATE, cURRENCYCODE, tOTALTAX, pRETAXTOTAL, iNTNOTE, eXTNOTE, sENDNOTETOACCTS, aUTOCOMMIT);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PO_EditPOLine")]
+		public int PO_EditPOLine(
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POLINEID", DbType="BigInt")] System.Nullable<long> pOLINEID, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="PONUM", DbType="Decimal(8,0)")] System.Nullable<decimal> pONUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POREVISION", DbType="SmallInt")] System.Nullable<short> pOREVISION, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="POLINENUM", DbType="SmallInt")] System.Nullable<short> pOLINENUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LINETYPE", DbType="NVarChar(5)")] string lINETYPE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="CATALOGCODE", DbType="NVarChar(30)")] string cATALOGCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="COSTCODE", DbType="NVarChar(30)")] string cOSTCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="DESCRIPTION", DbType="NVarChar(500)")] string dESCRIPTION, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERQTY", DbType="Decimal(16,4)")] System.Nullable<decimal> oRDERQTY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ORDERUNIT", DbType="NVarChar(15)")] string oRDERUNIT, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="UNITCOST", DbType="Decimal(16,4)")] System.Nullable<decimal> uNITCOST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LINECOST", DbType="Decimal(16,4)")] System.Nullable<decimal> lINECOST, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ITEMNUM", DbType="NVarChar(30)")] string iTEMNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MODELNUM", DbType="NVarChar(20)")] string mODELNUM, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUESTEDBYCODE", DbType="NVarChar(10)")] string rEQUESTEDBYCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REQUESTEDBYNAME", DbType="NVarChar(80)")] string rEQUESTEDBYNAME, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="MANUFACUTRER", DbType="NVarChar(30)")] string mANUFACUTRER, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="REMARK", DbType="NVarChar(100)")] string rEMARK, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXCODE", DbType="NVarChar(5)")] string tAXCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXRATE", DbType="Decimal(5,2)")] System.Nullable<decimal> tAXRATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXTOTAL", DbType="Decimal(12,4)")] System.Nullable<decimal> tAXTOTAL, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="TAXED", DbType="Bit")] System.Nullable<bool> tAXED, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="ROWSTAMP", DbType="NVarChar(40)")] string rOWSTAMP, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTMODIFIEDBY", DbType="NVarChar(30)")] string lASTMODIFIEDBY, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="LASTMODIFIEDDATE", DbType="DateTime")] System.Nullable<System.DateTime> lASTMODIFIEDDATE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="AUTOCOMMIT", DbType="Bit")] System.Nullable<bool> aUTOCOMMIT, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="STATUSCODE", DbType="VarChar(50)")] string sTATUSCODE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="RECEIPTTOLERANCE", DbType="Decimal(5,2)")] System.Nullable<decimal> rECEIPTTOLERANCE, 
+					[global::System.Data.Linq.Mapping.ParameterAttribute(Name="SPECIFICATION", DbType="NVarChar(250)")] string sPECIFICATION)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pOLINEID, pONUM, pOREVISION, pOLINENUM, lINETYPE, cATALOGCODE, cOSTCODE, dESCRIPTION, oRDERQTY, oRDERUNIT, uNITCOST, lINECOST, iTEMNUM, mODELNUM, rEQUESTEDBYCODE, rEQUESTEDBYNAME, mANUFACUTRER, rEMARK, tAXCODE, tAXRATE, tAXTOTAL, tAXED, rOWSTAMP, lASTMODIFIEDBY, lASTMODIFIEDDATE, aUTOCOMMIT, sTATUSCODE, rECEIPTTOLERANCE, sPECIFICATION);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -21704,716 +21709,6 @@ namespace FSPBAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.A_POLINE")]
-	public partial class A_POLINE : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AUDITID;
-		
-		private string _AUDITACTION;
-		
-		private string _AUDITBY;
-		
-		private System.Nullable<System.DateTime> _AUDITTIMESTAMP;
-		
-		private System.Nullable<long> _POLINEID;
-		
-		private System.Nullable<decimal> _PONUM;
-		
-		private System.Nullable<short> _POREVISION;
-		
-		private System.Nullable<short> _POLINENUM;
-		
-		private string _LINETYPE;
-		
-		private string _COSTCODE;
-		
-		private string _CATALOGCODE;
-		
-		private string _DESCRIPTION;
-		
-		private System.Nullable<decimal> _ORDERQTY;
-		
-		private string _ORDERUNIT;
-		
-		private System.Nullable<decimal> _UNITCOST;
-		
-		private System.Nullable<decimal> _LINECOST;
-		
-		private string _ITEMNUM;
-		
-		private string _MODELNUM;
-		
-		private string _REQUESTEDBYCODE;
-		
-		private string _REQUESTEDBYNAME;
-		
-		private System.Nullable<System.DateTime> _REQDELIVERYDATE;
-		
-		private string _MANUFACUTRER;
-		
-		private string _REMARK;
-		
-		private string _TAXCODE;
-		
-		private System.Nullable<decimal> _TAXTOTAL;
-		
-		private System.Nullable<bool> _TAXED;
-		
-		private string _ROWSTAMP;
-		
-		private System.Nullable<decimal> _TAXRATE;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAUDITIDChanging(int value);
-    partial void OnAUDITIDChanged();
-    partial void OnAUDITACTIONChanging(string value);
-    partial void OnAUDITACTIONChanged();
-    partial void OnAUDITBYChanging(string value);
-    partial void OnAUDITBYChanged();
-    partial void OnAUDITTIMESTAMPChanging(System.Nullable<System.DateTime> value);
-    partial void OnAUDITTIMESTAMPChanged();
-    partial void OnPOLINEIDChanging(System.Nullable<long> value);
-    partial void OnPOLINEIDChanged();
-    partial void OnPONUMChanging(System.Nullable<decimal> value);
-    partial void OnPONUMChanged();
-    partial void OnPOREVISIONChanging(System.Nullable<short> value);
-    partial void OnPOREVISIONChanged();
-    partial void OnPOLINENUMChanging(System.Nullable<short> value);
-    partial void OnPOLINENUMChanged();
-    partial void OnLINETYPEChanging(string value);
-    partial void OnLINETYPEChanged();
-    partial void OnCOSTCODEChanging(string value);
-    partial void OnCOSTCODEChanged();
-    partial void OnCATALOGCODEChanging(string value);
-    partial void OnCATALOGCODEChanged();
-    partial void OnDESCRIPTIONChanging(string value);
-    partial void OnDESCRIPTIONChanged();
-    partial void OnORDERQTYChanging(System.Nullable<decimal> value);
-    partial void OnORDERQTYChanged();
-    partial void OnORDERUNITChanging(string value);
-    partial void OnORDERUNITChanged();
-    partial void OnUNITCOSTChanging(System.Nullable<decimal> value);
-    partial void OnUNITCOSTChanged();
-    partial void OnLINECOSTChanging(System.Nullable<decimal> value);
-    partial void OnLINECOSTChanged();
-    partial void OnITEMNUMChanging(string value);
-    partial void OnITEMNUMChanged();
-    partial void OnMODELNUMChanging(string value);
-    partial void OnMODELNUMChanged();
-    partial void OnREQUESTEDBYCODEChanging(string value);
-    partial void OnREQUESTEDBYCODEChanged();
-    partial void OnREQUESTEDBYNAMEChanging(string value);
-    partial void OnREQUESTEDBYNAMEChanged();
-    partial void OnREQDELIVERYDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnREQDELIVERYDATEChanged();
-    partial void OnMANUFACUTRERChanging(string value);
-    partial void OnMANUFACUTRERChanged();
-    partial void OnREMARKChanging(string value);
-    partial void OnREMARKChanged();
-    partial void OnTAXCODEChanging(string value);
-    partial void OnTAXCODEChanged();
-    partial void OnTAXTOTALChanging(System.Nullable<decimal> value);
-    partial void OnTAXTOTALChanged();
-    partial void OnTAXEDChanging(System.Nullable<bool> value);
-    partial void OnTAXEDChanged();
-    partial void OnROWSTAMPChanging(string value);
-    partial void OnROWSTAMPChanged();
-    partial void OnTAXRATEChanging(System.Nullable<decimal> value);
-    partial void OnTAXRATEChanged();
-    #endregion
-		
-		public A_POLINE()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AUDITID
-		{
-			get
-			{
-				return this._AUDITID;
-			}
-			set
-			{
-				if ((this._AUDITID != value))
-				{
-					this.OnAUDITIDChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITID = value;
-					this.SendPropertyChanged("AUDITID");
-					this.OnAUDITIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITACTION", DbType="NVarChar(10)")]
-		public string AUDITACTION
-		{
-			get
-			{
-				return this._AUDITACTION;
-			}
-			set
-			{
-				if ((this._AUDITACTION != value))
-				{
-					this.OnAUDITACTIONChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITACTION = value;
-					this.SendPropertyChanged("AUDITACTION");
-					this.OnAUDITACTIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITBY", DbType="NVarChar(30)")]
-		public string AUDITBY
-		{
-			get
-			{
-				return this._AUDITBY;
-			}
-			set
-			{
-				if ((this._AUDITBY != value))
-				{
-					this.OnAUDITBYChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITBY = value;
-					this.SendPropertyChanged("AUDITBY");
-					this.OnAUDITBYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITTIMESTAMP", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AUDITTIMESTAMP
-		{
-			get
-			{
-				return this._AUDITTIMESTAMP;
-			}
-			set
-			{
-				if ((this._AUDITTIMESTAMP != value))
-				{
-					this.OnAUDITTIMESTAMPChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITTIMESTAMP = value;
-					this.SendPropertyChanged("AUDITTIMESTAMP");
-					this.OnAUDITTIMESTAMPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POLINEID", DbType="BigInt")]
-		public System.Nullable<long> POLINEID
-		{
-			get
-			{
-				return this._POLINEID;
-			}
-			set
-			{
-				if ((this._POLINEID != value))
-				{
-					this.OnPOLINEIDChanging(value);
-					this.SendPropertyChanging();
-					this._POLINEID = value;
-					this.SendPropertyChanged("POLINEID");
-					this.OnPOLINEIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONUM", DbType="Decimal(8,0)")]
-		public System.Nullable<decimal> PONUM
-		{
-			get
-			{
-				return this._PONUM;
-			}
-			set
-			{
-				if ((this._PONUM != value))
-				{
-					this.OnPONUMChanging(value);
-					this.SendPropertyChanging();
-					this._PONUM = value;
-					this.SendPropertyChanged("PONUM");
-					this.OnPONUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREVISION", DbType="SmallInt")]
-		public System.Nullable<short> POREVISION
-		{
-			get
-			{
-				return this._POREVISION;
-			}
-			set
-			{
-				if ((this._POREVISION != value))
-				{
-					this.OnPOREVISIONChanging(value);
-					this.SendPropertyChanging();
-					this._POREVISION = value;
-					this.SendPropertyChanged("POREVISION");
-					this.OnPOREVISIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POLINENUM", DbType="SmallInt")]
-		public System.Nullable<short> POLINENUM
-		{
-			get
-			{
-				return this._POLINENUM;
-			}
-			set
-			{
-				if ((this._POLINENUM != value))
-				{
-					this.OnPOLINENUMChanging(value);
-					this.SendPropertyChanging();
-					this._POLINENUM = value;
-					this.SendPropertyChanged("POLINENUM");
-					this.OnPOLINENUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LINETYPE", DbType="NVarChar(5)")]
-		public string LINETYPE
-		{
-			get
-			{
-				return this._LINETYPE;
-			}
-			set
-			{
-				if ((this._LINETYPE != value))
-				{
-					this.OnLINETYPEChanging(value);
-					this.SendPropertyChanging();
-					this._LINETYPE = value;
-					this.SendPropertyChanged("LINETYPE");
-					this.OnLINETYPEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COSTCODE", DbType="NVarChar(30)")]
-		public string COSTCODE
-		{
-			get
-			{
-				return this._COSTCODE;
-			}
-			set
-			{
-				if ((this._COSTCODE != value))
-				{
-					this.OnCOSTCODEChanging(value);
-					this.SendPropertyChanging();
-					this._COSTCODE = value;
-					this.SendPropertyChanged("COSTCODE");
-					this.OnCOSTCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CATALOGCODE", DbType="NVarChar(30)")]
-		public string CATALOGCODE
-		{
-			get
-			{
-				return this._CATALOGCODE;
-			}
-			set
-			{
-				if ((this._CATALOGCODE != value))
-				{
-					this.OnCATALOGCODEChanging(value);
-					this.SendPropertyChanging();
-					this._CATALOGCODE = value;
-					this.SendPropertyChanged("CATALOGCODE");
-					this.OnCATALOGCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(500)")]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this.OnDESCRIPTIONChanging(value);
-					this.SendPropertyChanging();
-					this._DESCRIPTION = value;
-					this.SendPropertyChanged("DESCRIPTION");
-					this.OnDESCRIPTIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERQTY", DbType="Decimal(16,2)")]
-		public System.Nullable<decimal> ORDERQTY
-		{
-			get
-			{
-				return this._ORDERQTY;
-			}
-			set
-			{
-				if ((this._ORDERQTY != value))
-				{
-					this.OnORDERQTYChanging(value);
-					this.SendPropertyChanging();
-					this._ORDERQTY = value;
-					this.SendPropertyChanged("ORDERQTY");
-					this.OnORDERQTYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERUNIT", DbType="NVarChar(15)")]
-		public string ORDERUNIT
-		{
-			get
-			{
-				return this._ORDERUNIT;
-			}
-			set
-			{
-				if ((this._ORDERUNIT != value))
-				{
-					this.OnORDERUNITChanging(value);
-					this.SendPropertyChanging();
-					this._ORDERUNIT = value;
-					this.SendPropertyChanged("ORDERUNIT");
-					this.OnORDERUNITChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITCOST", DbType="Decimal(16,2)")]
-		public System.Nullable<decimal> UNITCOST
-		{
-			get
-			{
-				return this._UNITCOST;
-			}
-			set
-			{
-				if ((this._UNITCOST != value))
-				{
-					this.OnUNITCOSTChanging(value);
-					this.SendPropertyChanging();
-					this._UNITCOST = value;
-					this.SendPropertyChanged("UNITCOST");
-					this.OnUNITCOSTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LINECOST", DbType="Decimal(16,2)")]
-		public System.Nullable<decimal> LINECOST
-		{
-			get
-			{
-				return this._LINECOST;
-			}
-			set
-			{
-				if ((this._LINECOST != value))
-				{
-					this.OnLINECOSTChanging(value);
-					this.SendPropertyChanging();
-					this._LINECOST = value;
-					this.SendPropertyChanged("LINECOST");
-					this.OnLINECOSTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ITEMNUM", DbType="NVarChar(30)")]
-		public string ITEMNUM
-		{
-			get
-			{
-				return this._ITEMNUM;
-			}
-			set
-			{
-				if ((this._ITEMNUM != value))
-				{
-					this.OnITEMNUMChanging(value);
-					this.SendPropertyChanging();
-					this._ITEMNUM = value;
-					this.SendPropertyChanged("ITEMNUM");
-					this.OnITEMNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MODELNUM", DbType="NVarChar(8)")]
-		public string MODELNUM
-		{
-			get
-			{
-				return this._MODELNUM;
-			}
-			set
-			{
-				if ((this._MODELNUM != value))
-				{
-					this.OnMODELNUMChanging(value);
-					this.SendPropertyChanging();
-					this._MODELNUM = value;
-					this.SendPropertyChanged("MODELNUM");
-					this.OnMODELNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUESTEDBYCODE", DbType="NVarChar(10)")]
-		public string REQUESTEDBYCODE
-		{
-			get
-			{
-				return this._REQUESTEDBYCODE;
-			}
-			set
-			{
-				if ((this._REQUESTEDBYCODE != value))
-				{
-					this.OnREQUESTEDBYCODEChanging(value);
-					this.SendPropertyChanging();
-					this._REQUESTEDBYCODE = value;
-					this.SendPropertyChanged("REQUESTEDBYCODE");
-					this.OnREQUESTEDBYCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUESTEDBYNAME", DbType="NVarChar(80)")]
-		public string REQUESTEDBYNAME
-		{
-			get
-			{
-				return this._REQUESTEDBYNAME;
-			}
-			set
-			{
-				if ((this._REQUESTEDBYNAME != value))
-				{
-					this.OnREQUESTEDBYNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._REQUESTEDBYNAME = value;
-					this.SendPropertyChanged("REQUESTEDBYNAME");
-					this.OnREQUESTEDBYNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQDELIVERYDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> REQDELIVERYDATE
-		{
-			get
-			{
-				return this._REQDELIVERYDATE;
-			}
-			set
-			{
-				if ((this._REQDELIVERYDATE != value))
-				{
-					this.OnREQDELIVERYDATEChanging(value);
-					this.SendPropertyChanging();
-					this._REQDELIVERYDATE = value;
-					this.SendPropertyChanged("REQDELIVERYDATE");
-					this.OnREQDELIVERYDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANUFACUTRER", DbType="NVarChar(30)")]
-		public string MANUFACUTRER
-		{
-			get
-			{
-				return this._MANUFACUTRER;
-			}
-			set
-			{
-				if ((this._MANUFACUTRER != value))
-				{
-					this.OnMANUFACUTRERChanging(value);
-					this.SendPropertyChanging();
-					this._MANUFACUTRER = value;
-					this.SendPropertyChanged("MANUFACUTRER");
-					this.OnMANUFACUTRERChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REMARK", DbType="NVarChar(100)")]
-		public string REMARK
-		{
-			get
-			{
-				return this._REMARK;
-			}
-			set
-			{
-				if ((this._REMARK != value))
-				{
-					this.OnREMARKChanging(value);
-					this.SendPropertyChanging();
-					this._REMARK = value;
-					this.SendPropertyChanged("REMARK");
-					this.OnREMARKChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXCODE", DbType="NVarChar(5)")]
-		public string TAXCODE
-		{
-			get
-			{
-				return this._TAXCODE;
-			}
-			set
-			{
-				if ((this._TAXCODE != value))
-				{
-					this.OnTAXCODEChanging(value);
-					this.SendPropertyChanging();
-					this._TAXCODE = value;
-					this.SendPropertyChanged("TAXCODE");
-					this.OnTAXCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXTOTAL", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> TAXTOTAL
-		{
-			get
-			{
-				return this._TAXTOTAL;
-			}
-			set
-			{
-				if ((this._TAXTOTAL != value))
-				{
-					this.OnTAXTOTALChanging(value);
-					this.SendPropertyChanging();
-					this._TAXTOTAL = value;
-					this.SendPropertyChanged("TAXTOTAL");
-					this.OnTAXTOTALChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXED", DbType="Bit")]
-		public System.Nullable<bool> TAXED
-		{
-			get
-			{
-				return this._TAXED;
-			}
-			set
-			{
-				if ((this._TAXED != value))
-				{
-					this.OnTAXEDChanging(value);
-					this.SendPropertyChanging();
-					this._TAXED = value;
-					this.SendPropertyChanged("TAXED");
-					this.OnTAXEDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ROWSTAMP", DbType="NVarChar(40)")]
-		public string ROWSTAMP
-		{
-			get
-			{
-				return this._ROWSTAMP;
-			}
-			set
-			{
-				if ((this._ROWSTAMP != value))
-				{
-					this.OnROWSTAMPChanging(value);
-					this.SendPropertyChanging();
-					this._ROWSTAMP = value;
-					this.SendPropertyChanged("ROWSTAMP");
-					this.OnROWSTAMPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXRATE", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> TAXRATE
-		{
-			get
-			{
-				return this._TAXRATE;
-			}
-			set
-			{
-				if ((this._TAXRATE != value))
-				{
-					this.OnTAXRATEChanging(value);
-					this.SendPropertyChanging();
-					this._TAXRATE = value;
-					this.SendPropertyChanged("TAXRATE");
-					this.OnTAXRATEChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
 	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -23250,2869 +22545,6 @@ namespace FSPBAL
 					this._emp_code = value;
 					this.SendPropertyChanged("emp_code");
 					this.Onemp_codeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PO")]
-	public partial class PO : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _POID;
-		
-		private decimal _PONUM;
-		
-		private string _POREF;
-		
-		private long _POSID;
-		
-		private short _POREVISION;
-		
-		private string _DESCRIPTION;
-		
-		private string _ORGCODE;
-		
-		private string _ORGNAME;
-		
-		private string _PROJECTCODE;
-		
-		private string _PROJECTNAME;
-		
-		private string _MRNUM;
-		
-		private string _QNUM;
-		
-		private System.Nullable<System.DateTime> _QDATE;
-		
-		private string _PAYMENTTERMS;
-		
-		private System.Nullable<System.DateTime> _ORDERDATE;
-		
-		private System.Nullable<System.DateTime> _REQUIREDATE;
-		
-		private System.Nullable<System.DateTime> _VENDORDATE;
-		
-		private string _POTYPE;
-		
-		private string _ORIGINALPONUM;
-		
-		private string _STATUS;
-		
-		private System.Nullable<System.DateTime> _STATUSDATE;
-		
-		private string _BUYERCODE;
-		
-		private string _BUYERNAME;
-		
-		private System.Nullable<int> _VENDORID;
-		
-		private string _VENDORNAME;
-		
-		private string _VENDORADDR;
-		
-		private string _VENDORATTN1NAME;
-		
-		private string _VENDORATTN1POS;
-		
-		private string _VENDORATTN1MOB;
-		
-		private string _VENDORATTN1TEL;
-		
-		private string _VENDORATTN1FAX;
-		
-		private string _VENDORATTN1EMAIL;
-		
-		private string _VENDORATTN2NAME;
-		
-		private string _VENDORATTN2POS;
-		
-		private string _VENDORATTN2MOB;
-		
-		private string _VENDORATTN2TEL;
-		
-		private string _VENDORATTN2FAX;
-		
-		private string _VENDORATTN2EMAIL;
-		
-		private string _SHIPTOADDR;
-		
-		private string _SHIPTOATTN1NAME;
-		
-		private string _SHIPTOATTN1MOB;
-		
-		private string _SHIPTOATTN1POS;
-		
-		private string _SHIPTOATTN2NAME;
-		
-		private string _SHIPTOATTN2MOB;
-		
-		private string _SHIPTOATTN2POS;
-		
-		private System.Nullable<decimal> _TOTALCOST;
-		
-		private string _CURRENCYCODE;
-		
-		private System.Nullable<decimal> _TOTALTAX;
-		
-		private System.Nullable<decimal> _PRETAXTOTAL;
-		
-		private string _CREATEDBY;
-		
-		private System.Nullable<System.DateTime> _CREATIONDATETIME;
-		
-		private string _LASTMODIFIEDBY;
-		
-		private System.Nullable<System.DateTime> _LASTMODIFIEDDATE;
-		
-		private System.Nullable<int> _CONTRACTREFNUM;
-		
-		private string _REVCOMMENTS;
-		
-		private bool _HISTORYFLAG;
-		
-		private string _INTNOTE;
-		
-		private string _EXTNOTE;
-		
-		private System.Nullable<bool> _SENDNOTETOACCTS;
-		
-		private EntitySet<A_PO> _A_POs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPOIDChanging(System.Guid value);
-    partial void OnPOIDChanged();
-    partial void OnPONUMChanging(decimal value);
-    partial void OnPONUMChanged();
-    partial void OnPOREFChanging(string value);
-    partial void OnPOREFChanged();
-    partial void OnPOSIDChanging(long value);
-    partial void OnPOSIDChanged();
-    partial void OnPOREVISIONChanging(short value);
-    partial void OnPOREVISIONChanged();
-    partial void OnDESCRIPTIONChanging(string value);
-    partial void OnDESCRIPTIONChanged();
-    partial void OnORGCODEChanging(string value);
-    partial void OnORGCODEChanged();
-    partial void OnORGNAMEChanging(string value);
-    partial void OnORGNAMEChanged();
-    partial void OnPROJECTCODEChanging(string value);
-    partial void OnPROJECTCODEChanged();
-    partial void OnPROJECTNAMEChanging(string value);
-    partial void OnPROJECTNAMEChanged();
-    partial void OnMRNUMChanging(string value);
-    partial void OnMRNUMChanged();
-    partial void OnQNUMChanging(string value);
-    partial void OnQNUMChanged();
-    partial void OnQDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnQDATEChanged();
-    partial void OnPAYMENTTERMSChanging(string value);
-    partial void OnPAYMENTTERMSChanged();
-    partial void OnORDERDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnORDERDATEChanged();
-    partial void OnREQUIREDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnREQUIREDATEChanged();
-    partial void OnVENDORDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnVENDORDATEChanged();
-    partial void OnPOTYPEChanging(string value);
-    partial void OnPOTYPEChanged();
-    partial void OnORIGINALPONUMChanging(string value);
-    partial void OnORIGINALPONUMChanged();
-    partial void OnSTATUSChanging(string value);
-    partial void OnSTATUSChanged();
-    partial void OnSTATUSDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnSTATUSDATEChanged();
-    partial void OnBUYERCODEChanging(string value);
-    partial void OnBUYERCODEChanged();
-    partial void OnBUYERNAMEChanging(string value);
-    partial void OnBUYERNAMEChanged();
-    partial void OnVENDORIDChanging(System.Nullable<int> value);
-    partial void OnVENDORIDChanged();
-    partial void OnVENDORNAMEChanging(string value);
-    partial void OnVENDORNAMEChanged();
-    partial void OnVENDORADDRChanging(string value);
-    partial void OnVENDORADDRChanged();
-    partial void OnVENDORATTN1NAMEChanging(string value);
-    partial void OnVENDORATTN1NAMEChanged();
-    partial void OnVENDORATTN1POSChanging(string value);
-    partial void OnVENDORATTN1POSChanged();
-    partial void OnVENDORATTN1MOBChanging(string value);
-    partial void OnVENDORATTN1MOBChanged();
-    partial void OnVENDORATTN1TELChanging(string value);
-    partial void OnVENDORATTN1TELChanged();
-    partial void OnVENDORATTN1FAXChanging(string value);
-    partial void OnVENDORATTN1FAXChanged();
-    partial void OnVENDORATTN1EMAILChanging(string value);
-    partial void OnVENDORATTN1EMAILChanged();
-    partial void OnVENDORATTN2NAMEChanging(string value);
-    partial void OnVENDORATTN2NAMEChanged();
-    partial void OnVENDORATTN2POSChanging(string value);
-    partial void OnVENDORATTN2POSChanged();
-    partial void OnVENDORATTN2MOBChanging(string value);
-    partial void OnVENDORATTN2MOBChanged();
-    partial void OnVENDORATTN2TELChanging(string value);
-    partial void OnVENDORATTN2TELChanged();
-    partial void OnVENDORATTN2FAXChanging(string value);
-    partial void OnVENDORATTN2FAXChanged();
-    partial void OnVENDORATTN2EMAILChanging(string value);
-    partial void OnVENDORATTN2EMAILChanged();
-    partial void OnSHIPTOADDRChanging(string value);
-    partial void OnSHIPTOADDRChanged();
-    partial void OnSHIPTOATTN1NAMEChanging(string value);
-    partial void OnSHIPTOATTN1NAMEChanged();
-    partial void OnSHIPTOATTN1MOBChanging(string value);
-    partial void OnSHIPTOATTN1MOBChanged();
-    partial void OnSHIPTOATTN1POSChanging(string value);
-    partial void OnSHIPTOATTN1POSChanged();
-    partial void OnSHIPTOATTN2NAMEChanging(string value);
-    partial void OnSHIPTOATTN2NAMEChanged();
-    partial void OnSHIPTOATTN2MOBChanging(string value);
-    partial void OnSHIPTOATTN2MOBChanged();
-    partial void OnSHIPTOATTN2POSChanging(string value);
-    partial void OnSHIPTOATTN2POSChanged();
-    partial void OnTOTALCOSTChanging(System.Nullable<decimal> value);
-    partial void OnTOTALCOSTChanged();
-    partial void OnCURRENCYCODEChanging(string value);
-    partial void OnCURRENCYCODEChanged();
-    partial void OnTOTALTAXChanging(System.Nullable<decimal> value);
-    partial void OnTOTALTAXChanged();
-    partial void OnPRETAXTOTALChanging(System.Nullable<decimal> value);
-    partial void OnPRETAXTOTALChanged();
-    partial void OnCREATEDBYChanging(string value);
-    partial void OnCREATEDBYChanged();
-    partial void OnCREATIONDATETIMEChanging(System.Nullable<System.DateTime> value);
-    partial void OnCREATIONDATETIMEChanged();
-    partial void OnLASTMODIFIEDBYChanging(string value);
-    partial void OnLASTMODIFIEDBYChanged();
-    partial void OnLASTMODIFIEDDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnLASTMODIFIEDDATEChanged();
-    partial void OnCONTRACTREFNUMChanging(System.Nullable<int> value);
-    partial void OnCONTRACTREFNUMChanged();
-    partial void OnREVCOMMENTSChanging(string value);
-    partial void OnREVCOMMENTSChanged();
-    partial void OnHISTORYFLAGChanging(bool value);
-    partial void OnHISTORYFLAGChanged();
-    partial void OnINTNOTEChanging(string value);
-    partial void OnINTNOTEChanged();
-    partial void OnEXTNOTEChanging(string value);
-    partial void OnEXTNOTEChanged();
-    partial void OnSENDNOTETOACCTSChanging(System.Nullable<bool> value);
-    partial void OnSENDNOTETOACCTSChanged();
-    #endregion
-		
-		public PO()
-		{
-			this._A_POs = new EntitySet<A_PO>(new Action<A_PO>(this.attach_A_POs), new Action<A_PO>(this.detach_A_POs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid POID
-		{
-			get
-			{
-				return this._POID;
-			}
-			set
-			{
-				if ((this._POID != value))
-				{
-					this.OnPOIDChanging(value);
-					this.SendPropertyChanging();
-					this._POID = value;
-					this.SendPropertyChanged("POID");
-					this.OnPOIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONUM", DbType="Decimal(8,0) NOT NULL", IsPrimaryKey=true)]
-		public decimal PONUM
-		{
-			get
-			{
-				return this._PONUM;
-			}
-			set
-			{
-				if ((this._PONUM != value))
-				{
-					this.OnPONUMChanging(value);
-					this.SendPropertyChanging();
-					this._PONUM = value;
-					this.SendPropertyChanged("PONUM");
-					this.OnPONUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREF", DbType="VarChar(80)")]
-		public string POREF
-		{
-			get
-			{
-				return this._POREF;
-			}
-			set
-			{
-				if ((this._POREF != value))
-				{
-					this.OnPOREFChanging(value);
-					this.SendPropertyChanging();
-					this._POREF = value;
-					this.SendPropertyChanged("POREF");
-					this.OnPOREFChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSID", DbType="BigInt NOT NULL")]
-		public long POSID
-		{
-			get
-			{
-				return this._POSID;
-			}
-			set
-			{
-				if ((this._POSID != value))
-				{
-					this.OnPOSIDChanging(value);
-					this.SendPropertyChanging();
-					this._POSID = value;
-					this.SendPropertyChanged("POSID");
-					this.OnPOSIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREVISION", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short POREVISION
-		{
-			get
-			{
-				return this._POREVISION;
-			}
-			set
-			{
-				if ((this._POREVISION != value))
-				{
-					this.OnPOREVISIONChanging(value);
-					this.SendPropertyChanging();
-					this._POREVISION = value;
-					this.SendPropertyChanged("POREVISION");
-					this.OnPOREVISIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(100)")]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this.OnDESCRIPTIONChanging(value);
-					this.SendPropertyChanging();
-					this._DESCRIPTION = value;
-					this.SendPropertyChanged("DESCRIPTION");
-					this.OnDESCRIPTIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGCODE", DbType="NVarChar(30)")]
-		public string ORGCODE
-		{
-			get
-			{
-				return this._ORGCODE;
-			}
-			set
-			{
-				if ((this._ORGCODE != value))
-				{
-					this.OnORGCODEChanging(value);
-					this.SendPropertyChanging();
-					this._ORGCODE = value;
-					this.SendPropertyChanged("ORGCODE");
-					this.OnORGCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGNAME", DbType="NVarChar(50)")]
-		public string ORGNAME
-		{
-			get
-			{
-				return this._ORGNAME;
-			}
-			set
-			{
-				if ((this._ORGNAME != value))
-				{
-					this.OnORGNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._ORGNAME = value;
-					this.SendPropertyChanged("ORGNAME");
-					this.OnORGNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTCODE", DbType="NVarChar(10)")]
-		public string PROJECTCODE
-		{
-			get
-			{
-				return this._PROJECTCODE;
-			}
-			set
-			{
-				if ((this._PROJECTCODE != value))
-				{
-					this.OnPROJECTCODEChanging(value);
-					this.SendPropertyChanging();
-					this._PROJECTCODE = value;
-					this.SendPropertyChanged("PROJECTCODE");
-					this.OnPROJECTCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTNAME", DbType="NVarChar(80)")]
-		public string PROJECTNAME
-		{
-			get
-			{
-				return this._PROJECTNAME;
-			}
-			set
-			{
-				if ((this._PROJECTNAME != value))
-				{
-					this.OnPROJECTNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._PROJECTNAME = value;
-					this.SendPropertyChanged("PROJECTNAME");
-					this.OnPROJECTNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MRNUM", DbType="NVarChar(30)")]
-		public string MRNUM
-		{
-			get
-			{
-				return this._MRNUM;
-			}
-			set
-			{
-				if ((this._MRNUM != value))
-				{
-					this.OnMRNUMChanging(value);
-					this.SendPropertyChanging();
-					this._MRNUM = value;
-					this.SendPropertyChanged("MRNUM");
-					this.OnMRNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QNUM", DbType="NVarChar(30)")]
-		public string QNUM
-		{
-			get
-			{
-				return this._QNUM;
-			}
-			set
-			{
-				if ((this._QNUM != value))
-				{
-					this.OnQNUMChanging(value);
-					this.SendPropertyChanging();
-					this._QNUM = value;
-					this.SendPropertyChanged("QNUM");
-					this.OnQNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> QDATE
-		{
-			get
-			{
-				return this._QDATE;
-			}
-			set
-			{
-				if ((this._QDATE != value))
-				{
-					this.OnQDATEChanging(value);
-					this.SendPropertyChanging();
-					this._QDATE = value;
-					this.SendPropertyChanged("QDATE");
-					this.OnQDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PAYMENTTERMS", DbType="NVarChar(250)")]
-		public string PAYMENTTERMS
-		{
-			get
-			{
-				return this._PAYMENTTERMS;
-			}
-			set
-			{
-				if ((this._PAYMENTTERMS != value))
-				{
-					this.OnPAYMENTTERMSChanging(value);
-					this.SendPropertyChanging();
-					this._PAYMENTTERMS = value;
-					this.SendPropertyChanged("PAYMENTTERMS");
-					this.OnPAYMENTTERMSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> ORDERDATE
-		{
-			get
-			{
-				return this._ORDERDATE;
-			}
-			set
-			{
-				if ((this._ORDERDATE != value))
-				{
-					this.OnORDERDATEChanging(value);
-					this.SendPropertyChanging();
-					this._ORDERDATE = value;
-					this.SendPropertyChanged("ORDERDATE");
-					this.OnORDERDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUIREDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> REQUIREDATE
-		{
-			get
-			{
-				return this._REQUIREDATE;
-			}
-			set
-			{
-				if ((this._REQUIREDATE != value))
-				{
-					this.OnREQUIREDATEChanging(value);
-					this.SendPropertyChanging();
-					this._REQUIREDATE = value;
-					this.SendPropertyChanged("REQUIREDATE");
-					this.OnREQUIREDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> VENDORDATE
-		{
-			get
-			{
-				return this._VENDORDATE;
-			}
-			set
-			{
-				if ((this._VENDORDATE != value))
-				{
-					this.OnVENDORDATEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORDATE = value;
-					this.SendPropertyChanged("VENDORDATE");
-					this.OnVENDORDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POTYPE", DbType="NVarChar(8)")]
-		public string POTYPE
-		{
-			get
-			{
-				return this._POTYPE;
-			}
-			set
-			{
-				if ((this._POTYPE != value))
-				{
-					this.OnPOTYPEChanging(value);
-					this.SendPropertyChanging();
-					this._POTYPE = value;
-					this.SendPropertyChanged("POTYPE");
-					this.OnPOTYPEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORIGINALPONUM", DbType="NVarChar(80)")]
-		public string ORIGINALPONUM
-		{
-			get
-			{
-				return this._ORIGINALPONUM;
-			}
-			set
-			{
-				if ((this._ORIGINALPONUM != value))
-				{
-					this.OnORIGINALPONUMChanging(value);
-					this.SendPropertyChanging();
-					this._ORIGINALPONUM = value;
-					this.SendPropertyChanged("ORIGINALPONUM");
-					this.OnORIGINALPONUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="NVarChar(10)")]
-		public string STATUS
-		{
-			get
-			{
-				return this._STATUS;
-			}
-			set
-			{
-				if ((this._STATUS != value))
-				{
-					this.OnSTATUSChanging(value);
-					this.SendPropertyChanging();
-					this._STATUS = value;
-					this.SendPropertyChanged("STATUS");
-					this.OnSTATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUSDATE", DbType="DateTime")]
-		public System.Nullable<System.DateTime> STATUSDATE
-		{
-			get
-			{
-				return this._STATUSDATE;
-			}
-			set
-			{
-				if ((this._STATUSDATE != value))
-				{
-					this.OnSTATUSDATEChanging(value);
-					this.SendPropertyChanging();
-					this._STATUSDATE = value;
-					this.SendPropertyChanged("STATUSDATE");
-					this.OnSTATUSDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERCODE", DbType="NVarChar(10)")]
-		public string BUYERCODE
-		{
-			get
-			{
-				return this._BUYERCODE;
-			}
-			set
-			{
-				if ((this._BUYERCODE != value))
-				{
-					this.OnBUYERCODEChanging(value);
-					this.SendPropertyChanging();
-					this._BUYERCODE = value;
-					this.SendPropertyChanged("BUYERCODE");
-					this.OnBUYERCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERNAME", DbType="NVarChar(100)")]
-		public string BUYERNAME
-		{
-			get
-			{
-				return this._BUYERNAME;
-			}
-			set
-			{
-				if ((this._BUYERNAME != value))
-				{
-					this.OnBUYERNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._BUYERNAME = value;
-					this.SendPropertyChanged("BUYERNAME");
-					this.OnBUYERNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORID", DbType="Int")]
-		public System.Nullable<int> VENDORID
-		{
-			get
-			{
-				return this._VENDORID;
-			}
-			set
-			{
-				if ((this._VENDORID != value))
-				{
-					this.OnVENDORIDChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORID = value;
-					this.SendPropertyChanged("VENDORID");
-					this.OnVENDORIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORNAME", DbType="NVarChar(100)")]
-		public string VENDORNAME
-		{
-			get
-			{
-				return this._VENDORNAME;
-			}
-			set
-			{
-				if ((this._VENDORNAME != value))
-				{
-					this.OnVENDORNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORNAME = value;
-					this.SendPropertyChanged("VENDORNAME");
-					this.OnVENDORNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORADDR", DbType="NVarChar(250)")]
-		public string VENDORADDR
-		{
-			get
-			{
-				return this._VENDORADDR;
-			}
-			set
-			{
-				if ((this._VENDORADDR != value))
-				{
-					this.OnVENDORADDRChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORADDR = value;
-					this.SendPropertyChanged("VENDORADDR");
-					this.OnVENDORADDRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1NAME", DbType="NVarChar(80)")]
-		public string VENDORATTN1NAME
-		{
-			get
-			{
-				return this._VENDORATTN1NAME;
-			}
-			set
-			{
-				if ((this._VENDORATTN1NAME != value))
-				{
-					this.OnVENDORATTN1NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1NAME = value;
-					this.SendPropertyChanged("VENDORATTN1NAME");
-					this.OnVENDORATTN1NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1POS", DbType="NVarChar(80)")]
-		public string VENDORATTN1POS
-		{
-			get
-			{
-				return this._VENDORATTN1POS;
-			}
-			set
-			{
-				if ((this._VENDORATTN1POS != value))
-				{
-					this.OnVENDORATTN1POSChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1POS = value;
-					this.SendPropertyChanged("VENDORATTN1POS");
-					this.OnVENDORATTN1POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1MOB", DbType="NVarChar(30)")]
-		public string VENDORATTN1MOB
-		{
-			get
-			{
-				return this._VENDORATTN1MOB;
-			}
-			set
-			{
-				if ((this._VENDORATTN1MOB != value))
-				{
-					this.OnVENDORATTN1MOBChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1MOB = value;
-					this.SendPropertyChanged("VENDORATTN1MOB");
-					this.OnVENDORATTN1MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1TEL", DbType="NVarChar(30)")]
-		public string VENDORATTN1TEL
-		{
-			get
-			{
-				return this._VENDORATTN1TEL;
-			}
-			set
-			{
-				if ((this._VENDORATTN1TEL != value))
-				{
-					this.OnVENDORATTN1TELChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1TEL = value;
-					this.SendPropertyChanged("VENDORATTN1TEL");
-					this.OnVENDORATTN1TELChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1FAX", DbType="NVarChar(30)")]
-		public string VENDORATTN1FAX
-		{
-			get
-			{
-				return this._VENDORATTN1FAX;
-			}
-			set
-			{
-				if ((this._VENDORATTN1FAX != value))
-				{
-					this.OnVENDORATTN1FAXChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1FAX = value;
-					this.SendPropertyChanged("VENDORATTN1FAX");
-					this.OnVENDORATTN1FAXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1EMAIL", DbType="NVarChar(80)")]
-		public string VENDORATTN1EMAIL
-		{
-			get
-			{
-				return this._VENDORATTN1EMAIL;
-			}
-			set
-			{
-				if ((this._VENDORATTN1EMAIL != value))
-				{
-					this.OnVENDORATTN1EMAILChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1EMAIL = value;
-					this.SendPropertyChanged("VENDORATTN1EMAIL");
-					this.OnVENDORATTN1EMAILChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2NAME", DbType="NVarChar(80)")]
-		public string VENDORATTN2NAME
-		{
-			get
-			{
-				return this._VENDORATTN2NAME;
-			}
-			set
-			{
-				if ((this._VENDORATTN2NAME != value))
-				{
-					this.OnVENDORATTN2NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2NAME = value;
-					this.SendPropertyChanged("VENDORATTN2NAME");
-					this.OnVENDORATTN2NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2POS", DbType="NVarChar(80)")]
-		public string VENDORATTN2POS
-		{
-			get
-			{
-				return this._VENDORATTN2POS;
-			}
-			set
-			{
-				if ((this._VENDORATTN2POS != value))
-				{
-					this.OnVENDORATTN2POSChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2POS = value;
-					this.SendPropertyChanged("VENDORATTN2POS");
-					this.OnVENDORATTN2POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2MOB", DbType="NVarChar(30)")]
-		public string VENDORATTN2MOB
-		{
-			get
-			{
-				return this._VENDORATTN2MOB;
-			}
-			set
-			{
-				if ((this._VENDORATTN2MOB != value))
-				{
-					this.OnVENDORATTN2MOBChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2MOB = value;
-					this.SendPropertyChanged("VENDORATTN2MOB");
-					this.OnVENDORATTN2MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2TEL", DbType="NVarChar(30)")]
-		public string VENDORATTN2TEL
-		{
-			get
-			{
-				return this._VENDORATTN2TEL;
-			}
-			set
-			{
-				if ((this._VENDORATTN2TEL != value))
-				{
-					this.OnVENDORATTN2TELChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2TEL = value;
-					this.SendPropertyChanged("VENDORATTN2TEL");
-					this.OnVENDORATTN2TELChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2FAX", DbType="NVarChar(30)")]
-		public string VENDORATTN2FAX
-		{
-			get
-			{
-				return this._VENDORATTN2FAX;
-			}
-			set
-			{
-				if ((this._VENDORATTN2FAX != value))
-				{
-					this.OnVENDORATTN2FAXChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2FAX = value;
-					this.SendPropertyChanged("VENDORATTN2FAX");
-					this.OnVENDORATTN2FAXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2EMAIL", DbType="NVarChar(80)")]
-		public string VENDORATTN2EMAIL
-		{
-			get
-			{
-				return this._VENDORATTN2EMAIL;
-			}
-			set
-			{
-				if ((this._VENDORATTN2EMAIL != value))
-				{
-					this.OnVENDORATTN2EMAILChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2EMAIL = value;
-					this.SendPropertyChanged("VENDORATTN2EMAIL");
-					this.OnVENDORATTN2EMAILChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOADDR", DbType="NVarChar(250)")]
-		public string SHIPTOADDR
-		{
-			get
-			{
-				return this._SHIPTOADDR;
-			}
-			set
-			{
-				if ((this._SHIPTOADDR != value))
-				{
-					this.OnSHIPTOADDRChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOADDR = value;
-					this.SendPropertyChanged("SHIPTOADDR");
-					this.OnSHIPTOADDRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1NAME", DbType="NVarChar(80)")]
-		public string SHIPTOATTN1NAME
-		{
-			get
-			{
-				return this._SHIPTOATTN1NAME;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN1NAME != value))
-				{
-					this.OnSHIPTOATTN1NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN1NAME = value;
-					this.SendPropertyChanged("SHIPTOATTN1NAME");
-					this.OnSHIPTOATTN1NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1MOB", DbType="NVarChar(30)")]
-		public string SHIPTOATTN1MOB
-		{
-			get
-			{
-				return this._SHIPTOATTN1MOB;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN1MOB != value))
-				{
-					this.OnSHIPTOATTN1MOBChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN1MOB = value;
-					this.SendPropertyChanged("SHIPTOATTN1MOB");
-					this.OnSHIPTOATTN1MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1POS", DbType="NVarChar(50)")]
-		public string SHIPTOATTN1POS
-		{
-			get
-			{
-				return this._SHIPTOATTN1POS;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN1POS != value))
-				{
-					this.OnSHIPTOATTN1POSChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN1POS = value;
-					this.SendPropertyChanged("SHIPTOATTN1POS");
-					this.OnSHIPTOATTN1POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2NAME", DbType="NVarChar(80)")]
-		public string SHIPTOATTN2NAME
-		{
-			get
-			{
-				return this._SHIPTOATTN2NAME;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN2NAME != value))
-				{
-					this.OnSHIPTOATTN2NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN2NAME = value;
-					this.SendPropertyChanged("SHIPTOATTN2NAME");
-					this.OnSHIPTOATTN2NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2MOB", DbType="NVarChar(30)")]
-		public string SHIPTOATTN2MOB
-		{
-			get
-			{
-				return this._SHIPTOATTN2MOB;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN2MOB != value))
-				{
-					this.OnSHIPTOATTN2MOBChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN2MOB = value;
-					this.SendPropertyChanged("SHIPTOATTN2MOB");
-					this.OnSHIPTOATTN2MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2POS", DbType="NVarChar(50)")]
-		public string SHIPTOATTN2POS
-		{
-			get
-			{
-				return this._SHIPTOATTN2POS;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN2POS != value))
-				{
-					this.OnSHIPTOATTN2POSChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN2POS = value;
-					this.SendPropertyChanged("SHIPTOATTN2POS");
-					this.OnSHIPTOATTN2POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALCOST", DbType="Decimal(16,2)")]
-		public System.Nullable<decimal> TOTALCOST
-		{
-			get
-			{
-				return this._TOTALCOST;
-			}
-			set
-			{
-				if ((this._TOTALCOST != value))
-				{
-					this.OnTOTALCOSTChanging(value);
-					this.SendPropertyChanging();
-					this._TOTALCOST = value;
-					this.SendPropertyChanged("TOTALCOST");
-					this.OnTOTALCOSTChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CURRENCYCODE", DbType="VarChar(8)")]
-		public string CURRENCYCODE
-		{
-			get
-			{
-				return this._CURRENCYCODE;
-			}
-			set
-			{
-				if ((this._CURRENCYCODE != value))
-				{
-					this.OnCURRENCYCODEChanging(value);
-					this.SendPropertyChanging();
-					this._CURRENCYCODE = value;
-					this.SendPropertyChanged("CURRENCYCODE");
-					this.OnCURRENCYCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALTAX", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> TOTALTAX
-		{
-			get
-			{
-				return this._TOTALTAX;
-			}
-			set
-			{
-				if ((this._TOTALTAX != value))
-				{
-					this.OnTOTALTAXChanging(value);
-					this.SendPropertyChanging();
-					this._TOTALTAX = value;
-					this.SendPropertyChanged("TOTALTAX");
-					this.OnTOTALTAXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRETAXTOTAL", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> PRETAXTOTAL
-		{
-			get
-			{
-				return this._PRETAXTOTAL;
-			}
-			set
-			{
-				if ((this._PRETAXTOTAL != value))
-				{
-					this.OnPRETAXTOTALChanging(value);
-					this.SendPropertyChanging();
-					this._PRETAXTOTAL = value;
-					this.SendPropertyChanged("PRETAXTOTAL");
-					this.OnPRETAXTOTALChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CREATEDBY", DbType="NVarChar(30)")]
-		public string CREATEDBY
-		{
-			get
-			{
-				return this._CREATEDBY;
-			}
-			set
-			{
-				if ((this._CREATEDBY != value))
-				{
-					this.OnCREATEDBYChanging(value);
-					this.SendPropertyChanging();
-					this._CREATEDBY = value;
-					this.SendPropertyChanged("CREATEDBY");
-					this.OnCREATEDBYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CREATIONDATETIME", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CREATIONDATETIME
-		{
-			get
-			{
-				return this._CREATIONDATETIME;
-			}
-			set
-			{
-				if ((this._CREATIONDATETIME != value))
-				{
-					this.OnCREATIONDATETIMEChanging(value);
-					this.SendPropertyChanging();
-					this._CREATIONDATETIME = value;
-					this.SendPropertyChanged("CREATIONDATETIME");
-					this.OnCREATIONDATETIMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LASTMODIFIEDBY", DbType="NVarChar(30)")]
-		public string LASTMODIFIEDBY
-		{
-			get
-			{
-				return this._LASTMODIFIEDBY;
-			}
-			set
-			{
-				if ((this._LASTMODIFIEDBY != value))
-				{
-					this.OnLASTMODIFIEDBYChanging(value);
-					this.SendPropertyChanging();
-					this._LASTMODIFIEDBY = value;
-					this.SendPropertyChanged("LASTMODIFIEDBY");
-					this.OnLASTMODIFIEDBYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LASTMODIFIEDDATE", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LASTMODIFIEDDATE
-		{
-			get
-			{
-				return this._LASTMODIFIEDDATE;
-			}
-			set
-			{
-				if ((this._LASTMODIFIEDDATE != value))
-				{
-					this.OnLASTMODIFIEDDATEChanging(value);
-					this.SendPropertyChanging();
-					this._LASTMODIFIEDDATE = value;
-					this.SendPropertyChanged("LASTMODIFIEDDATE");
-					this.OnLASTMODIFIEDDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTRACTREFNUM", DbType="Int")]
-		public System.Nullable<int> CONTRACTREFNUM
-		{
-			get
-			{
-				return this._CONTRACTREFNUM;
-			}
-			set
-			{
-				if ((this._CONTRACTREFNUM != value))
-				{
-					this.OnCONTRACTREFNUMChanging(value);
-					this.SendPropertyChanging();
-					this._CONTRACTREFNUM = value;
-					this.SendPropertyChanged("CONTRACTREFNUM");
-					this.OnCONTRACTREFNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REVCOMMENTS", DbType="NVarChar(250)")]
-		public string REVCOMMENTS
-		{
-			get
-			{
-				return this._REVCOMMENTS;
-			}
-			set
-			{
-				if ((this._REVCOMMENTS != value))
-				{
-					this.OnREVCOMMENTSChanging(value);
-					this.SendPropertyChanging();
-					this._REVCOMMENTS = value;
-					this.SendPropertyChanged("REVCOMMENTS");
-					this.OnREVCOMMENTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HISTORYFLAG", DbType="Bit NOT NULL")]
-		public bool HISTORYFLAG
-		{
-			get
-			{
-				return this._HISTORYFLAG;
-			}
-			set
-			{
-				if ((this._HISTORYFLAG != value))
-				{
-					this.OnHISTORYFLAGChanging(value);
-					this.SendPropertyChanging();
-					this._HISTORYFLAG = value;
-					this.SendPropertyChanged("HISTORYFLAG");
-					this.OnHISTORYFLAGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INTNOTE", DbType="NVarChar(500)")]
-		public string INTNOTE
-		{
-			get
-			{
-				return this._INTNOTE;
-			}
-			set
-			{
-				if ((this._INTNOTE != value))
-				{
-					this.OnINTNOTEChanging(value);
-					this.SendPropertyChanging();
-					this._INTNOTE = value;
-					this.SendPropertyChanged("INTNOTE");
-					this.OnINTNOTEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EXTNOTE", DbType="NVarChar(500)")]
-		public string EXTNOTE
-		{
-			get
-			{
-				return this._EXTNOTE;
-			}
-			set
-			{
-				if ((this._EXTNOTE != value))
-				{
-					this.OnEXTNOTEChanging(value);
-					this.SendPropertyChanging();
-					this._EXTNOTE = value;
-					this.SendPropertyChanged("EXTNOTE");
-					this.OnEXTNOTEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SENDNOTETOACCTS", DbType="Bit")]
-		public System.Nullable<bool> SENDNOTETOACCTS
-		{
-			get
-			{
-				return this._SENDNOTETOACCTS;
-			}
-			set
-			{
-				if ((this._SENDNOTETOACCTS != value))
-				{
-					this.OnSENDNOTETOACCTSChanging(value);
-					this.SendPropertyChanging();
-					this._SENDNOTETOACCTS = value;
-					this.SendPropertyChanged("SENDNOTETOACCTS");
-					this.OnSENDNOTETOACCTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PO_A_PO", Storage="_A_POs", ThisKey="PONUM,POREVISION", OtherKey="PONUM,POREVISION")]
-		public EntitySet<A_PO> A_POs
-		{
-			get
-			{
-				return this._A_POs;
-			}
-			set
-			{
-				this._A_POs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_A_POs(A_PO entity)
-		{
-			this.SendPropertyChanging();
-			entity.PO = this;
-		}
-		
-		private void detach_A_POs(A_PO entity)
-		{
-			this.SendPropertyChanging();
-			entity.PO = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.A_PO")]
-	public partial class A_PO : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AUDITID;
-		
-		private string _AUDITACTION;
-		
-		private string _AUDITBY;
-		
-		private System.Nullable<System.DateTime> _AUDITTIMESTAMP;
-		
-		private System.Nullable<decimal> _PONUM;
-		
-		private string _POREF;
-		
-		private System.Nullable<long> _POSID;
-		
-		private System.Nullable<short> _POREVISION;
-		
-		private string _DESCRIPTION;
-		
-		private string _ORGCODE;
-		
-		private string _ORGNAME;
-		
-		private string _PROJECTCODE;
-		
-		private string _PROJECTNAME;
-		
-		private string _MRNUM;
-		
-		private string _QNUM;
-		
-		private System.Nullable<System.DateTime> _QDATE;
-		
-		private string _PAYMENTTERMS;
-		
-		private System.Nullable<System.DateTime> _ORDERDATE;
-		
-		private System.Nullable<System.DateTime> _REQUIREDATE;
-		
-		private System.Nullable<System.DateTime> _VENDORDATE;
-		
-		private string _POTYPE;
-		
-		private string _ORIGINALPONUM;
-		
-		private string _STATUS;
-		
-		private System.Nullable<System.DateTime> _STATUSDATE;
-		
-		private string _BUYERCODE;
-		
-		private string _BUYERNAME;
-		
-		private System.Nullable<int> _VENDORID;
-		
-		private string _VENDORNAME;
-		
-		private string _VENDORADDR;
-		
-		private string _VENDORATTN1NAME;
-		
-		private string _VENDORATTN1POS;
-		
-		private string _VENDORATTN1MOB;
-		
-		private string _VENDORATTN1TEL;
-		
-		private string _VENDORATTN1FAX;
-		
-		private string _VENDORATTN1EMAIL;
-		
-		private string _VENDORATTN2NAME;
-		
-		private string _VENDORATTN2POS;
-		
-		private string _VENDORATTN2MOB;
-		
-		private string _VENDORATTN2TEL;
-		
-		private string _VENDORATTN2FAX;
-		
-		private string _VENDORATTN2EMAIL;
-		
-		private string _SHIPTOADDR;
-		
-		private string _SHIPTOATTN1NAME;
-		
-		private string _SHIPTOATTN1MOB;
-		
-		private string _SHIPTOATTN1POS;
-		
-		private string _SHIPTOATTN2NAME;
-		
-		private string _SHIPTOATTN2MOB;
-		
-		private string _SHIPTOATTN2POS;
-		
-		private System.Nullable<int> _CONTRACTREFNUM;
-		
-		private string _REVCOMMENTS;
-		
-		private string _CURRENCYCODE;
-		
-		private System.Nullable<decimal> _TOTALTAX;
-		
-		private System.Nullable<decimal> _PRETAXTOTAL;
-		
-		private System.Nullable<bool> _HISTORYFLAG;
-		
-		private EntityRef<PO> _PO;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAUDITIDChanging(int value);
-    partial void OnAUDITIDChanged();
-    partial void OnAUDITACTIONChanging(string value);
-    partial void OnAUDITACTIONChanged();
-    partial void OnAUDITBYChanging(string value);
-    partial void OnAUDITBYChanged();
-    partial void OnAUDITTIMESTAMPChanging(System.Nullable<System.DateTime> value);
-    partial void OnAUDITTIMESTAMPChanged();
-    partial void OnPONUMChanging(System.Nullable<decimal> value);
-    partial void OnPONUMChanged();
-    partial void OnPOREFChanging(string value);
-    partial void OnPOREFChanged();
-    partial void OnPOSIDChanging(System.Nullable<long> value);
-    partial void OnPOSIDChanged();
-    partial void OnPOREVISIONChanging(System.Nullable<short> value);
-    partial void OnPOREVISIONChanged();
-    partial void OnDESCRIPTIONChanging(string value);
-    partial void OnDESCRIPTIONChanged();
-    partial void OnORGCODEChanging(string value);
-    partial void OnORGCODEChanged();
-    partial void OnORGNAMEChanging(string value);
-    partial void OnORGNAMEChanged();
-    partial void OnPROJECTCODEChanging(string value);
-    partial void OnPROJECTCODEChanged();
-    partial void OnPROJECTNAMEChanging(string value);
-    partial void OnPROJECTNAMEChanged();
-    partial void OnMRNUMChanging(string value);
-    partial void OnMRNUMChanged();
-    partial void OnQNUMChanging(string value);
-    partial void OnQNUMChanged();
-    partial void OnQDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnQDATEChanged();
-    partial void OnPAYMENTTERMSChanging(string value);
-    partial void OnPAYMENTTERMSChanged();
-    partial void OnORDERDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnORDERDATEChanged();
-    partial void OnREQUIREDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnREQUIREDATEChanged();
-    partial void OnVENDORDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnVENDORDATEChanged();
-    partial void OnPOTYPEChanging(string value);
-    partial void OnPOTYPEChanged();
-    partial void OnORIGINALPONUMChanging(string value);
-    partial void OnORIGINALPONUMChanged();
-    partial void OnSTATUSChanging(string value);
-    partial void OnSTATUSChanged();
-    partial void OnSTATUSDATEChanging(System.Nullable<System.DateTime> value);
-    partial void OnSTATUSDATEChanged();
-    partial void OnBUYERCODEChanging(string value);
-    partial void OnBUYERCODEChanged();
-    partial void OnBUYERNAMEChanging(string value);
-    partial void OnBUYERNAMEChanged();
-    partial void OnVENDORIDChanging(System.Nullable<int> value);
-    partial void OnVENDORIDChanged();
-    partial void OnVENDORNAMEChanging(string value);
-    partial void OnVENDORNAMEChanged();
-    partial void OnVENDORADDRChanging(string value);
-    partial void OnVENDORADDRChanged();
-    partial void OnVENDORATTN1NAMEChanging(string value);
-    partial void OnVENDORATTN1NAMEChanged();
-    partial void OnVENDORATTN1POSChanging(string value);
-    partial void OnVENDORATTN1POSChanged();
-    partial void OnVENDORATTN1MOBChanging(string value);
-    partial void OnVENDORATTN1MOBChanged();
-    partial void OnVENDORATTN1TELChanging(string value);
-    partial void OnVENDORATTN1TELChanged();
-    partial void OnVENDORATTN1FAXChanging(string value);
-    partial void OnVENDORATTN1FAXChanged();
-    partial void OnVENDORATTN1EMAILChanging(string value);
-    partial void OnVENDORATTN1EMAILChanged();
-    partial void OnVENDORATTN2NAMEChanging(string value);
-    partial void OnVENDORATTN2NAMEChanged();
-    partial void OnVENDORATTN2POSChanging(string value);
-    partial void OnVENDORATTN2POSChanged();
-    partial void OnVENDORATTN2MOBChanging(string value);
-    partial void OnVENDORATTN2MOBChanged();
-    partial void OnVENDORATTN2TELChanging(string value);
-    partial void OnVENDORATTN2TELChanged();
-    partial void OnVENDORATTN2FAXChanging(string value);
-    partial void OnVENDORATTN2FAXChanged();
-    partial void OnVENDORATTN2EMAILChanging(string value);
-    partial void OnVENDORATTN2EMAILChanged();
-    partial void OnSHIPTOADDRChanging(string value);
-    partial void OnSHIPTOADDRChanged();
-    partial void OnSHIPTOATTN1NAMEChanging(string value);
-    partial void OnSHIPTOATTN1NAMEChanged();
-    partial void OnSHIPTOATTN1MOBChanging(string value);
-    partial void OnSHIPTOATTN1MOBChanged();
-    partial void OnSHIPTOATTN1POSChanging(string value);
-    partial void OnSHIPTOATTN1POSChanged();
-    partial void OnSHIPTOATTN2NAMEChanging(string value);
-    partial void OnSHIPTOATTN2NAMEChanged();
-    partial void OnSHIPTOATTN2MOBChanging(string value);
-    partial void OnSHIPTOATTN2MOBChanged();
-    partial void OnSHIPTOATTN2POSChanging(string value);
-    partial void OnSHIPTOATTN2POSChanged();
-    partial void OnCONTRACTREFNUMChanging(System.Nullable<int> value);
-    partial void OnCONTRACTREFNUMChanged();
-    partial void OnREVCOMMENTSChanging(string value);
-    partial void OnREVCOMMENTSChanged();
-    partial void OnCURRENCYCODEChanging(string value);
-    partial void OnCURRENCYCODEChanged();
-    partial void OnTOTALTAXChanging(System.Nullable<decimal> value);
-    partial void OnTOTALTAXChanged();
-    partial void OnPRETAXTOTALChanging(System.Nullable<decimal> value);
-    partial void OnPRETAXTOTALChanged();
-    partial void OnHISTORYFLAGChanging(System.Nullable<bool> value);
-    partial void OnHISTORYFLAGChanged();
-    #endregion
-		
-		public A_PO()
-		{
-			this._PO = default(EntityRef<PO>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AUDITID
-		{
-			get
-			{
-				return this._AUDITID;
-			}
-			set
-			{
-				if ((this._AUDITID != value))
-				{
-					this.OnAUDITIDChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITID = value;
-					this.SendPropertyChanged("AUDITID");
-					this.OnAUDITIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITACTION", DbType="NVarChar(10)")]
-		public string AUDITACTION
-		{
-			get
-			{
-				return this._AUDITACTION;
-			}
-			set
-			{
-				if ((this._AUDITACTION != value))
-				{
-					this.OnAUDITACTIONChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITACTION = value;
-					this.SendPropertyChanged("AUDITACTION");
-					this.OnAUDITACTIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITBY", DbType="NVarChar(30)")]
-		public string AUDITBY
-		{
-			get
-			{
-				return this._AUDITBY;
-			}
-			set
-			{
-				if ((this._AUDITBY != value))
-				{
-					this.OnAUDITBYChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITBY = value;
-					this.SendPropertyChanged("AUDITBY");
-					this.OnAUDITBYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITTIMESTAMP", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AUDITTIMESTAMP
-		{
-			get
-			{
-				return this._AUDITTIMESTAMP;
-			}
-			set
-			{
-				if ((this._AUDITTIMESTAMP != value))
-				{
-					this.OnAUDITTIMESTAMPChanging(value);
-					this.SendPropertyChanging();
-					this._AUDITTIMESTAMP = value;
-					this.SendPropertyChanged("AUDITTIMESTAMP");
-					this.OnAUDITTIMESTAMPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONUM", DbType="Decimal(8,0)")]
-		public System.Nullable<decimal> PONUM
-		{
-			get
-			{
-				return this._PONUM;
-			}
-			set
-			{
-				if ((this._PONUM != value))
-				{
-					if (this._PO.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPONUMChanging(value);
-					this.SendPropertyChanging();
-					this._PONUM = value;
-					this.SendPropertyChanged("PONUM");
-					this.OnPONUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREF", DbType="VarChar(80)")]
-		public string POREF
-		{
-			get
-			{
-				return this._POREF;
-			}
-			set
-			{
-				if ((this._POREF != value))
-				{
-					this.OnPOREFChanging(value);
-					this.SendPropertyChanging();
-					this._POREF = value;
-					this.SendPropertyChanged("POREF");
-					this.OnPOREFChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSID", DbType="BigInt")]
-		public System.Nullable<long> POSID
-		{
-			get
-			{
-				return this._POSID;
-			}
-			set
-			{
-				if ((this._POSID != value))
-				{
-					this.OnPOSIDChanging(value);
-					this.SendPropertyChanging();
-					this._POSID = value;
-					this.SendPropertyChanged("POSID");
-					this.OnPOSIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREVISION", DbType="SmallInt")]
-		public System.Nullable<short> POREVISION
-		{
-			get
-			{
-				return this._POREVISION;
-			}
-			set
-			{
-				if ((this._POREVISION != value))
-				{
-					if (this._PO.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPOREVISIONChanging(value);
-					this.SendPropertyChanging();
-					this._POREVISION = value;
-					this.SendPropertyChanged("POREVISION");
-					this.OnPOREVISIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(100)")]
-		public string DESCRIPTION
-		{
-			get
-			{
-				return this._DESCRIPTION;
-			}
-			set
-			{
-				if ((this._DESCRIPTION != value))
-				{
-					this.OnDESCRIPTIONChanging(value);
-					this.SendPropertyChanging();
-					this._DESCRIPTION = value;
-					this.SendPropertyChanged("DESCRIPTION");
-					this.OnDESCRIPTIONChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGCODE", DbType="NVarChar(30)")]
-		public string ORGCODE
-		{
-			get
-			{
-				return this._ORGCODE;
-			}
-			set
-			{
-				if ((this._ORGCODE != value))
-				{
-					this.OnORGCODEChanging(value);
-					this.SendPropertyChanging();
-					this._ORGCODE = value;
-					this.SendPropertyChanged("ORGCODE");
-					this.OnORGCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGNAME", DbType="NVarChar(50)")]
-		public string ORGNAME
-		{
-			get
-			{
-				return this._ORGNAME;
-			}
-			set
-			{
-				if ((this._ORGNAME != value))
-				{
-					this.OnORGNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._ORGNAME = value;
-					this.SendPropertyChanged("ORGNAME");
-					this.OnORGNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTCODE", DbType="NVarChar(10)")]
-		public string PROJECTCODE
-		{
-			get
-			{
-				return this._PROJECTCODE;
-			}
-			set
-			{
-				if ((this._PROJECTCODE != value))
-				{
-					this.OnPROJECTCODEChanging(value);
-					this.SendPropertyChanging();
-					this._PROJECTCODE = value;
-					this.SendPropertyChanged("PROJECTCODE");
-					this.OnPROJECTCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTNAME", DbType="NVarChar(80)")]
-		public string PROJECTNAME
-		{
-			get
-			{
-				return this._PROJECTNAME;
-			}
-			set
-			{
-				if ((this._PROJECTNAME != value))
-				{
-					this.OnPROJECTNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._PROJECTNAME = value;
-					this.SendPropertyChanged("PROJECTNAME");
-					this.OnPROJECTNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MRNUM", DbType="NVarChar(30)")]
-		public string MRNUM
-		{
-			get
-			{
-				return this._MRNUM;
-			}
-			set
-			{
-				if ((this._MRNUM != value))
-				{
-					this.OnMRNUMChanging(value);
-					this.SendPropertyChanging();
-					this._MRNUM = value;
-					this.SendPropertyChanged("MRNUM");
-					this.OnMRNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QNUM", DbType="NVarChar(30)")]
-		public string QNUM
-		{
-			get
-			{
-				return this._QNUM;
-			}
-			set
-			{
-				if ((this._QNUM != value))
-				{
-					this.OnQNUMChanging(value);
-					this.SendPropertyChanging();
-					this._QNUM = value;
-					this.SendPropertyChanged("QNUM");
-					this.OnQNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> QDATE
-		{
-			get
-			{
-				return this._QDATE;
-			}
-			set
-			{
-				if ((this._QDATE != value))
-				{
-					this.OnQDATEChanging(value);
-					this.SendPropertyChanging();
-					this._QDATE = value;
-					this.SendPropertyChanged("QDATE");
-					this.OnQDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PAYMENTTERMS", DbType="NVarChar(250)")]
-		public string PAYMENTTERMS
-		{
-			get
-			{
-				return this._PAYMENTTERMS;
-			}
-			set
-			{
-				if ((this._PAYMENTTERMS != value))
-				{
-					this.OnPAYMENTTERMSChanging(value);
-					this.SendPropertyChanging();
-					this._PAYMENTTERMS = value;
-					this.SendPropertyChanged("PAYMENTTERMS");
-					this.OnPAYMENTTERMSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> ORDERDATE
-		{
-			get
-			{
-				return this._ORDERDATE;
-			}
-			set
-			{
-				if ((this._ORDERDATE != value))
-				{
-					this.OnORDERDATEChanging(value);
-					this.SendPropertyChanging();
-					this._ORDERDATE = value;
-					this.SendPropertyChanged("ORDERDATE");
-					this.OnORDERDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUIREDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> REQUIREDATE
-		{
-			get
-			{
-				return this._REQUIREDATE;
-			}
-			set
-			{
-				if ((this._REQUIREDATE != value))
-				{
-					this.OnREQUIREDATEChanging(value);
-					this.SendPropertyChanging();
-					this._REQUIREDATE = value;
-					this.SendPropertyChanged("REQUIREDATE");
-					this.OnREQUIREDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORDATE", DbType="Date")]
-		public System.Nullable<System.DateTime> VENDORDATE
-		{
-			get
-			{
-				return this._VENDORDATE;
-			}
-			set
-			{
-				if ((this._VENDORDATE != value))
-				{
-					this.OnVENDORDATEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORDATE = value;
-					this.SendPropertyChanged("VENDORDATE");
-					this.OnVENDORDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POTYPE", DbType="NVarChar(8)")]
-		public string POTYPE
-		{
-			get
-			{
-				return this._POTYPE;
-			}
-			set
-			{
-				if ((this._POTYPE != value))
-				{
-					this.OnPOTYPEChanging(value);
-					this.SendPropertyChanging();
-					this._POTYPE = value;
-					this.SendPropertyChanged("POTYPE");
-					this.OnPOTYPEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORIGINALPONUM", DbType="NVarChar(80)")]
-		public string ORIGINALPONUM
-		{
-			get
-			{
-				return this._ORIGINALPONUM;
-			}
-			set
-			{
-				if ((this._ORIGINALPONUM != value))
-				{
-					this.OnORIGINALPONUMChanging(value);
-					this.SendPropertyChanging();
-					this._ORIGINALPONUM = value;
-					this.SendPropertyChanged("ORIGINALPONUM");
-					this.OnORIGINALPONUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="NVarChar(10)")]
-		public string STATUS
-		{
-			get
-			{
-				return this._STATUS;
-			}
-			set
-			{
-				if ((this._STATUS != value))
-				{
-					this.OnSTATUSChanging(value);
-					this.SendPropertyChanging();
-					this._STATUS = value;
-					this.SendPropertyChanged("STATUS");
-					this.OnSTATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUSDATE", DbType="DateTime")]
-		public System.Nullable<System.DateTime> STATUSDATE
-		{
-			get
-			{
-				return this._STATUSDATE;
-			}
-			set
-			{
-				if ((this._STATUSDATE != value))
-				{
-					this.OnSTATUSDATEChanging(value);
-					this.SendPropertyChanging();
-					this._STATUSDATE = value;
-					this.SendPropertyChanged("STATUSDATE");
-					this.OnSTATUSDATEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERCODE", DbType="NVarChar(10)")]
-		public string BUYERCODE
-		{
-			get
-			{
-				return this._BUYERCODE;
-			}
-			set
-			{
-				if ((this._BUYERCODE != value))
-				{
-					this.OnBUYERCODEChanging(value);
-					this.SendPropertyChanging();
-					this._BUYERCODE = value;
-					this.SendPropertyChanged("BUYERCODE");
-					this.OnBUYERCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERNAME", DbType="NVarChar(100)")]
-		public string BUYERNAME
-		{
-			get
-			{
-				return this._BUYERNAME;
-			}
-			set
-			{
-				if ((this._BUYERNAME != value))
-				{
-					this.OnBUYERNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._BUYERNAME = value;
-					this.SendPropertyChanged("BUYERNAME");
-					this.OnBUYERNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORID", DbType="Int")]
-		public System.Nullable<int> VENDORID
-		{
-			get
-			{
-				return this._VENDORID;
-			}
-			set
-			{
-				if ((this._VENDORID != value))
-				{
-					this.OnVENDORIDChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORID = value;
-					this.SendPropertyChanged("VENDORID");
-					this.OnVENDORIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORNAME", DbType="NVarChar(100)")]
-		public string VENDORNAME
-		{
-			get
-			{
-				return this._VENDORNAME;
-			}
-			set
-			{
-				if ((this._VENDORNAME != value))
-				{
-					this.OnVENDORNAMEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORNAME = value;
-					this.SendPropertyChanged("VENDORNAME");
-					this.OnVENDORNAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORADDR", DbType="NVarChar(250)")]
-		public string VENDORADDR
-		{
-			get
-			{
-				return this._VENDORADDR;
-			}
-			set
-			{
-				if ((this._VENDORADDR != value))
-				{
-					this.OnVENDORADDRChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORADDR = value;
-					this.SendPropertyChanged("VENDORADDR");
-					this.OnVENDORADDRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1NAME", DbType="NVarChar(80)")]
-		public string VENDORATTN1NAME
-		{
-			get
-			{
-				return this._VENDORATTN1NAME;
-			}
-			set
-			{
-				if ((this._VENDORATTN1NAME != value))
-				{
-					this.OnVENDORATTN1NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1NAME = value;
-					this.SendPropertyChanged("VENDORATTN1NAME");
-					this.OnVENDORATTN1NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1POS", DbType="NVarChar(80)")]
-		public string VENDORATTN1POS
-		{
-			get
-			{
-				return this._VENDORATTN1POS;
-			}
-			set
-			{
-				if ((this._VENDORATTN1POS != value))
-				{
-					this.OnVENDORATTN1POSChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1POS = value;
-					this.SendPropertyChanged("VENDORATTN1POS");
-					this.OnVENDORATTN1POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1MOB", DbType="NVarChar(30)")]
-		public string VENDORATTN1MOB
-		{
-			get
-			{
-				return this._VENDORATTN1MOB;
-			}
-			set
-			{
-				if ((this._VENDORATTN1MOB != value))
-				{
-					this.OnVENDORATTN1MOBChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1MOB = value;
-					this.SendPropertyChanged("VENDORATTN1MOB");
-					this.OnVENDORATTN1MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1TEL", DbType="NVarChar(30)")]
-		public string VENDORATTN1TEL
-		{
-			get
-			{
-				return this._VENDORATTN1TEL;
-			}
-			set
-			{
-				if ((this._VENDORATTN1TEL != value))
-				{
-					this.OnVENDORATTN1TELChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1TEL = value;
-					this.SendPropertyChanged("VENDORATTN1TEL");
-					this.OnVENDORATTN1TELChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1FAX", DbType="NVarChar(30)")]
-		public string VENDORATTN1FAX
-		{
-			get
-			{
-				return this._VENDORATTN1FAX;
-			}
-			set
-			{
-				if ((this._VENDORATTN1FAX != value))
-				{
-					this.OnVENDORATTN1FAXChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1FAX = value;
-					this.SendPropertyChanged("VENDORATTN1FAX");
-					this.OnVENDORATTN1FAXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1EMAIL", DbType="NVarChar(80)")]
-		public string VENDORATTN1EMAIL
-		{
-			get
-			{
-				return this._VENDORATTN1EMAIL;
-			}
-			set
-			{
-				if ((this._VENDORATTN1EMAIL != value))
-				{
-					this.OnVENDORATTN1EMAILChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN1EMAIL = value;
-					this.SendPropertyChanged("VENDORATTN1EMAIL");
-					this.OnVENDORATTN1EMAILChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2NAME", DbType="NVarChar(80)")]
-		public string VENDORATTN2NAME
-		{
-			get
-			{
-				return this._VENDORATTN2NAME;
-			}
-			set
-			{
-				if ((this._VENDORATTN2NAME != value))
-				{
-					this.OnVENDORATTN2NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2NAME = value;
-					this.SendPropertyChanged("VENDORATTN2NAME");
-					this.OnVENDORATTN2NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2POS", DbType="NVarChar(80)")]
-		public string VENDORATTN2POS
-		{
-			get
-			{
-				return this._VENDORATTN2POS;
-			}
-			set
-			{
-				if ((this._VENDORATTN2POS != value))
-				{
-					this.OnVENDORATTN2POSChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2POS = value;
-					this.SendPropertyChanged("VENDORATTN2POS");
-					this.OnVENDORATTN2POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2MOB", DbType="NVarChar(30)")]
-		public string VENDORATTN2MOB
-		{
-			get
-			{
-				return this._VENDORATTN2MOB;
-			}
-			set
-			{
-				if ((this._VENDORATTN2MOB != value))
-				{
-					this.OnVENDORATTN2MOBChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2MOB = value;
-					this.SendPropertyChanged("VENDORATTN2MOB");
-					this.OnVENDORATTN2MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2TEL", DbType="NVarChar(30)")]
-		public string VENDORATTN2TEL
-		{
-			get
-			{
-				return this._VENDORATTN2TEL;
-			}
-			set
-			{
-				if ((this._VENDORATTN2TEL != value))
-				{
-					this.OnVENDORATTN2TELChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2TEL = value;
-					this.SendPropertyChanged("VENDORATTN2TEL");
-					this.OnVENDORATTN2TELChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2FAX", DbType="NVarChar(30)")]
-		public string VENDORATTN2FAX
-		{
-			get
-			{
-				return this._VENDORATTN2FAX;
-			}
-			set
-			{
-				if ((this._VENDORATTN2FAX != value))
-				{
-					this.OnVENDORATTN2FAXChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2FAX = value;
-					this.SendPropertyChanged("VENDORATTN2FAX");
-					this.OnVENDORATTN2FAXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2EMAIL", DbType="NVarChar(80)")]
-		public string VENDORATTN2EMAIL
-		{
-			get
-			{
-				return this._VENDORATTN2EMAIL;
-			}
-			set
-			{
-				if ((this._VENDORATTN2EMAIL != value))
-				{
-					this.OnVENDORATTN2EMAILChanging(value);
-					this.SendPropertyChanging();
-					this._VENDORATTN2EMAIL = value;
-					this.SendPropertyChanged("VENDORATTN2EMAIL");
-					this.OnVENDORATTN2EMAILChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOADDR", DbType="NVarChar(250)")]
-		public string SHIPTOADDR
-		{
-			get
-			{
-				return this._SHIPTOADDR;
-			}
-			set
-			{
-				if ((this._SHIPTOADDR != value))
-				{
-					this.OnSHIPTOADDRChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOADDR = value;
-					this.SendPropertyChanged("SHIPTOADDR");
-					this.OnSHIPTOADDRChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1NAME", DbType="NVarChar(80)")]
-		public string SHIPTOATTN1NAME
-		{
-			get
-			{
-				return this._SHIPTOATTN1NAME;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN1NAME != value))
-				{
-					this.OnSHIPTOATTN1NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN1NAME = value;
-					this.SendPropertyChanged("SHIPTOATTN1NAME");
-					this.OnSHIPTOATTN1NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1MOB", DbType="NVarChar(30)")]
-		public string SHIPTOATTN1MOB
-		{
-			get
-			{
-				return this._SHIPTOATTN1MOB;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN1MOB != value))
-				{
-					this.OnSHIPTOATTN1MOBChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN1MOB = value;
-					this.SendPropertyChanged("SHIPTOATTN1MOB");
-					this.OnSHIPTOATTN1MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1POS", DbType="NVarChar(50)")]
-		public string SHIPTOATTN1POS
-		{
-			get
-			{
-				return this._SHIPTOATTN1POS;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN1POS != value))
-				{
-					this.OnSHIPTOATTN1POSChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN1POS = value;
-					this.SendPropertyChanged("SHIPTOATTN1POS");
-					this.OnSHIPTOATTN1POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2NAME", DbType="NVarChar(80)")]
-		public string SHIPTOATTN2NAME
-		{
-			get
-			{
-				return this._SHIPTOATTN2NAME;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN2NAME != value))
-				{
-					this.OnSHIPTOATTN2NAMEChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN2NAME = value;
-					this.SendPropertyChanged("SHIPTOATTN2NAME");
-					this.OnSHIPTOATTN2NAMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2MOB", DbType="NVarChar(30)")]
-		public string SHIPTOATTN2MOB
-		{
-			get
-			{
-				return this._SHIPTOATTN2MOB;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN2MOB != value))
-				{
-					this.OnSHIPTOATTN2MOBChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN2MOB = value;
-					this.SendPropertyChanged("SHIPTOATTN2MOB");
-					this.OnSHIPTOATTN2MOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2POS", DbType="NVarChar(50)")]
-		public string SHIPTOATTN2POS
-		{
-			get
-			{
-				return this._SHIPTOATTN2POS;
-			}
-			set
-			{
-				if ((this._SHIPTOATTN2POS != value))
-				{
-					this.OnSHIPTOATTN2POSChanging(value);
-					this.SendPropertyChanging();
-					this._SHIPTOATTN2POS = value;
-					this.SendPropertyChanged("SHIPTOATTN2POS");
-					this.OnSHIPTOATTN2POSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTRACTREFNUM", DbType="Int")]
-		public System.Nullable<int> CONTRACTREFNUM
-		{
-			get
-			{
-				return this._CONTRACTREFNUM;
-			}
-			set
-			{
-				if ((this._CONTRACTREFNUM != value))
-				{
-					this.OnCONTRACTREFNUMChanging(value);
-					this.SendPropertyChanging();
-					this._CONTRACTREFNUM = value;
-					this.SendPropertyChanged("CONTRACTREFNUM");
-					this.OnCONTRACTREFNUMChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REVCOMMENTS", DbType="NVarChar(250)")]
-		public string REVCOMMENTS
-		{
-			get
-			{
-				return this._REVCOMMENTS;
-			}
-			set
-			{
-				if ((this._REVCOMMENTS != value))
-				{
-					this.OnREVCOMMENTSChanging(value);
-					this.SendPropertyChanging();
-					this._REVCOMMENTS = value;
-					this.SendPropertyChanged("REVCOMMENTS");
-					this.OnREVCOMMENTSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CURRENCYCODE", DbType="VarChar(8)")]
-		public string CURRENCYCODE
-		{
-			get
-			{
-				return this._CURRENCYCODE;
-			}
-			set
-			{
-				if ((this._CURRENCYCODE != value))
-				{
-					this.OnCURRENCYCODEChanging(value);
-					this.SendPropertyChanging();
-					this._CURRENCYCODE = value;
-					this.SendPropertyChanged("CURRENCYCODE");
-					this.OnCURRENCYCODEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALTAX", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> TOTALTAX
-		{
-			get
-			{
-				return this._TOTALTAX;
-			}
-			set
-			{
-				if ((this._TOTALTAX != value))
-				{
-					this.OnTOTALTAXChanging(value);
-					this.SendPropertyChanging();
-					this._TOTALTAX = value;
-					this.SendPropertyChanged("TOTALTAX");
-					this.OnTOTALTAXChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRETAXTOTAL", DbType="Decimal(10,2)")]
-		public System.Nullable<decimal> PRETAXTOTAL
-		{
-			get
-			{
-				return this._PRETAXTOTAL;
-			}
-			set
-			{
-				if ((this._PRETAXTOTAL != value))
-				{
-					this.OnPRETAXTOTALChanging(value);
-					this.SendPropertyChanging();
-					this._PRETAXTOTAL = value;
-					this.SendPropertyChanged("PRETAXTOTAL");
-					this.OnPRETAXTOTALChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HISTORYFLAG", DbType="Bit")]
-		public System.Nullable<bool> HISTORYFLAG
-		{
-			get
-			{
-				return this._HISTORYFLAG;
-			}
-			set
-			{
-				if ((this._HISTORYFLAG != value))
-				{
-					this.OnHISTORYFLAGChanging(value);
-					this.SendPropertyChanging();
-					this._HISTORYFLAG = value;
-					this.SendPropertyChanged("HISTORYFLAG");
-					this.OnHISTORYFLAGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PO_A_PO", Storage="_PO", ThisKey="PONUM,POREVISION", OtherKey="PONUM,POREVISION", IsForeignKey=true)]
-		public PO PO
-		{
-			get
-			{
-				return this._PO.Entity;
-			}
-			set
-			{
-				PO previousValue = this._PO.Entity;
-				if (((previousValue != value) 
-							|| (this._PO.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PO.Entity = null;
-						previousValue.A_POs.Remove(this);
-					}
-					this._PO.Entity = value;
-					if ((value != null))
-					{
-						value.A_POs.Add(this);
-						this._PONUM = value.PONUM;
-						this._POREVISION = value.POREVISION;
-					}
-					else
-					{
-						this._PONUM = default(Nullable<decimal>);
-						this._POREVISION = default(Nullable<short>);
-					}
-					this.SendPropertyChanged("PO");
 				}
 			}
 		}
@@ -30736,6 +27168,3699 @@ namespace FSPBAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PO")]
+	public partial class PO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _POID;
+		
+		private decimal _PONUM;
+		
+		private string _POREF;
+		
+		private long _POSID;
+		
+		private short _POREVISION;
+		
+		private string _DESCRIPTION;
+		
+		private string _ORGCODE;
+		
+		private string _ORGNAME;
+		
+		private string _PROJECTCODE;
+		
+		private string _PROJECTNAME;
+		
+		private string _MRNUM;
+		
+		private string _QNUM;
+		
+		private System.Nullable<System.DateTime> _QDATE;
+		
+		private string _PAYMENTTERMS;
+		
+		private System.Nullable<System.DateTime> _ORDERDATE;
+		
+		private System.Nullable<System.DateTime> _REQUIREDATE;
+		
+		private System.Nullable<System.DateTime> _VENDORDATE;
+		
+		private string _POTYPE;
+		
+		private string _ORIGINALPONUM;
+		
+		private string _STATUS;
+		
+		private System.Nullable<System.DateTime> _STATUSDATE;
+		
+		private string _BUYERCODE;
+		
+		private string _BUYERNAME;
+		
+		private System.Nullable<int> _VENDORID;
+		
+		private string _VENDORNAME;
+		
+		private string _VENDORADDR;
+		
+		private string _VENDORATTN1NAME;
+		
+		private string _VENDORATTN1POS;
+		
+		private string _VENDORATTN1MOB;
+		
+		private string _VENDORATTN1TEL;
+		
+		private string _VENDORATTN1FAX;
+		
+		private string _VENDORATTN1EMAIL;
+		
+		private string _VENDORATTN2NAME;
+		
+		private string _VENDORATTN2POS;
+		
+		private string _VENDORATTN2MOB;
+		
+		private string _VENDORATTN2TEL;
+		
+		private string _VENDORATTN2FAX;
+		
+		private string _VENDORATTN2EMAIL;
+		
+		private string _SHIPTOADDR;
+		
+		private string _SHIPTOATTN1NAME;
+		
+		private string _SHIPTOATTN1MOB;
+		
+		private string _SHIPTOATTN1POS;
+		
+		private string _SHIPTOATTN2NAME;
+		
+		private string _SHIPTOATTN2MOB;
+		
+		private string _SHIPTOATTN2POS;
+		
+		private System.Nullable<decimal> _TOTALCOST;
+		
+		private string _CURRENCYCODE;
+		
+		private System.Nullable<decimal> _TOTALTAX;
+		
+		private System.Nullable<decimal> _PRETAXTOTAL;
+		
+		private string _CREATEDBY;
+		
+		private System.Nullable<System.DateTime> _CREATIONDATETIME;
+		
+		private string _LASTMODIFIEDBY;
+		
+		private System.Nullable<System.DateTime> _LASTMODIFIEDDATE;
+		
+		private System.Nullable<int> _CONTRACTREFNUM;
+		
+		private string _REVCOMMENTS;
+		
+		private System.Nullable<bool> _HISTORYFLAG;
+		
+		private string _INTNOTE;
+		
+		private string _EXTNOTE;
+		
+		private System.Nullable<bool> _SENDNOTETOACCTS;
+		
+		private EntitySet<A_PO> _A_POs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPOIDChanging(System.Guid value);
+    partial void OnPOIDChanged();
+    partial void OnPONUMChanging(decimal value);
+    partial void OnPONUMChanged();
+    partial void OnPOREFChanging(string value);
+    partial void OnPOREFChanged();
+    partial void OnPOSIDChanging(long value);
+    partial void OnPOSIDChanged();
+    partial void OnPOREVISIONChanging(short value);
+    partial void OnPOREVISIONChanged();
+    partial void OnDESCRIPTIONChanging(string value);
+    partial void OnDESCRIPTIONChanged();
+    partial void OnORGCODEChanging(string value);
+    partial void OnORGCODEChanged();
+    partial void OnORGNAMEChanging(string value);
+    partial void OnORGNAMEChanged();
+    partial void OnPROJECTCODEChanging(string value);
+    partial void OnPROJECTCODEChanged();
+    partial void OnPROJECTNAMEChanging(string value);
+    partial void OnPROJECTNAMEChanged();
+    partial void OnMRNUMChanging(string value);
+    partial void OnMRNUMChanged();
+    partial void OnQNUMChanging(string value);
+    partial void OnQNUMChanged();
+    partial void OnQDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnQDATEChanged();
+    partial void OnPAYMENTTERMSChanging(string value);
+    partial void OnPAYMENTTERMSChanged();
+    partial void OnORDERDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnORDERDATEChanged();
+    partial void OnREQUIREDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnREQUIREDATEChanged();
+    partial void OnVENDORDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnVENDORDATEChanged();
+    partial void OnPOTYPEChanging(string value);
+    partial void OnPOTYPEChanged();
+    partial void OnORIGINALPONUMChanging(string value);
+    partial void OnORIGINALPONUMChanged();
+    partial void OnSTATUSChanging(string value);
+    partial void OnSTATUSChanged();
+    partial void OnSTATUSDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnSTATUSDATEChanged();
+    partial void OnBUYERCODEChanging(string value);
+    partial void OnBUYERCODEChanged();
+    partial void OnBUYERNAMEChanging(string value);
+    partial void OnBUYERNAMEChanged();
+    partial void OnVENDORIDChanging(System.Nullable<int> value);
+    partial void OnVENDORIDChanged();
+    partial void OnVENDORNAMEChanging(string value);
+    partial void OnVENDORNAMEChanged();
+    partial void OnVENDORADDRChanging(string value);
+    partial void OnVENDORADDRChanged();
+    partial void OnVENDORATTN1NAMEChanging(string value);
+    partial void OnVENDORATTN1NAMEChanged();
+    partial void OnVENDORATTN1POSChanging(string value);
+    partial void OnVENDORATTN1POSChanged();
+    partial void OnVENDORATTN1MOBChanging(string value);
+    partial void OnVENDORATTN1MOBChanged();
+    partial void OnVENDORATTN1TELChanging(string value);
+    partial void OnVENDORATTN1TELChanged();
+    partial void OnVENDORATTN1FAXChanging(string value);
+    partial void OnVENDORATTN1FAXChanged();
+    partial void OnVENDORATTN1EMAILChanging(string value);
+    partial void OnVENDORATTN1EMAILChanged();
+    partial void OnVENDORATTN2NAMEChanging(string value);
+    partial void OnVENDORATTN2NAMEChanged();
+    partial void OnVENDORATTN2POSChanging(string value);
+    partial void OnVENDORATTN2POSChanged();
+    partial void OnVENDORATTN2MOBChanging(string value);
+    partial void OnVENDORATTN2MOBChanged();
+    partial void OnVENDORATTN2TELChanging(string value);
+    partial void OnVENDORATTN2TELChanged();
+    partial void OnVENDORATTN2FAXChanging(string value);
+    partial void OnVENDORATTN2FAXChanged();
+    partial void OnVENDORATTN2EMAILChanging(string value);
+    partial void OnVENDORATTN2EMAILChanged();
+    partial void OnSHIPTOADDRChanging(string value);
+    partial void OnSHIPTOADDRChanged();
+    partial void OnSHIPTOATTN1NAMEChanging(string value);
+    partial void OnSHIPTOATTN1NAMEChanged();
+    partial void OnSHIPTOATTN1MOBChanging(string value);
+    partial void OnSHIPTOATTN1MOBChanged();
+    partial void OnSHIPTOATTN1POSChanging(string value);
+    partial void OnSHIPTOATTN1POSChanged();
+    partial void OnSHIPTOATTN2NAMEChanging(string value);
+    partial void OnSHIPTOATTN2NAMEChanged();
+    partial void OnSHIPTOATTN2MOBChanging(string value);
+    partial void OnSHIPTOATTN2MOBChanged();
+    partial void OnSHIPTOATTN2POSChanging(string value);
+    partial void OnSHIPTOATTN2POSChanged();
+    partial void OnTOTALCOSTChanging(System.Nullable<decimal> value);
+    partial void OnTOTALCOSTChanged();
+    partial void OnCURRENCYCODEChanging(string value);
+    partial void OnCURRENCYCODEChanged();
+    partial void OnTOTALTAXChanging(System.Nullable<decimal> value);
+    partial void OnTOTALTAXChanged();
+    partial void OnPRETAXTOTALChanging(System.Nullable<decimal> value);
+    partial void OnPRETAXTOTALChanged();
+    partial void OnCREATEDBYChanging(string value);
+    partial void OnCREATEDBYChanged();
+    partial void OnCREATIONDATETIMEChanging(System.Nullable<System.DateTime> value);
+    partial void OnCREATIONDATETIMEChanged();
+    partial void OnLASTMODIFIEDBYChanging(string value);
+    partial void OnLASTMODIFIEDBYChanged();
+    partial void OnLASTMODIFIEDDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnLASTMODIFIEDDATEChanged();
+    partial void OnCONTRACTREFNUMChanging(System.Nullable<int> value);
+    partial void OnCONTRACTREFNUMChanged();
+    partial void OnREVCOMMENTSChanging(string value);
+    partial void OnREVCOMMENTSChanged();
+    partial void OnHISTORYFLAGChanging(System.Nullable<bool> value);
+    partial void OnHISTORYFLAGChanged();
+    partial void OnINTNOTEChanging(string value);
+    partial void OnINTNOTEChanged();
+    partial void OnEXTNOTEChanging(string value);
+    partial void OnEXTNOTEChanged();
+    partial void OnSENDNOTETOACCTSChanging(System.Nullable<bool> value);
+    partial void OnSENDNOTETOACCTSChanged();
+    #endregion
+		
+		public PO()
+		{
+			this._A_POs = new EntitySet<A_PO>(new Action<A_PO>(this.attach_A_POs), new Action<A_PO>(this.detach_A_POs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid POID
+		{
+			get
+			{
+				return this._POID;
+			}
+			set
+			{
+				if ((this._POID != value))
+				{
+					this.OnPOIDChanging(value);
+					this.SendPropertyChanging();
+					this._POID = value;
+					this.SendPropertyChanged("POID");
+					this.OnPOIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONUM", DbType="Decimal(8,0) NOT NULL", IsPrimaryKey=true)]
+		public decimal PONUM
+		{
+			get
+			{
+				return this._PONUM;
+			}
+			set
+			{
+				if ((this._PONUM != value))
+				{
+					this.OnPONUMChanging(value);
+					this.SendPropertyChanging();
+					this._PONUM = value;
+					this.SendPropertyChanged("PONUM");
+					this.OnPONUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREF", DbType="VarChar(80)")]
+		public string POREF
+		{
+			get
+			{
+				return this._POREF;
+			}
+			set
+			{
+				if ((this._POREF != value))
+				{
+					this.OnPOREFChanging(value);
+					this.SendPropertyChanging();
+					this._POREF = value;
+					this.SendPropertyChanged("POREF");
+					this.OnPOREFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSID", DbType="BigInt NOT NULL")]
+		public long POSID
+		{
+			get
+			{
+				return this._POSID;
+			}
+			set
+			{
+				if ((this._POSID != value))
+				{
+					this.OnPOSIDChanging(value);
+					this.SendPropertyChanging();
+					this._POSID = value;
+					this.SendPropertyChanged("POSID");
+					this.OnPOSIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREVISION", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
+		public short POREVISION
+		{
+			get
+			{
+				return this._POREVISION;
+			}
+			set
+			{
+				if ((this._POREVISION != value))
+				{
+					this.OnPOREVISIONChanging(value);
+					this.SendPropertyChanging();
+					this._POREVISION = value;
+					this.SendPropertyChanged("POREVISION");
+					this.OnPOREVISIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(250)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this.OnDESCRIPTIONChanging(value);
+					this.SendPropertyChanging();
+					this._DESCRIPTION = value;
+					this.SendPropertyChanged("DESCRIPTION");
+					this.OnDESCRIPTIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGCODE", DbType="NVarChar(30)")]
+		public string ORGCODE
+		{
+			get
+			{
+				return this._ORGCODE;
+			}
+			set
+			{
+				if ((this._ORGCODE != value))
+				{
+					this.OnORGCODEChanging(value);
+					this.SendPropertyChanging();
+					this._ORGCODE = value;
+					this.SendPropertyChanged("ORGCODE");
+					this.OnORGCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGNAME", DbType="NVarChar(50)")]
+		public string ORGNAME
+		{
+			get
+			{
+				return this._ORGNAME;
+			}
+			set
+			{
+				if ((this._ORGNAME != value))
+				{
+					this.OnORGNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._ORGNAME = value;
+					this.SendPropertyChanged("ORGNAME");
+					this.OnORGNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTCODE", DbType="NVarChar(10)")]
+		public string PROJECTCODE
+		{
+			get
+			{
+				return this._PROJECTCODE;
+			}
+			set
+			{
+				if ((this._PROJECTCODE != value))
+				{
+					this.OnPROJECTCODEChanging(value);
+					this.SendPropertyChanging();
+					this._PROJECTCODE = value;
+					this.SendPropertyChanged("PROJECTCODE");
+					this.OnPROJECTCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTNAME", DbType="NVarChar(80)")]
+		public string PROJECTNAME
+		{
+			get
+			{
+				return this._PROJECTNAME;
+			}
+			set
+			{
+				if ((this._PROJECTNAME != value))
+				{
+					this.OnPROJECTNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._PROJECTNAME = value;
+					this.SendPropertyChanged("PROJECTNAME");
+					this.OnPROJECTNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MRNUM", DbType="NVarChar(30)")]
+		public string MRNUM
+		{
+			get
+			{
+				return this._MRNUM;
+			}
+			set
+			{
+				if ((this._MRNUM != value))
+				{
+					this.OnMRNUMChanging(value);
+					this.SendPropertyChanging();
+					this._MRNUM = value;
+					this.SendPropertyChanged("MRNUM");
+					this.OnMRNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QNUM", DbType="NVarChar(30)")]
+		public string QNUM
+		{
+			get
+			{
+				return this._QNUM;
+			}
+			set
+			{
+				if ((this._QNUM != value))
+				{
+					this.OnQNUMChanging(value);
+					this.SendPropertyChanging();
+					this._QNUM = value;
+					this.SendPropertyChanged("QNUM");
+					this.OnQNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> QDATE
+		{
+			get
+			{
+				return this._QDATE;
+			}
+			set
+			{
+				if ((this._QDATE != value))
+				{
+					this.OnQDATEChanging(value);
+					this.SendPropertyChanging();
+					this._QDATE = value;
+					this.SendPropertyChanged("QDATE");
+					this.OnQDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PAYMENTTERMS", DbType="NVarChar(250)")]
+		public string PAYMENTTERMS
+		{
+			get
+			{
+				return this._PAYMENTTERMS;
+			}
+			set
+			{
+				if ((this._PAYMENTTERMS != value))
+				{
+					this.OnPAYMENTTERMSChanging(value);
+					this.SendPropertyChanging();
+					this._PAYMENTTERMS = value;
+					this.SendPropertyChanged("PAYMENTTERMS");
+					this.OnPAYMENTTERMSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> ORDERDATE
+		{
+			get
+			{
+				return this._ORDERDATE;
+			}
+			set
+			{
+				if ((this._ORDERDATE != value))
+				{
+					this.OnORDERDATEChanging(value);
+					this.SendPropertyChanging();
+					this._ORDERDATE = value;
+					this.SendPropertyChanged("ORDERDATE");
+					this.OnORDERDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUIREDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> REQUIREDATE
+		{
+			get
+			{
+				return this._REQUIREDATE;
+			}
+			set
+			{
+				if ((this._REQUIREDATE != value))
+				{
+					this.OnREQUIREDATEChanging(value);
+					this.SendPropertyChanging();
+					this._REQUIREDATE = value;
+					this.SendPropertyChanged("REQUIREDATE");
+					this.OnREQUIREDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> VENDORDATE
+		{
+			get
+			{
+				return this._VENDORDATE;
+			}
+			set
+			{
+				if ((this._VENDORDATE != value))
+				{
+					this.OnVENDORDATEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORDATE = value;
+					this.SendPropertyChanged("VENDORDATE");
+					this.OnVENDORDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POTYPE", DbType="NVarChar(8)")]
+		public string POTYPE
+		{
+			get
+			{
+				return this._POTYPE;
+			}
+			set
+			{
+				if ((this._POTYPE != value))
+				{
+					this.OnPOTYPEChanging(value);
+					this.SendPropertyChanging();
+					this._POTYPE = value;
+					this.SendPropertyChanged("POTYPE");
+					this.OnPOTYPEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORIGINALPONUM", DbType="NVarChar(80)")]
+		public string ORIGINALPONUM
+		{
+			get
+			{
+				return this._ORIGINALPONUM;
+			}
+			set
+			{
+				if ((this._ORIGINALPONUM != value))
+				{
+					this.OnORIGINALPONUMChanging(value);
+					this.SendPropertyChanging();
+					this._ORIGINALPONUM = value;
+					this.SendPropertyChanged("ORIGINALPONUM");
+					this.OnORIGINALPONUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="NVarChar(10)")]
+		public string STATUS
+		{
+			get
+			{
+				return this._STATUS;
+			}
+			set
+			{
+				if ((this._STATUS != value))
+				{
+					this.OnSTATUSChanging(value);
+					this.SendPropertyChanging();
+					this._STATUS = value;
+					this.SendPropertyChanged("STATUS");
+					this.OnSTATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUSDATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> STATUSDATE
+		{
+			get
+			{
+				return this._STATUSDATE;
+			}
+			set
+			{
+				if ((this._STATUSDATE != value))
+				{
+					this.OnSTATUSDATEChanging(value);
+					this.SendPropertyChanging();
+					this._STATUSDATE = value;
+					this.SendPropertyChanged("STATUSDATE");
+					this.OnSTATUSDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERCODE", DbType="NVarChar(10)")]
+		public string BUYERCODE
+		{
+			get
+			{
+				return this._BUYERCODE;
+			}
+			set
+			{
+				if ((this._BUYERCODE != value))
+				{
+					this.OnBUYERCODEChanging(value);
+					this.SendPropertyChanging();
+					this._BUYERCODE = value;
+					this.SendPropertyChanged("BUYERCODE");
+					this.OnBUYERCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERNAME", DbType="NVarChar(100)")]
+		public string BUYERNAME
+		{
+			get
+			{
+				return this._BUYERNAME;
+			}
+			set
+			{
+				if ((this._BUYERNAME != value))
+				{
+					this.OnBUYERNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._BUYERNAME = value;
+					this.SendPropertyChanged("BUYERNAME");
+					this.OnBUYERNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORID", DbType="Int")]
+		public System.Nullable<int> VENDORID
+		{
+			get
+			{
+				return this._VENDORID;
+			}
+			set
+			{
+				if ((this._VENDORID != value))
+				{
+					this.OnVENDORIDChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORID = value;
+					this.SendPropertyChanged("VENDORID");
+					this.OnVENDORIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORNAME", DbType="NVarChar(100)")]
+		public string VENDORNAME
+		{
+			get
+			{
+				return this._VENDORNAME;
+			}
+			set
+			{
+				if ((this._VENDORNAME != value))
+				{
+					this.OnVENDORNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORNAME = value;
+					this.SendPropertyChanged("VENDORNAME");
+					this.OnVENDORNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORADDR", DbType="NVarChar(250)")]
+		public string VENDORADDR
+		{
+			get
+			{
+				return this._VENDORADDR;
+			}
+			set
+			{
+				if ((this._VENDORADDR != value))
+				{
+					this.OnVENDORADDRChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORADDR = value;
+					this.SendPropertyChanged("VENDORADDR");
+					this.OnVENDORADDRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1NAME", DbType="NVarChar(80)")]
+		public string VENDORATTN1NAME
+		{
+			get
+			{
+				return this._VENDORATTN1NAME;
+			}
+			set
+			{
+				if ((this._VENDORATTN1NAME != value))
+				{
+					this.OnVENDORATTN1NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1NAME = value;
+					this.SendPropertyChanged("VENDORATTN1NAME");
+					this.OnVENDORATTN1NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1POS", DbType="NVarChar(80)")]
+		public string VENDORATTN1POS
+		{
+			get
+			{
+				return this._VENDORATTN1POS;
+			}
+			set
+			{
+				if ((this._VENDORATTN1POS != value))
+				{
+					this.OnVENDORATTN1POSChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1POS = value;
+					this.SendPropertyChanged("VENDORATTN1POS");
+					this.OnVENDORATTN1POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1MOB", DbType="NVarChar(30)")]
+		public string VENDORATTN1MOB
+		{
+			get
+			{
+				return this._VENDORATTN1MOB;
+			}
+			set
+			{
+				if ((this._VENDORATTN1MOB != value))
+				{
+					this.OnVENDORATTN1MOBChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1MOB = value;
+					this.SendPropertyChanged("VENDORATTN1MOB");
+					this.OnVENDORATTN1MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1TEL", DbType="NVarChar(30)")]
+		public string VENDORATTN1TEL
+		{
+			get
+			{
+				return this._VENDORATTN1TEL;
+			}
+			set
+			{
+				if ((this._VENDORATTN1TEL != value))
+				{
+					this.OnVENDORATTN1TELChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1TEL = value;
+					this.SendPropertyChanged("VENDORATTN1TEL");
+					this.OnVENDORATTN1TELChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1FAX", DbType="NVarChar(30)")]
+		public string VENDORATTN1FAX
+		{
+			get
+			{
+				return this._VENDORATTN1FAX;
+			}
+			set
+			{
+				if ((this._VENDORATTN1FAX != value))
+				{
+					this.OnVENDORATTN1FAXChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1FAX = value;
+					this.SendPropertyChanged("VENDORATTN1FAX");
+					this.OnVENDORATTN1FAXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1EMAIL", DbType="NVarChar(80)")]
+		public string VENDORATTN1EMAIL
+		{
+			get
+			{
+				return this._VENDORATTN1EMAIL;
+			}
+			set
+			{
+				if ((this._VENDORATTN1EMAIL != value))
+				{
+					this.OnVENDORATTN1EMAILChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1EMAIL = value;
+					this.SendPropertyChanged("VENDORATTN1EMAIL");
+					this.OnVENDORATTN1EMAILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2NAME", DbType="NVarChar(80)")]
+		public string VENDORATTN2NAME
+		{
+			get
+			{
+				return this._VENDORATTN2NAME;
+			}
+			set
+			{
+				if ((this._VENDORATTN2NAME != value))
+				{
+					this.OnVENDORATTN2NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2NAME = value;
+					this.SendPropertyChanged("VENDORATTN2NAME");
+					this.OnVENDORATTN2NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2POS", DbType="NVarChar(80)")]
+		public string VENDORATTN2POS
+		{
+			get
+			{
+				return this._VENDORATTN2POS;
+			}
+			set
+			{
+				if ((this._VENDORATTN2POS != value))
+				{
+					this.OnVENDORATTN2POSChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2POS = value;
+					this.SendPropertyChanged("VENDORATTN2POS");
+					this.OnVENDORATTN2POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2MOB", DbType="NVarChar(30)")]
+		public string VENDORATTN2MOB
+		{
+			get
+			{
+				return this._VENDORATTN2MOB;
+			}
+			set
+			{
+				if ((this._VENDORATTN2MOB != value))
+				{
+					this.OnVENDORATTN2MOBChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2MOB = value;
+					this.SendPropertyChanged("VENDORATTN2MOB");
+					this.OnVENDORATTN2MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2TEL", DbType="NVarChar(30)")]
+		public string VENDORATTN2TEL
+		{
+			get
+			{
+				return this._VENDORATTN2TEL;
+			}
+			set
+			{
+				if ((this._VENDORATTN2TEL != value))
+				{
+					this.OnVENDORATTN2TELChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2TEL = value;
+					this.SendPropertyChanged("VENDORATTN2TEL");
+					this.OnVENDORATTN2TELChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2FAX", DbType="NVarChar(30)")]
+		public string VENDORATTN2FAX
+		{
+			get
+			{
+				return this._VENDORATTN2FAX;
+			}
+			set
+			{
+				if ((this._VENDORATTN2FAX != value))
+				{
+					this.OnVENDORATTN2FAXChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2FAX = value;
+					this.SendPropertyChanged("VENDORATTN2FAX");
+					this.OnVENDORATTN2FAXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2EMAIL", DbType="NVarChar(80)")]
+		public string VENDORATTN2EMAIL
+		{
+			get
+			{
+				return this._VENDORATTN2EMAIL;
+			}
+			set
+			{
+				if ((this._VENDORATTN2EMAIL != value))
+				{
+					this.OnVENDORATTN2EMAILChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2EMAIL = value;
+					this.SendPropertyChanged("VENDORATTN2EMAIL");
+					this.OnVENDORATTN2EMAILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOADDR", DbType="NVarChar(250)")]
+		public string SHIPTOADDR
+		{
+			get
+			{
+				return this._SHIPTOADDR;
+			}
+			set
+			{
+				if ((this._SHIPTOADDR != value))
+				{
+					this.OnSHIPTOADDRChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOADDR = value;
+					this.SendPropertyChanged("SHIPTOADDR");
+					this.OnSHIPTOADDRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1NAME", DbType="NVarChar(80)")]
+		public string SHIPTOATTN1NAME
+		{
+			get
+			{
+				return this._SHIPTOATTN1NAME;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN1NAME != value))
+				{
+					this.OnSHIPTOATTN1NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN1NAME = value;
+					this.SendPropertyChanged("SHIPTOATTN1NAME");
+					this.OnSHIPTOATTN1NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1MOB", DbType="NVarChar(30)")]
+		public string SHIPTOATTN1MOB
+		{
+			get
+			{
+				return this._SHIPTOATTN1MOB;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN1MOB != value))
+				{
+					this.OnSHIPTOATTN1MOBChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN1MOB = value;
+					this.SendPropertyChanged("SHIPTOATTN1MOB");
+					this.OnSHIPTOATTN1MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1POS", DbType="NVarChar(50)")]
+		public string SHIPTOATTN1POS
+		{
+			get
+			{
+				return this._SHIPTOATTN1POS;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN1POS != value))
+				{
+					this.OnSHIPTOATTN1POSChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN1POS = value;
+					this.SendPropertyChanged("SHIPTOATTN1POS");
+					this.OnSHIPTOATTN1POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2NAME", DbType="NVarChar(80)")]
+		public string SHIPTOATTN2NAME
+		{
+			get
+			{
+				return this._SHIPTOATTN2NAME;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN2NAME != value))
+				{
+					this.OnSHIPTOATTN2NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN2NAME = value;
+					this.SendPropertyChanged("SHIPTOATTN2NAME");
+					this.OnSHIPTOATTN2NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2MOB", DbType="NVarChar(30)")]
+		public string SHIPTOATTN2MOB
+		{
+			get
+			{
+				return this._SHIPTOATTN2MOB;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN2MOB != value))
+				{
+					this.OnSHIPTOATTN2MOBChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN2MOB = value;
+					this.SendPropertyChanged("SHIPTOATTN2MOB");
+					this.OnSHIPTOATTN2MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2POS", DbType="NVarChar(50)")]
+		public string SHIPTOATTN2POS
+		{
+			get
+			{
+				return this._SHIPTOATTN2POS;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN2POS != value))
+				{
+					this.OnSHIPTOATTN2POSChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN2POS = value;
+					this.SendPropertyChanged("SHIPTOATTN2POS");
+					this.OnSHIPTOATTN2POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALCOST", DbType="Decimal(16,4)")]
+		public System.Nullable<decimal> TOTALCOST
+		{
+			get
+			{
+				return this._TOTALCOST;
+			}
+			set
+			{
+				if ((this._TOTALCOST != value))
+				{
+					this.OnTOTALCOSTChanging(value);
+					this.SendPropertyChanging();
+					this._TOTALCOST = value;
+					this.SendPropertyChanged("TOTALCOST");
+					this.OnTOTALCOSTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CURRENCYCODE", DbType="VarChar(8)")]
+		public string CURRENCYCODE
+		{
+			get
+			{
+				return this._CURRENCYCODE;
+			}
+			set
+			{
+				if ((this._CURRENCYCODE != value))
+				{
+					this.OnCURRENCYCODEChanging(value);
+					this.SendPropertyChanging();
+					this._CURRENCYCODE = value;
+					this.SendPropertyChanged("CURRENCYCODE");
+					this.OnCURRENCYCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALTAX", DbType="Decimal(12,4)")]
+		public System.Nullable<decimal> TOTALTAX
+		{
+			get
+			{
+				return this._TOTALTAX;
+			}
+			set
+			{
+				if ((this._TOTALTAX != value))
+				{
+					this.OnTOTALTAXChanging(value);
+					this.SendPropertyChanging();
+					this._TOTALTAX = value;
+					this.SendPropertyChanged("TOTALTAX");
+					this.OnTOTALTAXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRETAXTOTAL", DbType="Decimal(12,4)")]
+		public System.Nullable<decimal> PRETAXTOTAL
+		{
+			get
+			{
+				return this._PRETAXTOTAL;
+			}
+			set
+			{
+				if ((this._PRETAXTOTAL != value))
+				{
+					this.OnPRETAXTOTALChanging(value);
+					this.SendPropertyChanging();
+					this._PRETAXTOTAL = value;
+					this.SendPropertyChanged("PRETAXTOTAL");
+					this.OnPRETAXTOTALChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CREATEDBY", DbType="NVarChar(30)")]
+		public string CREATEDBY
+		{
+			get
+			{
+				return this._CREATEDBY;
+			}
+			set
+			{
+				if ((this._CREATEDBY != value))
+				{
+					this.OnCREATEDBYChanging(value);
+					this.SendPropertyChanging();
+					this._CREATEDBY = value;
+					this.SendPropertyChanged("CREATEDBY");
+					this.OnCREATEDBYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CREATIONDATETIME", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CREATIONDATETIME
+		{
+			get
+			{
+				return this._CREATIONDATETIME;
+			}
+			set
+			{
+				if ((this._CREATIONDATETIME != value))
+				{
+					this.OnCREATIONDATETIMEChanging(value);
+					this.SendPropertyChanging();
+					this._CREATIONDATETIME = value;
+					this.SendPropertyChanged("CREATIONDATETIME");
+					this.OnCREATIONDATETIMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LASTMODIFIEDBY", DbType="NVarChar(30)")]
+		public string LASTMODIFIEDBY
+		{
+			get
+			{
+				return this._LASTMODIFIEDBY;
+			}
+			set
+			{
+				if ((this._LASTMODIFIEDBY != value))
+				{
+					this.OnLASTMODIFIEDBYChanging(value);
+					this.SendPropertyChanging();
+					this._LASTMODIFIEDBY = value;
+					this.SendPropertyChanged("LASTMODIFIEDBY");
+					this.OnLASTMODIFIEDBYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LASTMODIFIEDDATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LASTMODIFIEDDATE
+		{
+			get
+			{
+				return this._LASTMODIFIEDDATE;
+			}
+			set
+			{
+				if ((this._LASTMODIFIEDDATE != value))
+				{
+					this.OnLASTMODIFIEDDATEChanging(value);
+					this.SendPropertyChanging();
+					this._LASTMODIFIEDDATE = value;
+					this.SendPropertyChanged("LASTMODIFIEDDATE");
+					this.OnLASTMODIFIEDDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTRACTREFNUM", DbType="Int")]
+		public System.Nullable<int> CONTRACTREFNUM
+		{
+			get
+			{
+				return this._CONTRACTREFNUM;
+			}
+			set
+			{
+				if ((this._CONTRACTREFNUM != value))
+				{
+					this.OnCONTRACTREFNUMChanging(value);
+					this.SendPropertyChanging();
+					this._CONTRACTREFNUM = value;
+					this.SendPropertyChanged("CONTRACTREFNUM");
+					this.OnCONTRACTREFNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REVCOMMENTS", DbType="NVarChar(250)")]
+		public string REVCOMMENTS
+		{
+			get
+			{
+				return this._REVCOMMENTS;
+			}
+			set
+			{
+				if ((this._REVCOMMENTS != value))
+				{
+					this.OnREVCOMMENTSChanging(value);
+					this.SendPropertyChanging();
+					this._REVCOMMENTS = value;
+					this.SendPropertyChanged("REVCOMMENTS");
+					this.OnREVCOMMENTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HISTORYFLAG", DbType="Bit")]
+		public System.Nullable<bool> HISTORYFLAG
+		{
+			get
+			{
+				return this._HISTORYFLAG;
+			}
+			set
+			{
+				if ((this._HISTORYFLAG != value))
+				{
+					this.OnHISTORYFLAGChanging(value);
+					this.SendPropertyChanging();
+					this._HISTORYFLAG = value;
+					this.SendPropertyChanged("HISTORYFLAG");
+					this.OnHISTORYFLAGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INTNOTE", DbType="NVarChar(500)")]
+		public string INTNOTE
+		{
+			get
+			{
+				return this._INTNOTE;
+			}
+			set
+			{
+				if ((this._INTNOTE != value))
+				{
+					this.OnINTNOTEChanging(value);
+					this.SendPropertyChanging();
+					this._INTNOTE = value;
+					this.SendPropertyChanged("INTNOTE");
+					this.OnINTNOTEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EXTNOTE", DbType="NVarChar(500)")]
+		public string EXTNOTE
+		{
+			get
+			{
+				return this._EXTNOTE;
+			}
+			set
+			{
+				if ((this._EXTNOTE != value))
+				{
+					this.OnEXTNOTEChanging(value);
+					this.SendPropertyChanging();
+					this._EXTNOTE = value;
+					this.SendPropertyChanged("EXTNOTE");
+					this.OnEXTNOTEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SENDNOTETOACCTS", DbType="Bit")]
+		public System.Nullable<bool> SENDNOTETOACCTS
+		{
+			get
+			{
+				return this._SENDNOTETOACCTS;
+			}
+			set
+			{
+				if ((this._SENDNOTETOACCTS != value))
+				{
+					this.OnSENDNOTETOACCTSChanging(value);
+					this.SendPropertyChanging();
+					this._SENDNOTETOACCTS = value;
+					this.SendPropertyChanged("SENDNOTETOACCTS");
+					this.OnSENDNOTETOACCTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PO1_A_PO1", Storage="_A_POs", ThisKey="PONUM,POREVISION", OtherKey="PONUM,POREVISION")]
+		public EntitySet<A_PO> A_POs
+		{
+			get
+			{
+				return this._A_POs;
+			}
+			set
+			{
+				this._A_POs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_A_POs(A_PO entity)
+		{
+			this.SendPropertyChanging();
+			entity.PO = this;
+		}
+		
+		private void detach_A_POs(A_PO entity)
+		{
+			this.SendPropertyChanging();
+			entity.PO = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.A_PO")]
+	public partial class A_PO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AUDITID;
+		
+		private string _AUDITACTION;
+		
+		private string _AUDITBY;
+		
+		private System.Nullable<System.DateTime> _AUDITTIMESTAMP;
+		
+		private System.Nullable<decimal> _PONUM;
+		
+		private string _POREF;
+		
+		private System.Nullable<long> _POSID;
+		
+		private System.Nullable<short> _POREVISION;
+		
+		private string _DESCRIPTION;
+		
+		private string _ORGCODE;
+		
+		private string _ORGNAME;
+		
+		private string _PROJECTCODE;
+		
+		private string _PROJECTNAME;
+		
+		private string _MRNUM;
+		
+		private string _QNUM;
+		
+		private System.Nullable<System.DateTime> _QDATE;
+		
+		private string _PAYMENTTERMS;
+		
+		private System.Nullable<System.DateTime> _ORDERDATE;
+		
+		private System.Nullable<System.DateTime> _REQUIREDATE;
+		
+		private System.Nullable<System.DateTime> _VENDORDATE;
+		
+		private string _POTYPE;
+		
+		private string _ORIGINALPONUM;
+		
+		private string _STATUS;
+		
+		private System.Nullable<System.DateTime> _STATUSDATE;
+		
+		private string _BUYERCODE;
+		
+		private string _BUYERNAME;
+		
+		private System.Nullable<int> _VENDORID;
+		
+		private string _VENDORNAME;
+		
+		private string _VENDORADDR;
+		
+		private string _VENDORATTN1NAME;
+		
+		private string _VENDORATTN1POS;
+		
+		private string _VENDORATTN1MOB;
+		
+		private string _VENDORATTN1TEL;
+		
+		private string _VENDORATTN1FAX;
+		
+		private string _VENDORATTN1EMAIL;
+		
+		private string _VENDORATTN2NAME;
+		
+		private string _VENDORATTN2POS;
+		
+		private string _VENDORATTN2MOB;
+		
+		private string _VENDORATTN2TEL;
+		
+		private string _VENDORATTN2FAX;
+		
+		private string _VENDORATTN2EMAIL;
+		
+		private string _SHIPTOADDR;
+		
+		private string _SHIPTOATTN1NAME;
+		
+		private string _SHIPTOATTN1MOB;
+		
+		private string _SHIPTOATTN1POS;
+		
+		private string _SHIPTOATTN2NAME;
+		
+		private string _SHIPTOATTN2MOB;
+		
+		private string _SHIPTOATTN2POS;
+		
+		private System.Nullable<int> _CONTRACTREFNUM;
+		
+		private string _REVCOMMENTS;
+		
+		private System.Nullable<bool> _HISTORYFLAG;
+		
+		private string _CURRENCYCODE;
+		
+		private System.Nullable<decimal> _TOTALTAX;
+		
+		private System.Nullable<decimal> _PRETAXTOTAL;
+		
+		private string _INTNOTE;
+		
+		private string _EXTNOTE;
+		
+		private System.Nullable<bool> _SENDNOTETOACCTS;
+		
+		private EntityRef<PO> _PO;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAUDITIDChanging(int value);
+    partial void OnAUDITIDChanged();
+    partial void OnAUDITACTIONChanging(string value);
+    partial void OnAUDITACTIONChanged();
+    partial void OnAUDITBYChanging(string value);
+    partial void OnAUDITBYChanged();
+    partial void OnAUDITTIMESTAMPChanging(System.Nullable<System.DateTime> value);
+    partial void OnAUDITTIMESTAMPChanged();
+    partial void OnPONUMChanging(System.Nullable<decimal> value);
+    partial void OnPONUMChanged();
+    partial void OnPOREFChanging(string value);
+    partial void OnPOREFChanged();
+    partial void OnPOSIDChanging(System.Nullable<long> value);
+    partial void OnPOSIDChanged();
+    partial void OnPOREVISIONChanging(System.Nullable<short> value);
+    partial void OnPOREVISIONChanged();
+    partial void OnDESCRIPTIONChanging(string value);
+    partial void OnDESCRIPTIONChanged();
+    partial void OnORGCODEChanging(string value);
+    partial void OnORGCODEChanged();
+    partial void OnORGNAMEChanging(string value);
+    partial void OnORGNAMEChanged();
+    partial void OnPROJECTCODEChanging(string value);
+    partial void OnPROJECTCODEChanged();
+    partial void OnPROJECTNAMEChanging(string value);
+    partial void OnPROJECTNAMEChanged();
+    partial void OnMRNUMChanging(string value);
+    partial void OnMRNUMChanged();
+    partial void OnQNUMChanging(string value);
+    partial void OnQNUMChanged();
+    partial void OnQDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnQDATEChanged();
+    partial void OnPAYMENTTERMSChanging(string value);
+    partial void OnPAYMENTTERMSChanged();
+    partial void OnORDERDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnORDERDATEChanged();
+    partial void OnREQUIREDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnREQUIREDATEChanged();
+    partial void OnVENDORDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnVENDORDATEChanged();
+    partial void OnPOTYPEChanging(string value);
+    partial void OnPOTYPEChanged();
+    partial void OnORIGINALPONUMChanging(string value);
+    partial void OnORIGINALPONUMChanged();
+    partial void OnSTATUSChanging(string value);
+    partial void OnSTATUSChanged();
+    partial void OnSTATUSDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnSTATUSDATEChanged();
+    partial void OnBUYERCODEChanging(string value);
+    partial void OnBUYERCODEChanged();
+    partial void OnBUYERNAMEChanging(string value);
+    partial void OnBUYERNAMEChanged();
+    partial void OnVENDORIDChanging(System.Nullable<int> value);
+    partial void OnVENDORIDChanged();
+    partial void OnVENDORNAMEChanging(string value);
+    partial void OnVENDORNAMEChanged();
+    partial void OnVENDORADDRChanging(string value);
+    partial void OnVENDORADDRChanged();
+    partial void OnVENDORATTN1NAMEChanging(string value);
+    partial void OnVENDORATTN1NAMEChanged();
+    partial void OnVENDORATTN1POSChanging(string value);
+    partial void OnVENDORATTN1POSChanged();
+    partial void OnVENDORATTN1MOBChanging(string value);
+    partial void OnVENDORATTN1MOBChanged();
+    partial void OnVENDORATTN1TELChanging(string value);
+    partial void OnVENDORATTN1TELChanged();
+    partial void OnVENDORATTN1FAXChanging(string value);
+    partial void OnVENDORATTN1FAXChanged();
+    partial void OnVENDORATTN1EMAILChanging(string value);
+    partial void OnVENDORATTN1EMAILChanged();
+    partial void OnVENDORATTN2NAMEChanging(string value);
+    partial void OnVENDORATTN2NAMEChanged();
+    partial void OnVENDORATTN2POSChanging(string value);
+    partial void OnVENDORATTN2POSChanged();
+    partial void OnVENDORATTN2MOBChanging(string value);
+    partial void OnVENDORATTN2MOBChanged();
+    partial void OnVENDORATTN2TELChanging(string value);
+    partial void OnVENDORATTN2TELChanged();
+    partial void OnVENDORATTN2FAXChanging(string value);
+    partial void OnVENDORATTN2FAXChanged();
+    partial void OnVENDORATTN2EMAILChanging(string value);
+    partial void OnVENDORATTN2EMAILChanged();
+    partial void OnSHIPTOADDRChanging(string value);
+    partial void OnSHIPTOADDRChanged();
+    partial void OnSHIPTOATTN1NAMEChanging(string value);
+    partial void OnSHIPTOATTN1NAMEChanged();
+    partial void OnSHIPTOATTN1MOBChanging(string value);
+    partial void OnSHIPTOATTN1MOBChanged();
+    partial void OnSHIPTOATTN1POSChanging(string value);
+    partial void OnSHIPTOATTN1POSChanged();
+    partial void OnSHIPTOATTN2NAMEChanging(string value);
+    partial void OnSHIPTOATTN2NAMEChanged();
+    partial void OnSHIPTOATTN2MOBChanging(string value);
+    partial void OnSHIPTOATTN2MOBChanged();
+    partial void OnSHIPTOATTN2POSChanging(string value);
+    partial void OnSHIPTOATTN2POSChanged();
+    partial void OnCONTRACTREFNUMChanging(System.Nullable<int> value);
+    partial void OnCONTRACTREFNUMChanged();
+    partial void OnREVCOMMENTSChanging(string value);
+    partial void OnREVCOMMENTSChanged();
+    partial void OnHISTORYFLAGChanging(System.Nullable<bool> value);
+    partial void OnHISTORYFLAGChanged();
+    partial void OnCURRENCYCODEChanging(string value);
+    partial void OnCURRENCYCODEChanged();
+    partial void OnTOTALTAXChanging(System.Nullable<decimal> value);
+    partial void OnTOTALTAXChanged();
+    partial void OnPRETAXTOTALChanging(System.Nullable<decimal> value);
+    partial void OnPRETAXTOTALChanged();
+    partial void OnINTNOTEChanging(string value);
+    partial void OnINTNOTEChanged();
+    partial void OnEXTNOTEChanging(string value);
+    partial void OnEXTNOTEChanged();
+    partial void OnSENDNOTETOACCTSChanging(System.Nullable<bool> value);
+    partial void OnSENDNOTETOACCTSChanged();
+    #endregion
+		
+		public A_PO()
+		{
+			this._PO = default(EntityRef<PO>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AUDITID
+		{
+			get
+			{
+				return this._AUDITID;
+			}
+			set
+			{
+				if ((this._AUDITID != value))
+				{
+					this.OnAUDITIDChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITID = value;
+					this.SendPropertyChanged("AUDITID");
+					this.OnAUDITIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITACTION", DbType="NVarChar(10)")]
+		public string AUDITACTION
+		{
+			get
+			{
+				return this._AUDITACTION;
+			}
+			set
+			{
+				if ((this._AUDITACTION != value))
+				{
+					this.OnAUDITACTIONChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITACTION = value;
+					this.SendPropertyChanged("AUDITACTION");
+					this.OnAUDITACTIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITBY", DbType="NVarChar(30)")]
+		public string AUDITBY
+		{
+			get
+			{
+				return this._AUDITBY;
+			}
+			set
+			{
+				if ((this._AUDITBY != value))
+				{
+					this.OnAUDITBYChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITBY = value;
+					this.SendPropertyChanged("AUDITBY");
+					this.OnAUDITBYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITTIMESTAMP", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AUDITTIMESTAMP
+		{
+			get
+			{
+				return this._AUDITTIMESTAMP;
+			}
+			set
+			{
+				if ((this._AUDITTIMESTAMP != value))
+				{
+					this.OnAUDITTIMESTAMPChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITTIMESTAMP = value;
+					this.SendPropertyChanged("AUDITTIMESTAMP");
+					this.OnAUDITTIMESTAMPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONUM", DbType="Decimal(8,0)")]
+		public System.Nullable<decimal> PONUM
+		{
+			get
+			{
+				return this._PONUM;
+			}
+			set
+			{
+				if ((this._PONUM != value))
+				{
+					if (this._PO.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPONUMChanging(value);
+					this.SendPropertyChanging();
+					this._PONUM = value;
+					this.SendPropertyChanged("PONUM");
+					this.OnPONUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREF", DbType="VarChar(80)")]
+		public string POREF
+		{
+			get
+			{
+				return this._POREF;
+			}
+			set
+			{
+				if ((this._POREF != value))
+				{
+					this.OnPOREFChanging(value);
+					this.SendPropertyChanging();
+					this._POREF = value;
+					this.SendPropertyChanged("POREF");
+					this.OnPOREFChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSID", DbType="BigInt")]
+		public System.Nullable<long> POSID
+		{
+			get
+			{
+				return this._POSID;
+			}
+			set
+			{
+				if ((this._POSID != value))
+				{
+					this.OnPOSIDChanging(value);
+					this.SendPropertyChanging();
+					this._POSID = value;
+					this.SendPropertyChanged("POSID");
+					this.OnPOSIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREVISION", DbType="SmallInt")]
+		public System.Nullable<short> POREVISION
+		{
+			get
+			{
+				return this._POREVISION;
+			}
+			set
+			{
+				if ((this._POREVISION != value))
+				{
+					if (this._PO.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPOREVISIONChanging(value);
+					this.SendPropertyChanging();
+					this._POREVISION = value;
+					this.SendPropertyChanged("POREVISION");
+					this.OnPOREVISIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(250)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this.OnDESCRIPTIONChanging(value);
+					this.SendPropertyChanging();
+					this._DESCRIPTION = value;
+					this.SendPropertyChanged("DESCRIPTION");
+					this.OnDESCRIPTIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGCODE", DbType="NVarChar(30)")]
+		public string ORGCODE
+		{
+			get
+			{
+				return this._ORGCODE;
+			}
+			set
+			{
+				if ((this._ORGCODE != value))
+				{
+					this.OnORGCODEChanging(value);
+					this.SendPropertyChanging();
+					this._ORGCODE = value;
+					this.SendPropertyChanged("ORGCODE");
+					this.OnORGCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORGNAME", DbType="NVarChar(50)")]
+		public string ORGNAME
+		{
+			get
+			{
+				return this._ORGNAME;
+			}
+			set
+			{
+				if ((this._ORGNAME != value))
+				{
+					this.OnORGNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._ORGNAME = value;
+					this.SendPropertyChanged("ORGNAME");
+					this.OnORGNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTCODE", DbType="NVarChar(10)")]
+		public string PROJECTCODE
+		{
+			get
+			{
+				return this._PROJECTCODE;
+			}
+			set
+			{
+				if ((this._PROJECTCODE != value))
+				{
+					this.OnPROJECTCODEChanging(value);
+					this.SendPropertyChanging();
+					this._PROJECTCODE = value;
+					this.SendPropertyChanged("PROJECTCODE");
+					this.OnPROJECTCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PROJECTNAME", DbType="NVarChar(80)")]
+		public string PROJECTNAME
+		{
+			get
+			{
+				return this._PROJECTNAME;
+			}
+			set
+			{
+				if ((this._PROJECTNAME != value))
+				{
+					this.OnPROJECTNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._PROJECTNAME = value;
+					this.SendPropertyChanged("PROJECTNAME");
+					this.OnPROJECTNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MRNUM", DbType="NVarChar(30)")]
+		public string MRNUM
+		{
+			get
+			{
+				return this._MRNUM;
+			}
+			set
+			{
+				if ((this._MRNUM != value))
+				{
+					this.OnMRNUMChanging(value);
+					this.SendPropertyChanging();
+					this._MRNUM = value;
+					this.SendPropertyChanged("MRNUM");
+					this.OnMRNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QNUM", DbType="NVarChar(30)")]
+		public string QNUM
+		{
+			get
+			{
+				return this._QNUM;
+			}
+			set
+			{
+				if ((this._QNUM != value))
+				{
+					this.OnQNUMChanging(value);
+					this.SendPropertyChanging();
+					this._QNUM = value;
+					this.SendPropertyChanged("QNUM");
+					this.OnQNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> QDATE
+		{
+			get
+			{
+				return this._QDATE;
+			}
+			set
+			{
+				if ((this._QDATE != value))
+				{
+					this.OnQDATEChanging(value);
+					this.SendPropertyChanging();
+					this._QDATE = value;
+					this.SendPropertyChanged("QDATE");
+					this.OnQDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PAYMENTTERMS", DbType="NVarChar(250)")]
+		public string PAYMENTTERMS
+		{
+			get
+			{
+				return this._PAYMENTTERMS;
+			}
+			set
+			{
+				if ((this._PAYMENTTERMS != value))
+				{
+					this.OnPAYMENTTERMSChanging(value);
+					this.SendPropertyChanging();
+					this._PAYMENTTERMS = value;
+					this.SendPropertyChanged("PAYMENTTERMS");
+					this.OnPAYMENTTERMSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> ORDERDATE
+		{
+			get
+			{
+				return this._ORDERDATE;
+			}
+			set
+			{
+				if ((this._ORDERDATE != value))
+				{
+					this.OnORDERDATEChanging(value);
+					this.SendPropertyChanging();
+					this._ORDERDATE = value;
+					this.SendPropertyChanged("ORDERDATE");
+					this.OnORDERDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUIREDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> REQUIREDATE
+		{
+			get
+			{
+				return this._REQUIREDATE;
+			}
+			set
+			{
+				if ((this._REQUIREDATE != value))
+				{
+					this.OnREQUIREDATEChanging(value);
+					this.SendPropertyChanging();
+					this._REQUIREDATE = value;
+					this.SendPropertyChanged("REQUIREDATE");
+					this.OnREQUIREDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> VENDORDATE
+		{
+			get
+			{
+				return this._VENDORDATE;
+			}
+			set
+			{
+				if ((this._VENDORDATE != value))
+				{
+					this.OnVENDORDATEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORDATE = value;
+					this.SendPropertyChanged("VENDORDATE");
+					this.OnVENDORDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POTYPE", DbType="NVarChar(8)")]
+		public string POTYPE
+		{
+			get
+			{
+				return this._POTYPE;
+			}
+			set
+			{
+				if ((this._POTYPE != value))
+				{
+					this.OnPOTYPEChanging(value);
+					this.SendPropertyChanging();
+					this._POTYPE = value;
+					this.SendPropertyChanged("POTYPE");
+					this.OnPOTYPEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORIGINALPONUM", DbType="NVarChar(80)")]
+		public string ORIGINALPONUM
+		{
+			get
+			{
+				return this._ORIGINALPONUM;
+			}
+			set
+			{
+				if ((this._ORIGINALPONUM != value))
+				{
+					this.OnORIGINALPONUMChanging(value);
+					this.SendPropertyChanging();
+					this._ORIGINALPONUM = value;
+					this.SendPropertyChanged("ORIGINALPONUM");
+					this.OnORIGINALPONUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="NVarChar(10)")]
+		public string STATUS
+		{
+			get
+			{
+				return this._STATUS;
+			}
+			set
+			{
+				if ((this._STATUS != value))
+				{
+					this.OnSTATUSChanging(value);
+					this.SendPropertyChanging();
+					this._STATUS = value;
+					this.SendPropertyChanged("STATUS");
+					this.OnSTATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUSDATE", DbType="DateTime")]
+		public System.Nullable<System.DateTime> STATUSDATE
+		{
+			get
+			{
+				return this._STATUSDATE;
+			}
+			set
+			{
+				if ((this._STATUSDATE != value))
+				{
+					this.OnSTATUSDATEChanging(value);
+					this.SendPropertyChanging();
+					this._STATUSDATE = value;
+					this.SendPropertyChanged("STATUSDATE");
+					this.OnSTATUSDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERCODE", DbType="NVarChar(10)")]
+		public string BUYERCODE
+		{
+			get
+			{
+				return this._BUYERCODE;
+			}
+			set
+			{
+				if ((this._BUYERCODE != value))
+				{
+					this.OnBUYERCODEChanging(value);
+					this.SendPropertyChanging();
+					this._BUYERCODE = value;
+					this.SendPropertyChanged("BUYERCODE");
+					this.OnBUYERCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BUYERNAME", DbType="NVarChar(100)")]
+		public string BUYERNAME
+		{
+			get
+			{
+				return this._BUYERNAME;
+			}
+			set
+			{
+				if ((this._BUYERNAME != value))
+				{
+					this.OnBUYERNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._BUYERNAME = value;
+					this.SendPropertyChanged("BUYERNAME");
+					this.OnBUYERNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORID", DbType="Int")]
+		public System.Nullable<int> VENDORID
+		{
+			get
+			{
+				return this._VENDORID;
+			}
+			set
+			{
+				if ((this._VENDORID != value))
+				{
+					this.OnVENDORIDChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORID = value;
+					this.SendPropertyChanged("VENDORID");
+					this.OnVENDORIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORNAME", DbType="NVarChar(100)")]
+		public string VENDORNAME
+		{
+			get
+			{
+				return this._VENDORNAME;
+			}
+			set
+			{
+				if ((this._VENDORNAME != value))
+				{
+					this.OnVENDORNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORNAME = value;
+					this.SendPropertyChanged("VENDORNAME");
+					this.OnVENDORNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORADDR", DbType="NVarChar(250)")]
+		public string VENDORADDR
+		{
+			get
+			{
+				return this._VENDORADDR;
+			}
+			set
+			{
+				if ((this._VENDORADDR != value))
+				{
+					this.OnVENDORADDRChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORADDR = value;
+					this.SendPropertyChanged("VENDORADDR");
+					this.OnVENDORADDRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1NAME", DbType="NVarChar(80)")]
+		public string VENDORATTN1NAME
+		{
+			get
+			{
+				return this._VENDORATTN1NAME;
+			}
+			set
+			{
+				if ((this._VENDORATTN1NAME != value))
+				{
+					this.OnVENDORATTN1NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1NAME = value;
+					this.SendPropertyChanged("VENDORATTN1NAME");
+					this.OnVENDORATTN1NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1POS", DbType="NVarChar(80)")]
+		public string VENDORATTN1POS
+		{
+			get
+			{
+				return this._VENDORATTN1POS;
+			}
+			set
+			{
+				if ((this._VENDORATTN1POS != value))
+				{
+					this.OnVENDORATTN1POSChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1POS = value;
+					this.SendPropertyChanged("VENDORATTN1POS");
+					this.OnVENDORATTN1POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1MOB", DbType="NVarChar(30)")]
+		public string VENDORATTN1MOB
+		{
+			get
+			{
+				return this._VENDORATTN1MOB;
+			}
+			set
+			{
+				if ((this._VENDORATTN1MOB != value))
+				{
+					this.OnVENDORATTN1MOBChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1MOB = value;
+					this.SendPropertyChanged("VENDORATTN1MOB");
+					this.OnVENDORATTN1MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1TEL", DbType="NVarChar(30)")]
+		public string VENDORATTN1TEL
+		{
+			get
+			{
+				return this._VENDORATTN1TEL;
+			}
+			set
+			{
+				if ((this._VENDORATTN1TEL != value))
+				{
+					this.OnVENDORATTN1TELChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1TEL = value;
+					this.SendPropertyChanged("VENDORATTN1TEL");
+					this.OnVENDORATTN1TELChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1FAX", DbType="NVarChar(30)")]
+		public string VENDORATTN1FAX
+		{
+			get
+			{
+				return this._VENDORATTN1FAX;
+			}
+			set
+			{
+				if ((this._VENDORATTN1FAX != value))
+				{
+					this.OnVENDORATTN1FAXChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1FAX = value;
+					this.SendPropertyChanged("VENDORATTN1FAX");
+					this.OnVENDORATTN1FAXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN1EMAIL", DbType="NVarChar(80)")]
+		public string VENDORATTN1EMAIL
+		{
+			get
+			{
+				return this._VENDORATTN1EMAIL;
+			}
+			set
+			{
+				if ((this._VENDORATTN1EMAIL != value))
+				{
+					this.OnVENDORATTN1EMAILChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN1EMAIL = value;
+					this.SendPropertyChanged("VENDORATTN1EMAIL");
+					this.OnVENDORATTN1EMAILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2NAME", DbType="NVarChar(80)")]
+		public string VENDORATTN2NAME
+		{
+			get
+			{
+				return this._VENDORATTN2NAME;
+			}
+			set
+			{
+				if ((this._VENDORATTN2NAME != value))
+				{
+					this.OnVENDORATTN2NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2NAME = value;
+					this.SendPropertyChanged("VENDORATTN2NAME");
+					this.OnVENDORATTN2NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2POS", DbType="NVarChar(80)")]
+		public string VENDORATTN2POS
+		{
+			get
+			{
+				return this._VENDORATTN2POS;
+			}
+			set
+			{
+				if ((this._VENDORATTN2POS != value))
+				{
+					this.OnVENDORATTN2POSChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2POS = value;
+					this.SendPropertyChanged("VENDORATTN2POS");
+					this.OnVENDORATTN2POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2MOB", DbType="NVarChar(30)")]
+		public string VENDORATTN2MOB
+		{
+			get
+			{
+				return this._VENDORATTN2MOB;
+			}
+			set
+			{
+				if ((this._VENDORATTN2MOB != value))
+				{
+					this.OnVENDORATTN2MOBChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2MOB = value;
+					this.SendPropertyChanged("VENDORATTN2MOB");
+					this.OnVENDORATTN2MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2TEL", DbType="NVarChar(30)")]
+		public string VENDORATTN2TEL
+		{
+			get
+			{
+				return this._VENDORATTN2TEL;
+			}
+			set
+			{
+				if ((this._VENDORATTN2TEL != value))
+				{
+					this.OnVENDORATTN2TELChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2TEL = value;
+					this.SendPropertyChanged("VENDORATTN2TEL");
+					this.OnVENDORATTN2TELChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2FAX", DbType="NVarChar(30)")]
+		public string VENDORATTN2FAX
+		{
+			get
+			{
+				return this._VENDORATTN2FAX;
+			}
+			set
+			{
+				if ((this._VENDORATTN2FAX != value))
+				{
+					this.OnVENDORATTN2FAXChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2FAX = value;
+					this.SendPropertyChanged("VENDORATTN2FAX");
+					this.OnVENDORATTN2FAXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VENDORATTN2EMAIL", DbType="NVarChar(80)")]
+		public string VENDORATTN2EMAIL
+		{
+			get
+			{
+				return this._VENDORATTN2EMAIL;
+			}
+			set
+			{
+				if ((this._VENDORATTN2EMAIL != value))
+				{
+					this.OnVENDORATTN2EMAILChanging(value);
+					this.SendPropertyChanging();
+					this._VENDORATTN2EMAIL = value;
+					this.SendPropertyChanged("VENDORATTN2EMAIL");
+					this.OnVENDORATTN2EMAILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOADDR", DbType="NVarChar(250)")]
+		public string SHIPTOADDR
+		{
+			get
+			{
+				return this._SHIPTOADDR;
+			}
+			set
+			{
+				if ((this._SHIPTOADDR != value))
+				{
+					this.OnSHIPTOADDRChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOADDR = value;
+					this.SendPropertyChanged("SHIPTOADDR");
+					this.OnSHIPTOADDRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1NAME", DbType="NVarChar(80)")]
+		public string SHIPTOATTN1NAME
+		{
+			get
+			{
+				return this._SHIPTOATTN1NAME;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN1NAME != value))
+				{
+					this.OnSHIPTOATTN1NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN1NAME = value;
+					this.SendPropertyChanged("SHIPTOATTN1NAME");
+					this.OnSHIPTOATTN1NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1MOB", DbType="NVarChar(30)")]
+		public string SHIPTOATTN1MOB
+		{
+			get
+			{
+				return this._SHIPTOATTN1MOB;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN1MOB != value))
+				{
+					this.OnSHIPTOATTN1MOBChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN1MOB = value;
+					this.SendPropertyChanged("SHIPTOATTN1MOB");
+					this.OnSHIPTOATTN1MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN1POS", DbType="NVarChar(50)")]
+		public string SHIPTOATTN1POS
+		{
+			get
+			{
+				return this._SHIPTOATTN1POS;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN1POS != value))
+				{
+					this.OnSHIPTOATTN1POSChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN1POS = value;
+					this.SendPropertyChanged("SHIPTOATTN1POS");
+					this.OnSHIPTOATTN1POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2NAME", DbType="NVarChar(80)")]
+		public string SHIPTOATTN2NAME
+		{
+			get
+			{
+				return this._SHIPTOATTN2NAME;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN2NAME != value))
+				{
+					this.OnSHIPTOATTN2NAMEChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN2NAME = value;
+					this.SendPropertyChanged("SHIPTOATTN2NAME");
+					this.OnSHIPTOATTN2NAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2MOB", DbType="NVarChar(30)")]
+		public string SHIPTOATTN2MOB
+		{
+			get
+			{
+				return this._SHIPTOATTN2MOB;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN2MOB != value))
+				{
+					this.OnSHIPTOATTN2MOBChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN2MOB = value;
+					this.SendPropertyChanged("SHIPTOATTN2MOB");
+					this.OnSHIPTOATTN2MOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SHIPTOATTN2POS", DbType="NVarChar(50)")]
+		public string SHIPTOATTN2POS
+		{
+			get
+			{
+				return this._SHIPTOATTN2POS;
+			}
+			set
+			{
+				if ((this._SHIPTOATTN2POS != value))
+				{
+					this.OnSHIPTOATTN2POSChanging(value);
+					this.SendPropertyChanging();
+					this._SHIPTOATTN2POS = value;
+					this.SendPropertyChanged("SHIPTOATTN2POS");
+					this.OnSHIPTOATTN2POSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTRACTREFNUM", DbType="Int")]
+		public System.Nullable<int> CONTRACTREFNUM
+		{
+			get
+			{
+				return this._CONTRACTREFNUM;
+			}
+			set
+			{
+				if ((this._CONTRACTREFNUM != value))
+				{
+					this.OnCONTRACTREFNUMChanging(value);
+					this.SendPropertyChanging();
+					this._CONTRACTREFNUM = value;
+					this.SendPropertyChanged("CONTRACTREFNUM");
+					this.OnCONTRACTREFNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REVCOMMENTS", DbType="NVarChar(250)")]
+		public string REVCOMMENTS
+		{
+			get
+			{
+				return this._REVCOMMENTS;
+			}
+			set
+			{
+				if ((this._REVCOMMENTS != value))
+				{
+					this.OnREVCOMMENTSChanging(value);
+					this.SendPropertyChanging();
+					this._REVCOMMENTS = value;
+					this.SendPropertyChanged("REVCOMMENTS");
+					this.OnREVCOMMENTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HISTORYFLAG", DbType="Bit")]
+		public System.Nullable<bool> HISTORYFLAG
+		{
+			get
+			{
+				return this._HISTORYFLAG;
+			}
+			set
+			{
+				if ((this._HISTORYFLAG != value))
+				{
+					this.OnHISTORYFLAGChanging(value);
+					this.SendPropertyChanging();
+					this._HISTORYFLAG = value;
+					this.SendPropertyChanged("HISTORYFLAG");
+					this.OnHISTORYFLAGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CURRENCYCODE", DbType="VarChar(8)")]
+		public string CURRENCYCODE
+		{
+			get
+			{
+				return this._CURRENCYCODE;
+			}
+			set
+			{
+				if ((this._CURRENCYCODE != value))
+				{
+					this.OnCURRENCYCODEChanging(value);
+					this.SendPropertyChanging();
+					this._CURRENCYCODE = value;
+					this.SendPropertyChanged("CURRENCYCODE");
+					this.OnCURRENCYCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOTALTAX", DbType="Decimal(12,4)")]
+		public System.Nullable<decimal> TOTALTAX
+		{
+			get
+			{
+				return this._TOTALTAX;
+			}
+			set
+			{
+				if ((this._TOTALTAX != value))
+				{
+					this.OnTOTALTAXChanging(value);
+					this.SendPropertyChanging();
+					this._TOTALTAX = value;
+					this.SendPropertyChanged("TOTALTAX");
+					this.OnTOTALTAXChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRETAXTOTAL", DbType="Decimal(12,4)")]
+		public System.Nullable<decimal> PRETAXTOTAL
+		{
+			get
+			{
+				return this._PRETAXTOTAL;
+			}
+			set
+			{
+				if ((this._PRETAXTOTAL != value))
+				{
+					this.OnPRETAXTOTALChanging(value);
+					this.SendPropertyChanging();
+					this._PRETAXTOTAL = value;
+					this.SendPropertyChanged("PRETAXTOTAL");
+					this.OnPRETAXTOTALChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INTNOTE", DbType="NVarChar(500)")]
+		public string INTNOTE
+		{
+			get
+			{
+				return this._INTNOTE;
+			}
+			set
+			{
+				if ((this._INTNOTE != value))
+				{
+					this.OnINTNOTEChanging(value);
+					this.SendPropertyChanging();
+					this._INTNOTE = value;
+					this.SendPropertyChanged("INTNOTE");
+					this.OnINTNOTEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EXTNOTE", DbType="NVarChar(500)")]
+		public string EXTNOTE
+		{
+			get
+			{
+				return this._EXTNOTE;
+			}
+			set
+			{
+				if ((this._EXTNOTE != value))
+				{
+					this.OnEXTNOTEChanging(value);
+					this.SendPropertyChanging();
+					this._EXTNOTE = value;
+					this.SendPropertyChanged("EXTNOTE");
+					this.OnEXTNOTEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SENDNOTETOACCTS", DbType="Bit")]
+		public System.Nullable<bool> SENDNOTETOACCTS
+		{
+			get
+			{
+				return this._SENDNOTETOACCTS;
+			}
+			set
+			{
+				if ((this._SENDNOTETOACCTS != value))
+				{
+					this.OnSENDNOTETOACCTSChanging(value);
+					this.SendPropertyChanging();
+					this._SENDNOTETOACCTS = value;
+					this.SendPropertyChanged("SENDNOTETOACCTS");
+					this.OnSENDNOTETOACCTSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PO1_A_PO1", Storage="_PO", ThisKey="PONUM,POREVISION", OtherKey="PONUM,POREVISION", IsForeignKey=true)]
+		public PO PO
+		{
+			get
+			{
+				return this._PO.Entity;
+			}
+			set
+			{
+				PO previousValue = this._PO.Entity;
+				if (((previousValue != value) 
+							|| (this._PO.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PO.Entity = null;
+						previousValue.A_POs.Remove(this);
+					}
+					this._PO.Entity = value;
+					if ((value != null))
+					{
+						value.A_POs.Add(this);
+						this._PONUM = value.PONUM;
+						this._POREVISION = value.POREVISION;
+					}
+					else
+					{
+						this._PONUM = default(Nullable<decimal>);
+						this._POREVISION = default(Nullable<short>);
+					}
+					this.SendPropertyChanged("PO");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.A_POLINE")]
+	public partial class A_POLINE : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AUDITID;
+		
+		private string _AUDITACTION;
+		
+		private string _AUDITBY;
+		
+		private System.Nullable<System.DateTime> _AUDITTIMESTAMP;
+		
+		private System.Nullable<long> _POLINEID;
+		
+		private System.Nullable<decimal> _PONUM;
+		
+		private System.Nullable<short> _POREVISION;
+		
+		private System.Nullable<short> _POLINENUM;
+		
+		private string _LINETYPE;
+		
+		private string _COSTCODE;
+		
+		private string _CATALOGCODE;
+		
+		private string _DESCRIPTION;
+		
+		private System.Nullable<decimal> _ORDERQTY;
+		
+		private string _ORDERUNIT;
+		
+		private System.Nullable<decimal> _UNITCOST;
+		
+		private System.Nullable<decimal> _LINECOST;
+		
+		private string _ITEMNUM;
+		
+		private string _MODELNUM;
+		
+		private string _REQUESTEDBYCODE;
+		
+		private string _REQUESTEDBYNAME;
+		
+		private System.Nullable<System.DateTime> _REQDELIVERYDATE;
+		
+		private string _MANUFACUTRER;
+		
+		private string _REMARK;
+		
+		private string _TAXCODE;
+		
+		private System.Nullable<decimal> _TAXTOTAL;
+		
+		private System.Nullable<bool> _TAXED;
+		
+		private string _ROWSTAMP;
+		
+		private System.Nullable<decimal> _TAXRATE;
+		
+		private System.Nullable<decimal> _RECEIPTTOLERANCE;
+		
+		private string _SPECIFICATION;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAUDITIDChanging(int value);
+    partial void OnAUDITIDChanged();
+    partial void OnAUDITACTIONChanging(string value);
+    partial void OnAUDITACTIONChanged();
+    partial void OnAUDITBYChanging(string value);
+    partial void OnAUDITBYChanged();
+    partial void OnAUDITTIMESTAMPChanging(System.Nullable<System.DateTime> value);
+    partial void OnAUDITTIMESTAMPChanged();
+    partial void OnPOLINEIDChanging(System.Nullable<long> value);
+    partial void OnPOLINEIDChanged();
+    partial void OnPONUMChanging(System.Nullable<decimal> value);
+    partial void OnPONUMChanged();
+    partial void OnPOREVISIONChanging(System.Nullable<short> value);
+    partial void OnPOREVISIONChanged();
+    partial void OnPOLINENUMChanging(System.Nullable<short> value);
+    partial void OnPOLINENUMChanged();
+    partial void OnLINETYPEChanging(string value);
+    partial void OnLINETYPEChanged();
+    partial void OnCOSTCODEChanging(string value);
+    partial void OnCOSTCODEChanged();
+    partial void OnCATALOGCODEChanging(string value);
+    partial void OnCATALOGCODEChanged();
+    partial void OnDESCRIPTIONChanging(string value);
+    partial void OnDESCRIPTIONChanged();
+    partial void OnORDERQTYChanging(System.Nullable<decimal> value);
+    partial void OnORDERQTYChanged();
+    partial void OnORDERUNITChanging(string value);
+    partial void OnORDERUNITChanged();
+    partial void OnUNITCOSTChanging(System.Nullable<decimal> value);
+    partial void OnUNITCOSTChanged();
+    partial void OnLINECOSTChanging(System.Nullable<decimal> value);
+    partial void OnLINECOSTChanged();
+    partial void OnITEMNUMChanging(string value);
+    partial void OnITEMNUMChanged();
+    partial void OnMODELNUMChanging(string value);
+    partial void OnMODELNUMChanged();
+    partial void OnREQUESTEDBYCODEChanging(string value);
+    partial void OnREQUESTEDBYCODEChanged();
+    partial void OnREQUESTEDBYNAMEChanging(string value);
+    partial void OnREQUESTEDBYNAMEChanged();
+    partial void OnREQDELIVERYDATEChanging(System.Nullable<System.DateTime> value);
+    partial void OnREQDELIVERYDATEChanged();
+    partial void OnMANUFACUTRERChanging(string value);
+    partial void OnMANUFACUTRERChanged();
+    partial void OnREMARKChanging(string value);
+    partial void OnREMARKChanged();
+    partial void OnTAXCODEChanging(string value);
+    partial void OnTAXCODEChanged();
+    partial void OnTAXTOTALChanging(System.Nullable<decimal> value);
+    partial void OnTAXTOTALChanged();
+    partial void OnTAXEDChanging(System.Nullable<bool> value);
+    partial void OnTAXEDChanged();
+    partial void OnROWSTAMPChanging(string value);
+    partial void OnROWSTAMPChanged();
+    partial void OnTAXRATEChanging(System.Nullable<decimal> value);
+    partial void OnTAXRATEChanged();
+    partial void OnRECEIPTTOLERANCEChanging(System.Nullable<decimal> value);
+    partial void OnRECEIPTTOLERANCEChanged();
+    partial void OnSPECIFICATIONChanging(string value);
+    partial void OnSPECIFICATIONChanged();
+    #endregion
+		
+		public A_POLINE()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AUDITID
+		{
+			get
+			{
+				return this._AUDITID;
+			}
+			set
+			{
+				if ((this._AUDITID != value))
+				{
+					this.OnAUDITIDChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITID = value;
+					this.SendPropertyChanged("AUDITID");
+					this.OnAUDITIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITACTION", DbType="NVarChar(10)")]
+		public string AUDITACTION
+		{
+			get
+			{
+				return this._AUDITACTION;
+			}
+			set
+			{
+				if ((this._AUDITACTION != value))
+				{
+					this.OnAUDITACTIONChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITACTION = value;
+					this.SendPropertyChanged("AUDITACTION");
+					this.OnAUDITACTIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITBY", DbType="NVarChar(30)")]
+		public string AUDITBY
+		{
+			get
+			{
+				return this._AUDITBY;
+			}
+			set
+			{
+				if ((this._AUDITBY != value))
+				{
+					this.OnAUDITBYChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITBY = value;
+					this.SendPropertyChanged("AUDITBY");
+					this.OnAUDITBYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AUDITTIMESTAMP", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AUDITTIMESTAMP
+		{
+			get
+			{
+				return this._AUDITTIMESTAMP;
+			}
+			set
+			{
+				if ((this._AUDITTIMESTAMP != value))
+				{
+					this.OnAUDITTIMESTAMPChanging(value);
+					this.SendPropertyChanging();
+					this._AUDITTIMESTAMP = value;
+					this.SendPropertyChanged("AUDITTIMESTAMP");
+					this.OnAUDITTIMESTAMPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POLINEID", DbType="BigInt")]
+		public System.Nullable<long> POLINEID
+		{
+			get
+			{
+				return this._POLINEID;
+			}
+			set
+			{
+				if ((this._POLINEID != value))
+				{
+					this.OnPOLINEIDChanging(value);
+					this.SendPropertyChanging();
+					this._POLINEID = value;
+					this.SendPropertyChanged("POLINEID");
+					this.OnPOLINEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONUM", DbType="Decimal(8,0)")]
+		public System.Nullable<decimal> PONUM
+		{
+			get
+			{
+				return this._PONUM;
+			}
+			set
+			{
+				if ((this._PONUM != value))
+				{
+					this.OnPONUMChanging(value);
+					this.SendPropertyChanging();
+					this._PONUM = value;
+					this.SendPropertyChanged("PONUM");
+					this.OnPONUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POREVISION", DbType="SmallInt")]
+		public System.Nullable<short> POREVISION
+		{
+			get
+			{
+				return this._POREVISION;
+			}
+			set
+			{
+				if ((this._POREVISION != value))
+				{
+					this.OnPOREVISIONChanging(value);
+					this.SendPropertyChanging();
+					this._POREVISION = value;
+					this.SendPropertyChanged("POREVISION");
+					this.OnPOREVISIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POLINENUM", DbType="SmallInt")]
+		public System.Nullable<short> POLINENUM
+		{
+			get
+			{
+				return this._POLINENUM;
+			}
+			set
+			{
+				if ((this._POLINENUM != value))
+				{
+					this.OnPOLINENUMChanging(value);
+					this.SendPropertyChanging();
+					this._POLINENUM = value;
+					this.SendPropertyChanged("POLINENUM");
+					this.OnPOLINENUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LINETYPE", DbType="NVarChar(5)")]
+		public string LINETYPE
+		{
+			get
+			{
+				return this._LINETYPE;
+			}
+			set
+			{
+				if ((this._LINETYPE != value))
+				{
+					this.OnLINETYPEChanging(value);
+					this.SendPropertyChanging();
+					this._LINETYPE = value;
+					this.SendPropertyChanged("LINETYPE");
+					this.OnLINETYPEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COSTCODE", DbType="NVarChar(30)")]
+		public string COSTCODE
+		{
+			get
+			{
+				return this._COSTCODE;
+			}
+			set
+			{
+				if ((this._COSTCODE != value))
+				{
+					this.OnCOSTCODEChanging(value);
+					this.SendPropertyChanging();
+					this._COSTCODE = value;
+					this.SendPropertyChanged("COSTCODE");
+					this.OnCOSTCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CATALOGCODE", DbType="NVarChar(30)")]
+		public string CATALOGCODE
+		{
+			get
+			{
+				return this._CATALOGCODE;
+			}
+			set
+			{
+				if ((this._CATALOGCODE != value))
+				{
+					this.OnCATALOGCODEChanging(value);
+					this.SendPropertyChanging();
+					this._CATALOGCODE = value;
+					this.SendPropertyChanged("CATALOGCODE");
+					this.OnCATALOGCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DESCRIPTION", DbType="NVarChar(500)")]
+		public string DESCRIPTION
+		{
+			get
+			{
+				return this._DESCRIPTION;
+			}
+			set
+			{
+				if ((this._DESCRIPTION != value))
+				{
+					this.OnDESCRIPTIONChanging(value);
+					this.SendPropertyChanging();
+					this._DESCRIPTION = value;
+					this.SendPropertyChanged("DESCRIPTION");
+					this.OnDESCRIPTIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERQTY", DbType="Decimal(16,4)")]
+		public System.Nullable<decimal> ORDERQTY
+		{
+			get
+			{
+				return this._ORDERQTY;
+			}
+			set
+			{
+				if ((this._ORDERQTY != value))
+				{
+					this.OnORDERQTYChanging(value);
+					this.SendPropertyChanging();
+					this._ORDERQTY = value;
+					this.SendPropertyChanged("ORDERQTY");
+					this.OnORDERQTYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERUNIT", DbType="NVarChar(15)")]
+		public string ORDERUNIT
+		{
+			get
+			{
+				return this._ORDERUNIT;
+			}
+			set
+			{
+				if ((this._ORDERUNIT != value))
+				{
+					this.OnORDERUNITChanging(value);
+					this.SendPropertyChanging();
+					this._ORDERUNIT = value;
+					this.SendPropertyChanged("ORDERUNIT");
+					this.OnORDERUNITChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITCOST", DbType="Decimal(16,4)")]
+		public System.Nullable<decimal> UNITCOST
+		{
+			get
+			{
+				return this._UNITCOST;
+			}
+			set
+			{
+				if ((this._UNITCOST != value))
+				{
+					this.OnUNITCOSTChanging(value);
+					this.SendPropertyChanging();
+					this._UNITCOST = value;
+					this.SendPropertyChanged("UNITCOST");
+					this.OnUNITCOSTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LINECOST", DbType="Decimal(16,4)")]
+		public System.Nullable<decimal> LINECOST
+		{
+			get
+			{
+				return this._LINECOST;
+			}
+			set
+			{
+				if ((this._LINECOST != value))
+				{
+					this.OnLINECOSTChanging(value);
+					this.SendPropertyChanging();
+					this._LINECOST = value;
+					this.SendPropertyChanged("LINECOST");
+					this.OnLINECOSTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ITEMNUM", DbType="NVarChar(30)")]
+		public string ITEMNUM
+		{
+			get
+			{
+				return this._ITEMNUM;
+			}
+			set
+			{
+				if ((this._ITEMNUM != value))
+				{
+					this.OnITEMNUMChanging(value);
+					this.SendPropertyChanging();
+					this._ITEMNUM = value;
+					this.SendPropertyChanged("ITEMNUM");
+					this.OnITEMNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MODELNUM", DbType="NVarChar(20)")]
+		public string MODELNUM
+		{
+			get
+			{
+				return this._MODELNUM;
+			}
+			set
+			{
+				if ((this._MODELNUM != value))
+				{
+					this.OnMODELNUMChanging(value);
+					this.SendPropertyChanging();
+					this._MODELNUM = value;
+					this.SendPropertyChanged("MODELNUM");
+					this.OnMODELNUMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUESTEDBYCODE", DbType="NVarChar(10)")]
+		public string REQUESTEDBYCODE
+		{
+			get
+			{
+				return this._REQUESTEDBYCODE;
+			}
+			set
+			{
+				if ((this._REQUESTEDBYCODE != value))
+				{
+					this.OnREQUESTEDBYCODEChanging(value);
+					this.SendPropertyChanging();
+					this._REQUESTEDBYCODE = value;
+					this.SendPropertyChanged("REQUESTEDBYCODE");
+					this.OnREQUESTEDBYCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQUESTEDBYNAME", DbType="NVarChar(80)")]
+		public string REQUESTEDBYNAME
+		{
+			get
+			{
+				return this._REQUESTEDBYNAME;
+			}
+			set
+			{
+				if ((this._REQUESTEDBYNAME != value))
+				{
+					this.OnREQUESTEDBYNAMEChanging(value);
+					this.SendPropertyChanging();
+					this._REQUESTEDBYNAME = value;
+					this.SendPropertyChanged("REQUESTEDBYNAME");
+					this.OnREQUESTEDBYNAMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REQDELIVERYDATE", DbType="Date")]
+		public System.Nullable<System.DateTime> REQDELIVERYDATE
+		{
+			get
+			{
+				return this._REQDELIVERYDATE;
+			}
+			set
+			{
+				if ((this._REQDELIVERYDATE != value))
+				{
+					this.OnREQDELIVERYDATEChanging(value);
+					this.SendPropertyChanging();
+					this._REQDELIVERYDATE = value;
+					this.SendPropertyChanged("REQDELIVERYDATE");
+					this.OnREQDELIVERYDATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANUFACUTRER", DbType="NVarChar(30)")]
+		public string MANUFACUTRER
+		{
+			get
+			{
+				return this._MANUFACUTRER;
+			}
+			set
+			{
+				if ((this._MANUFACUTRER != value))
+				{
+					this.OnMANUFACUTRERChanging(value);
+					this.SendPropertyChanging();
+					this._MANUFACUTRER = value;
+					this.SendPropertyChanged("MANUFACUTRER");
+					this.OnMANUFACUTRERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REMARK", DbType="NVarChar(100)")]
+		public string REMARK
+		{
+			get
+			{
+				return this._REMARK;
+			}
+			set
+			{
+				if ((this._REMARK != value))
+				{
+					this.OnREMARKChanging(value);
+					this.SendPropertyChanging();
+					this._REMARK = value;
+					this.SendPropertyChanged("REMARK");
+					this.OnREMARKChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXCODE", DbType="NVarChar(5)")]
+		public string TAXCODE
+		{
+			get
+			{
+				return this._TAXCODE;
+			}
+			set
+			{
+				if ((this._TAXCODE != value))
+				{
+					this.OnTAXCODEChanging(value);
+					this.SendPropertyChanging();
+					this._TAXCODE = value;
+					this.SendPropertyChanged("TAXCODE");
+					this.OnTAXCODEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXTOTAL", DbType="Decimal(12,4)")]
+		public System.Nullable<decimal> TAXTOTAL
+		{
+			get
+			{
+				return this._TAXTOTAL;
+			}
+			set
+			{
+				if ((this._TAXTOTAL != value))
+				{
+					this.OnTAXTOTALChanging(value);
+					this.SendPropertyChanging();
+					this._TAXTOTAL = value;
+					this.SendPropertyChanged("TAXTOTAL");
+					this.OnTAXTOTALChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXED", DbType="Bit")]
+		public System.Nullable<bool> TAXED
+		{
+			get
+			{
+				return this._TAXED;
+			}
+			set
+			{
+				if ((this._TAXED != value))
+				{
+					this.OnTAXEDChanging(value);
+					this.SendPropertyChanging();
+					this._TAXED = value;
+					this.SendPropertyChanged("TAXED");
+					this.OnTAXEDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ROWSTAMP", DbType="NVarChar(40)")]
+		public string ROWSTAMP
+		{
+			get
+			{
+				return this._ROWSTAMP;
+			}
+			set
+			{
+				if ((this._ROWSTAMP != value))
+				{
+					this.OnROWSTAMPChanging(value);
+					this.SendPropertyChanging();
+					this._ROWSTAMP = value;
+					this.SendPropertyChanged("ROWSTAMP");
+					this.OnROWSTAMPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXRATE", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> TAXRATE
+		{
+			get
+			{
+				return this._TAXRATE;
+			}
+			set
+			{
+				if ((this._TAXRATE != value))
+				{
+					this.OnTAXRATEChanging(value);
+					this.SendPropertyChanging();
+					this._TAXRATE = value;
+					this.SendPropertyChanged("TAXRATE");
+					this.OnTAXRATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RECEIPTTOLERANCE", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> RECEIPTTOLERANCE
+		{
+			get
+			{
+				return this._RECEIPTTOLERANCE;
+			}
+			set
+			{
+				if ((this._RECEIPTTOLERANCE != value))
+				{
+					this.OnRECEIPTTOLERANCEChanging(value);
+					this.SendPropertyChanging();
+					this._RECEIPTTOLERANCE = value;
+					this.SendPropertyChanged("RECEIPTTOLERANCE");
+					this.OnRECEIPTTOLERANCEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SPECIFICATION", DbType="NVarChar(250)")]
+		public string SPECIFICATION
+		{
+			get
+			{
+				return this._SPECIFICATION;
+			}
+			set
+			{
+				if ((this._SPECIFICATION != value))
+				{
+					this.OnSPECIFICATIONChanging(value);
+					this.SendPropertyChanging();
+					this._SPECIFICATION = value;
+					this.SendPropertyChanged("SPECIFICATION");
+					this.OnSPECIFICATIONChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.POLINE")]
 	public partial class POLINE : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -30800,6 +30925,8 @@ namespace FSPBAL
 		
 		private System.Nullable<decimal> _RECEIPTTOLERANCE;
 		
+		private string _SPECIFICATION;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -30862,6 +30989,8 @@ namespace FSPBAL
     partial void OnLASTMODIFIEDDATEChanged();
     partial void OnRECEIPTTOLERANCEChanging(System.Nullable<decimal> value);
     partial void OnRECEIPTTOLERANCEChanged();
+    partial void OnSPECIFICATIONChanging(string value);
+    partial void OnSPECIFICATIONChanged();
     #endregion
 		
 		public POLINE()
@@ -31029,7 +31158,7 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERQTY", DbType="Decimal(16,2)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ORDERQTY", DbType="Decimal(16,4)")]
 		public System.Nullable<decimal> ORDERQTY
 		{
 			get
@@ -31069,7 +31198,7 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITCOST", DbType="Decimal(16,2)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UNITCOST", DbType="Decimal(16,4)")]
 		public System.Nullable<decimal> UNITCOST
 		{
 			get
@@ -31089,7 +31218,7 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LINECOST", DbType="Decimal(16,2)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LINECOST", DbType="Decimal(16,4)")]
 		public System.Nullable<decimal> LINECOST
 		{
 			get
@@ -31129,7 +31258,7 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MODELNUM", DbType="NVarChar(14)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MODELNUM", DbType="NVarChar(20)")]
 		public string MODELNUM
 		{
 			get
@@ -31269,7 +31398,7 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXTOTAL", DbType="Decimal(10,2)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXTOTAL", DbType="Decimal(12,4)")]
 		public System.Nullable<decimal> TAXTOTAL
 		{
 			get
@@ -31329,7 +31458,7 @@ namespace FSPBAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXRATE", DbType="Decimal(18,0)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TAXRATE", DbType="Decimal(5,2)")]
 		public System.Nullable<decimal> TAXRATE
 		{
 			get
@@ -31445,6 +31574,26 @@ namespace FSPBAL
 					this._RECEIPTTOLERANCE = value;
 					this.SendPropertyChanged("RECEIPTTOLERANCE");
 					this.OnRECEIPTTOLERANCEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SPECIFICATION", DbType="NVarChar(250)")]
+		public string SPECIFICATION
+		{
+			get
+			{
+				return this._SPECIFICATION;
+			}
+			set
+			{
+				if ((this._SPECIFICATION != value))
+				{
+					this.OnSPECIFICATIONChanging(value);
+					this.SendPropertyChanging();
+					this._SPECIFICATION = value;
+					this.SendPropertyChanged("SPECIFICATION");
+					this.OnSPECIFICATIONChanged();
 				}
 			}
 		}

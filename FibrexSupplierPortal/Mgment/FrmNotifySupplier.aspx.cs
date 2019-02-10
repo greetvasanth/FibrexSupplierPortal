@@ -116,17 +116,17 @@ namespace FibrexSupplierPortal.Mgment
                         foreach (string regID in SupID)
                         {
                             Subject = "(Ref:CN#" + regID + ") " + txtPopupSubject.Text;
-                          //  SupplierSendmail(int.Parse(regID), "", Subject, SenderEmail);
-                            //sup = db.Suppliers.FirstOrDefault(x => x.SupplierID == int.Parse(regID));
-                            //if (sup != null)
-                            //{
-                            //    Email += sup.OfficialEmail + ";";
-                            //    SupplierUser supusr = db.SupplierUsers.FirstOrDefault(x => x.SupplierID == sup.SupplierID);
-                            //    if (supusr != null)
-                            //    {
-                            //        userID += supusr.UserID + ";";
-                            //    }
-                            //}
+                            SupplierSendmail(int.Parse(regID), "", Subject, SenderEmail);
+                            sup = db.Suppliers.FirstOrDefault(x => x.SupplierID == int.Parse(regID));
+                            if (sup != null)
+                            {
+                                Email += sup.OfficialEmail + ";";
+                                SupplierUser supusr = db.SupplierUsers.FirstOrDefault(x => x.SupplierID == sup.SupplierID);
+                                if (supusr != null)
+                                {
+                                    userID += supusr.UserID + ";";
+                                }
+                            }
                         }
                     }
                     else

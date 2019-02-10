@@ -37,6 +37,11 @@ namespace FibrexSupplierPortal.Mgment.Control
                         gvViewPermissionsHistory.UseAccessibleHeader = true;
                         gvViewPermissionsHistory.HeaderRow.TableSection = TableRowSection.TableHeader;
                     }
+                    //else
+                    //{
+                    //    LinkButton lnkDefinePermission = this.Parent.FindControl("lnkDefinePOPermission") as LinkButton;
+                    //    lnkDefinePermission.Visible = false;
+                    //}
                 }
                 catch (Exception ex)
                 {

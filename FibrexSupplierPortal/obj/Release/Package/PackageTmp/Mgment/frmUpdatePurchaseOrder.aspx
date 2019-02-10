@@ -60,7 +60,7 @@
 
         input[type="checkbox"] + label {
             position: absolute !important;
-            margin-top: 1px !important;
+           margin-top: 1px !important;
             margin-left: 3px !important;
         }
 
@@ -130,6 +130,8 @@
             //localStorage.removeItem('activeTab');
         }
 
+
+
         window.onbeforeunload = function () {
             localStorage.removeItem('activeTab');
         };
@@ -137,7 +139,6 @@
             window.location.href = window.location.href;
         }
         $(document).ready(function () {
-            debugger
             $('a[data-toggle="tab"]').on('click', function (e) {
                 window.localStorage.setItem('activeTab', $(e.target).attr('href'));
             });
@@ -235,7 +236,7 @@
 
         function OnRefundPanelEndCallback(s, e) {
             isDirtyselectCountry = true;
-            popupOrganization.Hide();
+           popupOrganization.Hide();
         }
         function DisplayNewMessage() {
             var index = gvUserList.GetFocusedRowIndex();
@@ -254,7 +255,6 @@
             popupUsers.Show();
         }
         function ShowAuthorizedByList() {
-            debugger;
             gvAuthorizedByList.ClearFilter();
             setTimeout(function () { popupAuthorized.Show(); }, 1500);
             setTimeout(function () { $('#ContentPlaceHolder1_popupAuthorized_PW-1').addClass("ChangeZIndex") }, 1100);
@@ -450,7 +450,6 @@
         }
 
         function SetDCCValue(val, controltofind) {
-            debugger;
 
             var f = document.getElementById('<%=grd.ClientID%>');
 
@@ -472,9 +471,9 @@
         }
 
         function decimalTwoRounding(value, Id) {
-            var decimalValue = parseFloat(value);
+<%--           var decimalValue = parseFloat(value);
             var decimalValueRounding = decimalValue.toFixed(2);
-            $("#" + Id).val(decimalValueRounding);
+            $("#" + Id).val(decimalValueRounding);--%>
             $("#<%=hdnQtyUnitLineCost.ClientID %>").val(Id);
         }
         function focusNextElementGrid(elm) {
@@ -482,6 +481,7 @@
             setTimeout(function () { $("#" + eid).focus().select(); }, 1500);
         }
         function focusNextElement(elm) {
+            debugger;
             var eid = elm.id;
             var nextId = $(elm).parents('div').next().find('input')[0].id;
             setTimeout(function () { $("#" + nextId).focus().select(); }, 1500);
@@ -494,7 +494,6 @@
             return;
         }
         function IsNumeric(elm) {
-            debugger;
             var eid = elm.id.value;
             //this.value = this.value.replace(/[^0-9\.]/g, '');
             elm.id.value = elm.id.value.replace(/[^0-9\.]/g, '0.00');
@@ -778,15 +777,15 @@
                                                 <div style="float: left; margin-left: -12px;" class="col-sm-1">
                                                     <img src="../images/search-icon.png" class="SearchImg imgPopup" onclick="return ShowPurchaseType();" id="imgShowPurchaseType" runat="server" />
                                                 </div>
-                                            </div>
+                                           </div>
                                         </fieldset>
                                     </div>
                                     <div class="col-sm-3">
                                         <fieldset>
-                                            <legend>PO Reference</legend>
+                                           <legend>PO Reference</legend>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-5 Pdringtop" for="inputName">
-                                                    Requistion Ref #</label>
+                                                   Requistion Ref #</label>
                                                 <div class="col-sm-6">
                                                     <asp:TextBox ID="txtRequistionRefNum" runat="server" CssClass="form-control" ValidationGroup="Equip" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                 </div>
@@ -1375,7 +1374,7 @@
                                                 <div class="col-sm-8">
                                                     <asp:TextBox ID="txtContactPerson2Email" runat="server" CssClass="form-control" ValidationGroup="Equip" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                 </div>
-                                            </div>
+                                           </div>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -1434,7 +1433,7 @@
                             CancelControlID="myModalLabel111" BackgroundCssClass="ModalPopupBG" BehaviorID="ModalShowVendorError" Y="50">
                         </ajax:ModalPopupExtender>
                         <asp:Panel ID="PanelShowError" runat="server" class="ResetPanel2" Style="display: none;">
-                            <div style="width: 25px; height: 25px; position: absolute; margin-left: 96%; margin-top: 7px; cursor: pointer;">
+                           <div style="width: 25px; height: 25px; position: absolute; margin-left: 96%; margin-top: 7px; cursor: pointer;">
                                 <img src="../images/close-icon.png" id="imgClosePoppup1" runat="server" />
                             </div>
                             <div class="modal-header">
@@ -1684,18 +1683,18 @@
                         <input id="hdnScrollTop" runat="server" type="hidden" value="0" />
 
                         <p class="grdborder">PO Lines</p>
-                        <asp:GridView ID="grd" AutoGenerateSelectButton="false" SelectedRowStyle-Font-Bold="true" SelectedRowStyle-BackColor="Silver" DataKeyNames="POLINEID" runat="server" AllowPaging="true" PageSize="10" CssClass="table table-striped table-bordered table-hover;overflow:scroll;" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" OnRowCreated="grd_RowCreated" OnRowUpdating="grd_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="grd_RowEditing" OnRowCommand="grd_RowCommand" Width="100%" OnPageIndexChanging="grd_PageIndexChanging" OnRowDataBound="grd_RowDataBound" EmptyDataText="No Record">
+                        <asp:GridView ID="grd" AutoGenerateSelectButton="false" SelectedRowStyle-Font-Bold="true" SelectedRowStyle-BackColor="Silver" DataKeyNames="POLINEID" runat="server" AllowPaging="false"  CssClass="table table-striped table-bordered table-hover;overflow:scroll;" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" OnRowCreated="grd_RowCreated" OnRowUpdating="grd_RowUpdating" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="grd_RowEditing" OnRowCommand="grd_RowCommand" Width="100%" OnPageIndexChanging="grd_PageIndexChanging" OnRowDataBound="grd_RowDataBound" EmptyDataText="No Record">
                             <Columns>
-                                <asp:TemplateField HeaderStyle-CssClass="w2">
+                                <asp:TemplateField ItemStyle-Width="3%" HeaderStyle-CssClass="w2">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="btnImage" Width="200%" runat="server" Text="+" Style="color: #337ab7; border: none; background: none; font-weight: 900; background-color: transparent;cursor:pointer;" Readonly="true" CommandName="View" CommandArgument='<%#Eval("POLINEID")%>' />
+                                        <asp:TextBox ID="btnImage"  width="100%" runat="server" Text="+" Style="color: #337ab7; border: none; background: none; font-weight: 900; background-color: transparent;cursor:pointer;" Readonly="true" CommandName="View" CommandArgument='<%#Eval("POLINEID")%>' />
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <%--<asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/select.png" Width="15px" Height="15px" CommandName="Select" Text="View" CommandArgument='<%#Eval("POLINEID")%>' ToolTip="Select" />--%>
-                                        <div class="col-sm-2" style="margin-right: 0px; text-align: center;">
+                                        <div class="col-sm-2"  style="margin-right: 0px; text-align: center;">
                                             <%--<asp:ImageButton ID="imgCollapse"  runat="server" ImageUrl="~/images/collapse.png"  CommandName="View" Text="View" CommandArgument='<%#Eval("POLINEID")%>' ToolTip="View Details" />--%>
                                             <asp:Button ID="lblExpand" runat="server" Text="-" Style="color: #337ab7; font-weight: 900; background-color: transparent;" CommandName="View" CommandArgument='<%#Eval("POLINEID")%>' ToolTip='<%# Eval("POLINENUM") %>' />
-                                            <asp:ImageButton ID="imgerror" Width="2%" runat="server" ImageUrl="~/images/error.png" ToolTip="Erorr" Visible="false" />
+                                            <asp:ImageButton ID="imgerror"  runat="server" ImageUrl="~/images/error.png" ToolTip="Erorr" Visible="false" />
                                         </div>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
@@ -1768,7 +1767,7 @@
                                         <asp:TextBox ID="txtPOQtnEdit" runat="server" ClientIDMode="static" CssClass="form-control" onchange="focusNextElement(this); decimalTwoRounding(this.value,this.id);" onkeyup="return SetCCValue(this.value, 'txtDQty', this);" Text='<%#Eval("Quantity") %>' class="MaskText" OnTextChanged="txtPOQtnEdit_TextChanged" AutoPostBack="true"></asp:TextBox>
                                     </EditItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="UOM" ItemStyle-Width="8%" HeaderStyle-CssClass="w8">
+                                <asp:TemplateField HeaderText="Order Unit" ItemStyle-Width="8%" HeaderStyle-CssClass="w8">
                                     <HeaderTemplate>
                                         <asp:CheckBox Visible="false" ID="chkUOM" runat="server" Text="" />
                                         <asp:Label runat="server" Text="&nbspUnit"></asp:Label>
@@ -1870,21 +1869,17 @@
                                                             <img src="../images/right_Arrow.png" class="imgPopup" onclick="return ShowITEMCODE();" id="img7" runat="server" style="margin-top: 5px;" />
                                                         </div>
                                                         <div class="col-sm-7" style="float: right; margin-right: -6px">
-                                                            <asp:TextBox ID="txtDItemDesc" runat="server" CssClass="form-control" ValidationGroup="Equip" AutoPostBack="true" OnTextChanged="txtgvDescriptionEdit_TextChanged" Rows="15" Height="50px" TextMode="MultiLine" onkeydown="ShowToolTip(event)"></asp:TextBox>
+                                                            <asp:TextBox ID="txtDItemDesc" runat="server" CssClass="form-control" ValidationGroup="Equip" AutoPostBack="true" onchange="focusNextElement(this)" OnTextChanged="txtgvDescriptionEdit_TextChanged" Rows="15" Height="50px" TextMode="MultiLine" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                             <asp:HiddenField ID="hdnItemDesc" runat="server" />
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-2" for="inputName">
-                                                            Cost Code:</label>
-                                                        <div class="col-sm-3">
-                                                            <asp:TextBox ID="txtDCostCode" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this)" OnTextChanged="txtDCostCode_TextChanged" onkeydown="ShowToolTip(event)" AutoPostBack="true"></asp:TextBox>
-                                                            <asp:HiddenField ID="hdntxtDCostCode" runat="server" />
+                                                            Additional Specification:</label>
+                                                        <div class="col-sm-10">
+                                                            <asp:TextBox ID="txtSpecification" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this)" OnTextChanged="txtSpecification_TextChanged" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                         </div>
-                                                        <div style="float: left; margin-left: -12px" class="col-sm-1">
-                                                            <img src="~/images/search-icon.png" class="SearchImg imgPopup" onclick="return showCostCode();" id="img5" runat="server" style="margin-top: 5px;" />
-                                                        </div>
-                                                        <div class="col-sm-5 offset-1"></div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-2" for="inputName">
@@ -1902,6 +1897,18 @@
                                                 <div class="panel-body">
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-5 Pdringtop pdright" for="inputName">
+                                                            Cost Code:</label>
+                                                        <div class="col-sm-6">
+                                                            <asp:TextBox ID="txtDCostCode" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this)" OnTextChanged="txtDCostCode_TextChanged" onkeydown="ShowToolTip(event)" AutoPostBack="true"></asp:TextBox>
+                                                            <asp:HiddenField ID="hdntxtDCostCode" runat="server" />
+                                                        </div>
+                                                        <div style="float: left; margin-left: -12px" class="col-sm-1">
+                                                            <img src="~/images/search-icon.png" class="SearchImg imgPopup" onclick="return showCostCode();" id="img5" runat="server" style="margin-top: 5px;" />
+                                                        </div>
+                                                        <div class="col-sm-5 offset-1"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-5 Pdringtop pdright" for="inputName">
                                                             Model:</label>
                                                         <div class="col-sm-6">
                                                             <asp:TextBox ID="txtDModel" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this)" OnTextChanged="txtDModel_TextChanged" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
@@ -1909,7 +1916,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-5 pdright" for="inputName">
-                                                            Manufacture:</label>
+                                                            Manufacturer:</label>
                                                         <div class="col-sm-6">
                                                             <asp:TextBox ID="txtDBrand" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this)" OnTextChanged="txtDBrand_TextChanged" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                         </div>
@@ -1948,31 +1955,31 @@
                                                     <div class="form-horizontal">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <label class="control-label col-sm-4" for="inputName">
+                                                                <label class="control-label col-sm-5" for="inputName">
                                                                     <span class="showAstrik">*</span>Quantity:</label>
-                                                                <div class="col-sm-6">
+                                                                <div class="col-sm-5">
                                                                     <asp:TextBox ID="txtDQty" runat="server" CssClass="form-control" Text="0" ValidationGroup="Equip" onchange="focusNextElement(this); decimalTwoRounding(this.value,this.id);" onkeyup="return SetDCCValue(this.value,'txtPOQtnEdit');" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                                 </div>
 
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="control-label col-sm-4" for="inputName">
-                                                                    <span class="showAstrik">*</span>UOM:</label>
-                                                                <div class="col-sm-6">
-                                                                    <asp:TextBox ID="txtDUOM" runat="server" CssClass="form-control" ValidationGroup="Equip" onkeyup="focusNextElement(this); return SetDCCValue(this.value,'txtPOUnitEdit');" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
+                                                                <label class="control-label col-sm-5" for="inputName">
+                                                                    <span class="showAstrik">*</span>Order Unit:</label>
+                                                                <div class="col-sm-5">
+                                                                    <asp:TextBox ID="txtDUOM" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this);" onkeyup="return SetDCCValue(this.value,'txtPOUnitEdit');" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="control-label col-sm-4" for="inputName">
+                                                                <label class="control-label col-sm-5" for="inputName">
                                                                     <span class="showAstrik">*</span>Unit Price:</label>
-                                                                <div class="col-sm-6">
+                                                                <div class="col-sm-5">
                                                                     <asp:TextBox ID="txtDUP" runat="server" CssClass="form-control" ValidationGroup="Equip" onchange="focusNextElement(this); decimalTwoRounding(this.value,this.id);" onkeyup="return SetDCCValue(this.value,'txtPOUnitPriceEdit');" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="control-label col-sm-4" for="inputName">
-                                                                    <span class="showAstrik">*</span>Line Cost:</label>
-                                                                <div class="col-sm-6">
+                                                                <label class="control-label col-sm-5" for="inputName">
+                                                                   <span class="showAstrik">*</span>Line Cost:</label>
+                                                                <div class="col-sm-5">
                                                                     <asp:TextBox ID="txtDTP" runat="server" CssClass="form-control" Text="0" Enabled="true" ValidationGroup="Equip" onchange="focusNextElement(this); decimalTwoRounding(this.value,this.id);" onkeyup="return SetDCCValue(this.value,'txtTotalPriceEdit');" AutoPostBack="true"></asp:TextBox>
                                                                 </div>
                                                             </div>
@@ -2052,7 +2059,7 @@
                                                             
                                                         </div>--%>
                                                         <br />
-                                                        <br />
+           
 
                                                     </div>
                                                 </div>
@@ -2202,7 +2209,7 @@
                                 <dx:PopupControlContentControl runat="server">
                                     <p>Select ITEM CODES from the list</p>
                                     <br />
-                                    <dx:ASPxGridView ID="gvITEMCODE" runat="server" ClientInstanceName="gvITEMCODE" AutoGenerateColumns="False" Width="100%" KeyFieldName="ITEMCODE;ITEMDESC;" Settings-ShowFilterBar="Hidden" Settings-ShowFilterRow="True" OnBeforeColumnSortingGrouping="gvITEMCODE_BeforeColumnSortingGrouping" OnAfterPerformCallback="gvITEMCODE_AfterPerformCallback" OnRowCommand="gvITEMCODE_RowCommand">
+                                    <dx:ASPxGridView ID="gvITEMCODE" runat="server" ClientInstanceName="gvITEMCODE" AutoGenerateColumns="False" Width="100%" KeyFieldName="prm_item_code;prm_item_desc;" Settings-ShowFilterBar="Hidden" Settings-ShowFilterRow="True" OnBeforeColumnSortingGrouping="gvITEMCODE_BeforeColumnSortingGrouping" OnAfterPerformCallback="gvITEMCODE_AfterPerformCallback" OnRowCommand="gvITEMCODE_RowCommand">
                                         <Settings ShowFilterRow="True" ShowFilterRowMenu="true" AutoFilterCondition="Contains" ShowFilterRowMenuLikeItem="true"></Settings>
                                         <Columns>
                                             <dx:GridViewDataColumn Caption="Select" Name="Select" VisibleIndex="0" Width="60px">
@@ -2212,27 +2219,32 @@
                                                 <CellStyle HorizontalAlign="Left">
                                                 </CellStyle>
                                             </dx:GridViewDataColumn>
-                                            <dx:GridViewDataTextColumn FieldName="ITEMCODE" ReadOnly="True" VisibleIndex="0" Width="60px">
+                                            <dx:GridViewDataTextColumn FieldName="orgCode" ReadOnly="True" Visible="false" Caption="Org Code" Width="60px">
                                                 <SettingsHeaderFilter>
                                                     <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
                                                 </SettingsHeaderFilter>
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="ITEMDESC" VisibleIndex="1" Width="250px">
+                                            <dx:GridViewDataTextColumn FieldName="orgName" VisibleIndex="0" Caption="Org Name" Width="60px">
                                                 <SettingsHeaderFilter>
                                                     <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
                                                 </SettingsHeaderFilter>
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="ORDERUNIT" VisibleIndex="2" Caption="Unit" Width="60px">
+                                            <dx:GridViewDataTextColumn FieldName="prm_item_code" VisibleIndex="1" Caption="Item Code" Width="60px">
                                                 <SettingsHeaderFilter>
                                                     <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
                                                 </SettingsHeaderFilter>
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="MODELNUM" VisibleIndex="1" Width="100px" Caption="Model">
+                                            <dx:GridViewDataTextColumn FieldName="prm_item_desc" VisibleIndex="2" Caption="Item Description" Width="250px">
                                                 <SettingsHeaderFilter>
                                                     <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
                                                 </SettingsHeaderFilter>
                                             </dx:GridViewDataTextColumn>
-                                            <dx:GridViewDataTextColumn FieldName="MANUFACUTRER" VisibleIndex="1" Caption="Manufacutrer" Width="100px">
+                                            <dx:GridViewDataTextColumn FieldName="prm_uom_code"  Caption="UOM Code" Visible="false">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="uom_desc"  VisibleIndex="3" Caption="Order Unit" Width="60px">
                                                 <SettingsHeaderFilter>
                                                     <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
                                                 </SettingsHeaderFilter>
@@ -2253,7 +2265,7 @@
                                         <Settings ShowFilterRow="True" ShowFilterRowMenu="true" AutoFilterCondition="Contains"></Settings>
                                         <Columns>
                                             <dx:GridViewDataColumn Caption="Select" Name="Select" VisibleIndex="0" Width="60px">
-                                                <DataItemTemplate>
+                                               <DataItemTemplate>
                                                     <asp:LinkButton ID="lnkSelectEMPCODE" runat="server" Text="Select" OnClientClick="return OnSelectCloseRequestorPopup();"></asp:LinkButton>
                                                 </DataItemTemplate>
                                                 <CellStyle HorizontalAlign="Left">
@@ -2341,7 +2353,7 @@
                                             <dx:GridViewDataColumn Caption="Select" Name="Select" VisibleIndex="0" Width="60px">
                                                 <DataItemTemplate>
                                                     <asp:LinkButton ID="lnkSelectdefaultEMPCODE" runat="server" Text="Select" OnClientClick="return OnSelectCloseDefaultRequestorPopup();"></asp:LinkButton>
-                                                </DataItemTemplate>
+                                               </DataItemTemplate>
                                                 <CellStyle HorizontalAlign="Left">
                                                 </CellStyle>
                                             </dx:GridViewDataColumn>
@@ -2636,7 +2648,7 @@
                                     <span class="showAstrik">*</span>Total Cost</label>
                                 <div class="col-sm-7">
                                     <asp:TextBox ID="txtAttachmentTotalCost" runat="server" CssClass="form-control" Text="0" Enabled="false" ValidationGroup="Equip"></asp:TextBox>
-                                </div>
+                               </div>
                                 <div style="width: 2%; float: left;">
                                 </div>
                             </div>
@@ -2802,10 +2814,10 @@
                             <div class="modal-footer" id="EditFooterDiv" runat="server" style="display: none;">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <asp:Button ID="btnAttachmentClear" runat="server" CssClass="btn btn-secondary btnDisplay" Text=" Close " OnClick="btnAttachmentClear_Click" />
-                                    <asp:Button ID="btnSendAttachment" runat="server" CssClass="btn btn-primary" Text=" Submit " OnClick="btnSendAttachment_Click" Visible="false" />
+                                   <asp:Button ID="btnSendAttachment" runat="server" CssClass="btn btn-primary" Text=" Submit " OnClick="btnSendAttachment_Click" Visible="false" />
                                 </div>
                             </div>
-                            <asp:HiddenField ID="HIDAttachmentID" runat="server" />
+                           <asp:HiddenField ID="HIDAttachmentID" runat="server" />
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </asp:Panel>
@@ -2953,7 +2965,7 @@
                                     <asp:TextBox ID="txtAuthorizedBy" runat="server" CssClass="form-control" ValidationGroup="Equip" OnTextChanged="txtAuthorizedBy_TextChanged" AutoPostBack="true" onkeydown="ShowToolTip(event)"></asp:TextBox>
 
                                 </div>
-                                <div style="float: left; margin-left: -12px;" class="col-sm-1">
+                               <div style="float: left; margin-left: -12px;" class="col-sm-1">
                                     <img src="../images/search-icon.png" class="SearchImg imgPopup" onclick="return ShowAuthorizedByList();" id="imgShowAuthorizedByList" runat="server" />
                                 </div>
                             </div>
@@ -2995,8 +3007,8 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="modal-body">
-                        <div class="alert alert-danger alert-dismissable" id="div1" runat="server" visible="false">
-                            <asp:Label ID="Label1" runat="server"></asp:Label>
+                             <div class="alert alert-danger alert-dismissable" id="divRevisionPopUpError" runat="server" visible="false">
+                            <asp:Label ID="lblRevisionPopUpError" runat="server"></asp:Label>
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         </div>
                         <div class="form-horizontal">
@@ -3027,8 +3039,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-3 Pdringtop" for="inputName">
+                                    <span class="showAstrik">*</span>
                                     Memo
-                                </label>
+                               </label>
                                 <div class="col-sm-7">
                                     <asp:TextBox ID="txtPORevisionComments" runat="server" CssClass="form-control" TextMode="MultiLine" Height="75px" ValidationGroup="Popup"></asp:TextBox>
                                 </div>
@@ -3142,7 +3155,7 @@
             CancelControlID="imgCloseTooltip" BackgroundCssClass="ModalPopupBG" BehaviorID="ModalShowToolTip" Y="50">
         </ajax:ModalPopupExtender>
         <asp:Panel ID="PanelToolTipShowError" runat="server" class="ResetPanel2" Style="display: none; width: 27% !important;">
-            <div style="width: 25px; height: 25px; position: absolute; margin-left: 96%; margin-top: 7px; cursor: pointer;">
+           <div style="width: 25px; height: 25px; position: absolute; margin-left: 96%; margin-top: 7px; cursor: pointer;">
                 <img src="../images/close-icon.png" id="imgCloseTooltip" runat="server" style="display: none;" />
             </div>
             <div class="modal-header">

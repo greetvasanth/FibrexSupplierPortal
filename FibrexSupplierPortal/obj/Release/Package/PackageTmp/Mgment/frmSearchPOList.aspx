@@ -59,6 +59,10 @@
             gvITEMCODE.ClearFilter();
             popupITEMCODE.Show();
         }
+        function showCostCode() {
+            gvCostCode.ClearFilter();
+            popupCostCode.Show();
+        }
         function OnRefundPanelEndCallback(s, e) {
             popupOrganization.Hide();
         }
@@ -70,6 +74,10 @@
         }
         function OnSelectCloseSupplierPopup(s, e) {
             popupSupplier.Hide();
+        }
+         function onSelectCloseCostCodePopup(s, e) {
+            isDirtyselectLastName = true;
+            popupCostCode.Hide();
         }
         function OnSelectCloseITEMCODEPopup(s, e) {
             isDirtyselectLastName = true;
@@ -98,6 +106,11 @@
                 $("#ContentPlaceHolder1_btnSearchTemplates").click();
             }
         });
+        $(document).on('keypress',function(e) {
+           if(e.which == 13) {
+                $("#ContentPlaceHolder1_btnSearchTemplates").click();
+            }
+         });
         $(document).ready(function () {
             localStorage.removeItem('activeTab');
             $('#<%= txtPurchaseOrderNumber.ClientID %>').keydown(function (e) {
@@ -298,10 +311,11 @@
                                                     <label class="control-label col-sm-3" for="inputName">
                                                         <span class="showAstrik">*</span>Item:</label>
                                                     <div class="col-sm-3">
-                                                        <asp:TextBox ID="txtDItemCode" runat="server" CssClass="form-control" ValidationGroup="Equip" AutoPostBack="true"  onkeydown="ShowToolTip(event)"></asp:TextBox>
+                                                        <asp:TextBox ID="txtDItemCode" runat="server" CssClass="form-control" ValidationGroup="Equip" AutoPostBack="true" OnTextChanged="txtItemCode_TextChanged"  onkeydown="ShowToolTip(event)"></asp:TextBox>
                                                     </div>
                                                     <div style="float: left; margin-left: -12px" class="col-sm-1">
-                                                        <img src="../images/right_Arrow.png" class="imgPopup" onclick="return ShowITEMCODE();" id="img7" runat="server" style="margin-top: 5px;" />
+       <%--                                                 <img src="../images/right_Arrow.png" class="imgPopup" onclick="return ShowITEMCODE();" id="img7" runat="server" style="margin-top: 5px;" />--%>
+                                                        <asp:ImageButton ID="imgItemCode" runat="server" ImageUrl="~/images/search-icon.png" CssClass="SearchImg imgPopup" style="margin-top: 5px;" Visible="true" OnClick="imgItemCode_Click" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -313,6 +327,13 @@
                                                     </div>
 
                                                 </div>
+                                                <div class="form-group">
+                                                        <label class="control-label col-sm-3" for="inputName">
+                                                            Additional Specification:</label>
+                                                        <div class="col-sm-7">
+                                                            <asp:TextBox ID="txtSpecification" runat="server" CssClass="form-control"  AutoPostBack="true"></asp:TextBox>
+                                                        </div>
+                                                    </div>
                                                 
                                             </div>
                                             <div class="col-lg-6">
@@ -321,8 +342,14 @@
                                                         Cost Code
                                                     </label>
                                                     <div class="col-sm-7">
-                                                        <asp:TextBox ID="txtCostCode" runat="server" CssClass="form-control"> </asp:TextBox>
+                                                        <%--<asp:TextBox ID="txtCostCode" runat="server" CssClass="form-control"> </asp:TextBox>--%>
+                                                         <asp:TextBox ID="txtCostCode" runat="server" CssClass="form-control" ValidationGroup="Equip" OnTextChanged="txtCostCode_TextChanged" onkeydown="ShowToolTip(event)" AutoPostBack="true"></asp:TextBox>
+                                                            <asp:HiddenField ID="hdntxtCostCode" runat="server" />
                                                     </div>
+                                                    <div style="float: left; margin-left: -12px" class="col-sm-1">
+                                                            <asp:ImageButton ImageUrl="~/images/search-icon.png" CssClass="SearchImg imgPopup" OnClick="imgCostCode_Click"  id="img5" runat="server" style="margin-top: 5px;" />
+                                                        <%--<asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/right_Arrow.png" CssClass="imgPopup" style="margin-top: 5px;" Visible="true" OnClick="imgItemCode_Click" />--%>
+                                                        </div>
                                                     </div>
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-3 pdright" for="inputName">
@@ -680,7 +707,7 @@
                                     <dx:PopupControlContentControl runat="server">
                                         <p>Select ITEM CODES from the list</p>
                                         <br />
-                                        <dx:ASPxGridView ID="gvITEMCODE" runat="server" ClientInstanceName="gvITEMCODE" AutoGenerateColumns="False" Width="100%" KeyFieldName="ITEMCODE;ITEMDESC;" Settings-ShowFilterBar="Hidden" Settings-ShowFilterRow="True" OnBeforeColumnSortingGrouping="gvITEMCODE_BeforeColumnSortingGrouping" OnAfterPerformCallback="gvITEMCODE_AfterPerformCallback" OnRowCommand="gvITEMCODE_RowCommand">
+                                        <dx:ASPxGridView ID="gvITEMCODE" runat="server" ClientInstanceName="gvITEMCODE" AutoGenerateColumns="False" Width="100%" KeyFieldName="prm_item_code;prm_item_desc;" Settings-ShowFilterBar="Hidden" Settings-ShowFilterRow="True" OnBeforeColumnSortingGrouping="gvITEMCODE_BeforeColumnSortingGrouping" OnAfterPerformCallback="gvITEMCODE_AfterPerformCallback" OnRowCommand="gvITEMCODE_RowCommand">
                                             <Settings ShowFilterRow="True" ShowFilterRowMenu="true" AutoFilterCondition="Contains" ShowFilterRowMenuLikeItem="true"></Settings>
                                             <Columns>
                                                 <dx:GridViewDataColumn Caption="Select" Name="Select" VisibleIndex="0" Width="60px">
@@ -690,36 +717,88 @@
                                                     <CellStyle HorizontalAlign="Left">
                                                     </CellStyle>
                                                 </dx:GridViewDataColumn>
-                                                <dx:GridViewDataTextColumn FieldName="ITEMCODE" ReadOnly="True" VisibleIndex="0" Width="60px">
-                                                    <SettingsHeaderFilter>
-                                                        <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
-                                                    </SettingsHeaderFilter>
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="ITEMDESC" VisibleIndex="1" Width="250px">
-                                                    <SettingsHeaderFilter>
-                                                        <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
-                                                    </SettingsHeaderFilter>
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="ORDERUNIT" VisibleIndex="2" Caption="Unit" Width="60px">
-                                                    <SettingsHeaderFilter>
-                                                        <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
-                                                    </SettingsHeaderFilter>
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="MODELNUM" VisibleIndex="1" Width="100px" Caption="Model">
-                                                    <SettingsHeaderFilter>
-                                                        <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
-                                                    </SettingsHeaderFilter>
-                                                </dx:GridViewDataTextColumn>
-                                                <dx:GridViewDataTextColumn FieldName="MANUFACUTRER" VisibleIndex="1" Caption="Manufacutrer" Width="100px">
-                                                    <SettingsHeaderFilter>
-                                                        <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
-                                                    </SettingsHeaderFilter>
-                                                </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="orgCode" ReadOnly="True" Visible="false" Caption="Org Code" Width="60px">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="orgName" VisibleIndex="0" Caption="Org Name" Width="60px">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="prm_item_code" VisibleIndex="1" Caption="Item Code" Width="60px">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="prm_item_desc" VisibleIndex="2" Caption="Item Description" Width="250px">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="prm_uom_code"  Caption="UOM Code" Visible="false">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="uom_desc"  VisibleIndex="3" Caption="Order Unit" Width="60px">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
                                             </Columns>
                                         </dx:ASPxGridView>
                                     </dx:PopupControlContentControl>
                                 </ContentCollection>
                             </dx:ASPxPopupControl>
+
+        <%--Cost Code Code--%>
+        <dx:ASPxPopupControl ID="popupCostCode" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True" ClientInstanceName="popupCostCode"
+                            PopupHorizontalAlign="WindowCenter" AllowDragging="true" PopupVerticalAlign="WindowCenter" HeaderText="Cost Code's List" Width="700px" PopupAnimationType="None" EnableViewState="False">
+                            <ContentCollection>
+                                <dx:PopupControlContentControl runat="server">
+                                    <p>Select Cost Code from the list</p>
+                                    <br />
+                                    <dx:ASPxGridView ID="gvCostCode" runat="server" ClientInstanceName="gvCostCode" AutoGenerateColumns="False" Width="100%" KeyFieldName="ccm_cost_code;ccm_desc" Settings-ShowFilterBar="Hidden" Settings-ShowFilterRow="True" OnBeforeColumnSortingGrouping="gvCostCode_BeforeColumnSortingGrouping" OnAfterPerformCallback="gvCostCode_AfterPerformCallback" OnRowCommand="gvCostCode_RowCommand" OnRowCreated="gvCostCode_RowCreated">
+                                        <Settings ShowFilterRow="True" ShowFilterRowMenu="true" AutoFilterCondition="Contains"></Settings>
+                                        <Columns>
+                                            <dx:GridViewDataColumn Caption="Select" Name="Select" VisibleIndex="0" Width="60px">
+                                                <DataItemTemplate>
+                                                    <asp:LinkButton ID="lnkSelectCostCode" runat="server" Text="Select" OnClientClick="return onSelectCloseCostCodePopup();"></asp:LinkButton>
+                                                </DataItemTemplate>
+                                                <CellStyle HorizontalAlign="Left">
+                                                </CellStyle>
+                                            </dx:GridViewDataColumn>
+                                            <dx:GridViewDataTextColumn FieldName="orgCode" ReadOnly="True" VisibleIndex="0" Visible="false">
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="orgName" VisibleIndex="1">
+                                                <HeaderTemplate>Division</HeaderTemplate>
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="ccm_cost_code" VisibleIndex="2">
+                                                <HeaderTemplate>Cost Code</HeaderTemplate>
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                            <dx:GridViewDataTextColumn FieldName="ccm_desc" VisibleIndex="3">
+                                                <HeaderTemplate>Cost Description</HeaderTemplate>
+                                                <SettingsHeaderFilter>
+                                                    <DateRangePickerSettings EditFormatString=""></DateRangePickerSettings>
+                                                </SettingsHeaderFilter>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+                                    </dx:ASPxGridView>
+                                    <asp:SqlDataSource runat="server" ID="tmpFibConso" ConnectionString='<%$ ConnectionStrings:DS %>' SelectCommand="SELECT * FROM dbo.cost_code_master"></asp:SqlDataSource>
+                                </dx:PopupControlContentControl>
+                            </ContentCollection>
+                        </dx:ASPxPopupControl>
 
         <%--Request By--%>
         <dx:ASPxPopupControl ID="popupRequestor" runat="server" CloseAction="CloseButton" CloseOnEscape="true" Modal="True" ClientInstanceName="popupRequestor"

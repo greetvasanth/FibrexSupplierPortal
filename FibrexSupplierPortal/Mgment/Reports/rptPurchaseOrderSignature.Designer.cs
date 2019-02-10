@@ -240,7 +240,7 @@
             // topMarginBand2
             // 
             this.topMarginBand2.Dpi = 100F;
-            this.topMarginBand2.HeightF = 2F;
+            this.topMarginBand2.HeightF = 1.999998F;
             this.topMarginBand2.Name = "topMarginBand2";
             // 
             // detailBand2
@@ -250,7 +250,7 @@
             this.detailBand2.Dpi = 100F;
             this.detailBand2.HeightF = 125F;
             this.detailBand2.MultiColumn.ColumnCount = 7;
-            this.detailBand2.MultiColumn.ColumnWidth = 115F;
+            this.detailBand2.MultiColumn.ColumnWidth = 102F;
             this.detailBand2.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.detailBand2.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnWidth;
             this.detailBand2.Name = "detailBand2";
@@ -272,7 +272,7 @@
             this.xrTableRow9,
             this.xrTableRow8,
             this.xrTableRow7});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(115.5413F, 125F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(102F, 125F);
             this.xrTable1.StylePriority.UseBorderColor = false;
             this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseFont = false;
@@ -299,7 +299,7 @@
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "GetPOSignature.Authority")});
             this.xrTableCell4.Dpi = 100F;
-            this.xrTableCell4.Font = new System.Drawing.Font("Arial", 6F);
+            this.xrTableCell4.Font = new System.Drawing.Font("Arial", 7F);
             this.xrTableCell4.ForeColor = System.Drawing.Color.Black;
             this.xrTableCell4.LockedInUserDesigner = true;
             this.xrTableCell4.Name = "xrTableCell4";
@@ -331,7 +331,7 @@
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "GetPOSignature.Designationname")});
             this.xrTableCell9.Dpi = 100F;
-            this.xrTableCell9.Font = new System.Drawing.Font("Arial", 6F);
+            this.xrTableCell9.Font = new System.Drawing.Font("Arial", 7F);
             this.xrTableCell9.LockedInUserDesigner = true;
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 3, 0, 0, 100F);
@@ -402,7 +402,7 @@
             this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "GetPOSignature.TeamMemberName")});
             this.xrTableCell5.Dpi = 100F;
-            this.xrTableCell5.Font = new System.Drawing.Font("Arial", 6F);
+            this.xrTableCell5.Font = new System.Drawing.Font("Arial", 7F);
             this.xrTableCell5.LockedInUserDesigner = true;
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 3, 0, 0, 100F);

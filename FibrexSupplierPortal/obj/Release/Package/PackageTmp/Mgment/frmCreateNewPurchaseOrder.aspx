@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Mgment/mainMaster.Master" AutoEventWireup="true" CodeBehind="frmCreateNewPurchaseOrder.aspx.cs" Inherits="FibrexSupplierPortal.Mgment.frmCreateNewPurchaseOrder" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 
 <%@ Register Assembly="DevExpress.Web.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 
 <%@ Register Src="~/Mgment/Control/PurchaseOrderSideMenu.ascx" TagPrefix="uc1" TagName="PurchaseOrderSideMenu" %>
 
@@ -185,6 +186,17 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </ajax:ToolkitScriptManager>
+    <%--<asp:ScriptManager ID="ScriptManger1" runat="Server">
+
+</asp:ScriptManager>--%>
+    <script type="text/javascript" language="javascript">
+    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+    function EndRequestHandler(sender, args){
+        if (args.get_error() != undefined){
+            args.set_errorHandled(true);
+        }
+    }
+</script>
     <div class="row">
         <div class="RPTheadingName">
             <asp:Label ID="lblGeneralSupplierName" runat="server" Text="New Purchase Order"></asp:Label>
@@ -696,7 +708,7 @@
 
                                                 </div>
                                                 <div style="float: left; margin-left: -12px;" class="col-sm-1">
-                                                    <img src="../images/search-icon.png" class="SearchImg" onclick="return ShowSupplierList();" id="imgSupplier" runat="server" />
+                                                    <img src="../images/search-icon.png" class="SearchImg imgPopup" onclick="return ShowSupplierList();" id="imgSupplier" runat="server" />
                                                 </div>
                                             </div>
                                             <div class="form-group">

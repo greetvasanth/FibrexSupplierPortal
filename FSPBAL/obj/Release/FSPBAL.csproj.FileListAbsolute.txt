@@ -20,8 +20,8 @@ D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\bin\Re
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\bin\Release\FSPBAL.dll
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\bin\Release\FSPBAL.pdb
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\bin\Release\Newtonsoft.Json.dll
+D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.csproj.CoreCompileInputs.cache
+D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.csproj.CopyComplete
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.dll
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.pdb
 D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.csprojAssemblyReference.cache
-D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.csproj.CoreCompileInputs.cache
-D:\Fibrex_project\Fibrex_Project\Project_2016\FibrexSupplierPortal\FSPBAL\obj\Release\FSPBAL.csproj.CopyComplete

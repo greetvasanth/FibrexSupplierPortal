@@ -29,6 +29,16 @@
       <Column Name="RECEIPTSTATUS" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.VW_PRODUCT_MASTER" Member="VW_PRODUCT_MASTERs">
+    <Type Name="VW_PRODUCT_MASTER">
+      <Column Name="orgCode" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="orgName" Type="System.String" DbType="VarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="prm_item_code" Type="System.String" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="prm_item_desc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="prm_uom_code" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="uom_desc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.VW_MATRECTRANS" Member="VW_MATRECTRANs">
     <Type Name="VW_MATRECTRAN">
       <Column Name="mrvm_org_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -40,7 +50,7 @@
       <Column Name="mrvd_po_line_id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="mrvd_po_line_no" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="mrvd_item_code" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="mrvd_qty" Type="System.Decimal" DbType="Decimal(12,3)" CanBeNull="true" />
+      <Column Name="mrvd_rcvd_order_unit" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
       <Column Name="mrvd_unit_rate_lc" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
       <Column Name="mrvd_value_fc" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
       <Column Name="mrvd_line_vat" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
