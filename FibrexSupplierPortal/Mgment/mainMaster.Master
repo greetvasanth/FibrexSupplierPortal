@@ -89,7 +89,7 @@
                     <%-- </a>--%>
                 </div>
                 <div style="width: 325px; float: left;">
-                    <p style="text-align: left; color: red; font-size: 18px; margin-top: 8%; margin-left: 25px;">Test</p>
+                    <p style="text-align: left; color: red; font-size: 18px; margin-top: 8%; margin-left: 25px;">UAT Environment</p>
                 </div>
 
                 <ul class="nav navbar-top-links navbar-right">
